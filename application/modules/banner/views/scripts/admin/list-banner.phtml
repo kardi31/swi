@@ -15,7 +15,6 @@ $(document).ready(function() {
         "aoColumns": [
             { "bSortable": true, sWidth: '50px' },
             null,
-            { sWidth: '200px' },
             { "bSortable": true, sWidth: '150px' },
             { "bSortable": true, sWidth: '150px' },
             { "bSortable": true, sWidth: '150px' },
@@ -32,19 +31,16 @@ $(document).ready(function() {
         },
         {
             column_number: 2,
+            filter_type: 'range_date',
+            date_format : "dd/mm/yyyy"
         },
         {
             column_number: 3,
             filter_type: 'range_date',
             date_format : "dd/mm/yyyy"
-        },
-        {
-            column_number: 4,
-            filter_type: 'range_date',
-            date_format : "dd/mm/yyyy"
         }, {
            
-          column_number: 5,
+          column_number: 4,
            data: [{
                 value: '1',
                 label: 'Tak'
@@ -67,9 +63,6 @@ $(document).ready(function() {
     <div class="span12">
         
         <div class="box">
-            Rodzaje bannerów: <br />
-            Over news (660x90px) - nad lista newsow(strona glowna)<br />
-            Banner right(240x150) - po prawej stronie<br />
             <div class="title">
 
                 <h4>
@@ -87,7 +80,6 @@ $(document).ready(function() {
                         <tr>
                             <th><?php echo $this->translate('Id') ?></th>
                             <th><?php echo $this->translate('Name') ?></th>
-                            <th><?php echo $this->translate('Position') ?></th>
                             <th><?php echo $this->translate('Date from') ?></th>
                             <th><?php echo $this->translate('Date to') ?></th>
                             <th><?php echo $this->translate('Visible on site') ?></th>
@@ -96,7 +88,6 @@ $(document).ready(function() {
                         <tr>
                             <th><?php echo $this->translate('Id') ?></th>
                             <th><?php echo $this->translate('Name') ?></th>
-                            <th><?php echo $this->translate('Position') ?></th>
                             <th><?php echo $this->translate('Date from') ?></th>
                             <th><?php echo $this->translate('Date to') ?></th>
                             <th><?php echo $this->translate('Visible on site') ?></th>

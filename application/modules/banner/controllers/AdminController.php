@@ -20,8 +20,8 @@ class Banner_AdminController extends MF_Controller_Action {
             'request' => $this->getRequest(), 
             'table' => $table, 
             'class' => 'Banner_DataTables_Banner', 
-            'columns' => array('p.id','pt.name','p.position','p.date_from','p.date_to','p.status'),
-            'searchFields' => array('p.id','pt.name','p.position','p.date_from','p.date_to','p.status')
+            'columns' => array('p.id','pt.name','p.date_from','p.date_to','p.status'),
+            'searchFields' => array('p.id','pt.name','p.date_from','p.date_to','p.status')
         ));
         
         $language = $i18nService->getAdminLanguage();
@@ -33,7 +33,6 @@ class Banner_AdminController extends MF_Controller_Action {
             $row = array();
             $row[] = $result->id;
             $row[] = $result->Translation[$language->getId()]->name;
-            $row[] = $result->position;
 //            $row[] = MF_Text::timeFormat($result['created_at'],'d/m/Y H:i');
             $row[] = MF_Text::timeFormat($result['date_from'],'d/m/Y H:i');
             $row[] = MF_Text::timeFormat($result['date_to'],'d/m/Y H:i');

@@ -38,6 +38,18 @@
        <tu tuid='Active'>
            <tuv xml:lang="pl"><seg>Aktywny</seg></tuv>
        </tu>
+       <tu tuid='Position'>
+           <tuv xml:lang="pl"><seg>Pozycja</seg></tuv>
+       </tu>
+       <tu tuid='Date from'>
+           <tuv xml:lang="pl"><seg>Data od</seg></tuv>
+       </tu>
+       <tu tuid='Date to'>
+           <tuv xml:lang="pl"><seg>Data do</seg></tuv>
+       </tu>
+       <tu tuid='Visible on site'>
+           <tuv xml:lang="pl"><seg>Pokaż na stronie</seg></tuv>
+       </tu>
        <tu tuid='Change status'>
            <tuv xml:lang="pl"><seg>Zmień status</seg></tuv>
        </tu>
