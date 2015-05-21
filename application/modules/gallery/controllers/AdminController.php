@@ -81,6 +81,7 @@ class Gallery_AdminController extends MF_Controller_Action {
                     }
                     
                     $values['user_id'] = $user->getId();
+                    $values['last_user_id'] = $user->getId();
                     $gallery = $galleryService->saveGalleryFromArray($values);
                     
                     $this->_service->get('doctrine')->getCurrentConnection()->commit();
@@ -116,7 +117,6 @@ class Gallery_AdminController extends MF_Controller_Action {
         $languages = $i18nService->getLanguageList();
         
         $user = $this->_helper->user();
-
         if($this->getRequest()->isPost()) {
             if($form->isValid($this->getRequest()->getPost())) {
                 try {
@@ -128,7 +128,7 @@ class Gallery_AdminController extends MF_Controller_Action {
                         $values['metatag_id'] = $metatags->getId();
                     }
                     
-                    $values['user_id'] = $user->getId();
+                    $values['last_user_id'] = $user->getId();
                     
                     $gallery = $galleryService->saveGalleryFromArray($values);
                     
