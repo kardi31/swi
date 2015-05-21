@@ -1,0 +1,100 @@
+<article class="profile span8">
+    <header class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Offer') ?>: <?php echo $this->text()->truncate($this->offer['title'], 100, 'letters') ?></h3>
+        <?php if(!$this->paginator): ?>
+        <span class="span4"><a href="<?php echo $this->url(array('action' => 'offers-edit', 'offer-id' => $this->offer['id']), 'domain-user-profile') ?>" class="btn btn-small btn-success pull-right"><?php echo $this->translate('Edit offer') ?></a></span>
+        <?php endif; ?>
+    </header>
+    
+    <section class="offer clearfix">
+        <table class="parameters span5">
+            <?php foreach($this->offer['Parameters'] as $parameter): ?>
+            <tr>
+                <th><?php echo $parameter['ParameterTemplate']['name'] ?></th>
+                <?php if($parameter['ParameterTemplate']['range']): ?>
+                <td><?php echo $parameter['value'] ?> - <?php echo $parameter['value_to'] ?></td>
+                <?php else: ?>
+                <td><?php echo $parameter['value'] ?></td>
+                <?php endif; ?>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <div class="content span5">
+            <?php echo $this->offer['content'] ?>
+        </div>
+    </section>
+    
+    <?php if(isset($this->paginator)): ?>
+    
+    <div class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Notice') ?>: <?php echo $this->text()->truncate($this->notice['title'], 100, 'letters') ?></h3>
+    </div>
+    
+    <section class="notice clearfix">
+        
+        <table class="parameters span5">
+            <?php foreach($this->notice['Parameters'] as $parameter): ?>
+            <tr>
+                <th><?php echo $parameter['ParameterTemplate']['name'] ?></th>
+                <?php if($parameter['ParameterTemplate']['range']): ?>
+                <td><?php echo $parameter['value'] ?> - <?php echo $parameter['value_to'] ?></td>
+                <?php else: ?>
+                <td><?php echo $parameter['value'] ?></td>
+                <?php endif; ?>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <div class="content span5">
+            <?php echo $this->notice['content'] ?>
+        </div>
+    </section>
+    
+    <div class="accordion" id="accordion2">
+        <?php $i = 0; foreach($this->paginator as $message): ?>
+        <div class="accordion-group">
+            <div class="accordion-heading deal-message-header clearfix">
+                <a class="span10 accordion-toggle <?php if($message['recipient'] == 'client'): ?>outgoing<?php else: ?>incoming<?php endif; ?> <?php if($message['status'] == MF_Code::STATUS_NEW): ?>bold<?php endif; ?>" data-toggle="collapse" data-parent="#accordion2" href="#collapse<?php echo $message['id'] ?>">
+                    <span class="span3"><?php echo $this->text()->timeFormat($message['created_at'], 'H:i d-m-Y') ?></span>
+                    <span class="span9"><?php echo $message['title'] ?></span>
+                </a>
+            </div>
+            <div id="collapse<?php echo $message['id'] ?>" class="accordion-body collapse deal-message-content">
+                <div class="accordion-inner">
+                <?php if($message['recipient'] == 'agent'): ?>    
+                <div class="clearfix pull-right"><a href="<?php echo $this->url(array('action' => 'offers-reply-message', 'offer-id' => $this->offer['id'], 'deal-id' => $message['deal_id'], 'message-id' => $message['id']), 'domain-user-profile', true) ?>"><?php echo $this->translate('Reply') ?></a></div>
+                <?php endif; ?>
+                <?php echo nl2br($message['content']) ?>
+                </div>
+            </div>
+        </div>
+        <?php $i++; endforeach; ?>
+    </div>
+    <div class="pagination">
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'profile_pagination_control.phtml'); ?>
+    </div>  
+    <?php elseif(isset($this->dealPaginator) && $this->dealPaginator->getCurrentItemCount()): ?>
+    <h4><?php echo $this->translate('Subscribers') ?></h4>
+    <div class="accordion" id="accordion2">
+        <?php $i = 0; foreach($this->dealPaginator as $deal): ?>
+        <div class="accordion-group">
+            <div class="accordion-heading deal-messages">
+                <?php if($deal['Notice']['User']['Profile']['PhotoRoot']): ?>
+                <a class="accordion-toggle" data-parent="#accordion2" href="<?php echo $this->url(array('action' => 'offers-show', 'offer-id' => $this->offer['id'], 'deal-id' => $deal['id']), 'domain-user-profile', true) ?>" style="background: url(/media/photos/<?php echo $deal['Notice']['User']['Profile']['PhotoRoot']['offset'] ?>/30x30/<?php echo $deal['Notice']['User']['Profile']['PhotoRoot']['filename'] ?>) no-repeat left center; padding-left: 40px;">
+                <?php else: ?>
+                <a class="accordion-toggle" data-parent="#accordion2" href="<?php echo $this->url(array('action' => 'offers-show', 'offer-id' => $this->offer['id'], 'deal-id' => $deal['id']), 'domain-user-profile', true) ?>">
+                <?php endif; ?>
+                    <span><?php echo $deal['Notice']['User']['first_name'] . ' ' .  $deal['Notice']['User']['last_name'] ?> - <?php echo $this->text()->truncate($deal['Notice']['title'], 100) ?></span>
+                    <span class="pull-right"><?php echo $this->text()->timeFormat($deal['created_at'], 'H:i d-m-Y') ?></span>
+                </a>
+            </div>
+            <div id="collapse" class="accordion-body collapse">
+            </div>
+        </div>
+        <?php $i++; endforeach; ?>
+    </div>
+    <div class="pagination">
+        <?php echo $this->paginationControl($this->dealPaginator, 'Sliding', 'profile_pagination_control.phtml'); ?>
+    </div> 
+    <?php endif; ?>
+    
+</article>

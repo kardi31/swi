@@ -1,0 +1,71 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Invoice:
+  tableName: invoice_invoice
+  actAs:
+    Timestampable: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    code:
+      type: string(128)
+    user_id:
+      type: integer(4)
+    sum:
+      type: decimal
+      scale: 2
+    execution_start_date:
+      type: timestamp
+    execution_end_date:
+      type: timestamp
+Item:
+  tableName: invoice_item
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    invoice_id:
+      type: integer(4)
+    name:
+      type: string(255)
+    item_type:
+      type: string(128)
+    item_id:
+      type: integer(4)
+    price:
+      type: decimal
+      scale: 2
+    count:
+      type: integer(2)
+  relations:
+    Invoice:
+      foreignAlias: Items
+      local: invoice_id
+      foreign: id
+Payment:
+  tableName: invoice_payment
+  actAs:
+    Timestampable: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    invoice_id:
+      type: integer(4)
+    type:
+      type: string(128)
+    status:
+      type: integer(2)
+    paid_at:
+      type: timestamp
+  relations:
+    Invoice:
+      local: invoice_id
+      foreign: id
+      foreignType: one

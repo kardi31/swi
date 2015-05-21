@@ -1,0 +1,27 @@
+<div id="banner" class="banner">
+    <div class="exhibitionPicture">
+        <img src="../images/layout/bannerOverlay01.png"/>
+    </div>
+    <div class="frame">
+        <div class="viewport">
+            <div class="inner">
+                <?php if(count($this->banners)): ?>
+                    <?php foreach($this->banners as $banner): ?>
+                    <div class="slide">  
+                        <a href="<?php echo $this->url(array('id' => $banner['id']), 'domain-increase-banner') ?>"><img src="/media/photos/<?php echo $banner['PhotoRoot']['offset'] ?>/937x257/<?php echo $banner['PhotoRoot']['filename'] ?>" />
+                            <div class="descr">
+                                <header><?php echo $banner['name'] ?></header>
+                                <p><?php echo $banner['description'] ?></p>
+                            </div>
+                        </a>
+                    </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+             </div>
+         </div>
+     </div>
+    <div class="overlay">
+        <div class="bannerDots"></div>
+    </div>
+</div>
+

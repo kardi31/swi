@@ -1,0 +1,40 @@
+<?php $this->headTitle('Kartki - '.$this->league['name'],'SET'); 
+?>
+<div id="showBooking" class="content">
+    <h1>Kartki - <?php echo $this->league['name']; ?></h1>
+    <hr />
+<strong>Zawieszenia(czerwona kartka, 4,7 żółtych kartek)</strong>
+   <?php
+if(count($this->redCards)>0)
+{
+    ?>
+<table id="redCard">
+    <?php foreach($this->redCards as $redCard): ?>
+<tr>
+    <td><h4><?php echo $redCard['Player']['last_name']; ?></h4></td>
+    <td><?php echo $redCard['Player']['first_name']; ?></td>
+    <td><?php echo $redCard['Player']['Team']['name']; ?></td>
+    <td></td>
+    <td><?php echo $redCard['comment']; ?></td>
+</tr>
+<?php endforeach; ?>
+</table>
+<?php } ?>
+<strong>Żółte kartki</strong>
+
+<table id="yellowCard">
+<?php 
+foreach($this->yellowCards as $yellowCard):
+    ?>
+    <tr>
+        <td><h4><?php echo $yellowCard['Player']['last_name']; ?></h4></td>
+    <td><?php echo $yellowCard['Player']['first_name']; ?></td>
+    <td><?php echo $yellowCard['Player']['Team']['name']; ?></td>
+     <td><?php echo $yellowCard['kar']; ?></td>
+        <td></td>  
+    </tr>
+<?php    
+endforeach;
+?>
+</table>
+</div>

@@ -1,0 +1,108 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Slider:
+  tableName: slider_slider
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+      unique: true
+    slide_root_id:
+      type: integer(11)
+  relations:
+    Slide:
+      local: slide_root_id
+      foreign: root_id
+      alias: Slides
+      type: many
+Slide:
+  tableName: slider_slide
+  actAs: 
+    NestedSet:
+      hasManyRoots: true
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    slider_id:
+      type: integer(11)
+    transition:
+      type: string(255)
+    slot_amount:
+      type: integer(4)
+    rotation: 
+      type: integer(4)
+    transition_duration:
+      type: integer(4)
+    delay:
+      type: integer(4)
+    target_href:
+      type: string(255)
+    enable_link:
+      type: boolean
+      default: 0
+    photo_root_id:
+      type: integer(4)
+  relations:
+    Slider:
+      local: id
+      foreign: slide_root_id
+      foreignAlias: SlideRoot
+      foreignType: one
+    SlideLayer:
+      local: id
+      foreign: root_id
+      alias: Layers
+      type: many
+SlideLayer:
+  tableName: slider_slide_layer
+  actAs: 
+    NestedSet:
+      hasManyRoots: true
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    slide_id:
+      type: string(128)
+    type:
+      type: string(128)
+    text_html:
+      type: string(255)
+    animation: 
+      type: string(255)
+    easing:
+      type: string(255)
+    speed:
+      type: integer(4)
+    target_href:
+      type: string(255)
+    x_position:
+      type: integer(4)
+    y_position:
+      type: integer(4)
+    start:
+      type: integer(8)
+    class:
+      type: string(128)
+    width_iframe:
+      type: integer(8)
+    height_iframe:
+      type: integer(8)
+    photo_root_id:
+      type: integer(4)
+  relations:
+    Slide:
+      local: slide_id
+      foreign: id
+      foreignAlias: SlideLayerRoot
+      foreignType: one

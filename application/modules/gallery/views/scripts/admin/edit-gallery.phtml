@@ -1,0 +1,230 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#explorer').dialog({
+		autoOpen: false,
+		modal: true,
+		dialogClass: 'dialog',
+	});
+    
+    
+      $("#itemContainer").delegate("#add-photo", "click", function(e) {
+        e.preventDefault();
+        $("#explorer-content").show();
+       // $("#explorer").modal({
+        //    overlayCss: {"background": "black"}
+       // });
+        
+        var elf = $('#elfinder').elfinder({
+            url : '/admin/media/elfinder',  // connector URL (REQUIRED)
+            getFileCallback : function(href) {
+                var data = { hrefs: href };
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: "<?php echo $this->adminUrl('add-gallery-photo', 'gallery') ?>/id/"+$('#id').val(),
+                    data: data,
+                    success: function(resp) {
+                        if(resp.status == "success") {
+                            $("#id").val(resp.id);
+                            $("#main_photo_container").html(resp.body);
+                            $("#itemContainer").trigger('update');
+                        }
+                    }
+                });
+
+                $('#explorer').dialog('close');
+              //  $.modal.close();
+            },
+            commandsOptions : {
+                // configure value for "getFileCallback" used for editor integration
+                getfile : {
+                    // allow to return folders info
+                    onlyURL  : true,
+
+                    // allow to return multiple files info
+                    multiple : true,
+
+                    // allow to return folders info
+                    folders  : false,
+
+                    // action after callback (close/destroy)
+                    oncomplete : ''
+                },
+            }
+        }).elfinder('instance');	
+        
+        $('#explorer').dialog('open');
+    });
+    
+     $('#explorer').dialog({
+		autoOpen: false,
+		modal: true,
+		dialogClass: 'dialog',
+    });
+    
+     $("#itemContainer").delegate(".actionBtn .move", "click", function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: $(this).attr('href'),
+                data: data,
+                success: function(resp) {
+                    if(resp.status == "success") {
+                        $("#main_photo_container").html(resp.body);
+                        $("#itemContainer").trigger('update');
+                    }
+                }
+            });
+     }); 
+    
+     $("#itemContainer").delegate(".actionBtn .delete", "click", function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "<?php echo $this->adminUrl('remove-gallery-photo', 'gallery') ?>/id/"+$(this).attr('rel')+"/gallery-id/" + $('#id').val(),
+                data: data,
+                success: function(resp) {
+                    if(resp.status == "success") {
+                        $("#main_photo_container").html(resp.body);
+                        $("#itemContainer").trigger('update');
+                    }
+                }
+            });
+     });
+    
+    $("#itemContainer").delegate(".changePhotoName", "click", function(e) {
+        var photo_id = $(this).attr('rel');
+        var photo_name = $('.photo_name[rel='+photo_id+']');
+        var new_photo_name = photo_name.val();
+        
+        $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "<?php echo $this->adminUrl('change-photo-name', 'gallery') ?>"+"/gallery-id/<?php echo $this->gallery->id; ?>",
+                data: {format: 'json',name: new_photo_name, id: photo_id},
+                success: function(resp) {
+                    if(resp.status == "success") {
+                        $("#main_photo_container").html(resp.body);
+                        $("#itemContainer").trigger('update');
+                    }
+                }
+            });
+        
+    });
+    
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+            
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edit gallery') ?> <?php echo $this->gallery->Translation[$this->language]->name ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                
+                    
+                    <div class="gallery-header">
+                        <h4><?php echo $this->translate('Translations') ?></h4>
+                    </div>
+                    
+                    <ul id="myTab" class="nav nav-tabs pattern">
+                        <li class="dropdown">
+                            <?php foreach($this->languages as $key => $language): ?>
+                            <li class="<?php if($key == 0): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                            <?php endforeach; ?>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <?php foreach($this->languages as $key => $language): ?>
+                        <div class="tab-pane<?php if($key == 0): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                        <?php if($this->form->translations->getSubForm($language)): ?>
+                            <?php echo $this->form->translations->getSubForm($language)->name ?>
+                            <?php echo $this->form->translations->getSubForm($language)->description->setAttrib('class', 'tinymce') ?>
+                        <?php endif; ?>
+
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                    
+                    <?php echo $this->form->type ?>
+                    <?php echo $this->form->id ?>
+                    
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-gallery', 'gallery') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+            
+            </div>
+            
+        </div>
+        
+        <div class="box">
+
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Metatags') ?></span>
+                </h4>
+
+            </div>
+            <div class="content clearfix">
+                
+                <ul id="myTab" class="nav nav-tabs pattern">
+                    <li class="dropdown">
+                        <?php foreach($this->languages as $key => $language): ?>
+                        <li class="<?php if($key == 0): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                        <?php endforeach; ?>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <?php foreach($this->languages as $key => $language): ?>
+                    <div class="tab-pane<?php if($key == 0): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                    <?php if($this->form->metatags->translations->getSubForm($language)): ?>
+                        <?php echo $this->form->metatags->translations->getSubForm($language) ?>
+                    <?php endif; ?>
+
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                
+            </div>
+
+        </div>
+            
+        </form>
+                
+    </div>
+
+    <div class="gallery-header">
+                         <h4><?php echo $this->translate('Gallery View') ?></h4>
+                    </div>                  
+                      <div id="itemContainer">           
+                        <button href="#" id="add-photo" style="width: 120px;"><?php echo $this->translate('Add photo') ?></button>
+                        <ul id="main_photo_container" class="galleryView center">           
+                                    <?php echo $this->partial('admin/gallery-photos.phtml', 'gallery', array('photos' => $this->gallery->get('PhotoRoot')->getNode()->getChildren(), 'gallery' => $this->gallery)) ?>
+                        </ul>
+                      </div>
+
+</div>
+
+        
+<div id="explorer" class="dialog"><div id="elfinder"></div></div>
+    

@@ -1,0 +1,38 @@
+<?php if(isset($this->tree)): ?>
+    <ul class="clearfix">
+    <?php foreach($this->tree as $item): ?>
+        <li <?php if($item->getNode()->hasChildren()): ?> class="dropdown" <?php endif; ?>>
+            
+            <?php if($item['route']=="domain-seniorzy"): ?>
+                <a href="http://switkrzeszowice.hekko24.pl"><?php echo $item->Translation[$this->language]->title; ?></a>
+            <?php else: ?>
+                <a href="<?php echo $this->url(array('slug' => $item['Translation'][$this->language]['slug']),$item['route']) ;?>"><?php echo $item->Translation[$this->language]->title; ?></a>
+            <?php endif; ?>
+            <?php if($item->getNode()->getChildren()):
+                ?>
+                <?php echo $this->partial('menu_main_tree.phtml', 'menu', array('subtree' => $item->getNode()->getChildren(), 'parent' => $item, 'language' => $this->language)) ?>
+            <?php 
+            endif; ?>
+        </li>
+        
+        <?php endforeach; ?>
+    </ul>
+    <?php elseif(isset($this->subtree)): ?>
+        <ul class="dropdown-menu">
+        <?php foreach($this->subtree as $item): ?>
+            <?php if($item->Translation[$this->language]->title): ?>
+            <li>
+                <?php if(strpos(APPLICATION_ENV,'development')){
+                    $uri = ".swit.localhost";
+                }
+                else{
+                    $uri = ".switkrzeszowice.hekko24.pl";
+                }
+                ?>
+                <a href="http://<?php echo str_replace('-','',$item->Translation[$this->language]->slug).$uri ?>"><?php echo $item->Translation[$this->language]->title; ?></a>
+                 
+            </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>

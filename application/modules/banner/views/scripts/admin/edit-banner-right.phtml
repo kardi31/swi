@@ -1,0 +1,140 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    
+    $('#explorer').dialog({
+		autoOpen: false,
+		modal: true,
+		dialogClass: 'dialog',
+	});
+    
+    $("#itemContainer").delegate(".actionBtn .add", "click", function(e) {
+        e.preventDefault();
+        
+        var elf = $('#elfinder').elfinder({
+            url : '/admin/media/elfinder',  // connector URL (REQUIRED)
+            getFileCallback : function(href) {
+                var data = { hrefs: href };
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: "<?php echo $this->adminUrl('add-banner-right-photo', 'banner') ?>/id/"+$('#id').val(),
+                    data: data,
+                    success: function(resp) {
+                        if(resp.status == "success") {
+                            $("#main_photo_container").html(resp.body);
+                        }
+                    }
+                });
+
+                $('#explorer').dialog('close');
+//                $.modal.close();
+            },
+            commandsOptions : {
+                // configure value for "getFileCallback" used for editor integration
+                getfile : {
+                    // allow to return folders info
+                    onlyURL  : true,
+
+                    // allow to return multiple files info
+//                    multiple : true,
+
+                    // allow to return folders info
+                    folders  : false,
+
+                    // action after callback (close/destroy)
+                    oncomplete : ''
+                }
+            }
+        }).elfinder('instance');	
+        
+        $('#explorer').dialog('open');
+    });
+    
+    $("#itemContainer").delegate(".actionBtn .delete", "click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo $this->adminUrl('remove-banner-right-photo', 'banner') ?>/id/"+$('#id').val(),
+            data: data,
+            success: function(resp) {
+                if(resp.status == "success") {
+                    $("#main_photo_container").html(resp.body);
+                }
+            }
+        });
+    });
+    
+    
+    $("#banner_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+    $("#category_id").select2();
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edit banner right') ?> <?php echo $this->bannerRight->name ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                
+                <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+                    
+                    <?php echo $this->form->name ?>
+                    <?php echo $this->form->href ?>  
+                    <?php echo $this->form->start_display_date->setAttrib('class', 'combiner-picker') ?>
+                    <?php echo $this->form->end_display_date->setAttrib('class', 'combiner-picker') ?>
+                    <?php echo $this->form->gif_iframe ?>
+                    <?php echo $this->form->gif_iframe_content ?>
+                    <?php echo $this->form->id ?>
+                    
+                    <div class="page-header">
+                        <h4><?php echo $this->translate('Main photo') ?></h4>
+                    </div>
+                    
+                    <div id="itemContainer">
+                        <ul id="main_photo_container" class="galleryView center">
+                            <li class="pull-left">
+                                <?php if($this->bannerRight->get('PhotoRoot')->getOffset()): ?>
+                                <a id="main_photo" href="/media/photos/<?php echo $this->bannerRight->get('PhotoRoot')->getOffset() ?>/<?php echo $this->bannerRight->get('PhotoRoot')->getFilename() ?>" rel="prettyPhoto" title="<?php echo $this->bannerRight->get('PhotoRoot')->getTitle() ?>">
+                                    <img src="/media/photos/<?php echo $this->bannerRight->get('PhotoRoot')->getOffset() ?>/126x126/<?php echo $this->bannerRight->get('PhotoRoot')->getFilename() ?>" data-original="/media/photos/<?php echo $this->bannerRight->get('PhotoRoot')->getOffset() ?>/<?php echo $this->bannerRight->get('PhotoRoot')->getFilename() ?>" alt="<?php echo $this->bannerRight->get('PhotoRoot')->getTitle() ?>">
+                                </a>
+                                <?php else: ?>
+                                <a id="main_photo" href="/images/gallery/preload.png" title="<?php echo $this->translate('No photo') ?>">
+                                    <img src="/images/gallery/preload.png" data-original="/images/gallery/preload.png" alt="<?php echo $this->translate('No photo') ?>">
+                                </a>
+                                <?php endif; ?>
+                                <div class="actionBtn">
+                                    <a href="<?php echo $this->adminUrl('edit-banner-right-photo', 'banner', array('banner-id' => $this->bannerRight->getId(), 'id' => $this->bannerRight->get('PhotoRoot')->getId())) ?>" class="edit"><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+                                    <a href="#" class="add"><span class="icon16 iconic-icon-cursor white"></span></a>
+                                    <a href="#" class="delete"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-banner-right', 'banner') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+                </form>
+            
+            </div>
+            
+        </div>
+    </div>   
+</div> 
+<div id="explorer" class="dialog"><div id="elfinder"></div></div>
+    

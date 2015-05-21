@@ -1,0 +1,155 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Message:
+  tableName: newsletter_message
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    type: 
+      type: string(128)
+    title:
+      type: string(255)
+    content:
+      type: clob
+    date_to_send:
+      type: timestamp
+    all_subscribers:
+      type: boolean
+      default: 0
+Subscriber:
+  tableName: newsletter_subscriber
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    username:
+      type: string(255)
+    first_name:
+      type: string(255)
+    last_name:
+      type: string(255)
+    email:
+      type: string(255)
+    token:
+      type: string(255)
+    active:
+      type: boolean
+      default: 1
+Group:
+  tableName: newsletter_group
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+  relations:
+    Subscriber:
+        refClass: GroupSubscriber
+        local: group_id
+        foreign: subscriber_id
+        foreignType: many
+        foreignAlias: Groups
+        alias: Subscribers
+GroupSubscriber:
+  tableName: newsletter_group_subscriber
+  columns:
+    group_id:
+      type: integer(4)
+    subscriber_id:
+      type: integer(4)
+SentMessage:
+  tableName: newsletter_sent_messages
+  actAs:
+    Timestampable: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(6)
+    message_id:
+      type: integer(4)
+    subscriber_id:
+      type: integer(4)
+    group_id:
+      type: integer(4)
+    sent_at:
+      type: timestamp
+    sent:
+      type: boolean
+      default: 0
+    error:
+      type: string(255)
+  relations:
+    Message:
+      local: message_id
+      foreign: id
+      type: one
+      alias: Message
+      foreignAlias: SentMessages
+      foreignType: many
+    Subscriber:
+      local: subscriber_id
+      foreign: id
+      alias: Subscriber
+      foreignAlias: SentMessages
+      type: one
+      foreignType: many
+    Group:
+      local: group_id
+      foreign: id
+      alias: Group
+      foreignAlias: SentMessages
+      type: one
+      foreignType: many
+MessageNews:
+  tableName: newsletter_message_news
+  columns:
+    message_id:
+      primary: true
+      type: integer(4)
+    news_id:
+      primary: true
+      type: integer(4)
+MessageEvent:
+  tableName: newsletter_message_event
+  columns:
+    message_id:
+      primary: true
+      type: integer(4)
+    event_id:
+      primary: true
+      type: integer(4)
+MessageProduct:
+  tableName: newsletter_message_product
+  columns:
+    message_id:
+      primary: true
+      type: integer(4)
+    product_id:
+      primary: true
+      type: integer(4)
+MessageCompany:
+  tableName: newsletter_message_company
+  columns:
+    message_id:
+      primary: true
+      type: integer(4)
+    company_id:
+      primary: true
+      type: integer(4)

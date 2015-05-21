@@ -1,0 +1,16 @@
+<?php $bannerService = new Banner_Service_Banner();
+
+        if(!$banners = $bannerService->getAllBanners()) {
+            throw new Zend_Controller_Action_Exception('Banners not found ');
+        }?> 
+
+<?php foreach($banners as $banner):
+    $photo = $banner->get('PhotoRoot');
+if(!strlen($photo->getOffset()))
+    continue;
+?>
+<a href="<?php echo $banner->website; ?>" target='_blank'>
+    <img class='bannerImage' src="/media/photos/<?php echo $photo->getOffset(); ?>/155x/<?php echo $photo->getFilename(); ?>" />
+</a>
+
+<?php endforeach; ?>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Gallery</title>
+    <meta name="description" content="HTML framework description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/general.css">
+	<!-- Google fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic%7COswald:400,300,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="css/font-awesome.css">
+    <!-- Modernizr -->
+    <script type='text/javascript' src='js/libs/modernizr-2.5.3.min.js'></script>
+
+    <!-- Semantic HTML5 Support on old IE -->
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- Header Section. If need a menu section, use tag: <nav> -->
+    <header>
+		<div class="top">
+			<div class="container">
+				<div class="col-12">
+				  <div class="col-2">
+					<div class="logo"><img src="css/images/logo.png" alt=""/></div>
+				  </div>
+                    <nav id="top-menu">
+                        <ul class="clearfix">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="team.html">Team</a></li>
+                            <li><a href="video.html">video</a></li>
+                            <li class="dropdown"><a href="blog.html">blog</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="blog-single.html">Single post</a></li>
+                                    <li><a href="#">Drop down 2</a></li>
+                                    <li><a href="#">Drop down 3</a></li>
+                                    <li><a href="#">Drop down 4</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="club.html">club</a></li>
+                            <li class="active"><a href="gallery.html">gallery</a>
+                            </li>
+                            <li><a href="contact.html">contacts</a></li>
+
+                        </ul>
+                        <a href="#" id="pull">Menu</a>
+                    </nav>
+                    <nav class="mobilemenu">
+                        <select>
+                            <option value="index.html">Home</option>
+                            <option value="team.html">Team</option>
+                            <option value="video.html">Video</option>
+                            <option value="blog.html">Blog</option>
+                            <option value="club.html">Club</option>
+                            <option value="gallery.html">Gallery</option>
+                            <option value="contact.html">Contact</option>
+                        </select>
+                    </nav>
+					<div class="login">
+						<a href="#"><span id="icon-user"><i class="fa fa-user"></i>log in</span></a><a href="#"><span>register</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+    </header>
+	<!-- Breadcrumb and title -->
+	<section id="bc-t">
+		<div class="container">
+		<ul class="breadcrumb">
+			<li><a href="#">Homepage</a></li><li><span class="sep">   →   </span></li><li><a href="#">Gallery</a></li>
+		</ul>
+		
+		<h1 class="blog-title">Gallery</h1>
+		</div>
+	</section>
+    <!-- Content Section. If need sidebars use the tag: <aside>. If articles use tag: <article> -->
+    <section id="gallery-grid">
+		<div class="container">
+			<div class="b-menu">
+				<nav id="blog-menu">
+						<ul class="clearfix">
+							<li><a href="#">Live Scores</a></li>
+							<li class="active"><a href="#">Results</a></li>
+							<li><a href="#">Fixtures</a></li>
+							<li><a href="#">Tables</a></li>
+							<li><a href="#">Gossip</a></li>
+							<li><a href="#">Transfers</a></li>
+							<li><a href="#">All Teams</a></li>
+							<li><a href="#">Leagues & Cups</a></li>
+							<li><a href="#">Season 2014</a></li>
+							<li><a href="#">European</a></li>
+							<li><a href="#">African</a></li>
+							
+						</ul>
+						<a href="#" id="pull-blog">Menu</a>
+					</nav>
+			</div>
+			<!-- blog menu end -->
+			<!-- gallery -->
+			<div class="gallery-item isotope js-isotope" data-isotope-options='{ "itemSelector": ".gal", "masonry": { "columnWidth": ".col-3" } }'>
+				<div class="gal col-6"><a href="http://placehold.it/470x235" rel="prettyPhoto" title="image1" ><img src="http://placehold.it/470x235" alt=""/></a></div>
+				<div class="gal col-6"><a href="http://placehold.it/470x470" rel="prettyPhoto" title="image2"><img src="http://placehold.it/470x470/333" alt=""/></a></div>
+				<div class="gal col-3"><a href="http://placehold.it/235x235" rel="prettyPhoto" title="image3"><img src="http://placehold.it/235x235/333" alt=""/></a></div>
+				<div class="gal col-3"><a href="http://placehold.it/235x235" rel="prettyPhoto" title="image4"><img src="http://placehold.it/235x235" alt=""/></a></div>
+				<div class="gal col-6"><a href="http://placehold.it/470x235" rel="prettyPhoto" title="image5"><img src="http://placehold.it/470x235" alt=""/></a></div>
+				<div class="gal col-3"><a href="http://placehold.it/235x470" rel="prettyPhoto" title="image6"><img src="http://placehold.it/235x470/333" alt="" /></a></div>
+				<div class="gal col-3"><a href="http://placehold.it/235x235" rel="prettyPhoto" title="image7"><img src="http://placehold.it/235x235" alt=""/></a></div>
+				<div class="gal col-3"><a href="http://placehold.it/235x235" rel="prettyPhoto" title="image8"><img src="http://placehold.it/235x235" alt=""/></a></div>
+				<div class="gal col-3"><a href="http://placehold.it/235x235" rel="prettyPhoto" title="image9"><img src="http://placehold.it/235x235" alt=""/></a></div>
+				<div class="gal col-3"><a href="http://placehold.it/235x470" rel="prettyPhoto" title="image10"><img src="http://placehold.it/235x470" alt=""/></a></div>
+				<div class="gal col-9"><a href="http://placehold.it/705x470" rel="prettyPhoto" title="image11"><img src="http://placehold.it/705x470/333" alt=""/></a></div>
+				<div class="gal col-3"><a href="http://placehold.it/235x235" rel="prettyPhoto" title="image12"><img src="http://placehold.it/235x235" alt=""/></a></div>
+			</div>
+			
+			<!-- PAGINATION -->
+			<div class="pagination">
+				<ul>
+					<li class="nav-arr prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">6</a></li>
+					<li><a href="#">7</a></li>
+					<li><a href="#">8</a></li>
+					<li><a href="#">9</a></li>
+					<li><a href="#">10</a></li>
+					<li class="nav-arr next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+	<section id="partner">
+	<div class="container">
+        <div class="p-l">
+            <div class="col-2"><a href="#"><img src="css/images/o2.png" alt=""/></a></div>
+            <div class="col-2"><a href="#"><img src="css/images/indesit.png" alt=""/></a></div>
+            <div class="col-2"><a href="#"><img src="css/images/o2.png" alt=""/></a></div>
+            <div class="col-2"><a href="#"><img src="css/images/indesit.png" alt=""/></a></div>
+            <div class="col-2"><a href="#"><img src="css/images/o2.png" alt=""/></a></div>
+            <div class="col-2"><a href="#"><img src="css/images/indesit.png" alt=""/></a></div>
+        </div>
+	</div>
+	</section>
+    <!-- Footer Section -->
+    <footer>
+		<div class="container">
+			<div class="col-2"><a href="#"><img src="css/images/footer-logo.png" alt=""/></a></div>
+			<div class="col-6">
+				<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as </p>
+			<div class="col-4">
+				<div class="social-icon">
+					<ul id="social">
+						<li><a href="#"><img src="css/images/soc-twitter.png" alt=""/></a></li>
+						<li><a href="#"><img src="css/images/soc-facebook.png" alt=""/></a></li>
+						<li><a href="#"><img src="css/images/soc-g.png" alt=""/></a></li>
+						<li><a href="#"><img src="css/images/soc-play.png" alt=""/></a></li>
+					</ul>
+				</div>
+			</div><div class="col-6"><p class="copyright">© 2014  - All Rights Reserved </p></div>
+			</div>
+			<div class="col-2">
+			<h3>Information</h3>
+				<ul >
+					<li><a href="#">About club</a></li>
+					<li><a href="#">Our team</a></li>
+					<li><a href="#">Registration</a></li>
+					<li><a href="#">Features</a></li>
+					<li><a href="#">404 page</a></li>
+
+				</ul>
+			</div>
+			<div class="col-2">
+			<h3>Support</h3>
+				<ul>
+					<li><a href="#">Terms of Service</a></li>
+					<li><a href="#">Security</a></li>
+					<li><a href="#">Privacy PolicyHomepage</a></li>
+					<li><a href="#">Sitemap</a></li>
+					<li><a href="#">FAQ</a></li>
+				</ul>
+			</div>
+		</div>
+    </footer>
+
+    <!-- Libs -->
+    <script src="js/libs/jquery-1.10.2.min.js"></script>
+    <script type='text/javascript' src='js/libs/jquery.flexslider-min.js'></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<script src="js/jquery.bxslider.min.js"></script>
+	<!-- PRETTY PHOTO -->
+	<link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
+<script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/isotope.pkgd.min.js"></script>
+    <!-- Custom -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>

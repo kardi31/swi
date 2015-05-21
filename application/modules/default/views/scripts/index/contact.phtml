@@ -1,0 +1,147 @@
+<!-- Breadcrumb and title -->
+<section id="bc-t">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="#">Strona główna</a></li><li><span class="sep">   →   </span></li><li><a href="#">Kontakt</a></li>
+            </ul>
+
+            <h1 class="blog-title">Kontakt</h1>
+        </div>
+</section>
+<!-- Content Section. If need sidebars use the tag: <aside>. If articles use tag: <article> -->
+
+<section id="blog-grid">
+    <div class="container">
+        <div class="col-8 cinfo">
+                        
+                <div id="address" class="vcard">
+                    <h2 class="org" style="color:#0f314d;margin-left:50px;margin-bottom:0px;">GKS Świt Krzeszowice</h2>
+                    <div class="di-wrap adr">
+                        <meta class="postal-code" content="<?php echo $this->cms()->setting('postal_code'); ?>" />
+                        <meta class="locality" content="<?php echo $this->cms()->setting('city'); ?>" />
+                        <meta class="tel" content="<?php echo str_replace(' ','',$this->cms()->setting('phone')); ?>" />
+                        <p class="detinfo"><span>Adres</span><?php echo $this->cms()->setting('address'); ?> <?php echo $this->cms()->setting('postal_code'); ?> <?php echo $this->cms()->setting('city'); ?></p>
+                        <p class="detinfo"><span>E-mail</span><?php echo str_replace('@','[at]',$this->cms()->setting('contact_email')); ?></p>
+                        <p class="detinfo"><span>Telefon</span><?php echo str_replace(' ','',$this->cms()->setting('phone')); ?></p>
+                    </div>
+                </div>
+            <div class="col-6">
+                 <h3 style="color:#0f314d;margin-left:50px;margin-bottom:0px;margin-top:35px;">Juniorzy starsi</h3>
+                <div class="di-wrap adr" style="margin-top:10px;">
+                    <p class="detinfo"><span>Trener</span><?php echo $this->cms()->setting('juniorzy_starsi_trener'); ?></p>
+                    <p class="detinfo"><span>Telefon</span>
+                        <a href="tel:<?php echo str_replace(' ','',$this->cms()->setting('juniorzy_starsi_trener_telefon')); ?>">
+                            <?php echo $this->cms()->setting('juniorzy_starsi_trener_telefon'); ?>
+                        </a></p>
+                </div>
+                 <h3 style="color:#0f314d;margin-left:50px;margin-bottom:0px;margin-top:35px;">Juniorzy młodsi</h3>
+                <div class="di-wrap adr" style="margin-top:10px;">
+                    <p class="detinfo"><span>Trener</span><?php echo $this->cms()->setting('juniorzy_mlodsi_trener'); ?></p>
+                    <p class="detinfo"><span>Telefon</span>
+                        <a href="tel:<?php echo str_replace(' ','',$this->cms()->setting('juniorzy_mlodsi_trener_telefon')); ?>">
+                            <?php echo $this->cms()->setting('juniorzy_mlodsi_trener_telefon'); ?>
+                        </a></p>
+                </div>
+                 <h3 style="color:#0f314d;margin-left:50px;margin-bottom:0px;margin-top:35px;">Trampkarze</h3>
+                <div class="di-wrap adr" style="margin-top:10px;">
+                    <p class="detinfo"><span>Trener</span><?php echo $this->cms()->setting('trampkarze_trener'); ?></p>
+                    <p class="detinfo"><span>Telefon</span>
+                        <a href="tel:<?php echo str_replace(' ','',$this->cms()->setting('trampkarze_trener_telefon')); ?>">
+                            <?php echo $this->cms()->setting('trampkarze_trener_telefon'); ?>
+                        </a></p>
+                </div>
+            </div>
+            <div class="col-6">
+                <h3 style="color:#0f314d;margin-left:50px;margin-bottom:0px;margin-top:35px;">Młodzicy</h3>
+                <div class="di-wrap adr" style="margin-top:10px;">
+                    <p class="detinfo"><span>Trener</span><?php echo $this->cms()->setting('mlodzicy_trener'); ?></p>
+                    <p class="detinfo"><span>Telefon</span>
+                        <a href="tel:<?php echo str_replace(' ','',$this->cms()->setting('mlodzicy_trener_telefon')); ?>">
+                            <?php echo $this->cms()->setting('mlodzicy_trener_telefon'); ?>
+                        </a></p>
+                </div>
+                <h3 style="color:#0f314d;margin-left:50px;margin-bottom:0px;margin-top:35px;">Orliki</h3>
+                <div class="di-wrap adr" style="margin-top:10px;">
+                    <p class="detinfo"><span>Trener</span><?php echo $this->cms()->setting('orliki_trener'); ?></p>
+                    <p class="detinfo"><span>Telefon</span>
+                        <a href="tel:<?php echo str_replace(' ','',$this->cms()->setting('orliki_trener_telefon')); ?>">
+                            <?php echo $this->cms()->setting('orliki_trener_telefon'); ?>
+                        </a></p>
+                </div>
+            </div>
+               
+                
+                
+                
+        </div>
+        <div class="col-4">
+            <div class="contact-form">
+                <h3>Napisz do nas</h3>
+                <?php echo $this->messages()->render(); ?>
+                <form method="POST">
+                    <?php echo $this->form->name; ?>
+                    <?php echo $this->form->email; ?>
+                    <?php echo $this->form->subject; ?>
+                    <?php echo $this->form->message; ?>
+                    <?php echo $this->form->captcha; ?>
+                    <?php echo $this->form->submit; ?>
+                </form>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section>
+<section id="map">
+        <div id="map_canvas"></div>
+</section>
+<!--<article id="content">
+	<div class="wrapper">
+		<section class="col1">
+			<h2 class="under">Napisz do nas</h2>
+			<form id="ContactForm" method="post">
+			<div>
+				<div  class="wrapper">
+					<span>Imie i nazwisko:</span>
+				</div>
+				
+				<div  class="wrapper">
+					<span>Email:</span>
+				</div>
+				<div  class="wrapper">
+					<span>Tytuł</span>
+				</div>
+				<div  class="textarea_box">
+					<span>Wiadomość:</span>
+				</div>
+			     
+			</div>
+		</form>
+		</section>
+		<section class="col2 pad_left1">
+			<h2 class="under">Kontakt</h2>
+					<br /><br />
+					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2557.224816513646!2d19.633148!3d50.138225999999996!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4716f0dbeb34d443%3A0x761b91863e5a58a5!2s%C5%9Awit+Krzeszowice!5e0!3m2!1spl!2spl!4v1424021254006" width="230" height="400" frameborder="0" style="border:0"></iframe>
+		</section>
+	</div>
+
+</article>-->
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script>
+  function initialize() {
+        var map_canvas = document.getElementById('map_canvas');
+        var map_options = {
+          center: new google.maps.LatLng(50.138226, 19.633148),
+          zoom: 17,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(map_canvas, map_options)
+        
+        var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(50.138226, 19.633148),
+        map: map,
+        title: 'Świt Krzeszowice,pl.Kulczyckiego 2,32-065 Krzeszowice'
+    });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+</script>

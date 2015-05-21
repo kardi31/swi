@@ -1,0 +1,92 @@
+<script type="text/javascript">
+    
+    $("#wrapper").undelegate("#file-edit-form", "submit").delegate("#file-edit-form", "submit", function(e) {
+        e.preventDefault();
+
+        var url = "<?php echo $this->adminUrl('edit', 'file') ?>";
+        var id = "-admin-site-list-site";
+        
+        $.ajax({
+            type : "post",
+            url : url,
+            data : $(this).serialize(),
+            dataType : "html",
+            success : function(resp, qXHR, textStatus) {
+                pageDownloaded(resp, id);
+            }
+        });
+    });
+    
+    $("#wrapper").undelegate("button#cancel-edit-file", "click").delegate("button#cancel-edit-file", "click", function(e) {
+        e.preventDefault();
+
+        var url = "<?php echo $this->url(array('module' => 'admin', 'controller' => 'gallery', 'action' => 'list-gallery'), 'i18n:default') ?>";
+        var id = "-admin-gallery-list-gallery";
+        
+        $.ajax({
+            type : "get",
+            url : url,
+            dataType : "html",
+            success : function(resp, qXHR, textStatus) {
+                pageDownloaded(resp, id);
+            }
+        });
+    });
+ 
+</script>
+<h1 class="page-title"><?php echo $this->translate('New gallery') ?></h1>
+<div class="container_12 clearfix leading">
+    <div class="grid_12">
+        
+        <?php echo $this->formButton('', $this->translate('Cancel'), array('id' => 'cancel-add-gallery')) ?>
+        
+        <?php if($this->form->isErrors()): ?>
+        <div class="message error closeable">
+                <span class="message-close"></span>
+                <h3><?php echo $this->translate('Error') ?>!</h3>
+        </div>
+        <?php endif; ?>
+
+        <form id="file-edit-form" class="form <!--has-validation-->" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+
+            <?php
+            foreach($this->form->getElements() as $element) {
+                if($element->hasErrors()) {
+                    $element->setAttrib('class', 'error');
+                }
+            }
+            ?>
+
+            <?php echo $this->form->name->setAttribs(array('placeholder' => $this->translate($this->form->name->getLabel()), 'required' => 'required')) ?>
+            <?php echo $this->form->submit ?>
+            <?php echo $this->form->id ?>
+            
+<!--            <div id="photos"></div>-->
+
+            <section class="portlet grid_12 leading"> 
+                <header>
+                    <h2><?php echo $this->translate('Photos') ?></h2> 
+                </header>
+                <section>
+                    <table id="photos" class="full"> 
+                        <tbody> 
+                        </tbody> 
+                    </table>
+                </section>
+            </section> 
+            
+        </form>
+        
+        <div id="file-upload" class="clearfix">
+            <h2><?php echo $this->translate('Add photos') ?></h2>
+            <form action="/pl/admin/file/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" id="fileUpload" multiple />
+                <button id="px-submit" type="submit">Upload</button>
+                <button id="px-clear" type="reset">Clear</button>
+            </form>
+        </div>
+        
+    </div>
+
+</div>
+

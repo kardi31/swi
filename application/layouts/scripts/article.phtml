@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <?php echo $this->partial('_head.phtml') ?>
+    
+    
+    <body id="page1">
+    <!-- header -->
+		    <header>
+                        <div class="body1">
+                            <div class="main">
+				    <?php echo $this->render('_header.phtml') ?>
+                            </div>
+                            <div class="body2">                       
+                                    <div class="slider">
+                                      <?php echo $this->layout()->slider; ?>
+                                    </div>
+                            </div>
+                        </div>
+		</header>
+    
+	<div class="body3">
+		<div class="main">
+                    <?php echo $this->layout()->content; ?>
+		</div>
+	</div>
+	
+        <?php echo $this->render('_footer.phtml') ?>
+</body>
+</html>

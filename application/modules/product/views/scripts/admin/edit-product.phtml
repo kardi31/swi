@@ -1,0 +1,424 @@
+<script type="text/javascript">
+$(document).ready(function() {
+ 
+    $('#explorer').dialog({
+		autoOpen: false,
+		modal: true,
+		dialogClass: 'dialog',
+    });
+    
+    $('#explorer2').dialog({
+		autoOpen: false,
+		modal: true,
+		dialogClass: 'dialog',
+    });
+   
+    $("#itemContainer").delegate("#add-photo", "click", function(e) {
+        e.preventDefault();
+        $("#explorer-content").show();
+       // $("#explorer").modal({
+        //    overlayCss: {"background": "black"}
+       // });
+        
+        var elf = $('#elfinder').elfinder({
+            url : '/admin/media/elfinder',  // connector URL (REQUIRED)
+            getFileCallback : function(href) {
+                var data = { hrefs: href };
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: "<?php echo $this->adminUrl('add-product-photo', 'product') ?>/id/"+$('#id').val(),
+                    data: data,
+                    success: function(resp) {
+                        if(resp.status == "success") {
+                            $("#id").val(resp.id);
+                            $("#main_photo_container").html(resp.body);
+                            $("#itemContainer").trigger('update');
+                        }
+                    }
+                });
+
+                $('#explorer').dialog('close');
+              //  $.modal.close();
+            },
+            commandsOptions : {
+                // configure value for "getFileCallback" used for editor integration
+                getfile : {
+                    // allow to return folders info
+                    onlyURL  : true,
+
+                    // allow to return multiple files info
+                    multiple : true,
+
+                    // allow to return folders info
+                    folders  : false,
+
+                    // action after callback (close/destroy)
+                    oncomplete : ''
+                },
+            }
+        }).elfinder('instance');	
+        
+        $('#explorer').dialog('open');
+    });
+    
+    $("#itemCon").delegate(".actionBtn .add", "click", function(e) {
+        e.preventDefault();
+        $("#explorer-content").show();
+        
+        var elf = $('#elfinder2').elfinder({
+            url : '/admin/media/elfinder',  // connector URL (REQUIRED)
+            getFileCallback : function(href) {
+                var data = { hrefs: href };
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: "<?php echo $this->adminUrl('add-product-main-photo', 'product') ?>/id/"+$('#id').val(),
+                    data: data,
+                    success: function(resp) {
+                        if(resp.status == "success") {
+                            $("#main_photo_con").html(resp.body);
+                            $("#itemCon").trigger('update');
+                        }
+                    }
+                });
+
+                $('#explorer2').dialog('close');
+//                $.modal.close();
+            },
+            commandsOptions : {
+                // configure value for "getFileCallback" used for editor integration
+                getfile : {
+                    // allow to return folders info
+                    onlyURL  : true,
+
+                    // allow to return multiple files info
+//                    multiple : true,
+
+                    // allow to return folders info
+                    folders  : false,
+
+                    // action after callback (close/destroy)
+                    oncomplete : ''
+                },
+            }
+        }).elfinder('instance');	
+        
+        $('#explorer2').dialog('open');
+    });
+    
+    $("#itemCon").delegate(".actionBtn .delete", "click", function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "<?php echo $this->adminUrl('remove-product-main-photo', 'product') ?>/id/"+$('#id').val(),
+                data: data,
+                success: function(resp) {
+                    if(resp.status == "success") {
+                        $("#main_photo_con").html(resp.body);
+                        $("#itemCon").trigger('update');
+                    }
+                }
+            });
+     }); 
+     
+     
+     $("#category_tree_selection").dynatree({
+        checkbox: true,  
+        autoCollapse: true,
+        minExpandLevel: 2
+     });
+    
+     $("#category_tree_selection").click(function(){
+        
+        var selectedNodes = $("#category_tree_selection").dynatree("getTree").getSelectedNodes(); 
+
+        var selectedKeys = $.map(selectedNodes, function(node){ 
+            return node.data.key; 
+        }); 
+        
+        var ids = new Array();
+        for(var x=0; x<selectedKeys.length; x++){
+            var id = selectedKeys[x];
+            ids[x] = id.replace(/^node/, "");
+        }
+        
+        $("#category_id option").each(function(i, elem) {
+            $(elem).attr("selected", false);
+        });
+       
+    
+        for(id in ids) {
+            var option = $("#category_id option[value="+ids[id]+"]");
+            if(option) {
+                $(option).attr("selected", "selected");
+            }
+        }   
+     });
+     
+     
+     var uploader = new qq.FileUploaderBasic({
+        button: document.getElementById('add_attachment'),
+        action: "<?php echo $this->adminUrl('add-attachment', 'product') ?>/id/"+$('#id').val(),
+        inputName: "file",
+        forceMultiple: true,
+        autoUpload: true,
+        debug: true,
+        forceMultipart: true,
+        sizeLimit: 10520000,
+        
+        onSubmit: function (id, fileName) {
+            $('#add_attachment').find('.qq-upload-file').each(function () {
+                if ($(this).text() == fileName) {
+                    return false;
+                return true;
+                }
+            });
+        },
+        onComplete: function(){
+            $("#attachment_table").trigger("update");
+        }
+     });
+     
+     $("#attachment_table").delegate(".remove2", "click", function(e) {
+            e.preventDefault();
+            var link = $(this).attr("href");
+            if(confirm("Czy na pewno chcesz usunąć?")) {
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: link,
+                    data: data,
+                    success: function(resp) {
+                        if(resp.status == "success") {
+                            //$("#main_photo_con").html(resp.body);
+                            $("#attachment_table").trigger('update');
+                        }
+                    }
+                });
+            }
+     });  
+     
+     var oTable = $("#attachment_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": false,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "iDisplayLength": 50,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-attachment-data', 'product', array('id' => $this->product->getId())) ?>",
+        "aaSorting": [[ 1, "desc" ]],
+        "aoColumns": [
+            null,
+            { "bSortable": false, sWidth: '100px' },
+            { "bSortable": false, sWidth: '50px' }
+        ]
+    });
+    
+    $("#attachment_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+    var checkboxReduced = $('#reduced_price');
+    if (checkboxReduced.is(':checked')){
+        $('.reduced-price').show();
+    }
+    else{
+        $('.reduced-price').hide();
+    }
+     
+    $('#reduced_price').click(function(e){
+        if (checkboxReduced.is(':checked')){
+            $('.reduced-price').show();
+        }
+        else{
+            $('.reduced-price').hide();
+        }
+    });
+    
+    
+    $("#product_id").select2();
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="grid_12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edit product') ?> <?php echo $this->product->Translation[$this->language]->name ?></span>
+                </h4>
+                
+            </div>
+            
+            <div class="content clearfix">
+                
+                <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post">
+                    
+                     <?php
+                        foreach($this->form->getElements() as $element) {
+                            if($element->hasErrors()) {
+                                $element->setAttrib('class', 'error');
+                            }
+                        }
+                      ?>
+                   
+                    <?php echo $this->form->id ?>
+                    <?php echo $this->form->code ?>
+                    <?php //echo $this->form->producer_id->setAttribs(array('class' => 'nostyle')) ?>
+                    <br/>
+                    <?php if ($this->form->category_id->hasErrors()): ?>
+                          <div class="box" style="border: 1px solid red; width: 97%;">     
+                        <?php else: ?>
+                          <div class="box" style="border: 1px solid black; width: 97%;"> 
+                        <?php endif; ?>
+                            <div class="title">
+                            <h4>
+                                <span class="icon16 iconic-icon-list-nested"></span>
+                                <span><?php echo $this->translate('Categories') ?></span>
+                            </h4>
+
+                            </div>
+                            <div id="category_tree_selection">
+                                <?php echo $this->partial('category-tree-selection.phtml', 'product', array('tree' => $this->categoryTree, 'parent' => $this->parent, 'selectedIds' => $this->form->category_id->getValue(), 'adminLanguage' => $this->adminLanguage)) ?>
+                            </div>    
+                          </div>
+                    <span style="display: none;">
+                        <?php echo $this->form->category_id; ?>
+                    </span>
+                    <?php echo $this->form->discount_id->setAttribs(array('class' => 'nostyle')) ?>
+                    <?php echo $this->form->price ?>
+                    <?php echo $this->form->availability ?>
+                    <?php echo $this->form->new; ?>
+                    <?php //echo $this->form->distributor; ?>
+                    <?php echo $this->form->promotion; ?>
+                    <?php echo $this->form->promotion_price; ?>
+                    <?php //echo $this->form->most_frequently_purchased; ?>
+                    <?php //echo $this->form->reduced_price; ?>
+                    <?php //echo $this->form->youtube ?>
+                    <?php echo $this->form->vat ?>
+                        <?php // echo $this->form->product_id->setAttribs(array('class' => 'nostyle')) ?>
+      
+                    <div class="page-header">
+                            <h4><?php echo $this->translate('Translations') ?></h4>
+                    </div>
+                    
+                        <ul id="myTab" class="nav nav-tabs pattern">
+                            <li class="dropdown">
+                                <?php foreach($this->languages as $key => $language): ?>
+                                <li class="<?php if($language == $this->adminLanguage): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                                <?php endforeach; ?>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <?php foreach($this->languages as $key => $language): ?>
+                            <div class="tab-pane<?php if($language == $this->adminLanguage): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                            <?php if($this->form->translations->getSubForm($language)): ?>
+                                <?php echo $this->form->translations->getSubForm($language)->name ?>
+                                <?php echo $this->form->translations->getSubForm($language)->description ?>
+                            <?php endif; ?>
+
+                            <div class="title" style ="margin-top: 30px;">
+
+                                <h4>
+                                    <span class="icon16 icomoon-icon-pencil"></span>
+                                    <span><?php echo $this->translate('Metatags') ?></span>
+                                </h4>
+
+                            </div>
+                            <div class="content clearfix">
+                                <?php echo $this->form->metatags->translations->getSubForm($language)->meta_title; ?>
+                                <?php echo $this->form->metatags->translations->getSubForm($language)->meta_description; ?>
+                                <?php echo $this->form->metatags->translations->getSubForm($language)->meta_keywords; ?>
+                            </div>
+
+                            </div>
+                            <?php endforeach; ?>
+                    </div>
+                    
+                    <div class="page-header">
+                         <h4><?php echo $this->translate('Main photo') ?></h4>
+                    </div>  
+                    <div id="itemCon">
+                        <ul id="main_photo_con" class="galleryView center">
+                            <li class="pull-left">
+                                <?php if($this->product->get('PhotoRoot')->getOffset()): ?>
+                                <a id="main_photo" href="/media/photos/<?php echo $this->product->get('PhotoRoot')->getOffset() ?>/<?php echo $this->product->get('PhotoRoot')->getFilename() ?>" rel="prettyPhoto" title="<?php echo $this->product->get('PhotoRoot')->getTitle() ?>">
+                                    <img src="/media/photos/<?php echo $this->product->get('PhotoRoot')->getOffset() ?>/126x126/<?php echo $this->product->get('PhotoRoot')->getFilename() ?>" data-original="/media/photos/<?php echo $this->product->get('PhotoRoot')->getOffset() ?>/<?php echo $this->product->get('PhotoRoot')->getFilename() ?>" alt="<?php echo $this->product->get('PhotoRoot')->getTitle() ?>">
+                                </a>
+                                <?php else: ?>
+                                <a id="main_photo" href="/images/gallery/preload.png" title="<?php echo $this->translate('No photo') ?>">
+                                    <img src="/images/gallery/preload.png" data-original="/images/gallery/preload.png" alt="<?php echo $this->translate('No photo') ?>">
+                                </a>
+                                <?php endif; ?>
+                                <div class="actionBtn">
+                                    <a href="<?php echo $this->adminUrl('edit-product-main-photo', 'product', array('product-id' => $this->product->getId(), 'id' => $this->product->get('PhotoRoot')->getId())) ?>" class="edit"><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+                                    <a href="#" class="add"><span class="icon16 iconic-icon-cursor white"></span></a>
+                                    <a href="#" class="delete"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> 
+                    
+                    <div class="clearfix"></div>
+                    <div class="page-header">
+                         <h4><?php echo $this->translate('Gallery View') ?></h4>
+                    </div>                  
+                      <div id="itemContainer">           
+                        <button href="#" id="add-photo" style="width: 120px;"><?php echo $this->translate('Add photo') ?></button>
+                        <ul id="main_photo_container" class="galleryView center">                           
+                                <?php echo $this->partial('admin/product-main-photo.phtml', 'product', array('photos' => $this->productPhotos, 'product' => $this->product)) ?>
+                        </ul>
+                      </div>
+                          <?php /*
+                    <div class="box" style="width: 97%">
+                        <div class="title">
+                            <h4>
+                                <span class="icon16 entypo-icon-attachment"></span>
+                                <span><?php echo $this->translate('Attachments') ?></span>
+                                <div class="box-form right">
+                                    <a href="/file/upload" class="btn btn-success btn-mini nostyle" id="add_attachment"><?php echo $this->translate('Add attachment') ?></a>
+                                </div>
+                            </h4>  
+                        </div>    
+                        <div class="content clearfix"">
+                            <table id="attachment_table" cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" width="100%">
+                                <thead>
+                                    <th><?php echo $this->translate('Name') ?></th>
+                                    <th><?php echo $this->translate('Extension') ?></th>
+                                    <th><?php echo $this->translate('Options') ?></th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <?php */ ?>
+                    <?php //echo $this->form->youtube ?>
+                    
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-product', 'product') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>                  
+                </form>
+            
+            </div>
+            
+        </div>
+    </div>   
+    
+</div>     
+<div id="explorer" class="dialog"><div id="elfinder"></div></div>
+<div id="explorer2" class="dialog"><div id="elfinder2"></div></div>

@@ -1,0 +1,21 @@
+<?php foreach($this->photos as $photo): ?>
+    <li class="pull-left">
+        <?php if($photo->getOffset()): ?>
+        <a href="/media/photos/<?php echo $photo->getOffset() ?>/<?php echo $photo->getFilename() ?>" rel="prettyPhoto" title="<?php echo $photo->getTitle() ?>">
+            <img src="/media/photos/<?php echo $photo->getOffset() ?>/126x126/<?php echo $photo->getFilename() ?>" data-original="/media/photos/<?php echo $photo->getOffset() ?>/<?php echo $photo->getFilename() ?>" alt="<?php echo $photo->getTitle() ?>">
+        </a>
+        <?php else: ?>
+        <a href="/images/gallery/1.jpg" rel="prettyPhoto" title="<?php echo $this->translate('No photo') ?>">
+            <img src="/images/gallery/preload.png" data-original="/images/gallery/thumbnails/1.jpg" alt="<?php echo $this->translate('No photo') ?>">
+        </a>
+        <?php endif; ?>
+
+        <div class="actionBtn">
+            <a href="<?php echo $this->adminUrl('move-people-photo', 'district', array('id' => $photo->id, 'move' => 'up', 'people' => $this->people->id)) ?>" class="move"><span class="icon16 minia-icon-arrow-left white"></span></a>
+            <a href="<?php echo $this->adminUrl('edit-people-photo', 'district', array('people-id' => $this->people->getId(), 'id' => $photo->getId())) ?>" class="edit"><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+            <a href="javascript:void(0)" class="delete" rel="<?php echo $photo->id; ?>"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+            <a href="<?php echo $this->adminUrl('move-people-photo', 'district', array('id' => $photo->id, 'move' => 'down', 'people' => $this->people->id)) ?>" class="move"><span class="icon16 minia-icon-arrow-right white"></span></a>
+        </div>
+    </li>
+    <?php endforeach; ?>
+   

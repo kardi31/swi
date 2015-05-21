@@ -1,0 +1,119 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $("#save-button").click(function(e) {
+        e.preventDefault();
+
+        $("#form").append("<input type='hidden' name='saveOnly' value='1' />");
+        $("#form #submit").trigger("click");
+    });
+
+    $("#category_tree_selection").dynatree({
+        checkbox: true,  
+        autoCollapse: true
+    });
+    
+    $("#category_tree_selection").click(function(){
+        
+        var selectedNodes = $("#category_tree_selection").dynatree("getTree").getSelectedNodes(); 
+
+        var selectedKeys = $.map(selectedNodes, function(node){ 
+            return node.data.key; 
+        }); 
+        
+        var ids = new Array();
+        for(var x=0; x<selectedKeys.length; x++){
+            var id = selectedKeys[x];
+            ids[x] = id.replace(/^node/, "");
+        }
+        
+        $("#category_id option").each(function(i, elem) {
+            $(elem).attr("selected", false);
+        });
+       
+    
+        for(id in ids) {
+            var option = $("#category_id option[value="+ids[id]+"]");
+            if(option) {
+                $(option).attr("selected", "selected");
+            }
+        }   
+    });
+});
+</script>
+<div class="container_12 clearfix leading">
+    <div class="grid_12">
+        <div class="box">
+            
+            
+                    <?php if($this->form->isErrors()): ?>
+                    <div class="message error closeable">
+                        <span class="message-close"></span>
+                        <h3><?php echo $this->translate('Error') ?>!</h3>
+                    </div>
+                    <?php endif; ?>
+                    <?php if($this->messages()->count()): ?>
+                    <?php echo $this->messages()->render() ?>
+                    <?php endif; ?>
+
+            <div class="content">
+                    <form id="form" class="form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+
+                        <?php
+                        foreach($this->form->getElements() as $element) {
+                            if($element->hasErrors()) {
+                                $element->setAttrib('class', 'error');
+                            }
+                        }
+                        ?>
+
+                        <?php echo $this->form->name ?>
+                        <?php echo $this->form->producer_id->setAttribs(array('class' => 'nostyle')) ?>
+                        <br/>
+                        <?php if ($this->form->category_id->hasErrors()): ?>
+                          <div class="box" style="border: 1px solid red; width: 97%;">     
+                        <?php else: ?>
+                          <div class="box" style="border: 1px solid black; width: 97%;"> 
+                        <?php endif; ?>
+                               <div class="title">
+                            <h4>
+                                <span class="icon16 iconic-icon-list-nested"></span>
+                                <span><?php echo $this->translate('Categories') ?></span>
+                            </h4>
+
+                            </div>
+                            <div id="category_tree_selection">
+                                <?php echo $this->partial('category-tree-selection.phtml', 'product', array('tree' => $this->categoryTree, 'parent' => $this->parent)) ?>
+                            </div>    
+                          </div>
+                        <span style="display: none;">
+                            <?php echo $this->form->category_id; ?>
+                        </span>
+
+                        <?php echo $this->form->description; ?>
+                        <?php echo $this->form->youtube ?>
+                        
+                       
+                        <div class="form-actions">
+                             <?php echo $this->form->submit ?>
+                             <a href="<?php echo $this->adminUrl('list-preview', 'product') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                        </div>
+                    </form>
+            </div>
+            </div>
+           <div class="box">
+
+                        <div class="title">
+
+                            <h4>
+                                <span class="icon16 icomoon-icon-pencil"></span>
+                                <span><?php echo $this->translate('Metatags') ?></span>
+                            </h4>
+
+                        </div>
+                        <div class="content clearfix">
+                            <?php echo $this->form->metatags ?>
+                        </div>
+           </div>
+        </div>
+</div>

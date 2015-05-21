@@ -1,0 +1,46 @@
+<?php if(isset($this->tree)): ?>
+<ul id="treeData" style="display: none;" class="folder">
+<?php elseif(isset($this->subtree)): ?>
+<ul>
+<?php endif; ?>
+    <?php if(isset($this->tree)): ?>
+        <?php $root = $this->tree->fetchRoot() ?>
+        <?php foreach($root->getNode()->getChildren() as $item): ?>
+        <?php if (in_array($item->getId(), $this->selectedIds)): ?>
+            <li id="node<?php echo $item->getId() ?>" class="selected <?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?> folder"><a href="<?php echo $this->adminUrl('list-category', 'product', array('id' => $item->getId())) ?>"><?php echo $item->Translation[$this->adminLanguage]->name; ?></a>
+        <?php else: ?>
+            <li id="node<?php echo $item->getId() ?>" class="<?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?> folder"><a href="<?php echo $this->adminUrl('list-category', 'product', array('id' => $item->getId())) ?>"><?php echo $item->Translation[$this->adminLanguage]->name; ?></a>
+        <?php endif; ?>
+            <?php if($item->getNode()->getChildren()): ?>
+            <?php echo $this->partial('category-tree-selection.phtml', 'product', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'selectedIds' => $this->selectedIds, 'adminLanguage' => $this->adminLanguage)) ?>
+            <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    <?php elseif(isset($this->subtree)): ?>
+        <?php foreach($this->subtree as $item): ?>
+            <?php if ($item->getNode()->getChildren()): ?>
+            <?php if (in_array($item->getId(), $this->selectedIds)): ?>
+                <li id="node<?php echo $item->getId() ?>" class="selected <?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?>folder"><a href="<?php echo $this->adminUrl('list-sub-category', 'product', array('id' => $item->getId())) ?>"><?php echo $item->Translation[$this->adminLanguage]->name; ?></a>
+            <?php else: ?>
+                <li id="node<?php echo $item->getId() ?>" class="<?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?>folder"><a href="<?php echo $this->adminUrl('list-sub-category', 'product', array('id' => $item->getId())) ?>"><?php echo $item->Translation[$this->adminLanguage]->name; ?></a>
+            <?php endif; ?>
+            <?php if($item->getNode()->getChildren()): ?>
+                <?php echo $this->partial('category-tree-selection.phtml', 'product', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'selectedIds' => $this->selectedIds, 'adminLanguage' => $this->adminLanguage)) ?>
+                <?php endif; ?>
+            </li>
+            <?php else: ?>
+                <?php if (in_array($item->getId(), $this->selectedIds)): ?>
+                    <li id="node<?php echo $item->getId() ?>" class="selected <?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?>"><a href="<?php echo $this->adminUrl('list-sub-category', 'product', array('id' => $item->getId())) ?>"><?php echo $item->Translation[$this->adminLanguage]->name; ?></a>
+                <?php else: ?>
+                    <li id="node<?php echo $item->getId() ?>" class="<?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?>"><a href="<?php echo $this->adminUrl('list-sub-category', 'product', array('id' => $item->getId())) ?>"><?php echo $item->Translation[$this->adminLanguage]->name; ?></a> 
+                <?php endif; ?>    
+                    <?php if($item->getNode()->getChildren()): ?>
+                    <?php echo $this->partial('category-tree-selection.phtml', 'product', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'selectedIds' => $this->selectedIds, 'adminLanguage' => $this->adminLanguage)) ?>
+                    <?php endif; ?>
+                </li>
+            <?php endif; ?>     
+        <?php endforeach; ?>
+        
+    <?php endif; ?>
+    
+</ul>

@@ -1,0 +1,63 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#group_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": true,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-group-data', 'newsletter') ?>",
+        "aaSorting": [[ 2, "desc" ]],
+        "aoColumns": [
+            null,
+            { "bSortable": false, sWidth: '50px' }
+        ]
+    });
+    
+    $("#group_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-mail-4"></span>
+                    <span><?php echo $this->translate('Groups of subscribers') ?></span>
+                    <div class="box-form right">
+                        <a href="<?php echo $this->adminUrl('add-group', 'newsletter') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add new') ?></a>
+                    </div>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+
+                <table id="group_table" cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" width="100%">
+                    <thead>
+                        <th><?php echo $this->translate('Name') ?></th>
+                        <th><?php echo $this->translate('Options') ?></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+
+
+</div>

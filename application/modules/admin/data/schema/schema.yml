@@ -1,0 +1,32 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Message:
+  tableName: admin_messages
+  actAs: 
+    Timestampable: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    subject:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    MessageRegistry:
+      local: id
+      foreign: message_id
+MessageRegistry:
+  tableName: admin_message_registry
+  columns:
+    message_id:
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    read_at:
+      type: timestamp

@@ -1,0 +1,80 @@
+<div class="container">
+    <div id="content" class="single col-lg-12 col-md-12 col-sm-12">
+       <div class="pull-right col-lg-9 col-md-9 col-sm-12">
+           <h2 class="widget-title">
+                <span><?php echo $this->translate('Purchase history') ?></span>
+           </h2>
+           <div class="sidebar-line">
+                <span></span>
+            </div>  
+            <div class="order_date"><?php echo $this->translate('Purchase date') ?> <?php echo $this->order['created_at']; ?></div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th><?php echo $this->translate('Name of product') ?></th>
+                  <th><?php echo $this->translate('Number') ?></th>
+                  <th><?php echo $this->translate('Price') ?></th>
+                </tr>
+              </thead>
+              <tbody>
+                   <?php foreach($this->order['Items'] as $item): ?>
+                    <tr>
+                         <td>
+                             <?php echo $item['Product']['Translation'][$this->language]['name']; ?>  
+                         </td>
+                         <td>
+                             <?php echo $item['number']; ?>
+                         </td>
+                         <td>
+                             <?php echo $this->currency($item['price']); ?>
+                         </td>
+                     </tr>
+                    <?php endforeach; ?>
+              </tbody>
+            </table>
+            <?php echo $this->translate('Total cost') ?>:
+            <span class="price"><?php echo $this->currency($this->order['total_cost']); ?></span>
+            <div class="attention">
+                <?php if($this->order['attention']): ?>
+                    <span class="bold"><?php echo $this->translate('Notes to order') ?>:</span>
+                    <?php echo $this->order['attention']; ?>
+                <?php endif; ?>
+            </div>
+            <div class="delivery_and_status">
+                <div class="delivery_address">
+                    <span class="bold"><?php echo $this->translate('Delivery address') ?>:</span>
+                    <ul class="address">
+                        <?php if($this->order['Delivery']['delivery_address_id'] != NULL): ?>
+                            <?php echo $this->order['Delivery']['DeliveryAddress']['name']; ?> <br/>
+                            <?php echo $this->order['Delivery']['DeliveryAddress']['address']; ?> <br/>
+                            <?php echo $this->order['Delivery']['DeliveryAddress']['postal_code']." ".$this->order['Delivery']['DeliveryAddress']['city']; ?> <br/>
+                            <?php echo $this->order['Delivery']['DeliveryAddress']['postal_code']." ".$this->order['Delivery']['DeliveryAddress']['province']; ?> <br/>
+                        <?php else: ?>
+                            <?php echo $this->user->getFirstName()." ".$this->user->getLastName(); ?> <br/>
+                            <?php echo $this->user->get('Profile')->getAddress(); ?> <br/>
+                            <?php echo $this->user->get('Profile')->getPostalCode()." ".$this->user->get('Profile')->getCity(); ?> <br/>
+                            <?php echo $this->user->get('Profile')->getProvince(); ?> <br/>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <div class="order-status">
+                    <span class="bold"><?php echo $this->translate('Order status') ?>:</span>
+                    <?php echo $this->order['OrderStatus']['name']; ?><br/>
+                    <div class="payment_form">
+                    <span class="bold"><?php echo $this->translate('Payment status') ?>:</span> <?php echo $this->order['Payment']['Status']['name']; ?>
+                    <?php if($this->payment['status_id'] != 5 && $this->payment['payment_type_id'] == 2): ?>
+                        <div class="payment-normal">
+                            <?php echo $this->payUForm ?>
+                        </div>
+                    <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+                
+       </div><!-- end content -->
+
+       <?php echo $this->partial('profile/sidebar.phtml', 'user'); ?>
+    </div>
+</div>

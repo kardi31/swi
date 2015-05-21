@@ -1,0 +1,180 @@
+<script type="text/javascript">
+$(document).ready(function() {
+   
+    $('#explorer').dialog({
+		autoOpen: false,
+		modal: true,
+		dialogClass: 'dialog',
+    });
+    
+    $('#explorer2').dialog({
+		autoOpen: false,
+		modal: true,
+		dialogClass: 'dialog',
+    });
+    
+    $("#itemContainer").delegate(".actionBtn .add", "click", function(e) {
+        e.preventDefault();
+        
+        var elf = $('#elfinder').elfinder({
+            url : '/admin/media/elfinder',  // connector URL (REQUIRED)
+            getFileCallback : function(href) {
+                var data = { hrefs: href };
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: "<?php echo $this->adminUrl('add-main-photo-page-shop', 'page') ?>/id/"+$('#id').val(),
+                    data: data,
+                    success: function(resp) {
+                        if(resp.status == "success") {
+                            $("#main_photo_container").html(resp.body);
+                            $("#itemContainer").trigger('update');
+                        }
+                    }
+                });
+
+                $('#explorer').dialog('close');
+//                $.modal.close();
+            },
+            commandsOptions : {
+                // configure value for "getFileCallback" used for editor integration
+                getfile : {
+                    // allow to return folders info
+                    onlyURL  : true,
+
+                    // allow to return multiple files info
+//                    multiple : true,
+
+                    // allow to return folders info
+                    folders  : false,
+
+                    // action after callback (close/destroy)
+                    oncomplete : ''
+                },
+            }
+        }).elfinder('instance');	
+        
+        $('#explorer').dialog('open');
+    });
+    
+    $("#itemContainer").delegate(".actionBtn .delete", "click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo $this->adminUrl('remove-main-photo-page-shop', 'page') ?>/id/"+$('#id').val(),
+            data: data,
+            success: function(resp) {
+                if(resp.status == "success") {
+                    $("#main_photo_container").html(resp.body);
+                    $("#itemContainer").trigger('update');
+                }
+            }
+        });
+    });
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="grid_12">
+        
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+            
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edit page') ?> <?php echo $this->page->Translation[$this->language]->title ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                
+                    
+                    <div class="page-header">
+                        <h4><?php echo $this->translate('Translations') ?></h4>
+                    </div>
+                    
+                    <ul id="myTab" class="nav nav-tabs pattern">
+                        <li class="dropdown">
+                            <?php foreach($this->languages as $key => $language): ?>
+                            <li class="<?php if($language == $this->adminLanguage->getId()): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                            <?php endforeach; ?>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <?php foreach($this->languages as $key => $language): ?>
+                        <div class="tab-pane<?php if($language == $this->adminLanguage->getId()): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                        <?php if($this->form->translations->getSubForm($language)): ?>
+                            <?php echo $this->form->translations->getSubForm($language)->title ?>
+                            <?php echo $this->form->translations->getSubForm($language)->content->setAttrib('class', 'tinymce') ?>
+                        <?php endif; ?>
+                        
+                        <div class="title" style ="margin-top: 30px;">
+
+                            <h4>
+                                <span class="icon16 icomoon-icon-pencil"></span>
+                                <span><?php echo $this->translate('Metatags') ?></span>
+                            </h4>
+
+                        </div>
+                        <div class="content clearfix">
+                            <?php echo $this->form->metatags->translations->getSubForm($language)->meta_title; ?>
+                            <?php echo $this->form->metatags->translations->getSubForm($language)->meta_description; ?>
+                            <?php echo $this->form->metatags->translations->getSubForm($language)->meta_keywords; ?>
+                        </div>
+
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+		
+		
+		<div class="page-header">
+                        <h4><?php echo $this->translate('Main photo') ?></h4>
+                    </div>
+                
+                    <div id="itemContainer">
+                        <ul id="main_photo_container" class="galleryView center">
+                            <li class="pull-left">
+                                <?php if($this->page->get('PhotoRoot')->getOffset()): ?>
+                                <a id="main_photo" href="/media/photos/<?php echo $this->page->get('PhotoRoot')->getOffset() ?>/<?php echo $this->page->get('PhotoRoot')->getFilename() ?>" rel="prettyPhoto" title="<?php echo $this->page->get('PhotoRoot')->getTitle() ?>">
+                                    <img src="/media/photos/<?php echo $this->page->get('PhotoRoot')->getOffset() ?>/126x126/<?php echo $this->page->get('PhotoRoot')->getFilename() ?>" data-original="/media/photos/<?php echo $this->page->get('PhotoRoot')->getOffset() ?>/<?php echo $this->page->get('PhotoRoot')->getFilename() ?>" alt="<?php echo $this->page->get('PhotoRoot')->getTitle() ?>">
+                                </a>
+                                <?php else: ?>
+                                <a id="main_photo" href="/images/gallery/preload.png" title="<?php echo $this->translate('No photo') ?>">
+                                    <img src="/images/gallery/preload.png" data-original="/images/gallery/preload.png" alt="<?php echo $this->translate('No photo') ?>">
+                                </a>
+                                <?php endif; ?>
+                                <div class="actionBtn">
+                                    <a href="<?php echo $this->adminUrl('edit-main-photo-page-shop', 'page', array('page-id' => $this->page->getId(), 'id' => $this->page->get('PhotoRoot')->getId())) ?>" class="edit"><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+                                    <a href="#" class="add"><span class="icon16 iconic-icon-cursor white"></span></a>
+                                    <a href="#" class="delete"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <?php echo $this->form->type ?>
+                    <?php echo $this->form->id ?>
+                    
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-page-shop', 'page') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+            
+            </div>
+            
+        </div>
+           
+        </form>
+                
+    </div>
+</div>      
+    
+<div id="explorer" class="dialog"><div id="elfinder"></div></div>
+<div id="explorer2" class="dialog"><div id="elfinder2"></div></div>

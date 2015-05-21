@@ -1,0 +1,120 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+?>
+<script src="/assets/plugins/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+<script src="/assets/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<section class="page_title_2 translucent_bg_color_scheme image_bg_9 image_fixed t_align_c relative wrapper">
+	<div class="container">
+		<h2 class="color_light fw_light m_bottom_5">Składniki</h2>
+		<!--breadcrumbs-->
+		
+	</div>
+</section>
+<section class="relative m_bottom_15 m_top_20">
+    <div class="r_slider_short ingredients_slider">
+        
+                
+        <ul>
+            <?php foreach($this->mainSlides as $slide): ?>
+            <li 
+                <?php if($slide['transition']): ?>
+                    data-transition="<?php echo $slide['transition'] ?>" 
+                    <?php else: ?>
+                    data-transition="fade" 
+                <?php endif; ?>
+                <?php if($slide['slot_amount']): ?>
+                    data-slotamount="<?php echo $slide['slot_amount']; ?>" 
+		<?php else: ?>
+                    data-slotamount="10" 
+                <?php endif; ?>
+                <?php if ($slide['delay']): ?>
+                    data-delay="<?php echo $slide['delay']; ?>" 
+                <?php endif; ?>
+                <?php if ($slide['transition_duration']): ?>
+                    data-masterspeed="<?php echo $slide['transition_duration']; ?>" 
+                <?php endif; ?>
+                <?php if ($slide['enable_link'] == 1 && $slide['target_href']): ?>
+                    data-link="http://<?php echo $slide['target_href']; ?>"
+                <?php endif; ?> 
+             >
+                <?php if ($slide['PhotoRoot']['offset']): ?>
+                    <img src="/media/photos/<?php echo $slide['PhotoRoot']['offset'] ?>/<?php echo $slide['PhotoRoot']['filename'] ?>" alt="Slider background">
+                <?php endif; ?>
+                <?php $index = 1; ?>
+                <?php foreach($slide['Layers'] as $keyLayer => $layer): ?>
+                    <?php if($layer['type'] == "text"): ?>
+                        <div class="caption <?php echo $layer['class']; ?> <?php echo $layer['animation']; ?>"
+			     <?php if(in_array($keyLayer,array(1,2,3))): ?>
+                            data-x="-180"
+			    <?php elseif(in_array($keyLayer,array(4,8))): ?>
+                            data-x="95"
+			    <?php elseif(in_array($keyLayer,array(5,6,7))): ?>
+                            data-x="320"
+			    <?php endif; ?>
+                            data-y="<?php echo $layer['y_position']; ?>"
+                            data-speed="<?php echo $layer['speed']; ?>"
+                            data-start="<?php echo strlen($layer['start'])?$layer['start']:400; ?>"
+                            data-easing="<?php echo $layer['easing']; ?>" style="z-index: <?php echo $index;?>;">
+                            <?php if($layer['target_href']): ?>
+                                <a href="http://<?php echo $layer['target_href']; ?>">
+                            <?php endif; ?>
+                                <?php echo $layer['text_html']; ?>
+                            <?php if($layer['target_href']): ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php elseif($layer['type'] == "image"): ?>
+                        <div class="caption <?php echo $layer['animation']; ?>"
+                            data-x="center"
+                            data-y="center"
+                            data-speed="<?php echo $layer['speed']; ?>"
+                            data-start="<?php echo $layer['start']; ?>"
+                            data-easing="<?php echo $layer['easing']; ?>" style="z-index: <?php echo $index;?>;">
+                            <?php if($layer['target_href']): ?>
+                                <a href="http://<?php echo $layer['target_href']; ?>">
+                            <?php endif; ?>
+                                 <img src="/media/photos/<?php echo $layer['PhotoRoot']['offset'] ?>/<?php echo $layer['PhotoRoot']['filename'] ?>" alt="<?php echo $layer['PhotoRoot']['title']; ?>">
+                            <?php if($layer['target_href']): ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php elseif($layer['type'] == "video"): ?>
+                        <div class="caption <?php echo $layer['animation']; ?>"
+                            data-x="<?php echo $layer['x_position']; ?>"
+                            data-y="<?php echo $layer['y_position']; ?>"
+                            data-speed="<?php echo $layer['speed']; ?>"
+                            data-start="<?php echo $layer['start']; ?>"
+                            data-easing="<?php echo $layer['easing']; ?>" style="z-index: <?php echo $index;?>;">
+                            <?php if($layer['target_href']): ?>
+                                <iframe src="<?php echo $layer['target_href']; ?>" width="<?php echo $layer['width_iframe']; ?>" height="<?php echo $layer['height_iframe']; ?>"></iframe>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php $index++; endforeach; ?>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+   
+    </div>
+</section>
+<section class="page_title_2 translucent_bg_color_scheme image_bg_9 image_fixed t_align_c relative wrapper">
+	<div class="container">
+		<h2 class="color_light fw_light m_bottom_5"><?php echo $this->page['Translation'][$this->language]['title']; ?></h2>
+		<!--breadcrumbs-->
+		
+	</div>
+</section>
+<section class="section_offset">
+	<div class="container clearfix">
+		<img src="/media/photos/<?php echo $this->page['PhotoRoot']['offset']; ?>/570x300/<?php echo $this->page['PhotoRoot']['filename']; ?> " alt="Działanie" class="r_corners wrapper f_left m_right_30 m_bottom_10 f_xs_none m_xs_right_0 m_xs_bottom_20">
+		 <?php echo $this->page['Translation'][$this->language]['content']; ?>
+	</div>
+</section>
+<hr class="divider_type_2">
+ 

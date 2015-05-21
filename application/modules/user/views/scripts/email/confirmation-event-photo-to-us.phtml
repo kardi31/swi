@@ -1,0 +1,7 @@
+W serwisie dokonano zmiany zdjęcia głównego wydarzenia o tytule: <br/>
+<?php echo $this->event['Translation']['pl']['title']; ?> <br/>
+Dokonaj moderacji wydarzenia podążając za poniższym linkiem:
+<a href="http://a-ajurweda.pl<?php echo $this->adminUrl('edit-event-promoted', 'event', array('id' => $this->event['id'])) ?>">
+http://a-ajurweda.pl<?php echo $this->adminUrl('edit-event-promoted', 'event', array('id' => $this->event['id'])) ?>
+</a>
+<br/>

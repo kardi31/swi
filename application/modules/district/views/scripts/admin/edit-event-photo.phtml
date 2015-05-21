@@ -1,0 +1,86 @@
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        
+  
+        $("#save-button").click(function(e) {
+            e.preventDefault();
+
+            $("#form").append("<input type='hidden' name='saveOnly' value='1' />");
+            $("#form #submit").trigger("click");
+        });
+
+        $.sendCropData;
+        $("#form").bind("submit", function(e) {
+            if(typeof $.sendCropData != "undefined") {
+                $.sendCropData(function() {
+                    $("#form").unbind("submit");
+                    $("#form #submit").trigger("click");
+                });
+            }
+            e.preventDefault();
+        });
+
+    });
+    		
+    
+</script>
+<div class="row-fluid">
+
+    <div class="span6">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-crop"></span>
+                    <span><?php echo $this->translate('Crop photo') ?> <?php echo $this->news['Translation'][$this->language]['title'] ?></span>
+                </h4>
+                
+            </div>
+            
+            <div class="content clearfix">
+                
+                <?php echo $this->cropPhoto($this->photo, $this->imgDimensions, $this->dimensions, 1) ?>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    <div class="span6">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edit photo') ?></span>
+                </h4>
+                
+            </div>
+            
+            <div class="content clearfix">
+                
+                <form id="form" class="form crop-form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+
+                    <?php echo $this->form->title ?>
+                    <?php echo $this->form->id ?>
+                    
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('edit-event-news', 'district', array('id' => $this->event->getId())) ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+                    
+                </form>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+        
+</div>

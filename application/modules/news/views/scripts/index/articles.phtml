@@ -1,0 +1,59 @@
+    <?php echo $this->render('_menu.phtml') ?>
+</div>
+<div class="content noTop">
+    <div class="blogger">
+        <?php if(isset($this->paginator)): ?>
+        <?php foreach($this->paginator as $key => $article): ?>
+                <div class="row">
+                    <div class="col c01">
+                        &nbsp;
+                    </div>
+                    <div class="col bg03 defPad">
+                        <div class="row">
+                            <div class="col c08">
+                                <div class="defPad bg01">
+                                    <header>
+                                        <a href="<?php echo $this->url(array('slug' => $article['Translation']['pl']['slug']), 'domain-news-article') ?>"><?php echo $article['Translation']['pl']['title']; ?></a>
+                                    </header>
+                                    <?php if(isset($article['PhotoRoot']) && $article['PhotoRoot']['filename'] != NULL): ?>
+                                        <img src="/media/photos/<?php echo $article['PhotoRoot']['offset'] ?>/<?php echo $article['PhotoRoot']['filename'] ?>" alt="<?php echo $article['PhotoRoot']['title']; ?>" class="bloggerThumb"/>
+                                    <?php endif; ?>
+                                       
+                                    <?php echo '<p>'.$this->text()->truncate($article['Translation']['pl']['content'], 200).'</p>'; ?>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class="col c02">
+                                <div class="defPad fc01 fs12 bg02">
+                                    data:  <?php echo $article['publish_date']; ?><br/>
+                                </div>
+                            </div>
+                        </div>
+<!--                        <div class="row defPad">
+                            <h3>
+                                komentarze:
+                            </h3>
+                        </div>
+                        <div class="row defPad">
+                            <div class="col c05 fs13">
+                                <ul>
+                                    <li style="margin-bottom: 5px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi ipsam unde voluptate! Ab corporis cum hic laboriosam maiores maxime nobis officiis,</li>
+                                    <li style="margin-bottom: 5px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi ipsam unde voluptate! Ab corporis cum hic laboriosam maiores maxime nobis officiis,</li>
+                                    <li style="margin-bottom: 5px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi ipsam unde voluptate! Ab corporis cum hic laboriosam maiores maxime nobis officiis,</li>
+                                </ul>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="col c01"></div>
+                </div>
+       <?php endforeach; ?>
+       <?php endif; ?>
+       <div class="pagination">
+            <?php echo $this->paginationControl($this->paginator, 'Sliding', 'news_pagination_control.phtml'); ?>
+       </div>  
+       <div class="col c01">
+            <br/><br/><br/>
+       </div>
+    </div>
+</div>
+<div class="content bottom">

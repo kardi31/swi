@@ -1,0 +1,54 @@
+<header>
+            <div class="top">
+                    <div class="container">
+                            <div class="col-12">
+                              <div class="col-2">
+                                    <div class="logo"><img src="/assets/images/swit.png" alt=""/></div>
+                              </div>
+                                    <nav id="top-menu">
+                                            <?php echo $this->partial('menu_main_tree.phtml', 'menu', array('tree' => $this->tree, 'parent' => $this->menuItem, 'language' => $this->language)) ?>
+<!--                                            <ul class="clearfix">
+                                                    <li class="active"><a href="index.html">Strona główna</a></li>
+                                                    <li><a href="team.html">Zespół</a></li>
+                                                    <li><a href="video.html">O klubie</a></li>
+                                                    <li><a href="video.html">Galeria</a></li>
+                                                    <li><a href="video.html">Aktualności</a></li>
+                                                    <li class="dropdown">
+                                                        <a href="javascript:void(0)">Młodzież</a>
+                                                            <ul class="dropdown-menu">
+                                                                    <li><a href="javascript:void(0)">Juniorzy starsi</a></li>
+                                                                    <li><a href="javascript:void(0)">Juniorzy młodsi</a></li>
+                                                                    <li><a href="javascript:void(0)">Trampkarze starsi</a></li>
+                                                                    <li><a href="javascript:void(0)">Trampkarze młodsi</a></li>
+                                                            </ul>
+                                                    </li>
+                                                    <li><a href="video.html">Kontakt</a></li>
+
+                                            </ul>-->
+                                            <a href="#" id="pull">Menu</a>
+                                    </nav>
+                <nav class="mobilemenu">
+                    <select>
+                        <option value="index.html">Home</option>
+                        <option value="team.html">Team</option>
+                        <option value="video.html">Video</option>
+                        <option value="blog.html">Blog</option>
+                        <option value="club.html">Club</option>
+                        <option value="gallery.html">Gallery</option>
+                        <option value="contact.html">Contact</option>
+                    </select>
+                </nav>
+
+                            </div>
+                    </div>
+            </div>
+</header>
+<!--<div class="wrapper">
+    <h1 class="toph1"><a href="/" id="logo">
+	    <img src="/images/layout/swit_krzeszowice_logo.jpg" alt="Świt krzeszowice logo" title="Akademia piłkarska Świt Krzeszowice" /></a></h1>
+    <nav>
+        <?php // echo $this->partial('menu_main_tree.phtml', 'menu', array('tree' => $this->tree, 'parent' => $this->menuItem, 'language' => $this->language)) ?>
+	    
+    </nav>
+</div>-->
+        

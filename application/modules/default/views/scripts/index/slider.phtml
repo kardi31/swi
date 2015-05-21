@@ -1,0 +1,152 @@
+
+<?php if(!isset($this->hideSlider)||$this->hideSlider==false): ?>
+<div class="slider">
+        <div class="flexslider">
+                <ul class="slides">
+                        <li>
+                                <img src="/assets/images/stadion.jpg" alt=""/>
+                                <div class="caption"><div class="container">
+                                <h1><span>Witamy</span>na stronie
+                                <?php switch(APPLICATION_TYPE):
+                                    case 'juniorzystarsi':
+                                        echo " juniorów starszych";
+                                        break;
+                                    case 'juniorzymlodsi':
+                                        echo " juniorów młodszych";
+                                        break;
+                                    case 'trampkarze':
+                                        echo " trampkarzy";
+                                        break;
+                                    case 'mlodzicy':
+                                        echo " młodzików";
+                                        break;
+                                    case 'orliki':
+                                        echo " orlików";
+                                        break;
+                                    default:
+                                        echo '';
+                                endswitch;
+                                ?>
+                                </h1>
+                                <!--<a href="blog-single.html" class="btn btn-bordered">read more</a>-->
+                                </div></div>
+                        </li>
+<!--				<li>
+                                <img src="http://placehold.it/1920x592" alt=""/>
+                                <div class="caption"><div class="container">
+                                <h1><span>Neymar wary of Messi</span>at the World Cup</h1>
+                                <a href="blog-single.html" class="btn btn-bordered">read more</a>
+                                </div></div>
+                        </li>
+                        <li>
+                                <img src="http://placehold.it/1920x592" alt=""/>
+                                <div class="caption"><div class="container">
+                                <h1><span>Neymar wary of Messi</span>at the World Cup</h1>
+                                <a href="blog-single.html" class="btn btn-bordered">read more</a>
+                                </div></div>
+                        </li>-->
+                </ul>
+        </div>
+</div>
+<?php endif; ?>
+<?php /*if(!isset($this->hideSlider)||$this->hideSlider==false): ?>
+            
+                                    <div class="slider">
+<script>
+      $(document).ready(function(){
+              $('.r_slider').revolution({
+                    delay:5000,
+                    startwidth:960,
+                    startheight:400,
+                    hideThumbs:0,
+                    fullWidth:"on",
+                    hideTimerBar:"on",
+                    soloArrowRightHOffset:30,
+                    soloArrowLeftHOffset:30,
+                    shadow:0
+            });
+            
+    });
+</script>
+<!--revolution slider-->
+<section class="relative w_full">
+    
+	<div class="r_slider">
+		<ul>
+		    <?php foreach($this->mainSlides as $slide): ?>
+		    <li 
+			<?php if($slide['transition']): ?>
+			    data-transition="<?php echo $slide['transition'] ?>" 
+			<?php else: ?>
+			    data-transition="fade" 
+			<?php endif; ?>
+			<?php if($slide['slot_amount']): ?>
+			    data-slotamount="<?php echo $slide['slot_amount']; ?>" 
+			<?php else: ?>
+			    data-slotamount="5"
+			<?php endif; ?>
+			<?php if ($slide['delay']): ?>
+			    data-delay="<?php echo $slide['delay']; ?>" 
+			<?php endif; ?>
+			<?php if ($slide['transition_duration']): ?>
+			    data-masterspeed="<?php echo $slide['transition_duration']; ?>" 
+			<?php endif; ?>
+			<?php if ($slide['enable_link'] == 1 && $slide['target_href']): ?>
+			    data-link="http://<?php echo $slide['target_href']; ?>"
+			<?php endif; ?> 
+		    >
+			<?php if ($slide['PhotoRoot']['offset']): ?>
+			    <img src="/media/photos/<?php echo $slide['PhotoRoot']['offset'] ?>/1680x579/<?php echo $slide['PhotoRoot']['filename'] ?>" alt="Slider background">
+			<?php endif; ?>
+			<?php $index = 1; ?>
+			<?php foreach($slide['Layers'] as $layer): ?>
+			    <?php if($layer['type'] == "text"): ?>
+				<div class="tp-caption <?php echo $layer['class']; ?> <?php echo $layer['animation']; ?>"
+				    data-x="<?php echo $layer['x_position']; ?>"
+				    data-y="<?php echo $layer['y_position']; ?>"
+				    data-speed="<?php echo $layer['speed']; ?>"
+				    data-start="<?php echo $layer['start']; ?>"
+				    data-easing="<?php echo $layer['easing']; ?>" style="z-index: <?php echo $index;?>;">
+				    <?php if($layer['target_href']): ?>
+					<a href="http://<?php echo $layer['target_href']; ?>">
+				    <?php endif; ?>
+					<?php echo $layer['text_html']; ?>
+				    <?php if($layer['target_href']): ?>
+					</a>
+				    <?php endif; ?>
+				</div>
+			    <?php elseif($layer['type'] == "image"): ?>
+				<div class="tp-caption <?php echo $layer['animation']; ?>"
+				    data-x="<?php echo $layer['x_position']; ?>"
+				    data-y="<?php echo $layer['y_position']; ?>"
+				    data-speed="<?php echo $layer['speed']; ?>"
+				    data-start="<?php echo $layer['start']; ?>"
+				    data-easing="<?php echo $layer['easing']; ?>" style="z-index: <?php echo $index;?>;">
+				    <?php if($layer['target_href']): ?>
+					<a href="http://<?php echo $layer['target_href']; ?>">
+				    <?php endif; ?>
+					 <img src="/media/photos/<?php echo $layer['PhotoRoot']['offset'] ?>/<?php echo $layer['PhotoRoot']['filename'] ?>" alt="<?php echo $layer['PhotoRoot']['title']; ?>">
+				    <?php if($layer['target_href']): ?>
+					</a>
+				    <?php endif; ?>
+				</div>
+			    <?php elseif($layer['type'] == "video"): ?>
+				<div class="tp-caption <?php echo $layer['animation']; ?>"
+				    data-x="<?php echo $layer['x_position']; ?>"
+				    data-y="<?php echo $layer['y_position']; ?>"
+				    data-speed="<?php echo $layer['speed']; ?>"
+				    data-start="<?php echo $layer['start']; ?>"
+				    data-easing="<?php echo $layer['easing']; ?>" style="z-index: <?php echo $index;?>;">
+				    <?php if($layer['target_href']): ?>
+					<iframe src="<?php echo $layer['target_href']; ?>" width="<?php echo $layer['width_iframe']; ?>" height="<?php echo $layer['height_iframe']; ?>"></iframe>
+				    <?php endif; ?>
+				</div>
+			    <?php endif; ?>
+			<?php $index++; endforeach; ?>
+		    </li>
+		    <?php endforeach; ?>
+		</ul>
+	</div>
+</section>
+                                    </div>
+<?php endif; ?>

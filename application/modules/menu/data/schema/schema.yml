@@ -1,0 +1,194 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Menu:
+  tableName: menu_menu
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    root_id:
+      type: integer(4)
+    location:
+      type: string(255)
+  relations:
+    MenuItemRoot:
+      class: MenuItem
+      local: root_id
+      foreign: id
+      owningSide: true
+      type: one
+    MenuItems:
+      class: MenuItem
+      local: id
+      foreign: menu_id
+      type: many
+MenuItem:
+  tableName: menu_menu_item
+  actAs:
+    I18n:
+      fields: [target_href, slug, title, title_attr]
+      tableName: menu_menu_item_translation
+      className: MenuItemTranslation
+    NestedSet: 
+      hasManyRoots: true
+      rootColumnName: root_id
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    target_type:
+      type: string(128)
+    route:
+      type: string(255)
+    target_id:
+      type: string(128)
+    target_href:
+      type: string(255)
+    menu_id:
+      type: integer(4)
+    custom_url:
+      type: string(255)
+    title:
+      type: string(255)
+    title_attr:
+      type: string(255)
+    slug:
+      type: string(255)
+    unique_id:
+      type: string(128)
+    css_class:
+      type: string(128)
+    photo_root_id:
+      type: integer(4)
+  relations:
+    Menu:
+      local: menu_id
+      foreign: id
+      owningSide: true
+      type: one
+MenuItemTranslation:
+  tableName: menu_menu_item_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    target_href:
+      type: string(255)
+    title:
+      type: string(255)
+    title_attr:
+      type: string(255)
+    slug:
+      type: string(255)
+  relations:
+    MenuItem:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many
+Footer:
+  tableName: menu_footer
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    root_id:
+      type: integer(4)
+    location:
+      type: string(255)
+  relations:
+    FooterItemRoot:
+      class: FooterItem
+      local: root_id
+      foreign: id
+      owningSide: true
+      type: one
+    FooterItems:
+      class: FooterItem
+      local: id
+      foreign: menu_id
+      type: many
+FooterItem:
+  tableName: menu_footer_item
+  actAs:
+    I18n:
+      fields: [target_href, slug, title, title_attr]
+      tableName: menu_footer_item_translation
+      className: FooterItemTranslation
+    NestedSet: 
+      hasManyRoots: true
+      rootColumnName: root_id
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    target_type:
+      type: string(128)
+    route:
+      type: string(255)
+    target_id:
+      type: string(128)
+    target_href:
+      type: string(255)
+    menu_id:
+      type: integer(4)
+    custom_url:
+      type: string(255)
+    title:
+      type: string(255)
+    title_attr:
+      type: string(255)
+    slug:
+      type: string(255)
+    unique_id:
+      type: string(128)
+    css_class:
+      type: string(128)
+    photo_root_id:
+      type: integer(4)
+  relations:
+    Footer:
+      local: menu_id
+      foreign: id
+      owningSide: true
+      type: one
+FooterItemTranslation:
+  tableName: menu_footer_item_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    target_href:
+      type: string(255)
+    title:
+      type: string(255)
+    title_attr:
+      type: string(255)
+    slug:
+      type: string(255)
+  relations:
+    FooterItem:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many

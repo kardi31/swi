@@ -1,0 +1,31 @@
+<?php $person = $this->person;
+$photo = $person['PhotoRoot']; ?>
+<div class="block_popular_stuff">
+        <h4>Ciekawa sylwetka</h4>
+
+    <div class="content">
+        <p class="center margin-bottom-10"><a href="<?php echo $this->url(array('slug' => $person['Translation'][$this->language]['slug']),'domain-i18n:people'); ?>"><?php echo $person['Translation'][$this->language]['title']; ?></a> </p>
+ 
+        <div class="media">
+            <a href="<?php echo $this->url(array('slug' => $person['Translation'][$this->language]['slug']),'domain-i18n:people'); ?>" class="general_pic_hover no_fx" data-rel="" title="<?php echo $person['Translation'][$this->language]['title']; ?>">
+                <img src="/media/photos/<?php echo $photo['offset']; ?>/236x152/<?php echo $photo['filename']; ?>" alt="">
+            </a>
+        </div>
+        
+<!--        <a href="#" class="view_all">Show all video</a>
+        <div class="media"><a href="http://www.youtube.com/watch?v=ySIvism2af8" class="general_pic_hover play no_fx" data-rel="prettyPhoto" title="Popular Video"><img src="/assets/images/pic_pop_video.jpg" alt=""></a></div>
+        <p><a href="blog_post_w_video.html">Publishing packages and web page editors their default model.</a> <img src="/assets/images/icon_video.gif" alt=""></p>
+        <p class="date">11 July, 2012</p>-->
+    </div>
+
+    <div class="info">
+<!--        <ul>
+                <li class="comments"><a href="#">115</a></li>
+            <li class="views"><a href="#">220</a></li>
+        </ul>-->
+    </div>
+
+    <div class="clearboth"></div>
+
+    <div class="line_2"></div>
+</div>

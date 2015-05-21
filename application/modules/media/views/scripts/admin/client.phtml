@@ -1,0 +1,18 @@
+<div id="elfinder"></div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    if(typeof(elfinderCallback) == "undefined") {
+        elfinderCallback = function() {
+            return false;
+        }
+    }
+    $('#elfinder').elfinder({
+        url : '/admin/media/connect',
+        lang : 'en',
+        height: 280,
+        width : 550,
+        editorCallback : elfinderCallback,
+        closeOnEditorCallback : false
+    });     
+  });
+</script>

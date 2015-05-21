@@ -1,0 +1,80 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    
+    var oTable = $("#stream_table").dataTable( {
+
+         "bFilter": true,
+         "bSearchable": true,
+        "bProcessing": true,
+       
+        "bServerSide": true,
+       
+        "bLengthChange": true,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-stream-data', 'news') ?>",
+        "iDisplayLength": 50,
+        "aaSorting": [[ 0, "desc" ]],
+        "aoColumns": [
+            { sWidth: '50px' },
+            null,
+            { "bSortable": false, sWidth: '80px' },
+            { "bSortable": false, sWidth: '50px' }
+        ]
+               
+    }).yadcf([
+        {
+          column_number: 0,
+          filter_type: "text"
+        },
+        {
+          column_number: 1,
+          filter_type: "text"
+        }
+        ]);
+});
+
+
+</script>
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil-2"></span>
+                    <span><?php echo $this->translate('News') ?></span>
+                    <div class="box-form right">
+                        <a href="<?php echo $this->adminUrl('add-stream', 'news') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add new') ?></a>
+                    </div>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                <table id="stream_table" cellpadding="0" cellspacing="0" border="0" class=" display table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th><?php echo $this->translate('Id') ?></th>
+                            <th><?php echo $this->translate('Title') ?></th>
+                            <th><?php echo $this->translate('Publish') ?></th>
+                            <th><?php echo $this->translate('Options') ?></th>
+                        </tr>
+                        <tr>
+                            <th><?php echo $this->translate('Id') ?></th>
+                            <th><?php echo $this->translate('Title') ?></th>
+                            <th><?php echo $this->translate('Publish') ?></th>
+                            <th><?php echo $this->translate('Options') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <?php echo $this->result; ?>
+                    </tbody>
+                </table>
+                
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+</div>

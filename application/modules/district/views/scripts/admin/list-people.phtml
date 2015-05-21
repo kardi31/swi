@@ -1,0 +1,101 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#news_table").dataTable( {
+
+         "bFilter": true,
+         "bSearchable": true,
+        "bProcessing": true,
+       
+        "bServerSide": true,
+       
+        "bLengthChange": true,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-people-data', 'district') ?>",
+        "iDisplayLength": 50,
+        "aaSorting": [[ 0, "desc" ]],
+        "aoColumns": [
+            { sWidth: '100px' },
+            null,
+            { sWidth: '200px' },
+            { sWidth: '200px' },
+            { sWidth: '200px' },
+            { "bSortable": false, sWidth: '100px' }
+        ]
+               
+    }).yadcf([
+        {
+          column_number: 0,
+          filter_type: "text"
+        },
+        {
+          column_number: 1,
+          filter_type: "text"
+        },
+        {
+          column_number: 2,
+          filter_type: "range_date",
+          date_format: "yyyy-mm-dd"
+        },
+        {
+          column_number: 3,
+          filter_type: "range_date",
+          date_format: "yyyy-mm-dd"
+        },
+        {
+          column_number: 4,
+          filter_type: "range_date",
+          date_format: "yyyy-mm-dd"
+        },
+        
+        ]);
+});
+
+
+</script>
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil-2"></span>
+                    <span>Ciekawe sylwetki</span>
+                    <div class="box-form right">
+                        <a href="<?php echo $this->adminUrl('add-people', 'district') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add new') ?></a>
+                    </div>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                <table id="news_table" cellpadding="0" cellspacing="0" border="0" class=" display table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th><?php echo $this->translate('Id') ?></th>
+                            <th><?php echo $this->translate('Title') ?></th>
+                            <th><?php echo $this->translate('Created') ?></th>
+                            <th><?php echo $this->translate('Updated') ?></th>
+                            <th><?php echo $this->translate('Publish date') ?></th>
+                            <th><?php echo $this->translate('Options') ?></th>
+                        </tr>
+                        <tr>
+                            <th><?php echo $this->translate('Id') ?></th>
+                            <th><?php echo $this->translate('Title') ?></th>
+                            <th><?php echo $this->translate('Created') ?></th>
+                            <th><?php echo $this->translate('Updated') ?></th>
+                            <th><?php echo $this->translate('Publish date') ?></th>
+                            <th><?php echo $this->translate('Options') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <?php echo $this->result; ?>
+                    </tbody>
+                </table>
+                
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+</div>

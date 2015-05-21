@@ -1,0 +1,132 @@
+<script type="text/javascript" src="/js/bootstrap/bootstrap.js"></script>  
+
+<script>
+$(function() {
+
+    var uploader = new qq.FileUploaderBasic({
+            // pass the dom node (ex. $(selector)[0] for jQuery users)
+            button: document.getElementById('file-uploader'),
+            // path to server-side upload script
+            action: $("#file-uploader").attr("data-href"),
+            inputName: "file",
+            debug: true,
+            forceMultipart: true,
+            params: {id: $("#file-uploader").attr("data-id"), format: "json"},
+            onSubmit: function(id, fileName) {
+                $(".file-loader").show();
+            },
+            onComplete: function(id, fileName, responseJSON) {
+                if(parseInt(responseJSON.root)) {
+                    if(this.getInProgress() == 0) {
+                        loadphoto(parseInt(responseJSON.root), ".main-photo");
+                    }
+                }
+            }
+    });
+    
+    // file upload
+    function loadphoto(rootId, selector) {
+        $(selector).load("<?php echo $this->url(array('action' => 'load-trainer-photo-list'), 'domain-user-ajax-photo') ?>", {id: rootId}, function() {
+            $(".file-loader").hide();
+        });
+    }
+    
+    $(".main-photo").delegate(".delete-trainer-photo", "click", function(e) {
+        e.preventDefault();
+        $(".main-photo").load($(this).attr("href"));
+    });
+
+    <?php if ($this->language == 'en'): ?>
+        $('button#submit').css('background', "url('/images/layout/ajurweda/save.png') no-repeat 0px -15px"); 
+    <?php endif; ?>
+        
+
+    <?php foreach ($this->languages as $language): ?>
+      var limitFull = 1800; //ustalamy limit znakow
+       $(".limit-full-info-<?php echo $language; ?>").text(limitFull - $("#<?php echo $language; ?>-curriculum_vitae").val().length);
+        $("#<?php echo $language; ?>-curriculum_vitae").keyup(function() { //jesli wpisano cos do naszego pola
+               var ile_wpisano = $(this).val().length; //zliczamy ilosc znakow
+               if(ile_wpisano > limitFull) { //jesli przekroczymy limit
+                   reset = $(this).val().substring(0, limitFull); //pobieramy znaki od pierwszego do ustalonego w limicie
+                   $(this).val(reset); //wypisujemy wczesniej pobrane znaki
+               }
+               $(".limit-full-info-<?php echo $language; ?>").text(limitFull - $(this).val().length); //wypisujemy ile znakow pozostalo
+       });
+     <?php endforeach; ?>
+
+  });
+</script>
+     
+<section id="add-trainer">
+    <header>
+        <?php echo $this->translate('Edit silhouette') ?>
+    </header>
+    <div class="add_trainer_content">
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post">
+            
+            <?php echo $this->form->name ?>
+            
+            <div class="translations">
+                <ul id="myTab" class="nav nav-tabs pattern">
+                    <li class="dropdown">
+                        <?php foreach($this->languages as $key => $language): ?>
+                            <li class="<?php if($language == $this->language): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                            <?php endforeach; ?>
+                        </li>
+                </ul>
+               
+                <div class="tab-content">
+                    <?php foreach($this->languages as $key => $language): ?>
+                        <div class="tab-pane<?php if($language == $this->language): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+                            <?php if($this->form->translations->getSubForm($language)): ?>
+                                <?php echo $this->form->translations->getSubForm($language)->experience ?>
+                                <?php echo $this->form->translations->getSubForm($language)->curriculum_vitae ?>
+                                <div class="limit-characters">
+                                    Pozostało znaków: <span class="strong limit-full-info-<?php echo $language; ?>"></span>
+                                </div>
+                                <?php echo $this->form->translations->getSubForm($language)->academic_title ?>
+                                <?php echo $this->form->translations->getSubForm($language)->specialization ?>
+                                <?php echo $this->form->translations->getSubForm($language)->education ?>
+                            <?php endif; ?>
+                            <div class="metatags">
+                                <?php echo $this->form->metatags->translations->getSubForm($language)->meta_keywords; ?>
+                            </div>
+                        </div>
+                   <?php endforeach; ?>
+                 </div>
+            </div>
+             
+            <?php echo $this->form->place_of_admission ?>
+            <?php echo $this->form->contact ?>
+            <?php echo $this->form->website ?>
+            <?php echo $this->form->id ?>
+            
+                <div class="main-photo-container">
+                    <span class="add-main-photo">
+                        <a id="file-uploader" data-href="<?php echo $this->url(array('action' => 'upload-trainer-photo', 'trainer-id' => $this->trainer->getId(), 'type' => $this->type), 'domain-user-profile') ?>"><?php echo $this->translate('Add photo / logo') ?></a>
+                    </span>
+                    <div class="main-photo">
+                        <ul class="photos">
+                            <?php if($this->trainer['PhotoRoot']['filename']): ?>
+                            <li>
+                                <?php if(strlen($this->trainer['PhotoRoot']['filename'])): ?>
+                                    <img src="/media/photos/<?php echo $this->trainer['PhotoRoot']['offset'] ?>/245x245/<?php echo $this->trainer['PhotoRoot']['filename'] ?>" /><br />
+                                    <?php else: ?>
+                                    <img src="/images/layout/ajurweda/no_photo.jpg" style="width: 245px; height: 245px;" /><br />
+                                <?php endif; ?>
+                                <a class="delete-trainer-photo" href="<?php echo $this->url(array('action' => 'delete-trainer-photo', 'id' => $this->trainer['PhotoRoot']['id']), 'domain-user-profile') ?>"><?php echo $this->translate('Delete') ?></a>
+                            </li>
+                            <?php else: ?>
+                                <img src="/images/layout/ajurweda/no_photo.jpg" style="width: 245px; height: 245px;" /><br />
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
+            <div class="save-button">
+            <?php echo $this->form->submit ?>
+            </div>
+
+        </form>
+    </div>
+</section>
+                

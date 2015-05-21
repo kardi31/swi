@@ -1,0 +1,39 @@
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<?php echo $this->headMeta() ?>
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Signika:400,600,300,700&amp;subset=latin,latin-ext" /> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index, follow" />
+<meta name="Author" content="Kardi mobile">
+<meta name="DC.title" lang="pl" content="<?php echo strip_tags($this->headTitle()) ?>">
+<meta name="DC.creator" content="Kardi Mobile">
+<meta name="DC.publisher" content="Tomasz Kardas kardi3">
+<meta name="DC.contributor" content="kardimobile.pl">
+<title>
+   <?php if(strlen(strip_tags($this->headTitle()))):
+        echo strip_tags($this->headTitle())." - Świt Krzeszowice";
+       else: 
+           echo "Świt Krzeszowice";
+           endif; ?>
+    
+    
+</title>
+
+ <!-- Styles -->
+    <link rel="stylesheet" href="/assets/css/general.css">
+	<!-- Google fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic%7COswald:400,300,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <!-- Modernizr -->
+    <script type='text/javascript' src='/assets/js/libs/modernizr-2.5.3.min.js'></script>
+
+    <!-- Semantic HTML5 Support on old IE -->
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+        
+ 
+</head>

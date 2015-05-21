@@ -1,0 +1,66 @@
+ <div class="viewport">
+    <div class="page current">
+<?php if(isset($this->productPromotions)): ?>
+     <?php foreach($this->productPromotions as $bestProduct):?>
+                            <?php if($bestProduct['Categories'][0]['Translation'][$this->language]['slug'] && $bestProduct['Translation'][$this->language]['slug']): ?>
+                                <article>
+                                    <a href="<?php echo $this->url(array('category' => $bestProduct['Categories'][0]['Translation'][$this->language]['slug'], 'product' => $bestProduct['Translation'][$this->language]['slug']), 'domain-i18n:product') ?>">
+                                        <div class="thumbViewport">
+                                            <?php if($bestProduct['PhotoRoot']['offset']): ?>
+                                                <img src="/media/photos/<?php echo $bestProduct['PhotoRoot']['offset'] ?>/245x245/<?php echo $bestProduct['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $bestProduct['PhotoRoot']['offset'] ?>/<?php echo $bestProduct['PhotoRoot']['filename'] ?>" alt="<?php echo $bestProduct['PhotoRoot']['title'] ?>" />
+                                            <?php else: ?>
+                                                <img src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 245px; height: 245px" />
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="price">
+                                            <?php
+                                                $flag = MF_Discount::getPriceWithDiscount($bestProduct['promotion_price'], $bestProduct['Discount']);
+                                                $flag = $flag['flag'];
+                                            ?>
+                                            <?php if($bestProduct['Discount'] || $bestProduct['promotion']): ?>
+                                                <?php if($bestProduct['promotion']): ?>
+                                                    <?php if($bestProduct['Discount'] && $flag): ?>
+                                                        <span class="buy"><?php echo $this->translate('buy now') ?></span> 
+                                                            <span itemprop="price" class="pr">
+                                                                <?php 
+                                                                $price = MF_Discount::getPriceWithDiscount($bestProduct['promotion_price'], $bestProduct['Discount']); 
+                                                                $price = $price['price'];
+                                                                echo $price; ?> zł
+                                                            </span>
+                                                        <div class="line">
+                                                            <div class="promotion"><?php echo $bestProduct['price']; ?> zł</div>
+                                                        </div>
+                                                    <?php else: ?>
+                                                        <span class="buy"><?php echo $this->translate('buy now') ?></span> <span itemprop="price" class="pr"><?php echo $bestProduct['promotion_price']; ?> zł</span>
+                                                        <div class="line">
+                                                            <div class="promotion"><?php echo $bestProduct['price']; ?> zł</div>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                <?php elseif($flag): ?> 
+                                                    <span class="buy"><?php echo $this->translate('buy now') ?></span> 
+                                                        <span itemprop="price" class="pr">
+                                                            <?php 
+                                                            $price = MF_Discount::getPriceWithDiscount($bestProduct['price'], $bestProduct['Discount']); 
+                                                            $price = $price['price'];
+                                                            echo $price; ?> zł
+                                                        </span>
+                                                    <div class="line">
+                                                        <div class="promotion"><?php echo $bestProduct['price']; ?> zł</div>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <span class="buy"><?php echo $this->translate('buy now') ?></span> <span itemprop="price" class="pr"><?php echo $bestProduct['price']; ?> zł</span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </a>
+                                    <div class="cart">  
+                                        <a href="<?php echo $this->url(array('action' => 'add-to-cart', 'product-id' => $bestProduct['id']), 'domain-cart-ajax') ?>" class="purchase">
+                                            <img src="/images/layout/shop/KOSZYK.png" alt="<?php echo $this->translate('Cart') ?>" />
+                                         </a>
+                                   </div>
+                                </article>
+                            <?php endif; ?>
+    <?php endforeach; ?>
+<?php endif; ?>  
+    </div>
+ </div>

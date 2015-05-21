@@ -1,0 +1,251 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+News:
+  tableName: news_news
+  actAs:
+    I18n:
+      fields: [title, slug, content]
+      tableName: news_news_translation
+      className: NewsTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    last_user_id:
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    publish:
+      type: boolean
+      default: 1
+    gallery:
+      type: boolean
+      default: 0
+    breaking_news:
+      type: boolean
+      default: 0
+    publish_date:
+      type: timestamp
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    video_root_id:
+      type: integer(4)
+    category_id:
+      type: integer(4)
+    student:
+      type: boolean
+      default: 0
+    student_accept:
+      type: boolean
+      default: 0
+    group_id:
+      type: integer(4)
+    views:
+      type: integer(11)
+    show_views:
+      type: boolean
+      default: 1
+NewsTranslation:
+  tableName: news_news_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    title:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    News:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: News
+      type: one
+      foreignType: many
+Category:
+  tableName: news_category
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    last_user_id:
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    News:
+      local: id
+      foreign: category_id
+      foreignAlias: Category
+      alias: Newses
+      type: many
+      foreignType: one
+Comment:
+  tableName: news_comment
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    news_id:
+      type: integer(4)
+    name:
+      type: string(255)
+    content:
+      type: clob
+    user_ip:
+      type: varchar(255)
+    active:
+      type: boolean
+      default: 1
+  relations:
+    News:
+      local: news_id
+      foreign: id
+      foreignAlias: Comments
+      alias: News
+      type: one
+      foreignType: many
+Group:
+  tableName: news_group
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    metatag_id:
+      type: integer(4)
+  relations:
+    News:
+      local: id
+      foreign: group_id
+      foreignAlias: Group
+      alias: Newses
+      type: many
+      foreignType: one    
+Tag:
+  tableName: news_tag
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    metatag_id:
+      type: integer(4)
+  relations:
+    News:
+        refClass: NewsTag
+        local: tag_id
+        foreign: news_id
+        foreignType: many
+        foreignAlias: Tags
+        alias: Newses
+NewsTag:
+  tableName: news_news_tag
+  columns:
+    tag_id:
+      type: integer(4)
+    news_id:
+      type: integer(4)
+Stream:
+  tableName: news_stream
+  actAs:
+    I18n:
+      fields: [title, slug, content]
+      tableName: news_stream_translation
+      className: StreamTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    last_user_id:
+      type: integer(4)
+    url:
+      type: string(255)
+    type:
+      type: string(255)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    publish:
+      type: boolean
+      default: 1
+    metatag_id:
+      type: integer(4)
+StreamTranslation:
+  tableName: news_stream_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    title:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    Stream:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Stream
+      type: one
+      foreignType: many

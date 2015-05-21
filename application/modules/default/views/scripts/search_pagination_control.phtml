@@ -1,0 +1,34 @@
+       <!-- Previous page link -->
+    <?php if (isset($this->previous)): ?>
+        <li>
+            <a class="prev" href="<?php echo $this->url(array('page' => $this->previous), 'domain-i18n:results-searching'); ?>?<?php echo http_build_query(array('s' => $this->phrase)) ?>"><span>&laquo;</span></a>
+        </li>
+    <?php else: ?>
+        <li>
+            <a class="prev"><span>&laquo;</span></a>
+        </li>
+    <?php endif; ?>
+
+    <!-- Numbered page links -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+    <?php if ($page != $this->current): ?>
+        <li>
+            <a href="<?php echo $this->url(array('page' => $page), 'domain-i18n:results-searching') ?>?<?php echo http_build_query(array('s' => $this->phrase)) ?>"><?php echo $page; ?></a>
+        </li>
+    <?php else: ?>
+        <li>
+            <a class="active" href="#"><?php echo $page; ?></a>
+        </li>
+    <?php endif; ?>
+    <?php endforeach; ?>
+
+    <!-- Next page link -->
+    <?php if (isset($this->next)): ?>
+        <li>
+            <a class="next" href="<?php echo $this->url(array('page' => $this->next), 'domain-i18n:results-searching'); ?>?<?php echo http_build_query(array('s' => $this->phrase)) ?>"><span> &raquo;</span></a>
+        </li>
+    <?php else: ?>
+        <li>
+            <a class="next"><span>&raquo;</span></a>
+        </li>
+    <?php endif; ?>

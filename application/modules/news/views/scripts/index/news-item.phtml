@@ -1,0 +1,72 @@
+<div class="container">
+    <div id="content" class="single col-lg-8 col-md-8 col-sm-12">
+    <section class="singleheader-wrap">
+        <div class="singleheader">
+            <div class="container">
+                <h3 class="new-title" style="text-align: left;"><?php echo $this->translate('Blog') ?></h3>
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <div class="single-title">
+                        <h3><?php echo $this->news['Translation'][$this->language]['title']; ?></h3>
+                    </div>
+                </div>   
+            </div>  
+        </div>
+    </section>
+    <hr>
+    </div>
+            
+    <div id="content" class="single col-lg-8 col-md-8 col-sm-12">
+
+        <div class="image-container he-wrap tpl2" style="float: left; margin-right: 40px;">
+            <?php if($this->news['PhotoRoot']['offset']): ?>
+                <img width="100%" src="/media/photos/<?php echo $this->news['PhotoRoot']['offset'] ?>/305x209/<?php echo $this->news['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $this->news['PhotoRoot']['offset'] ?>/<?php echo $this->news['PhotoRoot']['filename'] ?>" alt="<?php echo $this->news['PhotoRoot']['alternate_text']; ?>" title="<?php echo $this->news['PhotoRoot']['title'] ?>" />
+            <?php else: ?>
+                <img width="100%" src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 155px; height: 155px" />
+            <?php endif; ?>
+<!--            <div class="he-view">
+                <div class="bg a0" data-animate="fadeIn">
+                    <div class="center-bar">
+                        <a href="#" class="twitter a0" data-animate="elasticInDown"></a>
+			<a href="#" class="facebook a1" data-animate="elasticInDown"></a>
+			<a href="#" class="google a2" data-animate="elasticInDown"></a>
+                    </div> center bar 
+                </div> bg 
+            </div> he-view -->
+        </div><!-- image-container -->
+
+	<header class="post-meta">
+            <p>
+                <?php echo $this->translate('Published at') ?>: <span class="publish-on"><?php echo $this->news['publish_date']; ?></span>  
+            </p>
+	</header>
+                        
+        <?php echo $this->news['Translation'][$this->language]['content']; ?>
+			
+                
+	<div class="clearfix"></div>
+
+        <hr>
+              
+    </div><!-- end content -->
+
+    <div id="sidebar" class="col-lg-4 col-md-4 col-sm-12">
+                                
+        <div class="widget">
+            <h2 class="general-title">
+                <span><?php echo $this->translate('Recent news') ?></span>
+            </h2>
+                <ul class="categories">
+                    <?php foreach($this->recentNews as $recent): ?>
+                        <li>
+                            <a href="<?php echo $this->url(array('slug' => $recent['Translation'][$this->language]['slug']), 'domain-i18n:news-item') ?>">
+                                <?php echo $recent['Translation'][$this->language]['title']; ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+        </div>
+
+	<div class="clearfix"></div>
+  </div><!-- end sidebar -->
+                             
+</div><!-- end container -->

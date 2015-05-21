@@ -1,0 +1,56 @@
+<div class="container_12 clearfix leading">
+    
+    <div class="grid_12">
+ 
+        <div class="box">
+            
+            <div class="title">
+
+                    <h4>
+                        <span class="icon16 icomoon-icon-pencil"></span>
+                        <span><?php echo $this->translate('Edit') ?> <?php echo $this->producer->Translation[$this->language]->name ?></span>
+                    </h4>
+
+                </div>
+        
+          <div class="content">
+            <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+
+                <div class="page-header">
+                            <h4><?php echo $this->translate('Translations') ?></h4>
+                        </div>
+                        
+                        <ul id="myTab" class="nav nav-tabs pattern">
+                            <li class="dropdown">
+                                <?php foreach($this->languages as $key => $language): ?>
+                                <li class="<?php if($language == $this->adminLanguage->getId()): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                                <?php endforeach; ?>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <?php foreach($this->languages as $key => $language): ?>
+                            <div class="tab-pane<?php if($language == $this->adminLanguage->getId()): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                            <?php if($this->form->translations->getSubForm($language)): ?>
+                                <?php echo $this->form->translations->getSubForm($language)->name ?>
+                            <?php endif; ?>
+
+                            </div>
+                            <?php endforeach; ?>
+               </div>
+                
+                <?php echo $this->form->start_date->setAttrib('class', 'combiner-picker') ?>
+                <?php echo $this->form->finish_date->setAttrib('class', 'combiner-picker') ?>
+                <?php echo $this->form->amount_discount ?>
+                <?php echo $this->form->id ?>
+                    
+                <div class="form-actions">
+                    <?php echo $this->form->submit ?>
+                    <a href="<?php echo $this->adminUrl('list-discount', 'product'); ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+               </div>       
+            </form>
+          </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="clearfix"></div>
+<section id="partner">
+    <div class="container">
+            <div class="slider3">
+                <?php foreach($this->banners as $banner): ?>
+                    <div class="col-2 slide">
+                        <?php if(strlen($banner['website'])): ?>
+                        <a href="<?php echo $banner['website'] ?>" rel="nofollow" target="_blank" >
+                            <img style="max-width:200px;" src="/media/attachments/<?php echo $banner['AttachmentRoot']['filename']; ?>" alt="<?php echo $banner['Translation'][$this->language]['name']; ?>" />
+                        </a>
+                        <?php else:?>
+                        <img style="max-width:200px;" src="/media/attachments/<?php echo $banner['AttachmentRoot']['filename']; ?>" alt="<?php echo $banner['Translation'][$this->language]['name']; ?>" />
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/o2.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/o2.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/o2.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+                    <div class="col-2 slide"><a href="#"><img src="/assets/css/images/indesit.png" alt=""/></a></div>
+            </div>
+    </div>
+</section>
+<div class="clearfix"></div>
+<footer>
+    <div class="container">
+            <div class="col-12">
+               <p class="copyright"> <a style="color:#fff" href="http://kardimobile.pl">kardi mobile</a> © <?php echo date('Y'); ?>  - All Rights Reserved </p>
+            </div>
+    </div>
+</footer>

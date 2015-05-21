@@ -1,0 +1,16 @@
+<h1 class="page-title"><?php echo $this->translate('Manage menu') ?></h1>
+<div class="container_12 clearfix leading">
+   
+    <a href="<?php echo $this->adminUrl('list-menu', 'menu') ?>"><?php echo $this->formButton('', $this->translate('Back'), array('id' => 'back')) ?></a>
+    <a href="<?php echo $this->adminUrl('add-menu-item', 'menu', array('menu' => $this->menu->getId(), 'parent' => $this->root->getId())) ?>"><?php echo $this->formButton('', $this->translate('Add item'), array('id' => 'add-root')) ?></a>
+    
+    <section class="portlet grid_12 leading">
+        <header>
+            <h2><?php echo $this->menu->getName() ?></h2>
+        </header>
+        <section class="menu-items">
+            <?php echo $this->partial('_manage_menu.phtml', null, array('root' => $this->root, 'menu' => $this->menu, 'language' => $this->language)) ?>
+        </section>
+    </section>
+    
+</div>

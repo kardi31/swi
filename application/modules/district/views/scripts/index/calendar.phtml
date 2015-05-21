@@ -1,0 +1,21 @@
+<div id="calendar"></div>
+<script>
+        $(document).ready(function() {
+             $("#calendar").eventCalendar({
+                        jsonData: <?php echo $this->data; ?>,
+                        showDescription: true,
+                        jsonDateFormat: 'human',
+                        monthNames: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Siepień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+										
+                          dayNames: ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'],
+                          dayNamesShort : ['Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob', 'Nie'],
+                          txt_noEvents: "Brak wydarzeń w tym dniu",
+                          txt_SpecificEvents_prev: "Wydarzenia ",
+                          txt_SpecificEvents_after: "",
+                          txt_next: "Poprzedni",
+                          txt_prev: "anterior",
+                          txt_NextEvents: "Najbliższe wydarzenia",
+                          txt_GoToEventUrl: "Ir al evento",
+                });
+        });
+</script>

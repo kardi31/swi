@@ -1,0 +1,12 @@
+W serwisie dokonano zmian w sylwetce o nazwie: <br/>
+<?php echo $this->trainer['name']; ?> <br/>
+Dokonaj moderacji sylwetki podążając za poniższym linkiem:
+<?php if($this->type == "normal"): ?>
+<a href="http://a-ajurweda.pl<?php echo $this->adminUrl('edit-trainer', 'trainer', array('id' => $this->trainer['id'])) ?>">
+http://a-ajurweda.pl<?php echo $this->adminUrl('edit-trainer', 'trainer', array('id' => $this->trainer['id'])) ?>
+<?php elseif($this->type == "promoted"): ?>
+<a href="http://a-ajurweda.pl<?php echo $this->adminUrl('edit-trainer-promoted', 'trainer', array('id' => $this->trainer['id'])) ?>">
+http://a-ajurweda.pl<?php echo $this->adminUrl('edit-trainer-promoted', 'trainer', array('id' => $this->trainer['id'])) ?>
+<?Php endif; ?>
+</a>
+<br/>

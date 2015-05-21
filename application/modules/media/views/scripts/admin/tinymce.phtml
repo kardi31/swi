@@ -1,0 +1,21 @@
+<script src="/lib/elfinder/js/jquery-1.6.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/lib/elfinder/js/jquery-ui-1.8.13.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/lib/elfinder/js/elfinder.min.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="/lib/elfinder/css/elfinder.css" type="text/css" media="screen" charset="utf-8">
+
+<div id="elfinder"></div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#elfinder').elfinder({
+        url : '/admin/media/connect',
+        lang : 'en',
+        height: 280,
+        width : 550,
+        editorCallback : function(url) {
+            window.tinymceFileWin.document.forms[0].elements[window.tinymceFileField].value = url;
+            window.tinymceFileWin.focus();
+            window.close();
+        }
+    });     
+  });
+</script>

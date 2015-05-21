@@ -1,0 +1,137 @@
+<article class="profile span8">
+    <?php if($this->offer): ?>
+    <div class="print-only"><?php echo $this->translate('Offer code') ?>: <?php echo $this->offer['code'] ?><br /></div>
+    <?php endif; ?>
+    <div class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Notice') ?>: <?php echo $this->text()->truncate($this->notice['title'], 100, 'letters') ?></h3>
+        <span class="span4"><a href="<?php echo $this->url(array('action' => 'notices-edit', 'notice-id' => $this->notice['id']), 'domain-user-profile') ?>" class="btn btn-small btn-success pull-right"><?php echo $this->translate('Edit notice') ?></a></span>
+    </div>
+    
+    <section class="notice clearfix">
+        <p class="views"><?php echo $this->notice['views'] ?></p>
+        <table class="parameters span5">
+            <?php foreach($this->notice['Parameters'] as $parameter): ?>
+            <tr>
+                <th><?php echo $parameter['ParameterTemplate']['name'] ?></th>
+                <?php if($parameter['ParameterTemplate']['range']): ?>
+                <td><?php echo $parameter['value'] ?> - <?php echo $parameter['value_to'] ?></td>
+                <?php else: ?>
+                <td><?php echo $parameter['value'] ?></td>
+                <?php endif; ?>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <div class="content span6">
+            <?php echo $this->notice['content'] ?>
+        </div>
+    </section>
+    
+    <?php if(isset($this->offer)): ?>
+    <div class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Oferta') ?>: <?php echo $this->text()->truncate($this->offer['title'], 100, 'letters') ?></h3>
+    </div>
+    <section class="offer clearfix">
+        <p class="views"></p>
+        <table class="parameters span5">
+            <?php foreach($this->offer['Parameters'] as $parameter): ?>
+            <tr>
+                <th><?php echo $parameter['ParameterTemplate']['name'] ?></th>
+                <?php if($parameter['ParameterTemplate']['range']): ?>
+                <td><?php echo $parameter['value'] ?> - <?php echo $parameter['value_to'] ?></td>
+                <?php else: ?>
+                <td><?php echo $parameter['value'] ?></td>
+                <?php endif; ?>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <div class="content span6">
+            <?php echo $this->offer['content'] ?>
+        </div>
+    </section>
+    <?php endif; ?>
+    
+    <?php if(isset($this->messagePaginator) && $this->messagePaginator->getCurrentItemCount()): ?>
+    <div class="row-fluid">
+        <h3><?php echo $this->translate('Messages') ?> <span class="pull-right"><a></a></span></h3>
+    </div>
+    <div class="accordion" id="accordion2">
+        <?php $i = 0; foreach($this->messagePaginator as $message): ?>
+        <div class="accordion-group">
+            <div class="accordion-heading deal-message-header clearfix">
+                <a class="span10 accordion-toggle <?php if($message['recipient'] == 'agent'): ?>outgoing<?php elseif($message['status'] == MF_Code::STATUS_NEW): ?>bold<?php endif; ?>" data-toggle="collapse" data-parent="#accordion2" href="#collapse<?php echo $message['id'] ?>">
+                    <span class="span3"><?php echo $this->text()->timeFormat($message['created_at'], 'H:i d-m-Y') ?></span>
+                    <span class="span9"><?php echo $this->text()->truncate($message['title'], 100) ?></span>
+                </a>
+            </div>
+            <div id="collapse<?php echo $message['id'] ?>" class="accordion-body collapse deal-message-content">
+                <div class="accordion-inner">
+                <?php if($message['recipient'] == 'client'): ?>    
+                <div class="clearfix pull-right"><a href="<?php echo $this->url(array('action' => 'notices-reply-message', 'notice-id' => $this->notice['id'], 'deal-id' => $message['deal_id'], 'message-id' => $message['id']), 'domain-user-profile', true) ?>"><?php echo $this->translate('Reply') ?></a></div>
+                <?php endif; ?>
+                <?php echo nl2br($message['content']) ?>
+                </div>
+            </div>
+        </div>
+        <?php $i++; endforeach; ?>
+    </div>
+    <div class="pagination">
+        <?php echo $this->paginationControl($this->messagePaginator, 'Sliding', 'profile_pagination_control.phtml'); ?>
+    </div>  
+    <?php elseif(isset($this->dealPaginator) && $this->dealPaginator->getCurrentItemCount()): ?>
+    <form action="<?php echo $this->url(array('action' => 'notices-deal-batch-process', 'id' => $this->notice['id']), 'domain-user-profile') ?>" method="post">
+        <div id="list_header" class="clearfix"><input id="check_all" type="checkbox" name="checkall-deal" /></div>
+        <div class="accordion" id="accordion2">
+            <?php $i = 0; foreach($this->dealPaginator as $deal): ?>
+            <div class="accordion-group">
+                <div class="accordion-heading deal-message-header clearfix">
+                    <?php if($deal['Offer']['User']['Profile']['PhotoRoot']): ?>
+                    <a class="accordion-toggle span10" data-parent="#accordion2" href="<?php echo $this->url(array('action' => 'notices-show', 'notice-id' => $this->notice['id'], 'deal-id' => $deal['id']), 'domain-user-profile', true) ?>" style="background: url(/media/photos/<?php echo $deal['Offer']['User']['Profile']['PhotoRoot']['offset'] ?>/30x30/<?php echo $deal['Offer']['User']['Profile']['PhotoRoot']['filename'] ?>) no-repeat left center; padding-left: 40px;">
+                    <?php else: ?>
+                    <a class="accordion-toggle span10" data-parent="#accordion2" href="<?php echo $this->url(array('action' => 'notices-show', 'notice-id' => $this->notice['id'], 'deal-id' => $deal['id']), 'domain-user-profile', true) ?>">
+                    <?php endif; ?>
+                    <span class="span3"><?php echo $deal['Offer']['User']['first_name'] . ' ' . $deal['Offer']['User']['last_name'] ?></span>
+                    <span class="span3"><?php echo $this->text()->timeFormat($deal['created_at'], 'H:i d-m-Y') ?></span>  
+                    <span class="span6"><?php echo $this->text()->truncate($deal['Offer']['title'], 100) ?></span>
+                    </a>
+                    <span class="options pull-right">
+                        <div class="btn-group batch-process">
+                            <span class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></span>
+                            <ul class="dropdown-menu">
+                                <a class="btn btn-link" href="<?php echo $this->url(array('action' => 'notices-deal-reply', 'deal-id' => $deal['id']), 'domain-user-profile') ?>"><?php echo $this->translate('Reply') ?></a><br />
+                                <a class="btn btn-link" href="<?php echo $this->url(array('action' => 'notices-deal-observe', 'deal-id' => $deal['id']), 'domain-user-profile') ?>"><?php echo $this->translate('Observe') ?></a><br />
+                                <a class="btn btn-link" href="<?php echo $this->url(array('action' => 'notices-deal-remove', 'deal-id' => $deal['id']), 'domain-user-profile') ?>"><?php echo $this->translate('Remove') ?></a><br />
+                            </ul>
+                        </div>
+                        <input type="checkbox" value="<?php echo $deal['id'] ?>" name="deal[<?php echo $deal['id'] ?>]" />
+                    </span>
+                    <span class="status pull-right">
+                        <?php if($deal['contact_revealed']): ?>
+                            <i class="icon-share"></i>                
+                        <?php elseif($deal['status'] == MF_Code::STATUS_OBSERVED): ?>
+                            <i class="icon-star"></i>                
+                        <?php else: ?>
+                            <i></i>            
+                        <?php endif; ?>
+                    </span>
+                </div>
+                <div id="collapse" class="accordion-body collapse">
+                </div>
+            </div>
+            <?php $i++; endforeach; ?>
+        </div>
+        <div class="btn-group pull-right batch-process">
+            <!--<a class="btn" href="#"><i class="icon-user icon-white"></i> <?php echo $this->translate('Ok') ?></a>-->
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $this->translate('Selected') ?> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <button class="btn btn-link" type="submit" name="submit" value="reply"><?php echo $this->translate('Reply') ?></button><br />
+                <button class="btn btn-link" type="submit" name="submit" value="observe"><?php echo $this->translate('Observe') ?></button><br />
+                <button class="btn btn-link" type="submit" name="submit" value="remove"><?php echo $this->translate('Remove') ?></button><br />
+            </ul>
+        </div>
+    </form>
+    <div class="pagination">
+        <?php echo $this->paginationControl($this->dealPaginator, 'Sliding', 'profile_pagination_control.phtml'); ?>
+    </div> 
+    <?php endif; ?>
+    
+</article>

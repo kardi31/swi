@@ -1,0 +1,27 @@
+<ul class="load-responsive" rel="Sub Menu">
+    <?php if(isset($this->submenu_tree)): ?>
+    
+        <?php foreach($this->submenu_tree as $item): ?>
+        <li><a href="<?php echo $this->url(array('slug' => $item->Translation[$this->language]->slug), $item->getRoute()); ?>"><?php echo $item->Translation[$this->language]['title'] ?></a>
+            
+            <?php if($item->getNode()->getChildren()): ?>
+                <?php echo $this->partial('submenu_main_tree.phtml', 'menu', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'language' => $this->language)) ?>
+            <?php endif; ?>
+        </li>
+        <?php endforeach; ?>
+    
+    <?php elseif(isset($this->subtree)): ?>
+    
+        <?php foreach($this->subtree as $item): 
+            $parent = $item->getNode()->getParent();
+            ?>
+        <li id="node<?php echo $item->getId() ?>" class="subItem<?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?>"><a href="<?php echo $this->url(array('slug' => $parent->Translation[$this->language]->slug), $item->getRoute()); ?>">><?php echo $item->Translation[$this->language]['title'] ?></a>
+            <?php if($item->getNode()->getChildren()): ?>
+            <?php echo $this->partial('menu_tree.phtml', 'menu', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'language' => $this->language)) ?>
+            <?php endif; ?>
+        </li>
+        <?php endforeach; ?>
+        
+    <?php endif; ?>
+    
+</ul>

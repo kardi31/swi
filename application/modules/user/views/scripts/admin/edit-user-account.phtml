@@ -1,0 +1,80 @@
+<link rel="stylesheet" media="screen" href="/css/notifications.css" />
+<script type="text/javascript" src="/js/jquery.ui.widget.min.js"></script>
+<script type="text/javascript" src="/js/jquery.notify.js"></script>
+<script type="text/javascript" src="/js/jquery.itextclear.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $('input[type=text], input[type=password], input[type=url], input[type=email], input[type=number], textarea', '.form').iTextClear();
+
+    // form submit
+    $("#wrapper").undelegate("#edit-user-acount-form", "submit").delegate("#edit-user-acount-form", "submit", function(e) {
+        e.preventDefault();
+
+        var url = "<?php echo $this->adminUrl('edit-user-account', 'user') ?>";
+        var id = "admin-user-list";
+        
+        $.ajax({
+            type : "post",
+            url : url,
+            data : $(this).serialize(),
+            dataType : "html",
+            success : function(resp, qXHR, textStatus) {
+                pageDownloaded(resp, id);
+            }
+        });
+    });
+    
+    $("#wrapper").undelegate("button[type=reset]", "click").delegate("button[type=reset]", "click", function(e) {
+        e.preventDefault();
+        var id = "admin-user-list";
+
+        $.ajax({
+            type : "get",
+            url : "<?php echo $this->adminUrl('list', 'user') ?>",
+            dataType : "html",
+            success : function(resp, qXHR, textStatus) {
+                pageDownloaded(resp, id);
+            }
+        });
+    });
+    
+});
+</script>
+<h1 class="page-title"><?php echo $this->translate('Edit user account') ?></h1>
+<div class="container_12 clearfix leading">
+    <div class="grid_12">
+
+        <?php if($this->form->isErrors()): ?>
+        <div class="message error closeable">
+                <span class="message-close"></span>
+                <h3><?php echo $this->translate('Error') ?>!</h3>
+        </div>
+        
+        <?php endif; ?>
+        <?php if($this->messages()->count()): ?>
+        <?php echo $this->messages()->render() ?>
+        <?php endif; ?>
+       
+
+        <form id="edit-user-acount-form" class="form <!--has-validation-->" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+
+            <?php
+            foreach($this->form->getElements() as $element) {
+                if($element->hasErrors()) {
+                    $element->setAttrib('class', 'error');
+                }
+            }
+            ?>
+
+            <?php echo $this->form->firstName->setAttribs(array('placeholder' => $this->translate($this->form->firstName->getLabel()), 'required' => 'required')) ?>
+            <?php echo $this->form->lastName->setAttribs(array('placeholder' => $this->translate($this->form->lastName->getLabel()), 'required' => 'required')) ?>
+            <?php echo $this->form->email->setAttribs(array('placeholder' => $this->translate($this->form->email->getLabel()), 'required' => 'required')) ?>
+            <?php echo $this->form->password ?>
+            <?php echo $this->form->confirm_password ?>
+            <?php echo $this->form->submit ?>
+            <?php echo $this->form->id ?>
+
+        </form>
+    </div>
+</div>

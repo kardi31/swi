@@ -1,0 +1,9 @@
+<?php if(isset($this->category)): ?>
+    <?php if($this->category->getNode()->getParent()): ?>
+        <?php echo $this->partial('category-path-google.phtml', 'product', array('category' => $this->category->getNode()->getParent(), 'language' => $this->language)) ?>
+    <?php endif; ?>
+    <?php if($this->category['level'] > 0): ?>
+        <?php echo ucfirst($this->category->Translation[$this->language]->name)." -> "; ?>
+    <?php endif; ?>
+<?php endif; ?>
+

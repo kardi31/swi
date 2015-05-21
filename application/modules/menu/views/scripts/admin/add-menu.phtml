@@ -1,0 +1,84 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#save-button").click(function(e) {
+        e.preventDefault();
+
+        $("#form").append("<input type='hidden' name='saveOnly' value='1' />");
+        $("#form #submit").trigger("click");
+    });
+});    
+</script>
+<div class="row-fluid">
+    
+    <div class="span6">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-list-view"></span>
+                    <span><?php echo $this->translate('New menu') ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+
+                <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+                    
+                    <?php echo $this->form->name ?>
+                    <?php echo $this->form->location ?>
+                    <?php echo $this->form->id ?>
+                    
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-menu', 'menu') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+                </form>
+            
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+    
+    <div class="span6">
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-list-view"></span>
+                    <span><?php echo $this->translate('Menu') ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+
+                <table id="article_table" cellpadding="0" cellspacing="0" border="0" class="responsive display table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th><?php echo $this->translate('Name') ?></th>
+                            <th style="width: 50px;"><?php echo $this->translate('Options') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($this->menus as $menu): ?>
+                        <tr>
+                            <td><?php echo $menu['name'] ?></td>
+                            <td style="width: 50px;">
+                                <a href="<?php echo $this->adminUrl('edit-menu', 'menu', array('id' => $menu['id'])) ?>"><span class="icon16 icon-edit"></span></a>
+                                <a href="<?php echo $this->adminUrl('list-menu-item', 'menu', array('id' => $menu['id'])) ?>"><span class="icon16 icomoon-icon-list-view"></span></a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            
+            </div>
+
+        </div><!-- End .box -->
+        
+    </div>
+
+</div>

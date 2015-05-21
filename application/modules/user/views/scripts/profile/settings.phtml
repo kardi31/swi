@@ -1,0 +1,35 @@
+<section class="profile span8">
+    <header class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Settings') ?></h3>
+    </header>
+    <div class="span5 clearfix">
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post">
+            <?php echo $this->form ?>
+        </form>
+    </div>
+    <div class="span3 clearfix pull-right">
+        <div class="photo-list">
+            <ul class="photos">
+                <?php if($this->profile['PhotoRoot']['filename']): ?>
+                <li>
+                    <?php if(strlen($this->profile['PhotoRoot']['filename'])): ?>
+                    <img src="/media/photos/<?php echo $this->profile['PhotoRoot']['offset'] ?>/200x200/<?php echo $this->profile['PhotoRoot']['filename'] ?>" /><br />
+                    <?php else: ?>
+                    <img src="/images/layout/placeholder.png" /><br />
+                    <?php endif; ?>
+                    <a class="delete-photo" href="<?php echo $this->url(array('action' => 'delete-photo', 'id' => $this->profile['PhotoRoot']['id']), 'domain-user-profile') ?>"><?php echo $this->translate('Delete') ?></a>
+                </li>
+                <?php else: ?>
+                    <li>
+                        <img src="/images/layout/placeholder.png" /><br />
+                    </li> 
+                <?php endif; ?>
+            </ul>
+        </div>
+        <ul id="file-uploader-wrapper">
+            <li>
+                <a id="file-uploader" data-href="<?php echo $this->url(array('action' => 'upload-profile-photo'), 'domain-user-profile') ?>"><?php echo $this->translate('Upload photo') ?></a>
+            </li>
+        </ul>
+    </div>
+</section>

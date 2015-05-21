@@ -1,0 +1,12 @@
+<?php 
+	$active = $this->navigation()->findActive($this->navigation()->getContainer()); 
+?>
+<?php if($active): ?>
+    <?php if(array_key_exists('page', $active) && $active['page']->getParent() instanceof Zend_Navigation_Page): ?>
+            <a href="<?php echo $active['page']->getParent()->getHref() ?>" class="goback">&laquo;<?php echo $this->translate('powrót') ?></a>
+    <?php endif; ?>
+
+    <?php if($active['page']->hasChildren()): ?>
+            <?php echo $this->navigation()->menu()->setMinDepth(1)->setMaxDepth(null)->setOnlyActiveBranch(true)->setRenderParents(false)->renderSubMenu() ?>
+    <?php endif; ?>
+<?php endif; ?>

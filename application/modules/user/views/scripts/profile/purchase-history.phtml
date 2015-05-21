@@ -1,0 +1,64 @@
+<section class="page_title_2 t_align_c relative wrapper translucent_bg_color_scheme image_bg_9">
+    <div class="container">
+        <h1 class="color_light   fw_light m_bottom_5">Historia zakupów</h1>
+        <!--breadcrumbs-->
+        <ul class="hr_list d_inline_m breadcrumbs">
+            <li class="m_right_8 f_xs_none"><a href="/" class="color_light d_inline_m m_right_10">Strona główna</a><i class="icon-angle-right d_inline_m color_light  fs_small"></i></li>
+            <li class="m_right_8 f_xs_none"><a href="/pl/profil" class="color_light d_inline_m m_right_10">Moje konto</a><i class="icon-angle-right d_inline_m color_light  fs_small"></i></li>
+            <li><a class="color_light   d_inline_m">Historia zakupów</a></li>
+        </ul>
+    </div>
+</section>
+<div class="section_offset counter">
+    <div class="container">
+        <div class="row">
+            <?php echo $this->partial('profile/sidebar.phtml', 'user'); ?>
+            <section class="col-lg-9 col-md-9 col-sm-9 m_bottom_70 m_xs_bottom_30">
+
+                <div class="r_corners wrapper border_grey wrap_sm">
+                    <table class="table_type_6 responsive_table w_full t_align_l">
+                        <thead>
+                        <tr class="bg_light_2 color_dark">
+                            <th>Numer zamówienia</th>
+                            <th>Data</th>
+                            <th>Produkty</th>
+                            <th>Do zapłaty</th>
+                            <th>Status płatności</th>
+                            <th>Status zamówienia</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php foreach($this->paginator as $order):?>
+                        <tr class="tr_delay">
+                            <td data-title="Order Number" class="fw_light">
+
+                                    <?php echo $order['id']; ?>
+                            </td>
+                            <td data-title="Order Date" class="fw_light">
+                                <?php echo $order['created_at']; ?>
+                            </td>
+                            <td data-title="Product Status" class="fw_light">
+                                <?php foreach($order['Items'] as $item): ?>
+                                        <strong><?php echo $item['Product']['Translation'][$this->language]['name']; ?></strong> x <?php echo $item['number']; ?>
+                                        <br/>
+                                    <?php endforeach; ?>
+                            </td>
+                            <td data-title="Total" class="fw_light fw_ex_bold color_pink">
+                                <?php echo $this->currency($order['total_cost']); ?>
+                            </td>
+                            <td data-title="Payment Status" class="fw_light fw_ex_bold color_blue">
+                                <?php echo $order['Payment']['Status']['name']; ?>
+                            </td>
+                            <td data-title="Delivery Status" class="fw_light fw_ex_bold color_red">
+                                <?php echo $order['Delivery']['Status']['name']; ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

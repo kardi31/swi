@@ -1,0 +1,52 @@
+<?php $this->headTitle('Tabela - '.$this->league['name'],'SET'); 
+$sortedTabela = $this->tabela;
+?>
+<div id="showTable" class="content">
+    <h1>Tabela - <?php echo $this->league['name']; ?></h1>
+    <hr />
+<table>
+    <tr>
+        <th> Pozycja </th>
+        <th> Drużyna</th>
+        <th> Mecze</th>
+        <th> Wygrane</th>
+        <th> Remisy</th>
+        <th> Porażki</th>
+        <th> Bramki Strzelone</th>
+        <th> Bramki stracone</th>
+        <th> Punkty</th>
+    </tr>
+<?php
+for($p=1;$p<count($sortedTabela);$p++)
+{
+    if($sortedTabela[$p][7]==$sortedTabela[$p+1][7])
+    {
+        $roznica_bramek1 = $sortedTabela[$p][5] - $sortedTabela[$p][6];
+        $roznica_bramek2 = $sortedTabela[$p+1][5] - $sortedTabela[$p+1][6];
+        if($roznica_bramek1<$roznica_bramek2)
+        {
+            $pomocnicza = $sortedTabela[$p];
+            $sortedTabela[$p] = $sortedTabela[$p+1];
+            $sortedTabela[$p+1] = $pomocnicza;
+        }
+    }
+}
+foreach($sortedTabela as $key=>$result):
+    ?>
+    <tr>
+    <td><?php echo $key; ?> </td>
+    <td><h4><?php echo $result[0]; ?> </h4></td>
+    <td><?php echo $result[1] ?> </td>
+    <td><?php echo $result[2] ?> </td>
+    <td><?php echo $result[3] ?> </td>
+    <td><?php echo $result[4] ?> </td>
+    <td><?php echo $result[5] ?> </td>
+    <td><?php echo $result[6] ?> </td>
+    <td><?php echo $result[7] ?> </td>
+ 
+</tr>
+    <?php
+endforeach;
+?>
+</table>
+</div>

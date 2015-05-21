@@ -1,0 +1,63 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#save-button").click(function(e) {
+        e.preventDefault();
+
+        $("#form").append("<input type='hidden' name='saveOnly' value='1' />");
+        $("#form #submit").trigger("click");
+    });
+});    
+</script>
+<h1 class="page-title"><?php echo $this->translate('Manage menu') ?></h1>
+<div class="container_12 clearfix leading">
+    <div class="grid_12">
+
+        <?php if($this->form->isErrors()): ?>
+        <div class="message error closeable">
+            <span class="message-close"></span>
+            <h3><?php echo $this->translate('Error') ?>!</h3>
+        </div>
+        <?php endif; ?>
+
+        <form id="form" class="form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+            
+            <?php echo $this->form->target ?>
+            <?php echo $this->form->custom_url ?>
+            
+            <section class="tabs grid_12 leading">
+                <ul class="clearfix">
+                    <?php foreach($this->languages as $language): ?>
+                    <?php if($this->form->translations->getSubForm($language)): ?>
+                    <li><a href="#"><?php echo $language ?></a></li>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+                <section>
+                    <?php foreach($this->languages as $language): ?>
+                    <?php if($this->form->translations->getSubForm($language)): ?>
+                    <section class="clearfix tab">
+                        <?php echo $this->form->translations->getSubForm($language)->title ?>
+                        <div class="clearfix form-section-label"><label class="form-label">SEO</label></div>
+                        <?php echo $this->form->translations->getSubForm($language)->title_attr ?>
+                    </section>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
+                </section>
+                
+            </section>
+
+            <?php echo $this->form->unique_id ?>
+            <?php echo $this->form->css_class ?>
+            <?php echo $this->form->parent_id ?>
+            <?php echo $this->form->menu_id ?>
+            
+            <div class="form-action clrearfix">
+                <?php echo $this->form->submit ?>
+                <?php echo $this->formButton('', $this->translate('Save'), array('id' => 'save-button', 'type' => 'button')) ?>
+                <a href="<?php echo $this->adminUrl('manage-menu', 'menu', array('id' => $this->menu->getId())) ?>"><?php echo $this->formButton('', $this->translate('Cancel'), array('id' => 'cancel-button')) ?></a>
+            </div>
+
+        </form>
+
+    </div>
+</div>

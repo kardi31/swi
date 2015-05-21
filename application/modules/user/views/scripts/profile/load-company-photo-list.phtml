@@ -1,0 +1,14 @@
+<ul class="photos">
+<?php if($this->photo['filename']): ?>
+    <li>
+        <?php if(strlen($this->photo['filename'])): ?>
+            <img src="/media/photos/<?php echo $this->photo['offset'] ?>/200x/<?php echo $this->photo['filename'] ?>" /><br />
+        <?php else: ?>
+            <img src="/images/layout/ajurweda/no_photo.jpg" style="width: 200px;" /><br />
+        <?php endif; ?>
+        <a class="delete-company-photo" href="<?php echo $this->url(array('action' => 'delete-company-photo', 'id' => $this->photo['id']), 'domain-user-profile') ?>"><?php echo $this->translate('Delete') ?></a>
+    </li>  
+<?php else: ?>
+    <img src="/images/layout/ajurweda/no_photo.jpg" style="width: 200px; height: 200px;" /><br />
+<?php endif; ?>
+</ul>

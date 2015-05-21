@@ -1,0 +1,22 @@
+<?php if($this->slides): ?>
+<?php foreach($this->slides as $slide): ?>
+<li class="pull-left">
+    <?php if($slide->get('PhotoRoot')->getOffset()): ?>
+    <a id="main_photo" href="/media/photos/<?php echo $slide->get('PhotoRoot')->getOffset() ?>/<?php echo $slide->get('PhotoRoot')->getFilename() ?>" rel="prettyPhoto" title="<?php echo $slide->get('PhotoRoot')->getTitle() ?>">
+        <img src="/media/photos/<?php echo $slide->get('PhotoRoot')->getOffset() ?>/126x126/<?php echo $slide->get('PhotoRoot')->getFilename() ?>" data-original="/media/photos/<?php echo $slide->get('PhotoRoot')->getOffset() ?>/<?php echo $slide->get('PhotoRoot')->getFilename() ?>" alt="<?php echo $slide->get('PhotoRoot')->getTitle() ?>">
+    </a>
+    <?php else: ?>
+    <a id="main_photo" href="/images/gallery/1.jpg" rel="prettyPhoto" title="<?php echo $this->translate('No photo') ?>">
+        <img src="/images/gallery/preload.png" data-original="/images/gallery/thumbnails/1.jpg" alt="<?php echo $this->translate('No photo') ?>">
+    </a>
+    <?php endif; ?>
+    <div class="actionBtn">
+        <a href="<?php echo $this->adminUrl('move-slider-slide', 'slider', array('slider' => $this->slider->getId(), 'id' => $slide->getId(), 'dir' => 'up')) ?>" class="move" title="<?php echo $this->translate('Move back'); ?>"><span class="icon16 minia-icon-arrow-left white"></span></a>
+        <a href="<?php echo $this->adminUrl('edit-slide', 'slider', array('slider' => $this->slider->getId(), 'id' => $slide->getId())) ?>" class="edit" title="<?php echo $this->translate('Edit'); ?>" ><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+        <a href="<?php echo $this->adminUrl('edit-slide-photo', 'slider', array('slider' => $this->slider->getId(), 'id' => $slide->getId())) ?>" class="edit-photo" id="<?php echo $slide->getId(); ?>" title="<?php echo $this->translate('Edit'); ?>" ><span class="icon16 iconic-icon-cursor white"></span></a>
+        <a href="<?php echo $this->adminUrl('delete-slider-slide', 'slider', array('slider' => $this->slider->getId(), 'id' => $slide->getId())) ?>" class="delete" title="<?php echo $this->translate('Delete') ?>"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+        <a href="<?php echo $this->adminUrl('move-slider-slide', 'slider', array('slider' => $this->slider->getId(), 'id' => $slide->getId(), 'dir' => 'down')) ?>" class="move" title="<?php echo $this->translate('Move forward'); ?>"><span class="icon16 minia-icon-arrow-right white"></span></a>
+    </div>
+</li>
+<?php endforeach; ?>
+<?php endif; ?>

@@ -1,0 +1,33 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#product_id").select2();
+
+});
+</script>
+<div class="container_12 clearfix leading">
+    <div class="grid_12">
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Products related with product').":" ?> <?php //echo $this->product->Translation[$this->language]->name; ?></span>
+                </h4>
+                
+            </div>
+            
+            <div class="content">
+                    <form id="form" class="form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+
+                        <?php echo $this->form->product_id->setAttribs(array('class' => 'nostyle')) ?>
+                        <div class="form-actions">
+                             <?php echo $this->form->submit ?>
+                             <a href="<?php echo $this->adminUrl('list-product', 'product') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                        </div>
+                    </form>
+            </div>
+            </div>
+        </div>
+</div>

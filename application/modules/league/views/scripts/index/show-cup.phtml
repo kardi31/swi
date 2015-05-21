@@ -1,0 +1,34 @@
+<article class="grid_8">
+<h1><?php echo $this->cup['name'] ?></h1>
+<?php echo $this->cup['description'] ?>
+<?php if($this->cup->get('PhotoRoot')){ ?>
+    <div class="gallery-container">
+
+                <div class="gallery-box">
+                        <ul>
+                            <?php foreach($this->cup->get('PhotoRoot')->getNode()->getChildren() as $photo): ?>
+                                <li>
+                                    <a href="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['name'] ?>"
+                                       data-lightview-group='<?php echo $this->cup['slug'] ?>'
+                                       data-lightview-name="<?php echo $photo['name'] ?>"
+                                       class='lightview' 
+                                       data-lightview-options="
+                                           width: 800,
+                                           height: 460,
+                                           viewport: 'false',
+                                         "
+                                       >
+                                        <img src="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $this->photoDimension; ?>/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['name'] ?>" />
+                                    </a>
+                                </li>
+                                <?php endforeach; ?>
+                        </ul>	
+
+
+                </div>
+
+            </div>
+<?php
+}
+?>
+</article>

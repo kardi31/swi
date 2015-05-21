@@ -1,0 +1,18 @@
+.slider.slider1 div {
+   
+    padding: 5px 20px 0px 20px;
+    border-radius: 20px;
+}
+.product-list-full .buttons {
+    float: right;
+    margin-top: -25px;
+}
+.product_available {
+    background-image: url("/images/yes.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 15px !important;
+}
+p.product-list {
+    width: 360px;
+}

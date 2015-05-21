@@ -1,0 +1,65 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+   
+    String.prototype.startsWith = function(str) 
+{return (this.match("^"+str)==str)}
+
+    $('#url').on('blur',function(){
+      
+      var val = '';
+                
+     // jeżeli nie zaczyna się od http to dodajemy http
+     if($(this).val().match(/^(?:http:\/\/)/)||$(this).val().match(/^(?:https:\/\/)/))
+          val = $(this).val();
+      else
+          val = "http://" + $(this).val();
+            
+            // dla youtube zamieniamy znacznik watch?=v na embed
+       if(val.indexOf("vimeo") >= 0 && val.indexOf("player") < 0){
+          var index = val.lastIndexOf("/");
+          var res = val.substring(index+1, val.length);
+          val = 'http://player.vimeo.com/video/'+res;
+      }    
+          
+      if(val.indexOf("/watch?") >= 0){
+          val = val.replace('/watch\?v=', '/embed/');
+      } 
+          
+       $('#videoPreview').attr('src',val); 
+       $(this).val(val);
+       
+    });
+});
+</script>
+<div class="container_12 clearfix leading">
+    <div class="grid_12">
+        <div class="box">
+            
+            
+                    <?php if($this->form->isErrors()): ?>
+                    <div class="message error closeable">
+                        <span class="message-close"></span>
+                        <h3><?php echo $this->translate('Error') ?>!</h3>
+                    </div>
+                    <?php endif; ?>
+                    <?php if($this->messages()->count()): ?>
+                    <?php echo $this->messages()->render() ?>
+                    <?php endif; ?>
+
+            <div class="content">
+                    <form id="form" class="form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+
+                       
+                        <?php echo $this->form->url ?>
+                        <iframe id="videoPreview" width="420" height="315" frameborder="0" allowfullscreen></iframe>
+                        
+                        <div class="form-actions">
+                             <?php echo $this->form->submit ?>
+                             <a href="<?php echo $this->adminUrl('edit-event','district',array('id' => $this->event->id)); ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                        </div>
+                    </form>
+            </div>
+            </div>
+        </div>
+</div>

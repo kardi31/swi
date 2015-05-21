@@ -1,0 +1,115 @@
+<table width="800px" style="margin-left: auto; margin-right: auto;"> 
+    <tr>
+        <td style="vertical-align: top;">
+            <table width="540px" cellpadding="0" cellspacing="0"> 
+                <tr style="font-size: 14px; color: #00610E; background: #B6EDAA;">
+                    <td style="padding-left: 10px;">
+                        <a href="<?php echo $this->url(array(), 'domain-i18n:news') ?>" style="color: #00610E; font-size: 14px; font-weight: bold; text-decoration: none;";">
+                            <img src="/images/layout/ajurweda/red_dot.png" />  <?php echo $this->translate('News') ?>
+                        </a>
+                    </td>
+                    <td></td>
+                </tr>
+                <?php foreach($this->news as $new): ?>
+                <tr>
+                        <td style="width: 130px; padding: 10px;">
+                            <a href="<?php echo $this->url(array('slug' => $new['Translation']['pl']['slug']), 'domain-i18n:news-item') ?>">
+                                <?php if($new['PhotoRoot']['offset']): ?>
+                                    <img src="/media/photos/<?php echo $new['PhotoRoot']['offset'] ?>/122x77/<?php echo $new['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $new['PhotoRoot']['offset'] ?>/<?php echo $new['PhotoRoot']['filename'] ?>" alt="<?php echo $new['PhotoRoot']['title'] ?>"/>
+                                <?php else: ?>
+                                    <img src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 122px; height: 122px" />
+                                <?php endif; ?>
+                            </a>
+                        </td>
+                        <td style="vertical-align: top; padding-top: 10px;">
+                                <div>
+                                    <a href="<?php echo $this->url(array('slug' => $new['Translation']['pl']['slug']), 'domain-i18n:news-item') ?>" style="font-size: 14px; color: #00610E; text-decoration: none; font-weight: bold;">
+                                        <?php echo $new['Translation'][$this->language]['title']; ?>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="<?php echo $this->url(array('slug' => $new['Translation']['pl']['slug']), 'domain-i18n:news-item') ?>" style="font-size: 12px; color: #00610E; text-decoration: none;">
+                                        <?php echo strip_tags(MF_Text::truncate($new['Translation'][$this->language]['content'], 1, 'paragraphs')) ?>
+                                    </a>
+                                </div>
+                                <div style="background: #065d0f; float: right; margin-top: 5px; margin-bottom: 5px;">
+                                    <a href="<?php echo $this->url(array('slug' => $new['Translation']['pl']['slug']), 'domain-i18n:news-item') ?>" style="font-size: 11px; color: #ffffee; padding-left: 10px; padding-right: 10px; text-decoration: none;">
+                                        <?php echo $this->translate('read more') ?>
+                                    </a>
+                                </div>   
+                        </td>
+                    </a>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+        </td>
+        <td style="vertical-align: top; float: right;">
+            <table width="250px;" cellpadding="0" cellspacing="0"> 
+                <tr style="font-size: 14px; color: #00610E; background: #B6EDAA;">
+                    <td style="padding-left: 10px; font-size: 14px; font-weight: bold;">
+                        <img src="/images/layout/ajurweda/red_dot.png" />  <?php echo $this->translate('Events promoted') ?>
+                    </td>
+                </tr>
+                <?php foreach($this->events as $event): ?>
+                <tr>
+                    <td style="padding: 10px;">
+                        <div style="color: red; font-size: 14px;">
+                            <?php echo MF_Date::formatDate($event['event_date'], 'Y-m-d H:i'); ?>
+                        </div>
+                         <div>
+                            <a href="<?php echo $this->url(array('slug' => $event['Translation']['pl']['slug']), 'domain-i18n:event-item') ?>" style="font-weight: bold; font-size: 14px; color: #00610E; text-decoration: none;">
+                                <?php echo $event['Translation']['pl']['title'] ?>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="<?php echo $this->url(array('slug' => $event['Translation']['pl']['slug']), 'domain-i18n:event-item') ?>" style="font-size: 12px; color: #00610E; text-decoration: none;">
+                                <?php echo strip_tags(MF_Text::truncate($event['Translation']['pl']['content'], 1, 'paragraphs')) ?>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+                <tr>
+                    <td style="padding: 10px; text-align: center;">
+                        <a href="http://www.facebook.com/AjurwedaPolska">
+                            <img src="/images/layout/ajurweda/polub_fb.gif" alt="Facebook like button" width="220px"/>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <table width="250px;" cellpadding="0" cellspacing="0"> 
+                <tr style="font-size: 14px; color: #00610E; background: #B6EDAA;">
+                    <td style="padding-left: 10px; font-size: 14px; font-weight: bold;">
+                        <img src="/images/layout/ajurweda/red_dot.png" />  <?php echo $this->translate('Catalog of companies') ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; text-align: center;">
+                        <a href="<?php echo $this->url(array(), 'domain-i18n:company-catalog') ?>">
+                            <img src="/images/layout/ajurweda/katalog_firm.png" alt="<?php echo $this->translate('Join us') ?>" width="220px"/>
+                        </a>
+                    </td>
+                </tr>
+                <?php foreach($this->companies as $company): ?>
+                <tr>
+                    <td style="padding: 10px;">
+                        <div>
+                            <a href="<?php echo $this->url(array('category' => $company['BasicActivity']['Translation']['pl']['name'], 'company' => $company['Translation']['pl']['slug']), 'domain-i18n:company') ?>" style="font-size: 14px; color: #00610E; text-decoration: none; font-weight: bold;">
+                                <?php echo $company['Translation'][$this->language]['name']; ?>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="<?php echo $this->url(array('category' => $company['BasicActivity']['Translation']['pl']['name'], 'company' => $company['Translation']['pl']['slug']), 'domain-i18n:company') ?>" style="font-size: 12px; color: #00610E; text-decoration: none;">
+                                <?php echo strip_tags(MF_Text::truncate($company['Translation'][$this->language]['description'], 1, 'paragraphs')) ?>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+        </td>
+    </tr>
+    
+</table>
+
+    

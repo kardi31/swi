@@ -1,0 +1,47 @@
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Dodaj kartke') ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                
+                <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+                    
+                    
+                    
+                    <?php echo $this->form->id ?>
+                    
+                    <?php echo $this->form->player_id ?>
+                    
+                    
+                    
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-booking', 'league') ?>/league_id/<?php echo $this->league_id; ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+                    
+                    
+                    <?php echo $this->form->weight ?>
+                    <?php echo $this->form->quantity ?>
+                    <?php echo $this->form->comment ?>
+                    <?php echo $this->form->active ?>
+                    
+                </form>
+            
+            </div>
+            
+        </div>
+        
+    </div>
+
+
+</div>

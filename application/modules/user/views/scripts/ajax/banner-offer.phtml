@@ -1,0 +1,200 @@
+<div class="purchase-banner-column purchase-banner-column-left">
+    <h2><?php echo $this->translate('Profile Pages') ?></h2>
+    <p>Description</p>
+    <div class="purchase-banner-map3">
+        <img src="/img/layout/purchase-banner-map4.png" class="purchase-banner-img4" usemap="#purchase-banner-map2" />
+        <a href="<?php echo $this->url(array('action' => 'add-banner', 'range' => 'profile', 'position' => 'top', 'location' => $this->location['id'], 'count' => 1), 'domain-user-ajax') ?>" class="purchase-banner-map-trigger purchase-banner-map-trigger-<?php echo (isset($this->bannerAvailability['profile']['top']) && ($this->bannerAvailability['profile']['top'] > 0)) ? 'active' : 'inactive' ?> purchase-banner-map-trigger-1"></a>
+        <a href="<?php echo $this->url(array('action' => 'add-banner', 'range' => 'profile', 'position' => 'site', 'location' => $this->location['id'], 'count' => 1), 'domain-user-ajax') ?>" class="purchase-banner-map-trigger purchase-banner-map-trigger-<?php echo (isset($this->bannerAvailability['profile']['site']) && ($this->bannerAvailability['profile']['site'] > 0)) ? 'active' : 'inactive' ?> purchase-banner-map-trigger-2"></a>
+        <a href="<?php echo $this->url(array('action' => 'add-banner', 'range' => 'profile', 'position' => 'side', 'location' => $this->location['id'], 'count' => 1), 'domain-user-ajax') ?>" class="purchase-banner-map-trigger purchase-banner-map-trigger-<?php echo (isset($this->bannerAvailability['profile']['side']) && ($this->bannerAvailability['profile']['side'] > 0)) ? 'active' : 'inactive' ?> purchase-banner-map-trigger-3"></a>
+        <map name="purchase-banner-map2">
+            <area href="#" id="purchase-banner-map2-area1" shape="rect" coords="53,10,192,28">
+            <area href="#" id="purchase-banner-map2-area2" shape="rect" coords="9,64,192,91">
+            <area href="#" id="purchase-banner-map2-area3" shape="rect" coords="148,154,191,269">
+        </map>
+        <?php if(isset($this->bannerAvailability['profile']['top'])): ?>
+        <div id="purchase-banner-map2-area1-tip" class="purchase-banner-map-tip hidden">
+            <div class="purchase-banner-map-tip <?php echo ($this->bannerAvailability['profile']['top'] > 0) ? 'popup-pos' : 'popup-neg' ?>">
+                <h4>Top banner<span class="ratio">ratio 1:8</span></h4>
+                <p class="description">Lorem ipsum</p>
+                <div class="parameters">
+                    <p class="size">750x100</p>
+                    <p class="price">&pound;80 per month</p>
+                    <p class="format">Static graphic format / max to 50kb</p>
+                    <p class="about">SEO READY! Link follow</p>
+                    <p class="availability">
+                        <?php echo ($this->bannerAvailability['profile']['top'] > 0) ? $this->bannerAvailability['profile']['top'] : 'No' ?> <?php echo (isset($this->bannerAvailability['profile']['top']) && $this->bannerAvailability['profile']['top'] == 1) ? 'slot' : 'slots' ?> available!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if(isset($this->bannerAvailability['profile']['site'])): ?>
+        <div id="purchase-banner-map2-area2-tip" class="purchase-banner-map-tip hidden">
+            <div class="purchase-banner-map-tip <?php echo ($this->bannerAvailability['profile']['site'] > 0) ? 'popup-pos' : 'popup-neg' ?>">
+                <h4>Site banner<span class="ratio">ratio 1:8</span></h4>
+                <p class="description">Lorem ipsum</p>
+                <div class="parameters">
+                    <p class="size">750x100</p>
+                    <p class="price">&pound;80 per month</p>
+                    <p class="format">Static graphic format / max to 50kb</p>
+                    <p class="about">SEO READY! Link follow</p>
+                    <p class="availability">
+                        <?php echo ($this->bannerAvailability['profile']['site'] > 0) ? $this->bannerAvailability['profile']['site'] : 'No' ?> <?php if(isset($this->bannerAvailability['profile']['site'])) echo ($this->bannerAvailability['profile']['site'] == 1) ? 'slot' : 'slots' ?> available!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if(isset($this->bannerAvailability['profile']['side'])): ?>
+        <div id="purchase-banner-map2-area3-tip" class="purchase-banner-map-tip hidden">
+            <div class="purchase-banner-map-tip <?php echo ($this->bannerAvailability['profile']['side'] > 0) ? 'popup-pos' : 'popup-neg' ?>">
+                <h4>Side banner<span class="ratio">ratio 1:8</span></h4>
+                <p class="description">Lorem ipsum</p>
+                <div class="parameters">
+                    <p class="size">750x100</p>
+                    <p class="price">&pound;80 per month</p>
+                    <p class="format">Static graphic format / max to 50kb</p>
+                    <p class="about">SEO READY! Link follow</p>
+                    <p class="availability">
+                        <?php echo ($this->bannerAvailability['profile']['side'] > 0) ? $this->bannerAvailability['profile']['side'] : 'No' ?> <?php echo (isset($this->bannerAvailability['profile']['side']) && $this->bannerAvailability['profile']['side'] == 1) ? 'slot' : 'slots' ?> available!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="purchase-banner-column purchase-banner-column-center">
+    <h2><?php echo $this->translate('Home Page') ?></h2>
+    <p>Description</p>
+    <div class="purchase-banner-map3">
+        <img src="/img/layout/purchase-banner-map3.png" class="purchase-banner-img3" usemap="#purchase-banner-map1" />
+        <a href="<?php echo $this->url(array('action' => 'add-banner', 'range' => 'home', 'position' => 'top', 'location' => $this->location['id'], 'count' => 1), 'domain-user-ajax') ?>" class="purchase-banner-map-trigger purchase-banner-map-trigger-<?php echo (isset($this->bannerAvailability['home']['top']) && ($this->bannerAvailability['home']['top'] > 0)) ? 'active' : 'inactive' ?> purchase-banner-map-trigger-1"></a>
+        <a href="<?php echo $this->url(array('action' => 'add-banner', 'range' => 'home', 'position' => 'site', 'location' => $this->location['id'], 'count' => 1), 'domain-user-ajax') ?>" class="purchase-banner-map-trigger purchase-banner-map-trigger-<?php echo (isset($this->bannerAvailability['home']['site']) && ($this->bannerAvailability['home']['site'] > 0)) ? 'active' : 'inactive' ?> purchase-banner-map-trigger-2"></a>
+        <a href="<?php echo $this->url(array('action' => 'add-banner', 'range' => 'home', 'position' => 'side', 'location' => $this->location['id'], 'count' => 1), 'domain-user-ajax') ?>" class="purchase-banner-map-trigger purchase-banner-map-trigger-<?php echo (isset($this->bannerAvailability['home']['side']) && ($this->bannerAvailability['home']['side'] > 0)) ? 'active' : 'inactive' ?> purchase-banner-map-trigger-3"></a>
+        <map name="purchase-banner-map1">
+            <area href="#" id="purchase-banner-map1-area1" shape="rect" coords="53,10,192,28">
+            <area href="#" id="purchase-banner-map1-area2" shape="rect" coords="9,64,192,91">
+            <area href="#" id="purchase-banner-map1-area3" shape="rect" coords="148,154,191,269">
+        </map>
+        <?php if(isset($this->bannerAvailability['home']['top'])): ?>
+        <div id="purchase-banner-map1-area1-tip" class="hidden">
+            <div class="purchase-banner-map-tip <?php echo ($this->bannerAvailability['home']['top'] > 0) ? 'popup-pos' : 'popup-neg' ?>">
+                <h4>Top banner<span class="ratio">ratio 1:8</span></h4>
+                <p class="description">Lorem ipsum</p>
+                <div class="parameters">
+                    <p class="size">750x100</p>
+                    <p class="price">&pound;80 per month</p>
+                    <p class="format">Static graphic format / max to 50kb</p>
+                    <p class="about">SEO READY! Link follow</p>
+                    <p class="availability">
+                        <?php echo ($this->bannerAvailability['home']['top'] > 0) ? $this->bannerAvailability['home']['top'] : 'No' ?> <?php echo (isset($this->bannerAvailability['home']['top']) && $this->bannerAvailability['home']['top'] == 1) ? 'slot' : 'slots' ?> available!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if(isset($this->bannerAvailability['home']['site'])): ?>
+        <div id="purchase-banner-map1-area2-tip" class="hidden">
+            <div class="purchase-banner-map-tip <?php echo ($this->bannerAvailability['home']['site'] > 0) ? 'popup-pos' : 'popup-neg' ?>">
+                <h4>Site banner<span class="ratio">ratio 1:8</span></h4>
+                <p class="description">Lorem ipsum</p>
+                <div class="parameters">
+                    <p class="size">750x100</p>
+                    <p class="price">&pound;80 per month</p>
+                    <p class="format">Static graphic format / max to 50kb</p>
+                    <p class="about">SEO READY! Link follow</p>
+                    <p class="availability">
+                        <?php echo ($this->bannerAvailability['home']['site'] > 0) ? $this->bannerAvailability['home']['site'] : 'No' ?> <?php if(isset($this->bannerAvailability['home']['site'])) echo ($this->bannerAvailability['home']['site'] == 1) ? 'slot' : 'slots' ?> available!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if(isset($this->bannerAvailability['home']['side'])): ?>
+        <div id="purchase-banner-map1-area3-tip" class="purchase-banner-map-tip hidden">
+            <div class="purchase-banner-map-tip <?php echo ($this->bannerAvailability['home']['side'] > 0) ? 'popup-pos' : 'popup-neg' ?>">
+                <h4>Side banner<span class="ratio">ratio 1:8</span></h4>
+                <p class="description">Lorem ipsum</p>
+                <div class="parameters">
+                    <p class="size">750x100</p>
+                    <p class="price">&pound;80 per month</p>
+                    <p class="format">Static graphic format / max to 50kb</p>
+                    <p class="about">SEO READY! Link follow</p>
+                    <p class="availability">
+                        <?php echo ($this->bannerAvailability['home']['side'] > 0) ? $this->bannerAvailability['home']['side'] : 'No' ?> <?php if(isset($this->bannerAvailability['home']['side'])) echo ($this->bannerAvailability['home']['side'] == 1) ? 'slot' : 'slots' ?> available!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="purchase-banner-column purchase-banner-column-right">
+    <h2><?php echo $this->translate('Listing Pages') ?></h2>
+    <p>Description</p>
+    <div class="purchase-banner-map3">
+        <img src="/img/layout/purchase-banner-map3.png" class="purchase-banner-img3" usemap="#purchase-banner-map3" />
+        <a href="<?php echo $this->url(array('action' => 'add-banner', 'range' => 'list', 'position' => 'top', 'location' => $this->location['id'], 'count' => 1), 'domain-user-ajax') ?>" class="purchase-banner-map-trigger purchase-banner-map-trigger-<?php echo (isset($this->bannerAvailability['list']['top']) && ($this->bannerAvailability['list']['top'] > 0)) ? 'active' : 'inactive' ?> purchase-banner-map-trigger-1"></a>
+        <a href="<?php echo $this->url(array('action' => 'add-banner', 'range' => 'list', 'position' => 'site', 'location' => $this->location['id'], 'count' => 1), 'domain-user-ajax') ?>" class="purchase-banner-map-trigger purchase-banner-map-trigger-<?php echo (isset($this->bannerAvailability['list']['site']) && ($this->bannerAvailability['list']['site'] > 0)) ? 'active' : 'inactive' ?> purchase-banner-map-trigger-2"></a>
+        <a href="<?php echo $this->url(array('action' => 'add-banner', 'range' => 'list', 'position' => 'side', 'location' => $this->location['id'], 'count' => 1), 'domain-user-ajax') ?>" class="purchase-banner-map-trigger purchase-banner-map-trigger-<?php echo (isset($this->bannerAvailability['list']['side']) && ($this->bannerAvailability['list']['side'] > 0)) ? 'active' : 'inactive' ?> purchase-banner-map-trigger-3"></a>
+        <map name="purchase-banner-map3">
+            <area href="#" id="purchase-banner-map3-area1" shape="rect" coords="53,10,192,28">
+            <area href="#" id="purchase-banner-map3-area2" shape="rect" coords="9,64,192,91">
+            <area href="#" id="purchase-banner-map3-area3" shape="rect" coords="148,154,191,269">
+        </map>
+        <?php if(isset($this->bannerAvailability['list']['top'])): ?>
+        <div id="purchase-banner-map3-area1-tip" class="purchase-banner-map-tip hidden">
+            <div class="purchase-banner-map-tip <?php echo ($this->bannerAvailability['list']['top'] > 0) ? 'popup-pos' : 'popup-neg' ?>">
+                <h4>Top banner<span class="ratio">ratio 1:8</span></h4>
+                <p class="description">Lorem ipsum</p>
+                <div class="parameters">
+                    <p class="size">750x100</p>
+                    <p class="price">&pound;80 per month</p>
+                    <p class="format">Static graphic format / max to 50kb</p>
+                    <p class="about">SEO READY! Link follow</p>
+                    <p class="availability">
+                        <?php echo ($this->bannerAvailability['list']['top'] > 0) ? $this->bannerAvailability['list']['top'] : 'No' ?> <?php if(isset($this->bannerAvailability['list']['top'])) echo ($this->bannerAvailability['list']['top'] == 1) ? 'slot' : 'slots' ?> available!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if(isset($this->bannerAvailability['list']['site'])): ?>
+        <div id="purchase-banner-map3-area2-tip" class="purchase-banner-map-tip hidden">
+            <div class="purchase-banner-map-tip <?php echo ($this->bannerAvailability['list']['site'] > 0) ? 'popup-pos' : 'popup-neg' ?>">
+                <h4>Site banner<span class="ratio">ratio 1:8</span></h4>
+                <p class="description">Lorem ipsum</p>
+                <div class="parameters">
+                    <p class="size">750x100</p>
+                    <p class="price">&pound;80 per month</p>
+                    <p class="format">Static graphic format / max to 50kb</p>
+                    <p class="about">SEO READY! Link follow</p>
+                    <p class="availability">
+                        <?php echo ($this->bannerAvailability['list']['site'] > 0) ? $this->bannerAvailability['list']['site'] : 'No' ?> <?php if(isset($this->bannerAvailability['list']['site'])) echo ($this->bannerAvailability['list']['site'] == 1) ? 'slot' : 'slots' ?> available!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if(isset($this->bannerAvailability['list']['side'])): ?>
+        <div id="purchase-banner-map3-area3-tip" class="purchase-banner-map-tip hidden">
+            <div class="purchase-banner-map-tip <?php echo ($this->bannerAvailability['list']['side'] > 0) ? 'popup-pos' : 'popup-neg' ?>">
+                <h4>Side banner<span class="ratio">ratio 1:8</span></h4>
+                <p class="description">Lorem ipsum</p>
+                <div class="parameters">
+                    <p class="size">750x100</p>
+                    <p class="price">&pound;80 per month</p>
+                    <p class="format">Static graphic format / max to 50kb</p>
+                    <p class="about">SEO READY! Link follow</p>
+                    <p class="availability">
+                        <?php echo ($this->bannerAvailability['list']['side'] > 0) ? $this->bannerAvailability['list']['side'] : 'No' ?> <?php if(isset($this->bannerAvailability['list']['side'])) echo ($this->bannerAvailability['list']['side'] == 1) ? 'slot' : 'slots' ?> available!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>

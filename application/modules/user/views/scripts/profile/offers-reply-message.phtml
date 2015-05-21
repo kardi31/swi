@@ -1,0 +1,30 @@
+<article class="profile span8">
+    <header class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Offer') ?>: <?php echo $this->text()->truncate($this->offer['title'], 100, 'letters') ?></h3>
+    </header>
+    
+    <section class="offer clearfix">
+        <table class="parameters span5">
+            <?php foreach($this->offer['Parameters'] as $parameter): ?>
+            <tr>
+                <th><?php echo $parameter['ParameterTemplate']['name'] ?></th>
+                <?php if($parameter['ParameterTemplate']['range']): ?>
+                <td><?php echo $parameter['value'] ?> - <?php echo $parameter['value_to'] ?></td>
+                <?php else: ?>
+                <td><?php echo $parameter['value'] ?></td>
+                <?php endif; ?>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <div class="content span5">
+            <?php echo $this->offer['content'] ?>
+        </div>
+    </section>
+
+    <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="<?php echo $this->form->getMethod() ?>">
+        <?php echo $this->form->subject ?>
+        <?php echo $this->form->content ?>
+        <?php echo $this->form->id ?>
+        <?php echo $this->form->submit ?>
+    </form>
+</article>

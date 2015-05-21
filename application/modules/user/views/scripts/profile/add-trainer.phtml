@@ -1,0 +1,75 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+  <?php if ($this->language == 'en'): ?>
+        $('button#submit').css('background', "url('/images/layout/ajurweda/dodaj_sylwetke_en.png') no-repeat 0px -15px"); 
+  <?php endif; ?>
+      
+  <?php foreach ($this->languages as $language): ?>
+      var limitFull = 1800; //ustalamy limit znakow
+       $(".limit-full-info-<?php echo $language; ?>").text(limitFull - $("#<?php echo $language; ?>-curriculum_vitae").val().length);
+        $("#<?php echo $language; ?>-curriculum_vitae").keyup(function() { //jesli wpisano cos do naszego pola
+               var ile_wpisano = $(this).val().length; //zliczamy ilosc znakow
+               if(ile_wpisano > limitFull) { //jesli przekroczymy limit
+                   reset = $(this).val().substring(0, limitFull); //pobieramy znaki od pierwszego do ustalonego w limicie
+                   $(this).val(reset); //wypisujemy wczesniej pobrane znaki
+               }
+               $(".limit-full-info-<?php echo $language; ?>").text(limitFull - $(this).val().length); //wypisujemy ile znakow pozostalo
+       });
+   <?php endforeach; ?>
+
+});
+</script>
+
+<section id="add-trainer">
+    <header>
+        <?php echo $this->translate('Add silhouette') ?>
+    </header>
+    <div class="add_trainer_content">
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post">
+            
+            
+             <div class="trainer-type">
+                <?php echo $this->form->type ?>
+            </div>
+            <?php echo $this->form->name ?>
+            
+            <div class="translations">
+                <ul id="myTab" class="nav nav-tabs pattern">
+                    <li class="dropdown">
+                        <?php foreach($this->languages as $key => $language): ?>
+                            <li class="<?php if($language == $this->language): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                            <?php endforeach; ?>
+                        </li>
+                </ul>
+               
+                <div class="tab-content">
+                    <?php foreach($this->languages as $key => $language): ?>
+                        <div class="tab-pane<?php if($language == $this->language): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                            <?php if($this->form->translations->getSubForm($language)): ?>
+                                <?php echo $this->form->translations->getSubForm($language)->experience ?>
+                                <?php echo $this->form->translations->getSubForm($language)->curriculum_vitae ?>
+                                <div class="limit-characters">
+                                    Pozostało znaków: <span class="strong limit-full-info-<?php echo $language; ?>"></span>
+                                </div>
+                                <?php echo $this->form->translations->getSubForm($language)->academic_title ?>
+                                <?php echo $this->form->translations->getSubForm($language)->specialization ?>
+                                <?php echo $this->form->translations->getSubForm($language)->education ?>
+                            <?php endif; ?>
+                        </div>
+                   <?php endforeach; ?>
+                 </div>
+            </div>
+             
+            <?php echo $this->form->parent_id ?>
+              
+            <?php echo $this->form->place_of_admission ?>
+            <?php echo $this->form->contact ?>
+            <?php echo $this->form->website ?>
+            <?php echo $this->form->id ?>
+            <?php echo $this->form->submit ?>
+        </form>
+    </div>
+</section>
+                

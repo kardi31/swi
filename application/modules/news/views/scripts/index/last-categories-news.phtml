@@ -1,0 +1,74 @@
+<?php 
+    $bannerNames = array('first','second','third','fourth','fifth');
+$key = -1;
+    foreach($this->newsList as $category => $newses): 
+        $news = $newses[0];
+        unset($newses[0]);
+        $key++;
+    ?>
+<?php echo $this->action('banner-main-'.$bannerNames[$key],'index','banner'); ?>
+<div class="home-block">
+    <div class="main-title cat-<?php echo MF_Text::createSlug($category); ?>-main-title">
+                <a href="#" class="right button cat-<?php echo MF_Text::createSlug($category); ?>-box" >ZOBACZ WSZYSTKIE</a>
+                    <h2><?php echo $category; ?></h2>
+                    <span>Przegląd najciekawszych informacji</span>
+            </div>
+    
+            <div class="category-default-block paragraph-row">
+                
+                    <div class="column6">
+                            <div class="item-main">
+                                <?php if(strlen($news['Translation'][$this->language]['slug'])): ?>
+                                    <div class="item-header">
+                                            <a style="position:relative" href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="image-hover">
+                                                <img src="/media/photos/<?php echo $news['PhotoRoot']['offset'];?>/406x250/<?php echo $news['PhotoRoot']['filename'];?>" alt="No photo" />
+                                                 <?php if(count($news['Videos'])>1): ?>
+                                                    <img class="playBtn" src="/images/icon_play.png" alt="Play button" />
+                                                <?php endif; ?>
+                                            </a>
+                                    </div>
+                                    <div class="item-content">
+                                            <div class="content-category">
+                                                    <a href="<?php echo $this->url(array('slug' => $news['Category']['slug']),'domain-news-category'); ?>" class="cat-<?php echo $news['Category']['slug']; ?>-title"><?php echo $news['Category']['title']; ?></a>
+                                            </div>
+                                            <h3><a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>"><?php echo $news['Translation'][$this->language]['title']; ?></a></h3>
+                                            <p><?php echo MF_Text::truncate(strip_tags($news['Translation'][$this->language]['content']),150); ?></p>
+                                            <a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="read-more-link">Czytaj więcej<i class="fa fa-angle-double-right"></i></a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                    </div>
+
+                    <div class="column6 smaller-articles">
+
+                        <?php foreach($newses as $news): 
+                                $photoRoot = $news['PhotoRoot'];
+                                ?>
+                                   <div class="item">
+                                        <div class="item-header">
+                                                <a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="image-hover">
+                                                    <img src="/media/photos/<?php echo $news['PhotoRoot']['offset'];?>/61x61/<?php echo $news['PhotoRoot']['filename'];?>" alt="No photo" />
+                                                </a>
+                                        </div>
+                                        <div class="item-content">
+                                                <h3><a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>"><?php echo MF_Text::truncate(strip_tags($news['Translation'][$this->language]['content']),80); ?></a></h3>
+                                                <a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="read-more-link">Czytaj więcej<i class="fa fa-angle-double-right"></i></a>
+                                        </div>
+                                    </div>
+
+                            <?php endforeach; ?>
+
+
+                    </div>
+
+            </div>
+
+    </div>
+<?php if($key==3): ?>
+    <?php echo $this->action('banner-main-'.$bannerNames[4],'index','banner'); ?>
+<?php endif; ?>
+<?php endforeach; ?>
+
+                        
+                        
+                        

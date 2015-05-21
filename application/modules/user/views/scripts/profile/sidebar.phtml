@@ -1,0 +1,17 @@
+<aside class="col-lg-3 col-md-3 col-sm-3 m_bottom_70 m_xs_bottom_30">
+    <!--categories-->
+    <div class="m_bottom_40 m_xs_bottom_30">
+        <h5 class="color_dark fw_light m_bottom_20">Moje konto</h5>
+        <ul class="categories_list">
+            <li>
+                <a href="<?php echo $this->url(array('action' => 'purchase-history'), 'domain-user-profile', true) ?>" class="color_dark tr_all d_block"><?php echo $this->translate('Purchase history') ?></a>
+            </li>
+            <li>
+                <a href="<?php echo $this->url(array('action' => 'settings'), 'domain-user-profile', true) ?>" class="color_dark tr_all d_block"><?php echo $this->translate('Moje dane') ?></a>
+            </li>
+            <li>
+                <a href="<?php echo $this->url(array(), 'domain-logout') ?>" class="color_dark tr_all d_block"><?php echo $this->translate('Sign out') ?></a>
+            </li>
+        </ul>
+    </div>
+</aside>

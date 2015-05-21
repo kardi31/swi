@@ -1,0 +1,75 @@
+/* 
+    Document   : yadcf
+    Created on : 2014-08-07, 10:15:16
+    Author     : Tomasz Kardas <kardi31@o2.pl>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.yadcf-filter-wrapper input{
+    width:47%;
+    margin:0px;
+}
+
+.error-box,.errors{
+    background: #fadddd;
+    border: 1px solid #fcc1c1;
+    border-radius: 3px;
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    margin-left:0px;
+    padding-left:0px;
+    list-style-type:none;
+}
+
+.error-box p,.errors li{
+    margin: 10px;
+    color: #d86d6d;
+    text-shadow: 0 1px 0 #fff;
+}
+.btnList{
+    list-style-type:none;
+    
+}
+.btnList:after{
+    display: table;
+    line-height: 0;
+    content: "";
+    clear:both;
+}
+.btnList li{
+    float:left;
+    margin-right:10px;
+}
+
+.yadcf-filter-wrapper{
+    width:99%;
+    margin:0 auto;
+    min-width:60px;
+}
+.yadcf-filter-wrapper .selector{
+    width:70%;
+    min-width:60px;
+    display:inline-block;
+}
+.yadcf-filter-wrapper .selector span{
+    width:60% !important;
+}
+.yadcf-filter-wrapper .button{
+    display:block;
+}
+.yadcf-filter-wrapper-inner{
+    display: inline-block;
+    width: 90%;
+}
+
+.table th{
+    vertical-align:top !important;
+}
+
+
+

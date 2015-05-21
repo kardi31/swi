@@ -1,0 +1,37 @@
+<div class="container_12 clearfix leading">
+    
+    <div class="grid_12">
+ 
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Send message') ?>: <?php echo $this->message->getTitle(); ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                
+                
+                <?php echo $this->partial('message.phtml', array('message' => $this->message, 'token' => "")); ?>
+                
+                  <form class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
+
+                                <div class="form-actions">
+                                    <?php echo $this->form->submit ?>
+                                    <a href="<?php echo $this->adminUrl('list-message', 'newsletter') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                                </div>
+                            </form>
+                            </div>
+            
+            </div>
+            
+
+                           
+              
+         </div>
+    </div>
+

@@ -1,0 +1,24 @@
+<section class="span8">
+    <header>
+        <h2><?php echo $this->translate('News') ?></h2>
+    </header>
+    <ul class="article-list">
+        <?php foreach($this->paginator as $item): ?>
+        <li>
+            <?php if(isset($item['PhotoRoot']) && strlen($item['PhotoRoot']['filename'])): ?>
+            <a href="<?php echo $this->url(array('slug' => $item['Translation'][$this->language]['slug'], 'date' => $this->text()->timeFormat($item['created_at'], 'Y-m-d')), 'domain-news-article') ?>">
+                <img src="/media/photos/<?php echo $item['PhotoRoot']['offset'] ?>/255x122/<?php echo $item['PhotoRoot']['filename'] ?>" />
+            </a>
+            <?php endif; ?>
+            <h3>
+                <span class="date"><?php echo $this->text()->timeFormat($item['publish_date'], 'd/m/Y') ?></span>
+                <a href="<?php echo $this->url(array('slug' => $item['Translation'][$this->language]['slug'], 'date' => $this->text()->timeFormat($item['created_at'], 'Y-m-d')), 'domain-news-article') ?>"><?php echo $item['Translation'][$this->language]['title'] ?></a>
+            </h3>
+            <div class="excerpt"><?php echo $this->text()->truncate($item['Translation'][$this->language]['content'], 160, 'letters') ?></div>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+    <div class="pagination">
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'news_pagination_control.phtml'); ?>
+    </div>  
+</section>

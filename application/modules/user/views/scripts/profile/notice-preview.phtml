@@ -1,0 +1,26 @@
+<article class="profile span8">
+    <header class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Notice') ?>: <?php echo $this->text()->truncate($this->notice['title'], 100, 'letters') ?></h3>
+        <span class="span4"><a href="<?php echo $this->url(array('action' => 'offer-prepare', 'notice-id' => $this->notice['id']), 'domain-user-profile', true) ?>" class="btn btn-small btn-success pull-right"><?php echo $this->translate('Send an offer') ?></a></span>
+    </header>
+    
+    <section class="notice clearfix">
+        <p class="views"><?php echo $this->notice['views'] ?></p>
+        <table class="parameters span5">
+            <?php foreach($this->notice['Parameters'] as $parameter): ?>
+            <tr>
+                <th><?php echo $parameter['ParameterTemplate']['name'] ?></th>
+                <?php if($parameter['ParameterTemplate']['range']): ?>
+                <td><?php echo $parameter['value'] ?> - <?php echo $parameter['value_to'] ?></td>
+                <?php else: ?>
+                <td><?php echo $parameter['value'] ?></td>
+                <?php endif; ?>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <div class="content span5">
+            <?php echo $this->notice['content'] ?>
+        </div>
+    </section>
+    
+</article>

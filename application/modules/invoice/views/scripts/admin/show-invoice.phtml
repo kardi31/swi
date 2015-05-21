@@ -1,0 +1,124 @@
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box gradient invoice">
+
+            <div class="title clearfix">
+
+                <h4 class="left">
+                    <span>OFinanse</span>
+                </h4>
+                <div class="print">
+                    <a href="#" class="tip" title="<?php echo $this->translate('Print') ?>"><span class="icon24 icomoon-icon-printer-2"></span></a>
+                </div>
+                    <div class="invoice-info">
+                    <span class="number"><?php echo $this->translate('Invoice') ?> <strong class="red"><?php echo $this->invoice['code'] ?></strong></span>
+                    <span class="data gray"><?php echo $this->text()->timeFormat($this->invoice['created_at'], 'd/m/Y') ?></span>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+            <div class="content">
+                <div class="you">
+                    <ul class="unstyled">
+                        <?php if(strlen($this->cms()->setting('company_name'))): ?>
+                        <li><h3><?php echo $this->cms()->setting('company_name') ?></h3></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->cms()->setting('company_address'))): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->cms()->setting('company_address') ?></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->cms()->setting('company_city'))): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->cms()->setting('company_city') ?></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->cms()->setting('company_province'))): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->cms()->setting('company_province') ?></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->cms()->setting('company_postal_code'))): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->cms()->setting('company_postal_code') ?></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->cms()->setting('company_phone'))): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->translate('Phone') ?>: <strong class="red"><?php echo $this->cms()->setting('company_phone') ?></strong></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->cms()->setting('company_fax'))): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->translate('Fax') ?>: <strong class="red"><?php echo $this->cms()->setting('company_fax') ?></strong></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <div class="client">
+                    <ul class="unstyled">
+                        <?php if(strlen($this->invoice['User']['Profile']['company_name'])): ?>
+                        <li><h3><?php echo $this->invoice['User']['Profile']['company_name'] ?></h3></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->invoice['User']['Profile']['address'])): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->invoice['User']['Profile']['address'] ?></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->invoice['User']['Profile']['City']['name'])): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->invoice['User']['Profile']['City']['name'] ?></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->invoice['User']['Profile']['Province']['name'])): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->invoice['User']['Profile']['Province']['name'] ?></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->invoice['User']['Profile']['postal_code'])): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->invoice['User']['Profile']['postal_code'] ?></li>
+                        <?php endif; ?>
+                        <?php if(strlen($this->invoice['User']['Profile']['phone'])): ?>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo $this->translate('Phone') ?>: <strong class="red"><?php echo $this->invoice['User']['Profile']['phone'] ?></strong></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+
+                <table class="responsive table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th><?php echo $this->translate('Invoice item') ?></th>
+                            <th><?php echo $this->translate('Amount') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1; foreach($this->invoice['Items'] as $item): ?>
+                        <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $item['name'] ?></td>
+                            <td><?php echo $this->currency($item['price']) ?></td>
+                        </tr>
+                        <?php $i++; endforeach; ?>
+                    </tbody>
+                </table>
+
+                <div class="payment">
+                    <ul class="unstyled">
+                        <?php if(isset($this->paymentTypes[$this->invoice['Payment']['type']])): ?>
+                        <li><h3><?php echo $this->translate('Payment method') ?>: <span class="red"><?php echo $this->paymentTypes[$this->invoice['Payment']['type']] ?></span></h3></li>
+                        <?php endif; ?>
+<!--                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span>Bank account #</li>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span>SWIFT code</li>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span>IBAN</li>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span>Billing address</li>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span>Name</li>
+                        <li><span class="icon16 icomoon-icon-arrow-right-2"></span>Email: <strong class="red">some@info.com</strong></li>-->
+                    </ul>
+                </div>
+
+                <div class="total">
+                    <h4><?php echo $this->translate('Total amount') ?>:<span class="red"> <?php echo $this->currency($this->invoice['sum']) ?></span></h4>
+                </div>
+
+
+                <div class="clearfix"></div>
+
+<!--                <div class="invoice-footer">
+                    <p>Thank you for your order, you will receive <strong class="green">5%</strong> discount in next order.</p>
+                </div>-->
+
+            </div>
+
+        </div><!-- End .box -->
+        
+
+    </div>
+
+
+</div>

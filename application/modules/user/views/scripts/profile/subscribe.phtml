@@ -1,0 +1,69 @@
+<section class="span8">
+    <table class="table pricing">
+        <tbody>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th><?php echo $this->translate('1 month') ?></th>
+                    <th><?php echo $this->translate('3 months') ?></th>
+                </tr>
+            </thead>
+            <?php foreach($this->categoryPriceTree->fetchRoot()->getNode()->getChildren() as $child): ?>
+
+            <?php if($child->getNode()->getLevel() == 1 && $child->getNode()->getChildren()): ?>
+            <tr>
+                <td colspan="4"><b><?php echo $child['name'] ?></b></td>
+            </tr>
+            
+            <?php foreach($child->getNode()->getChildren() as $child): ?>
+            <tr>
+                <td><?php echo $child['name'] ?></td>
+                <?php foreach($this->periods as $period): ?>
+                    <?php $p = false; foreach($child['Prices'] as $price): ?>
+                    <?php if($price['period'] == (int) $period): ?>
+                    <?php if(isset($this->cartItems[$child['id']]) && ($this->cartItems[$child['id']]['count'] == $period)): ?>
+                    <td><?php echo $price['price'] ?> PLN <a class="purchase-inactive" href="<?php echo $this->url(array('action' => 'subscribe-category', 'id' => $child['id'], 'period' => $period), 'domain-user-profile') ?>">&nbsp;</a></td>
+                    <?php else: ?>
+                    <td><?php echo $price['price'] ?> PLN <a class="purchase" href="<?php echo $this->url(array('action' => 'subscribe-category', 'id' => $child['id'], 'period' => $period), 'domain-user-profile') ?>">&nbsp;</a></td>
+                    <?php endif; ?>
+                    <?php $p = true; endif; ?>
+                    <?php endforeach; ?>
+                    <?php if($p == false): ?>
+                    <td></td>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </tr>
+            <?php endforeach; ?>
+
+            <?php else: ?>
+            
+            <tr>
+                <td><b><?php echo $child['name'] ?></b></td>
+                <?php foreach($this->periods as $period): ?>
+                    <?php $p = false; foreach($child['Prices'] as $price): ?>
+                    <?php if($price['period'] == (int) $period): ?>
+                    <?php if(isset($this->cartItems[$child['id']]) && ($this->cartItems[$child['id']]['count'] == $period)): ?>
+                    <td><?php echo $price['price'] ?> PLN <a class="purchase-inactive" href="<?php echo $this->url(array('action' => 'subscribe-category', 'id' => $child['id'], 'period' => $period), 'domain-user-profile') ?>">&nbsp;</a></td>
+                    <?php else: ?>
+                    <td><?php echo $price['price'] ?> PLN <a class="purchase" href="<?php echo $this->url(array('action' => 'subscribe-category', 'id' => $child['id'], 'period' => $period), 'domain-user-profile') ?>">&nbsp;</a></td>
+                    <?php endif; ?>
+                    <?php $p = true; endif; ?>
+                    <?php endforeach; ?>
+                    <?php if($p == false): ?>
+                    <td></td>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </tr>
+            
+            <?php endif; ?>
+
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    
+    <?php if(isset($this->sum) && $this->sum > 0): ?>
+    <p class="subscribe-sum"><?php echo $this->translate('Sum') ?>: <span><?php echo $this->sum ?> PLN</span></p>
+    <?php endif; ?>
+    
+    <a class="btn btn-success pull-right" href="<?php echo $this->url(array('action' => 'checkout'), 'domain-user-profile') ?>">Dalej</a>
+</section>

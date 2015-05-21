@@ -1,0 +1,30 @@
+<div class="article-list-block">
+    <?php foreach($this->lastNews as $news): ?>
+            <div class="item">
+                <div class="item-header">
+                        <a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="image-hover" data-path-hover="M 37,53 45,34 58.5,37.5 61,59 48.5,69 z">
+                            <figure style="position:relative">
+                                        <img src="/media/photos/<?php echo $news['PhotoRoot']['offset'];?>/265x181/<?php echo $news['PhotoRoot']['filename'];?>" alt="No photo">
+                                        <?php if(strlen($news['VideoRoot']['url'])): ?>
+                                            <img class="playBtn" src="/images/icon_play.png" alt="play"/>
+                                            <svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M 0,100 0,99 50,97 100,99 100,100 z" fill="<?php echo MF_Text::getCatColor($news['Category']['slug']); ?>" /></svg>
+                                            
+                                        <?php else: ?>
+                                            <svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M 0,100 0,99 50,97 100,99 100,100 z" fill="<?php echo MF_Text::getCatColor($news['Category']['slug']); ?>" /></svg>
+                                            
+                                        <?php endif; ?>
+                                </figure>
+                        </a>
+                </div>
+                <div class="item-content">
+                        <div class="content-category">
+                                <a href="<?php echo $this->url(array('slug' => $news['Category']['slug']),'domain-news-category'); ?>" class="cat-<?php echo $news['Category']['slug']; ?>-title"><?php echo $news['Category']['title']; ?></a>
+                        </div>
+                        <h3><a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>"><?php echo $news['Translation'][$this->language]['title']; ?></a></h3>
+                        <p><?php echo MF_Text::truncate(strip_tags($news['Translation'][$this->language]['content']),50); ?></p>
+                        <a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="read-more-link">Czytaj więcej<i class="fa fa-angle-double-right"></i></a>
+                </div>
+        </div>
+    <?php endforeach; ?>
+    
+</div>

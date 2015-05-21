@@ -1,0 +1,13 @@
+W serwisie dodano nowe wydarzenie o tytule: <br/>
+<?php echo $this->event['Translation']['pl']['title']; ?> <br/>
+Data wydarzenia: <?php echo $this->event['event_date']; ?> <br/>
+Dokonaj moderacji wydarzenia podążając za poniższym linkiem:
+<?php if($this->type == "normal"): ?>
+<a href="http://a-ajurweda.pl<?php echo $this->adminUrl('edit-event', 'event', array('id' => $this->event['id'])) ?>">
+http://a-ajurweda.pl<?php echo $this->adminUrl('edit-event', 'event', array('id' => $this->event['id'])) ?>
+<?php elseif($this->type == "promoted"): ?>
+<a href="http://a-ajurweda.pl<?php echo $this->adminUrl('edit-event-promoted', 'event', array('id' => $this->event['id'])) ?>">
+http://a-ajurweda.pl<?php echo $this->adminUrl('edit-event-promoted', 'event', array('id' => $this->event['id'])) ?>
+<?Php endif; ?>
+</a>
+<br/>

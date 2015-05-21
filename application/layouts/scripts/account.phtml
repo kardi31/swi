@@ -1,0 +1,28 @@
+<?php echo $this->doctype() ?>
+<html lang="pl">
+<head>
+	<?php echo $this->render('_head.phtml') ?>
+</head>
+<body>
+    <div id="wrapper">
+        
+        <section id="container">
+            
+            <?php echo $this->render('_header.phtml') ?>
+
+            <aside>
+                
+            </aside>
+ 
+            <section id="main" class="clearfix">
+                <?php echo $this->layout()->content ?>
+            </section>
+
+            <?php echo $this->render('_footer.phtml') ?>
+        </section>
+        
+    </div>
+
+    <?php echo $this->partial('_ga.phtml') ?>
+</body>
+</html>

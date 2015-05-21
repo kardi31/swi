@@ -1,0 +1,320 @@
+<?php $league = $this->league; ?>
+<section id="m-a-n">
+	<div class="container">
+		<div class="col-8">
+			<div class="tab">Mecze</div>
+			<div class="match">
+				<div class="col-6">
+					<div class="m-img" style="padding-right:3px;"><img src="/assets/images/match1.jpg" alt=""/></div>
+				</div>
+				<div class="col-6">
+					<div class="m-img" style="padding-left:3px;"><img src="/assets/images/match2.jpg" alt=""/></div>
+				</div>
+				<div class="m-result">
+				<div class="logo-club col-3"><img src="<?php echo MF_Text::getPhotoPath($this->lastResult['Team1']['Logo'],'127x127'); ?>" alt=""/></div>
+				<span class="result col-6"><?php echo $this->lastResult['goal1'];?> <b>:</b> <?php echo $this->lastResult['goal2'];?></span>
+				<div class="logo-club col-3"><img src="<?php echo MF_Text::getPhotoPath($this->lastResult['Team2']['Logo'],'127x127'); ?>" alt=""/></div>
+				<div class="club-name col-12">
+				<span class="col-3"><?php echo $this->lastResult['Team1']['name'];?></span>
+				<div class="match-name col-6"><?php echo $this->lastResult['League']['name']; ?> <br> <b><?php echo MF_Text::timeFormat($this->lastResult['match_date'],'d-m-y H:i'); ?></b></div>
+				<span class="col-3"><?php echo $this->lastResult['Team2']['name'];?></span>
+				</div>
+				</div>
+			</div>
+			<div class="a-games">
+				<ul class="clearfix">
+                                    <?php foreach($this->myNextMatches as $nextMatch): ?>
+					<li><span class="text-right"><?php echo $nextMatch['team1_name']; ?></span><span class="d-g">
+                                            <?php echo MF_Text::polishShortDayOfWeek($nextMatch['match_date']); ?><br />
+                                            <?php echo MF_Text::timeFormat($nextMatch['match_date'],'d-m-y H:i'); ?>
+                                            </span><span class="text-left"><?php echo $nextMatch['team2_name']; ?></span></li>
+                                    <?php endforeach; ?>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="tab">Aktualności</div>
+			<div class="tab-small"><a href="#">zobacz wszystkie</a></div>
+                            <div class="r-box-n">
+                                <?php foreach($this->lastNews as $lastNews): ?>
+                                    <article>
+                        
+                                            <h3><a href="<?php echo $this->url(array('slug' => $lastNews['Translation'][$this->language]['slug']),'domain-news-article'); ?>"><?php echo $lastNews['Translation'][$this->language]['title']; ?></a></h3>
+                                            <p><?php echo MF_Text::truncate($lastNews['Translation'][$this->language]['content'],150); ?></p>
+                                            <span class="date-n"><?php echo MF_Text::timeFormat($lastNews['publish_date'],'d'); ?> <?php echo MF_Text::polishShortMonth($lastNews['publish_date']); ?></span>
+                                    </article>
+                                <?php endforeach; ?>
+                            </div>
+		</div>
+    </div>
+	</section>
+<!--	 section for teaser 
+-->	<div class="container">
+                        <hr class="bar container" />
+</div>
+	<section id="video">
+	<div class="container">
+		
+			<div id="v-tabs">
+			
+                            <div class="col-8" style="background:#fff">
+			<ul class="clearfix col-5">
+                            <?php foreach($this->lastGalleries as $key => $lastGallery): ?>
+                                <li><i class="fa fa-play"></i><a href="#section-<?php echo $key+1; ?>" ><?php echo $lastGallery['Translation'][$this->language]['name']; ?><span><?php echo $this->category; ?></span></a></li>
+                            <?php endforeach; ?>
+			</ul>
+			<?php foreach($this->lastGalleries as $key => $lastGallery): 
+                            if(strlen($lastGallery['Photos'][1]['filename'])){
+                                $photoUrl = MF_Text::getPhotoPath($lastGallery['Photos'][1],'365x300');
+                            }
+                            else{
+                                $photoUrl = "http://placehold.it/365x300";
+                            }
+                            ?>
+                                <div id="section-<?php echo $key+1; ?>" class="tab-content col-7">
+                                    <a href="#">
+                                        <img alt="<?php echo $lastGallery['Translation'][$this->language]['name']; ?>" src="<?php echo $photoUrl; ?>" alt="<?php echo $lastGallery['Translation'][$this->language]['name']; ?>"/>
+                                    </a>
+                                </div>
+                        <?php endforeach; ?>
+                        <div class="clearfix"></div>
+                        <hr class="bar" />
+                        <div class="players">
+                    
+			<div class="col-5">
+				<div class="our">
+					<h3><span>Nasi</span> zawodnicy</h3>
+				</div>
+				<div class="all-team">
+					<a href="team.html">Zobacz całą drużynę ›</a>
+				</div>
+			</div>
+			<div class="col-7">
+				<div class="slider1">
+                                    <?php foreach($this->myPlayers as $player): 
+                                        if($player['Photo']&&strlen($player['Photo']['filename'])){
+                                            $photoPath = MF_Text::getPhotoPath($player['Photo'],'157x200');
+                                        }
+                                        else{
+                                            $photoPath = "http://placehold.it/157x200";
+                                        }
+                                        ?>
+                                        <div class="slide col-5"><img src="<?php echo $photoPath; ?>" title="<?php echo $player['first_name']." ".$player['last_name']; ?> Świt Krzeszowice" alt="<?php echo $player['first_name']." ".$player['last_name']; ?>"/><div class="player-name"><a href="#"><?php echo $player['first_name']." ".$player['last_name']; ?></a><p><?php echo $player['position']; ?></p></div></div>
+                                    <?php endforeach; ?>
+                                </div>
+			</div>
+                    
+		</div>
+                            </div>
+                            <div class="col-4">
+				<div class="liga-t">
+					<div class="bu-title"><h3><?php echo $league['name']; ?></h3></div>
+					<table class="table-striped">
+						<tr class="t-h"><td class="t-c">Poz</td><td>Klub</td><td>M</td><td>Pkt</td></tr>
+                                                <?php foreach($league['Tabela'] as $key2 => $tabelaItem): ?>
+                                                <tr <?php if($tabelaItem['Team']['my_team']) echo 'class="myteam"'; ?>>
+                                                    <td class="t-c"><?php echo $key2+1; ?></td>
+                                                    <td class="t-c">
+                                                        <?php 
+                                                        if(strlen($tabelaItem['Team']['name'])>19)
+                                                            echo substr(strtok($tabelaItem['Team']['name'], " "),0,18);
+                                                        else
+                                                            echo $tabelaItem['Team']['name'];
+                                                        ?>
+                                                    </td>
+                                                    <td class="t-c"><?php echo $tabelaItem['games']; ?></td>
+                                                    <td class="t-c"><?php echo $tabelaItem['points']; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+					</table>
+				</div>
+                            </div>
+                        
+                        
+			</div>
+		
+<!--<div class="col-4">
+				<div class="liga-t">
+					<div class="bu-title"><h3>Bundes Liga</h3></div>
+					<table class="table-striped">
+						<tr class="t-h"><td class="t-c">Pos</td><td>Club</td><td>Pld</td><td>Pts</td></tr>
+						<tr><td class="t-c">1</td><td>FC Bayern München</td><td>36</td><td>81</td></tr>
+						<tr><td class="t-c">2</td><td>Borussia Dortmund</td><td>36</td><td>76</td></tr>
+						<tr><td class="t-c">3</td><td>FC Schalke 04</td><td>34</td><td>74</td></tr>
+						<tr><td class="t-c">4</td><td>Bayer 04 Leverkusen</td><td>35</td><td>70</td></tr>
+						<tr><td class="t-c">5</td><td>VfL Wolfsburg</td><td>36</td><td>69</td></tr>
+						<tr><td class="t-c">6</td><td>FSV Mainz</td><td>36</td><td>66</td></tr>
+						<tr><td class="t-c">7</td><td>Borussia M.</td><td>35</td><td>60</td></tr>
+						<tr><td class="t-c">8</td><td>FC Augsburg</td><td>35</td><td>52</td></tr>
+						<tr><td class="t-c">9</td><td>1899 Hoffenheim</td><td>35</td><td>46</td></tr>
+						<tr><td class="t-c">10</td><td>Hertha Berlin</td><td>35</td><td>44</td></tr>
+						<tr><td class="t-c">6</td><td>FSV Mainz</td><td>36</td><td>66</td></tr>
+						<tr><td class="t-c">7</td><td>Borussia M.</td><td>35</td><td>60</td></tr>
+						<tr><td class="t-c">8</td><td>FC Augsburg</td><td>35</td><td>52</td></tr>
+						<tr><td class="t-c">9</td><td>1899 Hoffenheim</td><td>35</td><td>46</td></tr>
+						<tr><td class="t-c">10</td><td>Hertha Berlin</td><td>35</td><td>44</td></tr>
+					</table>
+				</div>
+			</div>
+
+	</div>-->
+	</section>
+<?php /*
+<article id="content">
+        <div class="wrapper">
+                <section class="col1">
+                    <div class="shadowBoxLeft">
+                        <h1 class="under mainPage"><?php echo $this->homepage['Translation'][$this->language]['title']; ?></h1>
+                        <div class="wrapper">
+                                <figure class="left marg_right1">
+                                    <?php if(strlen($homepage['PhotoRoot']['offset'])): ?>
+                                        <img src="<?php echo MF_Text::getPhotoPath($homepage['PhotoRoot']); ?>" alt="<?php echo $this->homepage['Translation'][$this->language]['title']; ?>" title="<?php echo $this->homepage['Translation'][$this->language]['title']; ?>">
+                                    <?php else: ?>
+                                        <img src="/assets/images/page1_img1.jpg" alt="">
+                                    <?php endif; ?>
+                                </figure>
+                                <?php echo $this->homepage['Translation'][$this->language]['content']; ?>
+                        </div>
+                    </div>
+                    
+                    <?php echo $this->action('banner-over-news','index','banner'); ?>
+                    <div class="box2Main">
+                        <h2>Aktualności</h2>
+                             <hr />
+                        
+                         <div class="tab-content" id="tab1">
+                             
+                        <?php foreach($this->paginator as $news): ?>
+                    <div class="shadowBoxLeft">
+                             <div class="newsWrapper hnews hentry item">
+                        <h5 class="title entry-title">
+			    <span class="dropcap updated date dtstamp">
+				<strong><?php echo MF_Text::timeFormat($news['publish_date'],'d');?></strong>
+				<span><?php echo MF_Text::polishShortMonth($news['publish_date']);?></span>
+			    </span>
+                            
+				<?php echo $news['Translation'][$this->language]['title']; ?>
+			</h5>
+                        <div class="wrapper pad_bot2">
+                                <figure class="left marg_right1">
+				    <?php if(strlen($news['PhotoRoot']['offset'])): ?>
+				        <img class="photo" src="<?php echo MF_Text::getPhotoPath($news['PhotoRoot'],'180x141'); ?>" alt="<?php echo $news['Translation'][$this->language]['title']; ?>" title="<?php echo $news['Translation'][$this->language]['title']; ?>">
+				    <?php endif; ?>
+				</figure>
+                                <p class="pad_bot1 entry-content"><?php echo MF_Text::truncate(strip_tags($news['Translation'][$this->language]['content']),300,'letters'); ?></p>
+                                <a class="url" href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="link1">Czytaj więcej</a>
+                        </div>
+                             </div>
+                    </div>
+                        <?php endforeach; ?>
+		</div>
+                    </div>
+                </section>
+            
+            
+                <section class="col2 pad_left_30 mainPageRightCol">
+                    <div class="shadowBoxRightSmall">
+                         <h2 class="nextEventHeader under">Najbliższe wydarzenie</h2>
+                        <div class=" nextEvents testimonials">
+                            <div id="nextEvent">
+                              <ul>
+                                  <?php foreach($this->nextEvents as $nextEvent): ?>
+                                    <li>
+                                            <div>
+                                                <h6><?php echo $nextEvent['Translation'][$this->language]['title']; ?></h6>
+                                                   <?php echo $nextEvent['Translation'][$this->language]['content']; ?>
+                                            </div>
+                                    </li>
+                                    <?php endforeach; ?>
+                              </ul>
+                            </div>
+                        <a href="#" class="upEvent"></a>
+                        <a href="#" class="downEvent"></a>
+                        </div>
+                    </div>
+                    
+                    <?php echo $this->action('banner-right','index','banner'); ?>
+<?php if(strlen($this->promotedVideo['VideoRoot']['url'])): ?>
+    <div class="videoPromotedWrapper" style="margin-top:10px;margin-left:5px;">
+	    <iframe width="250" height="300" src="<?php echo $this->promotedVideo['VideoRoot']['url']; ?>">
+	    </iframe>
+    </div>
+<?php endif; ?>
+			<div id="activeLeagues" class="shadowBoxRightSmall">
+			    <div id="selectLeague">
+				<?php foreach($this->leagues as  $key => $league): ?>
+				    <a href="javascript:void(0)" class="leagueChoose <?php if($key==0) echo "active"; ?>" rel="<?php echo $league['id']; ?>"><?php echo $league['name']; ?></a>
+				<?php endforeach; ?>
+			    </div>
+			    <?php foreach($this->leagues as $key=>$league): 
+				$leagueId = $league['id'];
+				?>
+			    <div class="activeLeague <?php if($key==0) echo "first"; ?>" id="league_<?php echo $league['id']; ?>">
+				<h2><?php echo $league['name']; ?></h2>
+				<table>
+				    <thead>
+					<tr>
+					    <th></th>
+					    <th>Drużyna</th>
+					    <th>M. </th>
+					    <th>B. zd.</th>
+					    <th>B. st. </th>
+					    <th>Pkt.</th>
+					</tr>
+				    </thead>
+				    <tbody>
+				    <?php foreach($league['Tabela'] as $key2 => $tabelaItem): ?>
+					<tr <?php if($tabelaItem['Team']['my_team']) echo 'class="myteam"'; ?>>
+					    <td><?php echo $key2+1; ?></td>
+					    <td><?php echo $tabelaItem['Team']['name']; ?></td>
+					    <td><?php echo $tabelaItem['games']; ?></td>
+					    <td><?php echo $tabelaItem['goals_scored']; ?></td>
+					    <td><?php echo $tabelaItem['goals_lost']; ?></td>
+					    <td><?php echo $tabelaItem['points']; ?></td>
+					</tr>
+				    <?php endforeach; ?>
+					
+				    </tbody>
+				</table>
+				<br />
+				<h3>Poprzednie mecze</h3>
+				<?php if(isset($this->prevMatches[$leagueId])): ?>
+				<strong><?php echo MF_Text::timeFormat($this->prevMatches[$leagueId][0]['match_date'],'d-m-Y'); ?></strong><br />
+				    <?php foreach($this->prevMatches[$leagueId] as $prevMatch):
+					    echo MF_Text::timeFormat($prevMatch['match_date'],'H:i'); 
+					    echo " ".$prevMatch['team1_name']." - ".$prevMatch['team2_name']." ".$prevMatch['goal1'].":".$prevMatch['goal2']. "<br />"; 
+					
+				
+					 endforeach; ?>
+				
+				<?php endif; ?>
+				<br />
+				<h3>Najbliższe mecze</h3>
+				<?php if(isset($this->nextMatches[$leagueId])): ?>
+				<strong><?php echo MF_Text::timeFormat($this->nextMatches[$leagueId][0]['match_date'],'d-m-Y'); ?></strong><br />
+				    <?php foreach($this->nextMatches[$leagueId] as $nextMatch):
+					    echo MF_Text::timeFormat($nextMatch['match_date'],'H:i'); 
+					    echo " ".$nextMatch['team1_name']." - ".$nextMatch['team2_name']. "<br />"; 
+					
+				
+					 endforeach; ?>
+				
+				<?php endif; ?>
+			    </div>
+			    <?php endforeach; ?>
+			</div>
+                </section>
+        </div>
+</article>
+<script>
+    $(document).ready(function(){
+	$('#selectLeague a').click(function(){
+	    var rel = $(this).attr('rel');
+	    $('.activeLeague').hide();
+	    $('#league_'+rel).show();
+	    $('.leagueChoose').removeClass('active');
+	    $(this).addClass('active');
+	})
+    });
+
+</script>

@@ -1,0 +1,41 @@
+<nav class="mainmenu">
+    <?php 
+    //Zend_Debug::dump($this->options['pages']);
+    ////$mainContainer = new Zend_Navigation($options['pages']);
+    //var_dump($mainContainter);
+    ?>
+    
+    <div id="topMenu">
+                    <?php echo $this->partial('menu_main_tree.phtml', 'menu', array('tree' => $this->tree, 'parent' => $this->menuItem, 'language' => $this->language)) ?>
+     
+<form method="get" class="searchform" action="./home10.html">
+                        <fieldset>
+                                <button type="submit" id="searchsubmit" ><img id="searchIcon" src="/images/lupka2.png" /></button>
+                                <input type="text" value="" name="s" id="s" placeholder="<?php echo $this->translate('SEARCH'); ?>">
+                        </fieldset>
+                </form>
+    </div>
+    <div class="clear"></div>
+<!--    <select id="sec-nav" name="sec-nav">
+        <?php // foreach ($this->maincontainer as $el): ?>
+            <option value="#"><?php // echo $this->translate($el->label); ?></option>
+        <?php // endforeach; ?>
+    </select>				-->
+</nav>
+<?php 
+$count = $this->cart->count(); ?>
+<script type="text/javascript">
+    var currentSessionValue = <?php echo $count; ?>;
+    // pseudo code
+    setTimeout(checkVariableValue, 500);
+    function checkVariableValue() {
+         $.ajax({
+            url: '/order/ajax/show-basket',
+            success: function(newVal) {
+                if (newVal != currentSessionValue);
+                    currentSessionValue = newVal;
+                    document.getElementById('cartText').innerHTML = currentSessionValue;
+                }
+         });
+    }
+</script>

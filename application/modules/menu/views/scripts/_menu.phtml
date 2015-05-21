@@ -1,0 +1,14 @@
+<ul>
+<?php if(isset($this->menuItem)): ?>
+<?php foreach($this->menuItem->getNode()->getChildren() as $item): ?>
+    <li><a 
+            class="<?php if(strlen($item->css_class)) echo $item->css_class ?>"
+            href="<?php if(strlen($item->))"
+        ><?php echo $item->Translation[$this->language]->title ?></a>
+        <?php if($item->getNode()->getChildren()): ?>
+            <?php echo $this->partial('_menu.phtml', 'menu', array('menuItem' => $item, 'active' => $this->_active, 'activeIds' => $this->_activeIds, 'language' => $this->language)) ?>
+        <?php endif; ?>
+    </li>
+<?php endforeach; ?>
+<?php endif; ?>
+</ul>

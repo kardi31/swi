@@ -1,0 +1,33 @@
+<div class="container_12 clearfix leading">
+    
+    <div class="grid_12">
+ 
+        <div class="box">
+        
+          <div class="content">
+            <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+
+                <div class="title">
+
+                    <h4>
+                        <span class="icon16 icomoon-icon-pencil"></span>
+                        <span><?php echo $this->translate('Edit comment for') ?> <?php echo $this->comment['Product']->Translation[$this->language]->name; ?> <?php echo $this->translate('written by') ?> <?php echo $this->comment['nick']; ?></span>
+                    </h4>
+
+                </div>
+                <div class="marginT10" style="height: 30px;"></div>
+                
+                <?php echo $this->translate('Rate') ?>: <?php echo $this->comment->getPartialRate(); ?>
+
+                <?php echo $this->form->description ?>
+                <?php echo $this->form->id ?>
+                    
+                <div class="form-actions">
+                    <?php echo $this->form->submit ?>
+                    <a href="<?php echo $this->adminUrl('list-comment', 'product'); ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+               </div>       
+            </form>
+          </div>
+        </div>
+    </div>
+</div>

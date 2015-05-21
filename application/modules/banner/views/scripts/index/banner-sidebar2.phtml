@@ -1,0 +1,30 @@
+<div class="widget">
+        <div id="sidebar2" class="flexslider banner" >
+                <ul class="slides">
+                    <?php foreach($this->banners as $banner): ?>
+                    <li>
+                        <a href="<?php echo $banner['website'] ?>" rel="nofollow" target="_blank" >
+                            <div class="slide">
+                                <img src="/media/attachments/<?php echo $banner['AttachmentRoot']['filename']; ?>" alt="<?php echo $banner['Translation'][$this->language]['name']; ?>">
+                            </div>
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+
+            <script type="text/javascript">
+                    $(document).ready(function(){
+                            $('#sidebar2').flexslider({
+                                    animation : 'slide',
+                                    controlNav : false,
+                                    directionNav : false,
+                                    animationLoop : true,
+                                    slideshow : true,
+                                    useCSS : false
+                            });
+
+                    });
+            </script>
+
+</div>

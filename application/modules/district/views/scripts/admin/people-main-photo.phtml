@@ -1,0 +1,29 @@
+<?php 
+if(is_object($this->photos)):
+$photo = $this->photos; ?>
+<li class="pull-left">
+    <?php if($photo->getOffset()): ?>
+    <a id="main_photo" href="/media/photos/<?php echo $photo->getOffset() ?>/<?php echo $photo->getFilename() ?>" rel="prettyPhoto" title="<?php echo $this->people->get('PhotoRoot')->getTitle() ?>">
+        <img src="/media/photos/<?php echo $photo->getOffset() ?>/126x126/<?php echo $photo->getFilename() ?>" data-original="/media/photos/<?php echo $this->people->get('PhotoRoot')->getOffset() ?>/<?php echo $photo->getFilename() ?>" alt="<?php echo $photo->getTitle() ?>">
+    </a>
+    <?php else: ?>
+    <a id="main_photo" href="/images/gallery/1.jpg" rel="prettyPhoto" title="<?php echo $this->translate('No photo') ?>">
+        <img src="/images/gallery/preload.png" data-original="/images/gallery/thumbnails/1.jpg" alt="<?php echo $this->translate('No photo') ?>">
+    </a>
+    <?php endif; ?>
+    <div class="actionBtn">
+        <a href="<?php echo $this->adminUrl('edit-people-photo', 'district', array('people-id' => $this->people->getId(), 'id' => $this->people->get('PhotoRoot')->getId())) ?>" class="edit"><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+        <a href="#" class="add"><span class="icon16 iconic-icon-cursor white"></span></a>
+        <a href="#" rel="<?php echo $photo->id; ?>" class="delete"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+    </div>
+</li>
+<?php else: ?>
+<li class="pull-left">
+    <a id="main_photo" href="/images/gallery/1.jpg" rel="prettyPhoto" title="<?php echo $this->translate('No photo') ?>">
+        <img src="/images/gallery/preload.png" data-original="/images/gallery/thumbnails/1.jpg" alt="<?php echo $this->translate('No photo') ?>">
+    </a>
+    <div class="actionBtn">
+       <a href="#" class="add"><span class="icon16 iconic-icon-cursor white"></span></a>
+    </div>
+</li>
+<?php endif; ?>

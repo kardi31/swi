@@ -1,0 +1,17 @@
+<section class="span8">
+    <table class="checkout">
+        <?php foreach($this->invoice['Items'] as $item): ?>
+        <tr>
+            <th><?php echo $item['name'] ?></th>
+            <td><?php echo $item['price'] ?></td>
+        </tr>
+        <?php endforeach; ?>
+        <tr>
+            <th></th>
+            <td><?php echo $this->translate('Sum') ?>: <?php echo $this->invoice['sum'] ?></td>
+        </tr>
+    </table>
+    <div class="pull-right">
+        <?php echo $this->payForm ?>
+    </div>
+</section>

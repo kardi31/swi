@@ -1,0 +1,19 @@
+<link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/lib/elfinder-2.0-rc1/css/elfinder.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/lib/elfinder-2.0-rc1/css/theme.css">
+<script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/lib/jquery-ui-1.9.1/js/jquery-ui-1.9.1.custom.min.js"></script>
+<script type="text/javascript" src="/lib/elfinder-2.0-rc1/js/elfinder.min.js"></script>
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        $('#elfinder').elfinder({
+            url : '/admin/media/elfinder',
+            lang : 'pl',
+            height: 500,
+            width : 900,
+            closeOnEditorCallback : false
+        });     
+    });
+</script>
+<div id="elfinder"></div>

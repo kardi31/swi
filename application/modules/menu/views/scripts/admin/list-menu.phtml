@@ -1,0 +1,49 @@
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-list-view"></span>
+                    <span><?php echo $this->translate('Menu') ?></span>
+                    <div class="box-form right">
+                        <a href="<?php echo $this->adminUrl('add-menu', 'menu') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add new') ?></a>
+                    </div>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+
+                <table id="article_table" cellpadding="0" cellspacing="0" border="0" class="responsive display table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><?php echo $this->translate('Name') ?></th>
+                            <th style="width: 50px;"><?php echo $this->translate('Options') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($this->menus as $menu): ?>
+                        <tr>
+                            <td></td>
+                            <td><?php echo $menu['name'] ?></td>
+                            <td style="width: 100px;">
+                                <a href="<?php echo $this->adminUrl('edit-menu', 'menu', array('id' => $menu['id'])) ?>"><span class="icon24 entypo-icon-settings"></span></a>
+                                <a href="<?php echo $this->adminUrl('list-menu-item', 'menu', array('id' => $menu['id'])) ?>"><span class="icon16 icomoon-icon-list-view"></span></a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+
+
+</div>

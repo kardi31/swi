@@ -1,0 +1,45 @@
+<?php if(isset($this->tree)): ?>
+    <ul>
+        <?php foreach($this->tree as $item):?>
+                <!-- jeżeli są podkategorie menu -->
+                    <li class="dropdown">
+                         <!-- jeżeli jest zdefiniowany link do innej strony -->
+                        <?php if(strlen($item->custom_url)):?>
+                                   <a href="<?php echo $item->custom_url; ?>" class="dropdown-toggle" ><img src="/img/_men1.png" /><?php echo $item->Translation[$this->language]['title'] ?></a>
+                        <?php elseif(!strlen($item->route)): ?>
+                                   <a href="#" class="dropdown-toggle" ><img src="/img/_men1.png" /><?php echo $item->Translation[$this->language]['title'] ?></a>
+                        <?php else: ?>
+                                   <a href="<?php echo $this->url(array('slug' => $item->Translation[$this->language]->slug), $item->getRoute()); ?> " class="dropdown-toggle" ><img src="/img/_men1.png" /><?php echo $item->Translation[$this->language]['title'] ?></a>
+                        <?php endif; ?>
+                            
+                        <?php if($item->getNode()->hasChildren()): ?>
+                            <?php echo $this->partial('main-menu.phtml', 'menu', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'language' => $this->language)) ?>
+                        <?php elseif($item->route=='domain-category'): 
+                                   echo $this->action('category-menu-tree', 'index','product',array('slug' => $item->Translation[$this->language]->slug));
+                              endif; ?>
+                    </li>
+        <?php endforeach; ?>
+    </ul>
+<?php elseif(isset($this->subtree)): ?>
+    <ul class="dropdown-menu">
+        <?php foreach($this->subtree as $item):?>
+                <!-- jeżeli są podkategorie menu -->
+                    <li class="dropdown">
+                         <!-- jeżeli jest zdefiniowany link do innej strony -->
+                        <?php if(strlen($item->custom_url)):?>
+                                   <a href="<?php echo $item->custom_url; ?>" class="dropdown-toggle" ><img src="/img/_men1.png" /><?php echo $item->Translation[$this->language]['title'] ?></a>
+                        <?php elseif(!strlen($item->route)): ?>
+                                   <a href="#" class="dropdown-toggle" ><img src="/img/_men1.png" /><?php echo $item->Translation[$this->language]['title'] ?></a>
+                        <?php else: ?>
+                                   <a href="<?php echo $this->url(array('slug' => $item->Translation[$this->language]->slug), $item->getRoute()); ?> " class="dropdown-toggle" ><img src="/img/_men1.png" /><?php echo $item->Translation[$this->language]['title'] ?></a>
+                        <?php endif; ?>
+                            
+                        <?php if($item->getNode()->hasChildren()): ?>
+                            <?php echo $this->partial('main-menu.phtml', 'menu', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'language' => $this->language)) ?>
+                        <?php elseif($item->route=='domain-category'): 
+                                   echo $this->action('category-menu-tree', 'index','product',array('slug' => $item->Translation[$this->language]->slug));
+                              endif; ?>
+                    </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>        

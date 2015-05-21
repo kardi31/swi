@@ -1,0 +1,143 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#layer_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": false,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "iDisplayLength": 50,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-layer-data', 'slider') ?>/id/<?php echo $this->slide->getId(); ?>",
+        "aaSorting": [[ 2, "desc" ]],
+        "aoColumns": [
+            { "bSortable": false, sWidth: '300px' },
+            { "bSortable": false, sWidth: '150px' },
+            { "bSortable": false, sWidth: '150px' },
+            { "bSortable": false, sWidth: '150px' },
+            { "bSortable": false, sWidth: '50px' },
+            { "bSortable": false, sWidth: '50px' }
+        ]
+    });
+    
+    $("#layer_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+    $("#layer_table").delegate(".remove2", "click", function(e) {
+            e.preventDefault();
+            var link = $(this).attr("href");
+            if(confirm("Czy na pewno chcesz usunąć?")) {
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: link,
+                    data: data,
+                    success: function(resp) {
+                        if(resp.status == "success") {
+                            //$("#main_photo_con").html(resp.body);
+                            $("#layer_table").trigger('update');
+                        }
+                    }
+                });
+            }
+     }); 
+    
+    $("#layer_table").delegate("td .move", "click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("href"),
+            type: "post",
+            dataType: "json",
+            data: {format: "json"},
+            success: function (resp) {
+                $("#layer_table").trigger("update");
+            }
+        });
+    });
+});
+</script>
+<div class="row-fluid">
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edit slide') ?></span>
+                </h4>
+                
+            </div>
+            
+            <div class="content clearfix">
+                
+                    <div class="banner">
+                         <a id="main_photo" href="/media/photos/<?php echo $this->slide->get('PhotoRoot')->getOffset() ?>/<?php echo $this->slide->get('PhotoRoot')->getFilename() ?>" rel="prettyPhoto" title="<?php echo $this->slide->get('PhotoRoot')->getTitle() ?>">
+                            <img src="/media/photos/<?php echo $this->slide->get('PhotoRoot')->getOffset() ?>/500x223/<?php echo $this->slide->get('PhotoRoot')->getFilename() ?>" data-original="/media/photos/<?php echo $this->slide->get('PhotoRoot')->getOffset() ?>/<?php echo $this->slide->get('PhotoRoot')->getFilename() ?>" alt="<?php echo $this->slide->get('PhotoRoot')->getTitle() ?>">
+                        </a>
+                    </div>
+                
+                     <form id="form" class="form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+
+                        <?php
+                        foreach($this->form->getElements() as $element) {
+                            if($element->hasErrors()) {
+                                $element->setAttrib('class', 'error');
+                            }
+                        }
+                        ?>
+                        <?php echo $this->form->id ?>
+                        <?php echo $this->form->transition ?>
+                        <?php echo $this->form->slot_amount ?>
+                        <?php echo $this->form->rotation ?>
+                        <?php echo $this->form->transition_duration ?>
+                        <?php echo $this->form->delay ?>
+                        <?php echo $this->form->enable_link ?>
+                        <?php echo $this->form->target_href ?>
+                         
+                        <div class="box"> 
+                            
+                            <div class="title">
+
+                                <h4>
+                                    <span class="icon16 icomoon-icon-list-view"></span>
+                                    <span><?php echo $this->translate('Layers') ?></span>
+                                    <div class="box-form right">
+                                        <a href="<?php echo $this->adminUrl('add-slide-layer', 'slider', array("slide-id" => $this->slide->getId())) ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add layer') ?></a>
+                                        <a href="<?php echo $this->adminUrl('add-slide-layer-image', 'slider', array("slide-id" => $this->slide->getId())) ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add layer: Image') ?></a>
+                                        <a href="<?php echo $this->adminUrl('add-slide-layer-video', 'slider', array("slide-id" => $this->slide->getId())) ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add layer: Video') ?></a>
+                                    </div>
+                                </h4>
+                
+                            </div>
+                         
+                            <table id="layer_table" cellpadding="0" cellspacing="0" border="0" class=" display table table-bordered" width="100%">
+                                <thead>
+                                    <th><?php echo $this->translate('View') ?></th>
+                                    <th><?php echo $this->translate('Type') ?></th>
+                                    <th><?php echo $this->translate('Animation') ?></th>
+                                    <th><?php echo $this->translate('Easing') ?></th>
+                                    <th><?php echo $this->translate('Move') ?></th>
+                                    <th><?php echo $this->translate('Options') ?></th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                         <div class="clearfix"></div>
+
+                        <div class="form-actions">
+                             <?php echo $this->form->submit ?>
+                             <a href="<?php echo $this->adminUrl('list-slide', 'slider') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                        </div>
+                    </form>
+            </div>
+            
+        </div>
+        
+</div>

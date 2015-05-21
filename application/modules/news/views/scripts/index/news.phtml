@@ -1,0 +1,73 @@
+<div class="container">
+    <div id="content" class="single col-lg-12 col-md-12 col-sm-12">
+
+        <section class="singleheader-wrap">
+			<div class="singleheader">
+                <div class="container">
+                    <h3 class="new-title" style="text-align: left;"><?php echo $this->translate('Blog') ?></h3>
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <div class="single-title">
+                            <h3><?php echo $this->translate('News and Cosmetics Trends') ?></h3>
+                        </div>
+                    </div>
+                    <?php echo $this->translate('Due to unforeseen technical difficulties our Blog is  temporarily unavailable.'); ?><br><?php echo $this->translate('We apologize for any inconvenience.'); ?>
+                </div>  
+            </div>
+        </section>
+        <hr>
+    </div>
+        <div id="content" class="single col-lg-12 col-md-12 col-sm-12">
+            <div class="recent-posts">
+                <?php $counter = 1; ?>
+                <?php if(isset($this->paginator)): ?>
+                    <?php foreach($this->paginator as $newsItem):?>
+                        <?php if($newsItem['Translation'][$this->language]['slug']): ?>
+                            <?php if($counter%4 == 0 || $counter == 1): ?>
+                            <div class="col-lg-4 col-md-4 col-sm-4 first" data-effect="slide-bottom">
+                            <?php elseif($counter%2 == 0): ?>
+                            <div class="col-lg-4 col-md-4 col-sm-4" data-effect="slide-bottom">    
+                            <?php elseif($counter%3 == 0): ?>
+                            <div class="col-lg-4 col-md-4 col-sm-4 last" data-effect="slide-bottom">
+                            <?php endif; ?>
+                                <div class="post-container">
+                                    <div class="image-container">
+                                        <div class="he-wrap">
+                                            <div class="he-sliders" >
+                                                <?php if($newsItem['PhotoRoot']['offset']): ?>
+                                                    <img class="a0" src="/media/photos/<?php echo $newsItem['PhotoRoot']['offset'] ?>/305x209/<?php echo $newsItem['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $newsItem['PhotoRoot']['offset'] ?>/<?php echo $newsItem['PhotoRoot']['filename'] ?>" alt="<?php echo $newsItem['PhotoRoot']['alternate_text']; ?>" title="<?php echo $newsItem['PhotoRoot']['title'] ?>" />
+                                                <?php else: ?>
+                                                    <img class="a0" src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 77px; height: 77px" />
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class="he-view" >
+                                                <span class="he-pre a0" data-animate="fadeInLeft"></span>
+                                                <span class="he-next a0" data-animate="fadeInRight"></span>
+                                            </div>
+                                        </div>
+                                    </div><!-- img container -->
+                                    <a href="<?php echo $this->url(array('slug' => $newsItem['Translation'][$this->language]['slug']), 'domain-i18n:news-item') ?>" title="">
+                                        <h3><?php echo $newsItem['Translation'][$this->language]['title']; ?></h3>
+                                    </a>
+                                    <p><?php echo MF_Text::truncate($newsItem['Translation'][$this->language]['content'], 1, 'paragraphs') ?></p>
+                                    <a class="readmore" href="<?php echo $this->url(array('slug' => $newsItem['Translation'][$this->language]['slug']), 'domain-i18n:news-item') ?>">
+                                        <?php echo $this->translate('read more') ?>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endif; $counter++; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>	
+            </div><!-- recent posts -->
+                
+            <div class="clearfix"></div>
+            <hr>
+                
+            <div class=" text-center">
+		<ul class="pagination">
+                    <?php echo $this->paginationControl($this->paginator, 'Sliding', 'news_pagination_control.phtml') ?>
+		</ul>
+            </div>  
+                        
+        </div><!-- end content -->
+</div><!-- end container -->
+

@@ -1,0 +1,23 @@
+
+    <!-- Previous page link -->
+    <?php if (isset($this->previous)): ?>
+        <a class="prev" href="<?php echo $this->url(array('page' => $this->previous), 'domain-i18n:producer-page'); ?>?<?php echo http_build_query(array('count' => $this->count, 'sorted' => true)) ?>"><span>&laquo; <?php echo $this->translate('previous') ?></span></a>
+    <?php else: ?>
+        <a class="prev"><span>&laquo; <?php echo $this->translate('previous') ?></span></a>
+    <?php endif; ?>
+
+    <!-- Numbered page links -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+    <?php if ($page != $this->current): ?>
+        <a href="<?php echo $this->url(array('page' => $page), 'domain-i18n:producer-page') ?>?<?php echo http_build_query(array('count' => $this->count, 'sorted' => true)) ?>"><?php echo $page; ?></a>
+    <?php else: ?>
+        <a class="active" href="#"><?php echo $page; ?></a>
+    <?php endif; ?>
+    <?php endforeach; ?>
+
+    <!-- Next page link -->
+    <?php if (isset($this->next)): ?>
+        <a class="next" href="<?php echo $this->url(array('page' => $this->next), 'domain-i18n:producer-page'); ?>?<?php echo http_build_query(array('count' => $this->count, 'sorted' => true)) ?>"><span><?php echo $this->translate('next') ?> &raquo;</span></a>
+    <?php else: ?>
+        <a class="next"><span><?php echo $this->translate('next') ?> &raquo;</span></a>
+    <?php endif; ?>

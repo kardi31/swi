@@ -1,0 +1,26 @@
+<section class="page_title_2 t_align_c relative wrapper translucent_bg_color_scheme image_bg_9">
+    <div class="container">
+        <h1 class="color_light   fw_light m_bottom_5">Moje konto</h1>
+        <!--breadcrumbs-->
+        <ul class="hr_list d_inline_m breadcrumbs">
+            <li class="m_right_8 f_xs_none"><a href="/" class="color_light   d_inline_m m_right_10">Strona główna</a><i class="icon-angle-right d_inline_m color_light  fs_small"></i></li>
+            <li><a class="color_light   d_inline_m">Moje konto</a></li>
+        </ul>
+    </div>
+</section>
+<div class="section_offset counter">
+    <div class="container">
+        <div class="row">
+             <?php echo $this->partial('profile/sidebar.phtml', 'user'); ?>
+            <section class="col-lg-9 col-md-9 col-sm-9 m_bottom_70 m_xs_bottom_30">
+                <?php if($this->messages()->count()): ?>
+                    <div class="alert alert-danger">
+                        <?php echo $this->messages()->render() ?>
+                    </div>
+                <?php endif; ?>
+                <h2><?php echo $this->translate('Welcome to your profile'); ?></h2>
+
+            </section>
+        </div>
+    </div>
+</div>

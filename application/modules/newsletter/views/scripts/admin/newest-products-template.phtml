@@ -1,0 +1,100 @@
+<table width="800px" style="margin-left: auto; margin-right: auto;"> 
+    <tr style="font-size: 14px; color: #fff; ">
+        <td style="padding-top: 8px !important;
+padding-bottom: 8px !important;
+padding-left:20px;
+background: url(/images/layout/belkabg.png) repeat-x;
+margin-top: 10px;
+margin-bottom: 15px;
+min-height: 20px;
+font-size:20px;
+width: 100%;" colspan="3">
+            <?php echo $this->translate('Last news/Promotions') ?>
+        </td>
+    </tr>
+    <tr>
+        <?php foreach($this->newestProducts as $newestProduct): ?>
+            <td style="padding: 10px; text-align: center;">
+                <a href="<?php echo $this->url(array('category' => $newestProduct['Categories'][0]['Translation'][$this->language]['slug'], 'product' => $newestProduct['Translation'][$this->language]['slug']), 'domain-product') ?>/#product">
+                    <?php if($newestProduct['PhotoRoot']['offset']): ?>
+                        <img src="/media/photos/<?php echo $newestProduct['PhotoRoot']['offset'] ?>/150x210/<?php echo $newestProduct['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $newestProduct['PhotoRoot']['offset'] ?>/<?php echo $newestProduct['PhotoRoot']['filename'] ?>" alt="<?php echo $newestProduct['PhotoRoot']['title'] ?>" width="150px;" height="210px;"/>
+                    <?php else: ?>
+                        <img src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 150px; height: 210px" />
+                    <?php endif; ?>
+                </a>
+            </td>
+        <?php endforeach; ?>
+   </tr>
+   <tr>
+        <?php foreach($this->newestProducts as $newestProduct): ?>
+            <td style="padding: 10px; text-align: center; vertical-align: top; width: 33%;">
+                    <div>
+                        <a href="<?php echo $this->url(array('category' => $newestProduct['Categories'][0]['Translation'][$this->language]['slug'], 'product' => $newestProduct['Translation'][$this->language]['slug']), 'domain-product') ?>/#product" style="font-size: 14px; color: #5d563c; text-decoration: none;">
+                            <?php echo $newestProduct['Translation'][$this->language]['name']; ?>
+                        </a>
+                    </div>
+                    <div>
+                        <?php
+                            $arrayDiscounts = array($newestProduct['Discount'], $newestProduct['Producer']['Discount']);
+                            $flag = MF_Discount::getPriceWithDiscount($newestProduct['promotion_price'], $arrayDiscounts);
+                            $flag = $flag['flag'];
+                        ?>
+                        <?php if($flag || $newestProduct['promotion']): ?>
+                            <?php if($newestProduct['promotion']): ?>
+                                <?php if($flag): ?>
+                                    <span style="font-size: 14px; padding-right: 5px; color: #DC013B;"><?php echo $this->translate('buy now') ?></span> 
+                                        <span style="font-size: 16px; color: #9d6930;">
+                                            <?php 
+                                                $price = MF_Discount::getPriceWithDiscount($newestProduct['promotion_price'], $arrayDiscounts); 
+                                                $price = $price['price'];
+                                                    $splitPrice = explode('.',$price['price']); ?>
+                                                    <span style="line-height: 20px;"><?php echo $splitPrice[0]; ?></span>
+                                                    <span style="vertical-align: top; font-size: 0.6em; margin-left: -4px;margin-top: -2px;display:inline-block "><?php echo $splitPrice[1]; ?></span> zł
+                                        </span>
+                                        <div style="text-decoration: line-through; color: red; margin-left: 70px;">
+                                            <div style="font-size: 14px; color: #373737;">
+                                                <?php echo $splitPrice = explode('.',$newestProduct['price']); ?>
+                                                    <span style="line-height: 20px;"><?php echo $splitPrice[0]; ?></span>
+                                                    <span style="vertical-align: top; font-size: 0.6em; margin-left: -4px; margin-top: -2px;display:inline-block"><?php echo $splitPrice[1]; ?></span> zł
+                                            </div>
+                                        </div>
+                                 <?php else: ?>
+                                    <span style="font-size: 14px; padding-right: 5px; color: #DC013B;"><?php echo $this->translate('buy now') ?></span> <span style="font-size: 16px; color: #9d6930;"><?php $splitPrice = explode('.',$newestProduct['promotion_price']); ?>
+                                                    <span style="line-height: 20px;"><?php echo $splitPrice[0]; ?></span>
+                                                    <span style="vertical-align: top; font-size: 0.6em; margin-left: -4px;margin-top: -2px;display:inline-block "><?php echo $splitPrice[1]; ?></span> zł</span>
+                                    <div style="text-decoration: line-through; color: red; margin-left: 70px;">
+                                         <div style="font-size: 14px; color: #373737;"><?php echo $newestProduct['price']; ?> zł</div>
+                                    </div>
+                                 <?php endif; ?>
+                            <?php else: ?> 
+                                <span style="font-size: 14px; padding-right: 5px; color: #DC013B;"><?php echo $this->translate('buy now') ?></span> 
+                                    <span style="font-size: 16px; color: #9d6930;">
+                                        <?php 
+                                            $price = MF_Discount::getPriceWithDiscount($newestProduct['price'], $arrayDiscounts); 
+                                            $price = $price['price'];
+                                            $splitPrice = explode('.',$price['price']); ?>
+                                                    <span style="line-height: 20px;"><?php echo $splitPrice[0]; ?></span>
+                                                    <span style="vertical-align: top; font-size: 0.6em; margin-left: -4px;margin-top: -2px;display:inline-block "><?php echo $splitPrice[1]; ?></span> zł
+                                    </span>
+                                    <div style="text-decoration: line-through; color: red; margin-left: 70px;">
+                                         <div style="font-size: 14px; color: #373737;"><?php echo $splitPrice = explode('.',$newestProduct['price']); ?>
+                                                    <span style="line-height: 20px;"><?php echo $splitPrice[0]; ?></span>
+                                                    <span style="vertical-align: top; font-size: 0.6em; margin-left: -4px; margin-top: -2px;display:inline-block"><?php echo $splitPrice[1]; ?></span> zł
+                                    </div>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <span style="font-size: 14px; padding-right: 5px; color: #DC013B;"><?php echo $this->translate('buy now') ?></span> <span style="font-size: 16px; color: #9d6930;"><?php $splitPrice = explode('.',$newestProduct['price']); ?>
+                                                    <span style="line-height: 20px;"><?php echo $splitPrice[0]; ?></span>
+                                                    <span style="vertical-align: top; font-size: 0.6em; margin-left: -4px; margin-top: -2px;display:inline-block"><?php echo $splitPrice[1]; ?></span> zł</span>
+                        <?php endif; ?>
+                            <?php /*
+                        <a href="<?php echo $this->url(array('category' => $newestProduct['Categories'][0]['Translation'][$this->language]['slug'], 'product' => $newestProduct['Translation'][$this->language]['slug']), 'domain-share-i18n:product') ?>" style="font-size: 14px; color: #9d6930; text-decoration: none;">
+                            <?php echo $newestProduct['price']; ?> zł
+                        </a>
+                             
+                             */ ?>
+                    </div>
+            </td>
+        <?php endforeach; ?>
+   </tr>
+</table>

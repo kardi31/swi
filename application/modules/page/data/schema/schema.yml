@@ -1,0 +1,53 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Page:
+  tableName: page_page
+  actAs:
+    I18n:
+      fields: [title, slug, content]
+      tableName: page_page_translation
+      className: PageTranslation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    type:
+      type: string(255)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    photo_root_id:
+      type: integer(4)
+PageTranslation:
+  tableName: page_page_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    Page:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many

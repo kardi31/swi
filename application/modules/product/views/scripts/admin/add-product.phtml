@@ -1,0 +1,207 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $("#save-button").click(function(e) {
+        e.preventDefault();
+
+        $("#form").append("<input type='hidden' name='saveOnly' value='1' />");
+        $("#form #submit").trigger("click");
+    });
+    
+//    function str_repeat(str, times) {
+//        return new Array(++times).join(str);
+//    }
+//
+//
+//    function format(state) {
+//        var regexp = /^(\|----)+/;
+//        var indent = regexp.exec(state.text);
+//        
+//        var indentLength = (parseInt(indent[0].length / 5) * 20) - 20;
+//        var string = state.text.replace(/^\|(.*)----/, "");
+//        
+//        return "<div class='select-item' style='padding-left: "+indentLength+"px;'>" + string + "</div>";
+//        $remote.select2('data', null)
+//    }
+//
+//    $("#category_id").select2({
+////        allowClear: true,
+//        formatResult: format,
+//        formatSelection: format,
+//        escapeMarkup: function(m) { return m; }
+//    });
+////    $("#category_id").select2();
+
+
+    $("#category_tree_selection").dynatree({
+        checkbox: true,  
+        autoCollapse: true
+    });
+    
+    $("#category_tree_selection").click(function(){
+        
+        var selectedNodes = $("#category_tree_selection").dynatree("getTree").getSelectedNodes(); 
+
+        var selectedKeys = $.map(selectedNodes, function(node){ 
+            return node.data.key; 
+        }); 
+        
+        var ids = new Array();
+        for(var x=0; x<selectedKeys.length; x++){
+            var id = selectedKeys[x];
+            ids[x] = id.replace(/^node/, "");
+        }
+        
+        $("#category_id option").each(function(i, elem) {
+            $(elem).attr("selected", false);
+        });
+       
+    
+        for(id in ids) {
+            var option = $("#category_id option[value="+ids[id]+"]");
+            if(option) {
+                $(option).attr("selected", "selected");
+            }
+        }   
+    });
+    
+    var checkboxReduced = $('#reduced_price');
+    if (checkboxReduced.is(':checked')){
+        $('.reduced-price').show();
+    }
+    else{
+        $('.reduced-price').hide();
+    }
+     
+    $('#reduced_price').click(function(e){
+        if (checkboxReduced.is(':checked')){
+            $('.reduced-price').show();
+        }
+        else{
+            $('.reduced-price').hide();
+        }
+    });
+    
+    $("#product_id").select2();
+    
+});
+</script>
+<div class="container_12 clearfix leading">
+    <div class="grid_12">
+        <div class="box">
+            
+            
+                    <?php if($this->form->isErrors()): ?>
+                    <div class="message error closeable">
+                        <span class="message-close"></span>
+                        <h3><?php echo $this->translate('Error') ?>!</h3>
+                    </div>
+                    <?php endif; ?>
+                    <?php if($this->messages()->count()): ?>
+                    <?php echo $this->messages()->render() ?>
+                    <?php endif; ?>
+
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Add product') ?></span>
+                </h4>
+                
+            </div>
+            
+            <div class="content">
+                    <form id="form" class="form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+
+                        <?php
+                        foreach($this->form->getElements() as $element) {
+                            if($element->hasErrors()) {
+                                $element->setAttrib('class', 'error');
+                            }
+                        }
+                        ?>
+
+                        <?php echo $this->form->code ?>
+                        <?php //echo $this->form->producer_id->setAttribs(array('class' => 'nostyle')) ?>
+                        <br/>
+                        <?php if ($this->form->category_id->hasErrors()): ?>
+                          <div class="box" style="border: 1px solid red; width: 97%;">     
+                        <?php else: ?>
+                          <div class="box" style="border: 1px solid black; width: 97%;"> 
+                        <?php endif; ?>
+                               <div class="title">
+                            <h4>
+                                <span class="icon16 iconic-icon-list-nested"></span>
+                                <span><?php echo $this->translate('Categories') ?></span>
+                            </h4>
+
+                            </div>
+                            <div id="category_tree_selection">
+                                <?php echo $this->partial('category-tree-selection.phtml', 'product', array('tree' => $this->categoryTree, 'parent' => $this->parent, 'adminLanguage' => $this->adminLanguage)) ?>
+                            </div>    
+                          </div>
+                        <span style="display: none;">
+                            <?php echo $this->form->category_id; ?>
+                        </span>
+                        <?php echo $this->form->discount_id->setAttribs(array('class' => 'nostyle')) ?>
+                        <?php echo $this->form->price ?>
+                        <?php echo $this->form->availability ?>
+                        <?php echo $this->form->new; ?>
+                        <?php echo $this->form->promotion; ?>
+                        <?php echo $this->form->promotion_price; ?>
+                        <?php // echo $this->form->distributor; ?>
+                        <?php // echo $this->form->most_frequently_purchased; ?>
+                        <?php // echo $this->form->reduced_price; ?>
+                        <?php // echo $this->form->youtube ?>
+                        <?php echo $this->form->vat ?>
+                        <?php //echo $this->form->product_id->setAttribs(array('class' => 'nostyle')) ?>
+                              
+                        <div class="page-header">
+                            <h4><?php echo $this->translate('Translations') ?></h4>
+                        </div>
+                    
+                        <ul id="myTab" class="nav nav-tabs pattern">
+                            <li class="dropdown">
+                                <?php foreach($this->languages as $key => $language): ?>
+                                <li class="<?php if($language == $this->adminLanguage): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                                <?php endforeach; ?>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <?php foreach($this->languages as $key => $language): ?>
+                            <div class="tab-pane<?php if($language == $this->adminLanguage): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                            <?php if($this->form->translations->getSubForm($language)): ?>
+                                <?php echo $this->form->translations->getSubForm($language)->name ?>
+                                
+                                <?php echo $this->form->translations->getSubForm($language)->description ?>
+                            <?php endif; ?>
+
+                            <div class="title" style ="margin-top: 30px;">
+
+                                <h4>
+                                    <span class="icon16 icomoon-icon-pencil"></span>
+                                    <span><?php echo $this->translate('Metatags') ?></span>
+                                </h4>
+
+                            </div>
+                            <div class="content clearfix">
+                                <?php echo $this->form->metatags->translations->getSubForm($language)->meta_title; ?>
+                                <?php echo $this->form->metatags->translations->getSubForm($language)->meta_description; ?>
+                                <?php echo $this->form->metatags->translations->getSubForm($language)->meta_keywords; ?>
+                            </div>
+
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <div class="form-actions">
+                             <?php echo $this->form->submit ?>
+                             <a href="<?php echo $this->adminUrl('list-product', 'product') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                        </div>
+                    </form>
+            </div>
+            </div>
+        </div>
+</div>

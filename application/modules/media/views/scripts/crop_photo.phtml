@@ -1,0 +1,112 @@
+<script type="text/javascript" src="/plugins/jcrop/js/jquery.Jcrop.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    var img = document.getElementById("img<?php echo intval(count($this->config) - 1) ?>");
+    
+    setTimeout(function(){crop()},500);
+    
+    function crop() {
+    //img.onload = function crop() {
+
+        var aspectWidthRatio = <?php echo $this->width ?> / $(img).width();
+        var aspectHeightRatio = <?php echo $this->height ?> / $(img).height(); 
+
+        <?php $data = $this->photo->crop_data ?>
+
+        <?php $i = 0; foreach($this->config as $key => $label): ?>
+            
+            <?php 
+            $dimensions = preg_match('/^(\d*)x(\d*)$/', $key, $match);
+            $w = $match[1];
+            $h = $match[2];
+            ?>
+            
+            var img<?php echo $i ?> = new Array();
+            
+            <?php if(strlen($w) && strlen($h)): ?>
+            var aspectRatio<?php echo $i ?> = <?php echo $w ?> / <?php echo $h ?>;
+            <?php endif; ?>
+        
+            <?php if(is_array($data) && array_key_exists($key, $data)): ?>
+                
+                img<?php echo $i ?>.selected = <?php echo (isset($data[$key]['w'])) ? $data[$key]['w'] : 0 ?> > 0;
+                var x = <?php echo (isset($data[$key]['x'])) ? $data[$key]['x'] : 0 ?>;
+                var y = <?php echo (isset($data[$key]['y'])) ? $data[$key]['y'] : 0 ?>;
+                var x2 = <?php echo (isset($data[$key]['x2'])) ? $data[$key]['x2'] : 0 ?>;
+                var y2 = <?php echo (isset($data[$key]['y2'])) ? $data[$key]['y2'] : 0 ?>;
+                
+            <?php endif; ?>
+            
+            $('#img<?php echo $i ?>').Jcrop({
+                <?php if(strlen($w) && strlen($h)): ?>
+                aspectRatio: aspectRatio<?php echo $i ?>,
+                <?php endif; ?>
+                <?php if(is_array($data) && array_key_exists($key, $data)): ?>
+                setSelect: [ Math.round(x / aspectWidthRatio), Math.round(y / aspectHeightRatio), Math.round(x2 / aspectWidthRatio), Math.round(y2 / aspectHeightRatio) ],
+                <?php endif; ?>
+                onSelect: function(c) {
+                    img<?php echo $i ?>.x = Math.round(aspectWidthRatio * c.x);
+                    img<?php echo $i ?>.y = Math.round(aspectHeightRatio * c.y);
+                    img<?php echo $i ?>.x2 = Math.round(aspectWidthRatio * c.x2);
+                    img<?php echo $i ?>.y2 = Math.round(aspectHeightRatio * c.y2);
+                    img<?php echo $i ?>.w = Math.round(aspectWidthRatio * c.w);
+                    img<?php echo $i ?>.h = Math.round(aspectHeightRatio * c.h);
+                }
+            });
+
+        <?php $i++; endforeach; ?>
+        
+        var missed = 0;
+    
+        $.sendCropData = function(callback) {
+            tmpData = new Array();
+            <?php $i = 0; foreach($this->config as $key => $label): ?>
+            if(typeof img<?php echo $i ?>.x != "undefined") {
+                tmpData.push({"cat": "<?php echo $key ?>", "x": img<?php echo $i ?>.x, "y": img<?php echo $i ?>.y, "x2": img<?php echo $i ?>.x2, "y2": img<?php echo $i ?>.y2, "w": img<?php echo $i ?>.w, "h": img<?php echo $i ?>.h });
+            } else if(img<?php echo $i ?>.selected != true) {
+                missed = 1;
+            }
+            <?php $i++; endforeach; ?>
+            
+            var dataArray = {
+                id: <?php echo $this->photo->id ?>,
+                filename: "<?php echo $this->photo->filename ?>",
+                offset: "<?php echo $this->photo->offset ?>",
+                <?php if($this->watermark): ?>
+                watermark: 1,
+                <?php endif; ?>
+                data: tmpData
+            };
+            
+            var data = JSON.stringify(dataArray);
+            $.ajax({
+                url: "<?php echo $this->adminUrl('crop-photo', 'media') ?>",
+                type: "post",
+                dataType: "json",
+                beforeSend: function(x) {
+                    if(x && x.overrideMimeType) {
+                        x.overrideMimeType("application/json;charset=UTF-8");
+                    }
+                    $("#save-all").after("<span class='loader'></span>");
+                },
+                data: { "data": data },
+                success: function(resp) {
+                    $("#crop_data").val(JSON.stringify(tmpData));
+                    callback();
+                }
+            });
+        };
+        
+    };
+    
+        
+});
+</script>
+
+<?php $i = 0; foreach($this->config as $key => $label): ?>
+<div class="crop-photo">
+    <h3><?php echo $this->translate($label) ?></h3>
+    <img id="img<?php echo $i ?>" src="/media/photos/<?php if(strlen($this->photo->offset)) echo $this->photo->offset . '/' ?><?php echo $this->photo->filename ?>" />
+</div>
+<?php $i++; endforeach; ?>

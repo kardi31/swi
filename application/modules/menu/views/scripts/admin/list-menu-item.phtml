@@ -1,0 +1,95 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#menu_item_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": true,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-menu-item-data', 'menu', array('id' => $this->menu['id'])) ?>",
+        "aaSorting": [[ 0, "desc" ]],
+        "aoColumns": [
+            null,
+            null,
+            null,
+            { "bSortable": false, sWidth: '50px' }
+        ]
+    });
+    
+    $("#menu_item_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+});
+</script>
+<div class="row-fluid">
+
+    <div class="span12">
+        <div class="box">
+            
+            <div class="title">
+
+                <h4 class="clearfix">
+                    <span class="icon16 icomoon-icon-list-view"></span>
+                    <span><?php echo $this->translate('Menu tree') ?></span>
+                    <form class="box-form right" action="<?php echo $this->form->getAction() ?>" method="post">
+                        <span class="span8">
+                            <input type="text" name="title" class="search-query span2 text" placeholder="<?php echo $this->translate('Title') ?>">
+                        </span>
+                        <span class="span4">
+                            <button class="btn btn-success btn-small" type="submit"><?php echo $this->translate('Add') ?></button>
+                        </span>
+                        <?php echo $this->form->menu_id ?>
+                        <?php echo $this->form->parent_id ?>
+                    </form>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+
+                <div id="menu_tree">
+                    <?php echo $this->partial('menu_tree.phtml', 'menu', array('tree' => $this->tree, 'parent' => $this->menuItem, 'language' => $this->language)) ?>
+                </div>
+                
+            </div>
+
+        </div><!-- End .box -->
+        
+    
+    
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-list-view"></span>
+                    <span><?php echo $this->translate('Manage menu') ?> <?php echo $this->menu['name'] ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+
+                <table id="menu_item_table" cellpadding="0" cellspacing="0" border="0" class="responsive display table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><?php echo $this->translate('Name') ?></th>
+                            <th><?php echo $this->translate('Menu') ?></th>
+                            <th><?php echo $this->translate('Options') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            
+            </div>
+
+        </div><!-- End .box -->
+</div>
+
+</div>

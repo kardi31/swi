@@ -1,0 +1,66 @@
+<section id="bc-t">
+    <div class="container">
+        <ul class="breadcrumb">
+                <li><a href="/">Strona główna</a></li><li><span class="sep">   →   </span></li><li><a href="#">O klubie</a></li>
+        </ul>
+
+        <h1 class="blog-title">O klubie</h1>
+    </div>
+</section>
+    <!-- Content Section. If need sidebars use the tag: <aside>. If articles use tag: <article> -->
+<section id="club">
+        <div class="container">
+                <!-- POST -->
+                <article class="club-post">
+                        <div class="club-content">
+                                <div class="img-wrap col-3">
+                                    <?php if($this->page->get('PhotoRoot')): 
+                                    $photoPath = MF_Text::getPhotoPath($this->page->get('PhotoRoot'),'301x298');
+                                ?>
+                                    <img src="<?php echo $photoPath; ?>" title="<?php echo $this->page->get('PhotoRoot')->get('title'); ?> Świt Krzeszowice" alt="<?php echo $this->page->get('PhotoRoot')->get('title'); ?>"/>
+                                    <div class="bot-name">
+                                        <h3><?php echo $this->page->get('PhotoRoot')->get('title'); ?></h3>
+                                        <span>Prezes klubu</span>
+                                    </div>
+                                    <?php endif; ?>
+                                </div>
+                                        <p class="col-9"><?php echo strip_tags($this->page['Translation'][$this->language]['content']); ?></p>
+                                    <?php if(is_object($this->page->get('PhotoRoot')->getNode()->getChildren())&&$this->page->get('PhotoRoot')->getNode()->getChildren()->getFirst()): 
+                                        $photoPath = MF_Text::getPhotoPath($this->page->get('PhotoRoot')->getNode()->getChildren()->getFirst(),'940x365');
+                                    else:
+                                        $photoPath = "http://placehold.it/940x365";
+                                    endif;
+                                ?>
+                                <img src="<?php echo $photoPath; ?>" alt="Świt Krzeszowice" title="Świt Krzeszowice Stadion"/>
+                                    
+                        <!-- TABS -->
+                                <div id="tab" class="tabs">
+                                    <ul class="clearfix">
+                                        <li><a href="#section-1" >Zarząd</a></li>
+                                        <li><a href="#section-2" >Dla mediów</a></li>
+<!--                                        <li><a href="#section-3" >Media guide</a></li>
+                                        <li><a href="#section-4" >Sponsors</a></li>-->
+                                    </ul>
+
+
+                                    <div id="section-1" class="tab-content ">
+                                        <?php foreach($this->boards as $board): ?>
+                                            <div class="col-4 margin-10">
+                                                    <div class="col-3">&nbsp;</div>
+                                                    <div class="col-9 dir-n"><a href="#"><?php echo $board['first_name']." ".$board['last_name']; ?></a><span><?php echo $board['position']; ?></span></div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                            
+
+                                    </div>
+                                    <div id="section-2" class="tab-content ">
+                                        <p class="col-9"><?php echo strip_tags($this->dlaMediow['Translation'][$this->language]['content']); ?></p>
+                                    </div>
+                                </div>
+
+
+                        </div>
+                </article>
+
+        </div>
+</section>

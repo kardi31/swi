@@ -1,0 +1,45 @@
+<?php 
+$route = $this->route;
+switch($route) {
+    case 'domain-homepage':
+        $route = 'domain-i18n:homepage';
+        break;
+}
+
+?>
+<?php if($this->route):
+    ?>
+        <li>         
+                     <a href="#<?php //echo $this->url(array('lang' => $this->language, '@locale' => $this->language), $route);?>">
+                              <span class="<?php echo $this->language; ?>"></span>
+                               <?php if($this->language == "pl")
+                            echo "Polski";
+                        else
+                            echo "English";
+             ?>
+                     </a> 
+                    
+                    <img class="iconStrzalka" src="/images/icon_strzalka.png" />
+        </li>
+    <?php 
+    
+    
+    foreach($this->languages as $language):
+        if($language==$this->language)
+            continue;
+            ?>
+        <li> 
+           
+             <a href="#<?php// echo $this->url(array('lang' => $language, '@locale' => $language), $route);?>">
+                      <span class="<?php echo $language; ?>"></span>
+               <?php if($language == "pl")
+                        echo "Polski";
+                    else
+                        echo "English";
+             ?>
+             </a>
+           
+        </li>
+      
+    <?php endforeach; ?>
+<?php endif; ?>

@@ -1,0 +1,69 @@
+<div class="row-fluid">
+    
+    <div class="grid_12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Assign') ?> <?php echo $this->discount->Translation[$this->language]->name.' '.$this->discount->getAmount(); ?>% <?php echo $this->translate('for groups') ?></span>
+                </h4>
+                
+            </div>
+
+            <?php if($this->form->isErrors()): ?>
+            <div class="message error closeable">
+                <span class="message-close"></span>
+                    <h3><?php echo $this->translate('Error') ?>!</h3>
+            </div>
+            <?php endif; ?>
+            <?php if($this->messages()->count()): ?>
+            <?php echo $this->messages()->render() ?>
+            <?php endif; ?>
+            
+            <div class="content clearfix">
+                <form id="form" class="form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+                    <?php
+                    foreach($this->form->getElements() as $element) {
+                        if($element->hasErrors()) {
+                            $element->setAttrib('class', 'error');
+                        }
+                    }
+                    ?>                   
+
+                            <div class="content" style="display: block;">
+                            <div class="leftBox">
+                                <div class="searchBox"><input type="text" id="box1Filter" class="searchField" placeholder="<?php echo $this->translate('filter ...') ?>"/><button id="box1Clear" type="button" class="btn"><span class="icon12  icomoon-icon-cancel-3"></span></button></div>
+                                <?php echo $this->form->group_id->setAttribs(array('class' => 'multiple nostyle', 'id' => 'box1View', 'style' => 'height:300px; width:160%;')) ?>
+                                <span id="box1Counter" class="count"></span>
+                                <div class="dn"><select id="box1Storage" name="box1Storage" class="nostyle"></select></div>
+                            </div>
+                            <div class="dualBtn">
+                                <button id="to2" type="button" class="btn" ><span class="icon12 minia-icon-arrow-right-3"></span></button>
+                                <button id="allTo2" type="button" class="btn" ><span class="icon12 iconic-icon-last"></span></button>
+                                <button id="to1" type="button" class="btn marginT5"><span class="icon12 minia-icon-arrow-left-3"></span></button>
+                                <button id="allTo1" type="button"class="btn marginT5" ><span class="icon12 iconic-icon-first"></span></button>   
+                            </div>
+                            <div class="rightBox">
+                                <div class="searchBox"><input type="text" id="box2Filter" class="searchField" placeholder="<?php echo $this->translate('filter ...') ?>" /><button id="box2Clear"  type="button" class="btn" ><span class="icon12  icomoon-icon-cancel-3"></span></button></div>                        
+                                <?php echo $this->form->group_selected->setAttribs(array('class' => 'multiple nostyle', 'id' => 'box2View', 'style' => 'height:300px; width:150%;')) ?> 
+                                <span id="box2Counter" class="count"></span>
+                                <div class="dn"><select id="box2Storage" class="nostyle"></select></div>
+                            </div>
+                            <div class="clear"></div>
+
+
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-assign-discount', 'product', array('id' => $this->discount->getId())) ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div> 
+                            
+                </form          
+            </div>
+        </div>
+        
+    </div>
+    
+</div>

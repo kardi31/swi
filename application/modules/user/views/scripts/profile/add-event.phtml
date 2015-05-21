@@ -1,0 +1,56 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    tsf('#event_date').datetimepicker({
+        dateFormat: 'dd/mm/yy'
+    });
+  
+  <?php if ($this->language == 'en'): ?>
+        $('button#submit').css('background', "url('/images/layout/ajurweda/dodaj_wydarzenie_en.png') no-repeat"); 
+  <?php endif; ?>
+
+});
+</script>
+
+<section id="add-event">
+    <header>
+        <?php echo $this->translate('Add event') ?>
+    </header>
+    <div class="add_event_content">
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post">
+            
+            <div class="translations">
+                <ul id="myTab" class="nav nav-tabs pattern">
+                    <li class="dropdown">
+                        <?php foreach($this->languages as $key => $language): ?>
+                            <li class="<?php if($language == $this->language): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                            <?php endforeach; ?>
+                        </li>
+                </ul>
+               
+                <div class="tab-content">
+                    <?php foreach($this->languages as $key => $language): ?>
+                        <div class="tab-pane<?php if($language == $this->language): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                            <?php if($this->form->translations->getSubForm($language)): ?>
+                                <?php echo $this->form->translations->getSubForm($language)->title ?>
+                            <?php endif; ?>
+                        </div>
+                   <?php endforeach; ?>
+                 </div>
+            </div>
+             
+            <?php echo $this->form->parent_id ?>
+            <div class="event-type">
+                <?php echo $this->form->event_type ?>
+            </div>
+            <?php echo $this->form->location; ?>
+            <?php echo $this->form->event_date; ?>
+            <?php echo $this->form->href; ?>
+            <?php echo $this->form->contact; ?>
+            <?php echo $this->form->id ?>
+            <?php echo $this->form->submit ?>
+        </form>
+    </div>
+</section>
+                

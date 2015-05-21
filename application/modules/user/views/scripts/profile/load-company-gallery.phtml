@@ -1,0 +1,10 @@
+<?php if(count($this->photos)): ?>
+<?php foreach($this->photos as $photo): ?>
+    <li>
+        <?php if(strlen($photo['filename'])): ?>
+        <img src="/media/photos/<?php echo $photo['offset'] ?>/200x/<?php echo $photo['filename'] ?>" /><br />
+        <a class="delete-gallery-photo" href="<?php echo $this->url(array('action' => 'delete-gallery-photo', 'id' => $photo['id']), 'domain-user-profile') ?>"><?php echo $this->translate('Delete') ?></a>
+        <?php endif; ?>
+    </li>   
+<?php endforeach; ?>
+<?php endif; ?>

@@ -1,0 +1,108 @@
+<script src="/assets/jquery.inputmask/jquery.inputmask.bundle.js" ></script>
+<script>
+    $(document).ready(function(){
+       $(".hrspicker").inputmask({
+            alias: "datetime",
+            mask: "h:s",
+            placeholder: "hh:mm"
+        }); 
+    });
+</script>
+<style>
+    
+    .timetable table,.timetable td,.timetable tr {
+        border:1px solid black;
+    }
+    .timetable td{
+        padding:7px;
+    }
+    .timetable td:first-child{
+        background:black;
+        color:#fff;
+    }
+    </style>
+
+<div class="container_12 clearfix leading">
+    
+    <div class="row-fluid">
+
+        
+        
+        <div class="span12 timetable" >
+
+            <div class="box">
+                
+                <table>
+      
+  <?php foreach($this->teamsTimetable as $key => $tt): ?>
+      
+                    <tr>
+                        <td><?php echo $key; ?></td>
+                        <?php foreach($tt as $key2=> $teamp): ?>
+                        <td>
+                            <?php echo $key2." - ".$teamp; ?>
+                        </td>
+                        <?php endforeach; ?>
+                    </tr>
+  <?php endforeach; ?>
+    </table>
+                
+                <?php if($this->form->isErrors()): ?>
+                    <div class="message error closeable">
+                        <span class="message-close"></span>
+                        <h3><?php echo $this->translate('Error') ?>!</h3>
+                    </div>
+                <?php endif; ?>
+                <?php if($this->messages()->count()): ?>
+                    <?php echo $this->messages()->render() ?>
+                <?php endif; ?>
+
+                <div class="content">
+                    <form id="form" class="form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+                        <?php foreach($this->form->getElements() as $element) {
+                            if($element->hasErrors()) {
+                                $element->setAttrib('class', 'error');
+                            }
+                        } ?>
+                        <h2> <?php echo $this->league->name; ?></h2>
+                        Data <br />
+                        <?php echo $this->form->date ?><br /> <br />
+                        <?php  for($i=1;$i<=10;$i=$i+2): 
+                            
+                            $timeCounter = round($i/2);
+                            echo $this->form->{'time'.$timeCounter};
+                            echo $this->form->{'team'.$i}->setAttrib('class','nostyle');
+                            echo $this->form->{'team'.($i+1)}->setAttrib('class','nostyle');
+                            echo "<br />";
+                        endfor;
+                        ?>
+                        <div class="form-actions">
+                             <?php echo $this->form->submit ?>
+                             <!--<a href="<?php echo $this->adminUrl('list-payment-type', 'order'); ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>-->
+                        </div>  
+                    </form>
+                </div>
+
+            </div><!-- End .box -->
+    <?php 
+foreach($this->data as $data):
+    $date = substr($data['match_date'],0,10); 
+    $dzien = date('N', strtotime($date));
+    $dni_tygodnia = array('Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota','Niedziela');
+
+    
+    echo $dni_tygodnia[$dzien-1]." ".substr($data['match_date'],8,2).".".substr($data['match_date'],5,2).".".substr($data['match_date'],0,4)."<br>";
+    foreach($this->timetable as $timetable):
+        if(substr($timetable['match_date'],0,10)==substr($data['match_date'],0,10))
+             echo substr($timetable['match_date'],11,5)."  ".$timetable['Team1']['name']." : ".$timetable['Team2']['name']." <br />";
+    endforeach;
+    echo "<br />";
+endforeach;
+?>
+        </div><!-- End .span12 -->
+    
+</div>
+
+   
+    
+</div>

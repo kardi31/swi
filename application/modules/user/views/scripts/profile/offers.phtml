@@ -1,0 +1,27 @@
+<section class="profile span8">
+    <header class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Offers') ?></h3>
+        <span class="span4"><a href="<?php echo $this->url(array('action' => 'offers-new'), 'domain-user-profile') ?>" class="btn btn-small btn-success pull-right"><?php echo $this->translate('Add offer') ?></a></span>
+    </header>
+    
+    <?php if(isset($this->paginator)): ?>
+    <div class="accordion" id="accordion2">
+        <?php $i = 0; foreach($this->paginator as $offer): ?>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-parent="#accordion2" href="<?php echo $this->url(array('action' => 'offers-show', 'offer-id' => $offer['id'])) ?>">
+                    <span><?php echo $offer['title'] ?></span>
+                    <span class="pull-right"><?php echo $offer['deal_count'] ?> / <?php echo $offer['deal_message_count'] ?></span>
+                </a>
+            </div>
+            <div id="collapse" class="accordion-body collapse">
+            </div>
+        </div>
+        <?php $i++; endforeach; ?>
+    </div>
+    <div class="pagination">
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'profile_pagination_control.phtml'); ?>
+    </div>  
+    <?php endif; ?>
+    
+</section>

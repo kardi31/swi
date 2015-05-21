@@ -1,0 +1,61 @@
+<?php if ($this->pageCount > 1): ?>
+    <!-- Previous page link -->
+    <?php if (isset($this->previous)): ?>
+        <a class="prev" href="<?php echo $this->url(array('page' => $this->previous), 'domain-news'); ?>"><span>&laquo;</span></a>
+    <?php else: ?>
+        <a class="prev"><span>&laquo;</span></a>
+    <?php endif; ?>
+
+    <!-- Numbered page links -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+    <?php if ($page != $this->current): ?>
+        <a href="<?php echo $this->url(array('page' => $page), 'domain-news') ?>"><?php echo $page; ?></a>
+    <?php else: ?>
+        <a class="active" href="#"><?php echo $page; ?></a>
+    <?php endif; ?>
+    <?php endforeach; ?>
+
+    <!-- Next page link -->
+    <?php if (isset($this->next)): ?>
+        <a class="next" href="<?php echo $this->url(array('page' => $this->next), 'domain-news'); ?>"><span>&raquo;</span></a>
+    <?php else: ?>
+        <a class="next"><span>&raquo;</span></a>
+    <?php endif; ?>
+<?php endif; ?>
+
+
+
+
+
+<?php /*
+
+
+
+<?php if ($this->pageCount > 1): ?>
+<ul>
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+    <li><a href="<?php echo $this->url(array('page' => $this->previous), 'domain-news-page', false, false); ?>">&laquo;</a></li>
+<?php else: ?>
+  
+<?php endif; ?>
+ 
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+    <li><a href="<?php echo $this->url(array('page' => $page), 'domain-news-page', false, false); ?>"><?php echo $page; ?></a></li>
+  <?php else: ?>
+    <li><a class="active"><?php echo $page; ?></a></li>
+  <?php endif; ?>
+<?php endforeach; ?>
+ 
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+    <li><a href="<?php echo $this->url(array('page' => $this->next), 'domain-news-page', false, false); ?>">&raquo;</a></li>
+<?php else: ?>
+  
+<?php endif; ?>
+</ul>
+<?php endif; ?>
+ * 
+ */ ?>

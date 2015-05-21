@@ -1,0 +1,133 @@
+<script type="text/javascript">
+    <?php if ($this->language == 'en'): ?>
+        $('button#submit').css('background', "url('/images/layout/ajurweda/dodaj_firme_en.png') no-repeat 0px -15px"); 
+    <?php endif; ?>
+</script>
+<script src="/js/googlemapFront.js"></script> 
+
+<div class="content-profile">
+    <header>
+        <?php echo $this->translate('Company in catalog') ?>
+    </header>
+    <div class="con">
+        <?php if($this->company->getId()): ?>
+             <a href="<?php echo $this->url(array('action' => 'edit-company'), 'domain-user-profile') ?>">
+            <span class="edit_company_button"/>
+                <?php if ($this->language == 'en'): ?>
+                    <img src="/images/layout/ajurweda/edytuj_uzupelnij_en.png"/>
+                <?php else: ?>
+                    <img src="/images/layout/ajurweda/edytuj_uzupelnij_pl.png"/>
+                <?php endif; ?>
+            </span>
+            </a>
+            <ul class="company_data">
+                <li style="font-weight: bold;"><?php echo $this->translate('COMPANY DATA') ?></li>
+                <?php if ($this->company->Translation[$this->language]->name): ?>
+                    <li><span><?php echo $this->translate('Name') ?>: </span><span class="desc"><?php echo $this->company->Translation[$this->language]->name; ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->Translation[$this->language]->description): ?>
+                    <li><span><?php echo $this->translate('Description') ?>: </span><span class="desc"><?php echo $this->company->Translation[$this->language]->description; ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getEmail()): ?>
+                    <li><span><?php echo $this->translate('Email') ?>: </span><span class="desc"><?php echo $this->company->getEmail(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getEmail2()): ?>
+                    <li><span><?php echo $this->translate('Next e-mail') ?>: </span><span class="desc"><?php echo $this->company->getEmail2(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getEmail3()): ?>
+                    <li><span><?php echo $this->translate('Next e-mail') ?>: </span><span class="desc"><?php echo $this->company->getEmail3(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getWebsite()): ?>
+                    <li><span><?php echo $this->translate('Website') ?>: </span><span class="desc"><?php echo $this->company->getWebsite(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getWebsite2()): ?>
+                    <li><span><?php echo $this->translate('Next website') ?>: </span><span class="desc"><?php echo $this->company->getWebsite2(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getWebsite3()): ?>
+                    <li><span><?php echo $this->translate('Next website') ?>: </span><span class="desc"><?php echo $this->company->getWebsite3(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getPhone()): ?>
+                    <li><span><?php echo $this->translate('Phone') ?>: </span><span class="desc"><?php echo $this->company->getPhone(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getProvince()): ?>
+                    <li><span><?php echo $this->translate('Province') ?>: </span><span class="desc"><?php echo $this->company->getProvince(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getCity()): ?>
+                    <li><span><?php echo $this->translate('City') ?>: </span><span class="desc"><?php echo $this->company->getCity(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getAddress()): ?>
+                    <li><span><?php echo $this->translate('Address') ?>: </span><span class="desc"><span><?php echo $this->company->getAddress(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getPostCode()): ?>
+                    <li><span><?php echo $this->translate('Postal code') ?>: </span><span class="desc"><?php echo $this->company->getPostCode(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getNip()): ?>
+                    <li><?php echo $this->translate('Nip') ?>: </span><span class="desc"><span><?php echo $this->company->getNip(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->getKrsEdg()): ?>
+                    <li><span><?php echo $this->translate('Number KRS or EDG') ?>: </span><span class="desc"><?php echo $this->company->getKrsEdg(); ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->get('BusinessCard')): ?>
+                    <li><span><?php echo $this->translate('Type of business card') ?>: </span><span class="desc"><?php echo $this->company->get('BusinessCard')->Translation[$this->language]->name ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->get('BasicActivity')->Translation[$this->language]->name && $this->company->get('BasicActivity')->id != 14): ?>
+                    <li><span><?php echo $this->translate('Main activity') ?>: </span><span class="desc"><?php echo $this->company->get('BasicActivity')->Translation[$this->language]->name ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->get('BasicActivity')->id == 14): ?>
+                    <li><span><?php echo $this->translate('Main activity') ?>: </span><span class="desc"><?php echo $this->company->basic_activity_name ?></span></li>
+                <?php endif; ?>
+                <?php if ($this->company->get('OtherActivities')): ?>
+                    <li>
+                        <span><?php echo $this->translate('Other activities') ?>: </span><span class="desc">
+                            <?php foreach($this->company->get('OtherActivities') as $otherActivity): ?>
+                                <?php echo $otherActivity->Translation[$this->language]->name; ?> <br/>
+                            <?php endforeach; ?>
+                        </span>
+                    </li>
+                <?php endif; ?>
+                <?php if ($this->company['another_address'] != 1): ?>
+                    <li style="margin-top:20px; font-weight: bold;"><?php echo $this->translate('ADDRESS THE BUSINESS') ?></li>
+                    <li><span><?php echo $this->translate('City') ?>: </span><span class="desc"><?php echo $this->company['business_city']; ?></span></li>
+                    <li><span><?php echo $this->translate('Address') ?>: </span><span class="desc"><span><?php echo $this->company['business_address']; ?></span></li>
+                    <li><span><?php echo $this->translate('Postal code') ?>: </span><span class="desc"><?php echo $this->company['business_post_code']; ?></span></li>
+                <?php endif; ?>
+            </ul>
+        <?php if($this->company->get('BusinessCard')->getType() == "premium"): ?>
+            <div class="logo">
+                 <span class="title">
+                     <?php echo $this->translate('Logo') ?>
+                 </span>
+                 <?php if(strlen($this->company['PhotoRoot']['filename'])): ?>
+                    <img src="/media/photos/<?php echo $this->company['PhotoRoot']['offset'] ?>/200x/<?php echo $this->company['PhotoRoot']['filename'] ?>" /><br />
+                 <?php else: ?>
+                    <img src="/images/layout/ajurweda/no_photo.jpg" style="width: 200px;" /><br />
+                 <?php endif; ?>
+            </div>
+            <div class="gallery">
+                 <span class="title">
+                     <?php echo $this->translate('Gallery View') ?>
+                 </span>
+                 <ul>
+                    <?php foreach($this->companyPhotos as $photo): ?>
+                       <?php if($photo->getOffset()): ?>
+                           <li><img src="/media/photos/<?php echo $photo->getOffset() ?>/200x/<?php echo $photo->getFilename() ?>" data-original="/media/photos/<?php echo $this->company->get('PhotoRoot')->getOffset() ?>/<?php echo $photo->getFilename() ?>" alt="<?php echo $photo->getTitle() ?>"><br/><li>
+                       <?php endif; ?>
+                    <?php endforeach; ?>
+                 </ul>
+            </div>
+        <?php endif; ?>
+        <div id="google-map" cordX="<?php echo $this->company->getCordX(); ?>" cordY="<?php echo $this->company->getCordY(); ?>" style="margin-top: 20px; border: 1px solid #B8B8B6; height: 352px; width: 92%; margin-top: 70px;"></div> 
+        <?php else: ?>
+            <?php echo $this->translate('You do not add company to catalog yet'); ?>
+            <a href="<?php echo $this->url(array('action' => 'add-company'), 'domain-user-profile') ?>">
+                <span class="button-add"/>
+                    <?php if ($this->language == 'en'): ?>
+                        <img src="/images/layout/ajurweda/dodaj_firme_en.png"/>
+                    <?php else: ?>
+                        <img src="/images/layout/ajurweda/dodaj_firme_pl.png"/>
+                    <?php endif; ?>
+                </span>
+            </a>
+        <?php endif; ?>
+    </div>
+</div>

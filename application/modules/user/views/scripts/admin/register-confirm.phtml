@@ -1,0 +1,57 @@
+<div id="loading">
+
+        <script type = "text/javascript">
+            document.write("<div id='loading-container'><p id='loading-content'>" +
+                           "<img id='loading-graphic' width='16' height='16' src='images/ajax-loader-abc4ff.gif' /> " +
+                           "Loading...</p></div>");
+        </script>
+
+    </div>
+
+    <div class="login-box">
+    	<section class="login-box-top confirm-password">
+            <header>
+                <h2 class="logo ac">vPad Login</h2>
+            </header>
+            <section>
+                <p claas="title"><?php echo $this->translate('Set new password') ?></p>
+                <?php echo $this->messages()->render() ?>
+                <form id="form" class="has-validation" action="<?php echo $this->form->getAction() ?>" method="post">
+                    <div class="user-pass">
+                        <?php echo $this->form->password->setDecorators(array('ViewHelper'))->setAttribs(array('class' => 'full', 'required' => true, 'placeholder' => $this->translate('Password'))) ?>
+                        <?php echo $this->form->confirm_password->setDecorators(array('ViewHelper'))->setAttribs(array('class' => 'full', 'required' => true, 'placeholder' => $this->translate('Confirm password'))) ?>
+                    </div>
+                    <label style="display: block; float: right; padding-top: 10px;">
+                        <?php echo $this->form->submit->setAttribs(array('class' => 'fr', 'type' => 'submit')) ?>
+                    </label>
+                    <?php echo $this->form->csrf ?>
+                </form>
+            </section>
+    	</section>
+	</div>
+
+    <!-- MAIN JAVASCRIPTS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
+    <script>window.jQuery || document.write("<script src='/js/jquery.min.js'>\x3C/script>")</script>
+    <script type="text/javascript" src="js/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="js/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.totop.js"></script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/js/PIE.js"></script>
+    <script type="text/javascript" src="/js/ie.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="/js/global.js"></script>
+    <!-- MAIN JAVASCRIPTS END -->
+
+    <!-- LOADING SCRIPT -->
+    <script>
+    $(window).load(function(){
+        $("#loading").fadeOut(function(){
+            $(this).remove();
+            $('body').removeAttr('style');
+        });
+    });
+    </script>
+    <!-- LOADING SCRIPT -->

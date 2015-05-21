@@ -1,0 +1,12 @@
+<?php if($this->user): ?>
+<ul class="nav nav-collapse collapse pull-right">
+    <li><a href="<?php echo $this->url(array(), 'domain-user-profile', true) ?>"><?php echo $this->user->getEmail() ?></a></li>
+    <li><a href="<?php echo $this->url(array(), 'domain-logout') ?>"><?php echo $this->translate('Logout') ?></a></li>
+</ul>
+<?php else: ?>
+<form id="login_form" class="form-inline navbar-form pull-right" action="<?php echo $this->url(array(), 'domain-login') ?>" method="post">
+    <?php echo $this->loginForm->username ?>
+    <?php echo $this->loginForm->password ?>
+    <?php echo $this->loginForm->submit ?>
+</form>
+<?php endif; ?>

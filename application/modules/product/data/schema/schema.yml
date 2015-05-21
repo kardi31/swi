@@ -1,0 +1,508 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Product:
+  tableName: product_product
+  actAs:
+    I18n:
+      fields: [name, slug, short_description, description, ingredients,how_to_use,reduced_price_text]
+      tableName: product_product_translation
+      className: ProductTranslation  
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+    short_description: 
+      type: clob
+    description: 
+      type: clob
+    ingredients: 
+      type: clob
+    how_to_use: 
+      type: clob
+    price:
+      type: decimal
+    code:
+      unique: true
+      type: string(255)
+    availability:
+      type: integer(4)
+      default: 0
+    distributor:
+      type: integer(4)
+      default: 0
+    status:
+      type: boolean
+      default: 1
+    promotion:
+      type: boolean
+      default: 0
+    promotion_price:
+      type: decimal
+    new:
+      type: boolean
+      default: 0
+    most_frequently_purchased:
+      type: boolean
+      default: 0
+    reduced_price:
+      type: boolean
+      default: 0
+    reduced_price_text:
+      type: clob
+    youtube:
+      type: string(255)
+    vat:
+      type: decimal
+      default: 23
+    producer_id:
+      type: integer(4)
+    discount_id:
+      type: integer(4)
+    photo_root_id:
+      type: integer(4)
+    rate:
+       type: decimal
+    metatag_id:
+      type: integer(4)
+    views:
+      type: integer(4)
+      default: 0
+    clicks:
+      type: integer(4)
+      default: 0
+    order_counter:
+      type: integer(5)
+      default: 0
+  relations:
+    Producer:
+      local: producer_id
+      foreign: id
+      foreignAlias: Products
+    Discount:
+      local: discount_id
+      foreign: id
+      foreignAlias: Products
+    ProductRelated:
+      local: id
+      foreign: product_id
+      foreignType: one
+      foreignAlias: Product
+      alias: RelatedProducts  
+    ProductSet:
+      local: id
+      foreign: product_id
+      foreignType: one
+      foreignAlias: Product
+      alias: SetProducts
+ProductSet:
+  tableName: product_product_set
+  columns:
+    product_id:
+      primary: true
+      type: integer(4)
+    set_products: 
+      type: array(10000)
+ProductRelated:
+  tableName: product_product_related
+  columns:
+    product_id:
+      primary: true
+      type: integer(4)
+    relates_products: 
+      type: array(10000)
+ProductTranslation:
+  tableName: product_product_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+    short_description: 
+      type: clob
+    description: 
+      type: clob
+    ingredients: 
+      type: clob
+    how_to_use: 
+      type: clob
+    reduced_price_text:
+      type: clob
+  relations:
+    Product:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Product
+      type: one
+      foreignType: many   
+Preview:
+  tableName: product_preview
+  actAs:
+    Sluggable:
+      fields: [name]
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    description: 
+      type: clob
+    status:
+      type: boolean
+      default: 1
+    youtube:
+      type: string(255)
+    producer_id:
+      type: integer(4)
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    views:
+      type: integer(4)
+      default: 0
+    clicks:
+      type: integer(4)
+      default: 0
+  relations:
+    Producer:
+      local: producer_id
+      foreign: id
+      foreignAlias: Previews
+Category:
+  tableName: product_category
+  actAs:
+    I18n: 
+      fields: [name, slug, description]
+      tableName: product_category_translation
+      className: CategoryTranslation
+    NestedSet:
+      HasManyRoots: false
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    description: 
+      type: clob
+    slug:
+      type: string(255)
+    status:
+      type: boolean
+      default: 1
+    metatag_id:
+      type: integer(4)
+    photo_root_id:
+      type: integer(4)
+    views:
+      type: integer(4)
+      default: 0
+    clicks:
+      type: integer(4)
+      default: 0
+  relations:
+    Product:
+      refClass: ProductCategory
+      local: category_id
+      foreign: product_id
+      foreignType: many
+      foreignAlias: Categories
+      alias: Products     
+    Preview:
+      refClass: PreviewCategory
+      local: category_id
+      foreign: preview_id
+      foreignType: many
+      foreignAlias: Categories
+      alias: Previews     
+CategoryTranslation:
+  tableName: product_category_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+    description: 
+      type: clob
+  relations:
+    Category:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Category
+      type: one
+      foreignType: many    
+ProductCategory:
+  tableName: product_product_category
+  columns:
+    product_id:
+      primary: true
+      type: integer(4)
+    category_id:
+      primary: true
+      type: integer(4)
+PreviewCategory:
+  tableName: product_preview_category
+  columns:
+    preview_id:
+      primary: true
+      type: integer(4)
+    category_id:
+      primary: true
+      type: integer(4)
+Comment:
+  tableName: product_comment
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    description: 
+      type: clob
+    status:
+      type: boolean
+      default: 1
+    moderation:
+      type: boolean
+      default: 0
+    nick:
+      type: string(255) 
+    user_id:
+      type: integer(4) 
+    preview_id:
+      type: integer(4)
+    product_id:
+      type: integer(4)
+    partial_rate:
+      type: decimal
+  relations:
+    Preview:
+      local: preview_id
+      foreign: id
+      foreignAlias: Comments
+    Product:
+      local: product_id
+      foreign: id
+      foreignAlias: Comments
+Producer:
+  tableName: product_producer
+  actAs:
+    I18n:
+      fields: [name, slug, description]
+      tableName: product_producer_translation
+      className: ProducerTranslation
+    NestedSet:
+      HasManyRoots: false
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    owner:
+      type: string(255)
+    email:
+      type: string(255)
+    phone: 
+      type: string(255)
+    website:
+      type: string(255)
+    address:
+      type: string(255)
+    post_code:
+      type: string(255)
+    city:
+      type: string(255)
+    province:
+      type: string(255)
+    description: 
+      type: clob
+    nip:
+      type: string(255)
+    slug:
+      type: string(255)
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    status:
+      type: boolean
+      default: 1
+    discount_id:
+      type: integer(4)
+    cord_x:
+      type: string(255)
+    cord_y:
+      type: string(255)
+    views:
+      type: integer(4)
+      default: 0
+    clicks:
+      type: integer(4)
+      default: 0 
+  relations:
+    Discount:
+      local: discount_id
+      foreign: id
+      foreignAlias: Producers
+ProducerTranslation:
+  tableName: product_producer_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+    description: 
+      type: clob
+  relations:
+    Producer:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Producer
+      type: one
+      foreignType: many
+Discount:
+  tableName: product_discount
+  actAs:
+    I18n:
+      fields: [name]
+      tableName: product_discount_translation
+      className: DiscountTranslation
+    Timestampable: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    status:
+      type: boolean
+      default: 1
+    start_date:
+      type: timestamp
+    finish_date:
+      type: timestamp
+    amount_discount:
+      type: integer(4)
+DiscountTranslation:
+  tableName: product_discount_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    name:
+      type: string(255)
+  relations:
+    Discount:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Discount
+      type: one
+      foreignType: many
+Attachment:
+  tableName: product_attachment
+  actAs:
+    I18n:
+      fields: [title, slug, description]
+      tableName: product_attachment_translation
+      className: AttachmentTranslation  
+    Timestampable: 
+      updated:
+        disabled: true
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    filename:
+      type: string(255)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    description:
+      type: clob
+    extension:
+      type: string(255)
+    product_id:
+      type: integer(4)
+  relations:
+    Product:
+      local: product_id
+      foreign: id
+      foreignAlias: Attachments
+      alias: Product
+AttachmentTranslation:
+  tableName: product_attachment_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    description:
+      type: clob
+  relations:
+    Attachment:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Attachment
+      type: one
+      foreignType: many
+  

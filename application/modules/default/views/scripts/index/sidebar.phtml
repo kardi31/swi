@@ -1,0 +1,23 @@
+<div id="lastResult" >
+        <h3>
+            Ostatnie wyniki
+        </h3>
+       <?php
+       foreach($this->lastResults as $result):
+           echo MF_Text::truncate($result['Team1']['name'],9)." - ".MF_Text::truncate($result['Team2']['name'],9)." ".$result['goal1']." : ".$result['goal2']."<br />";
+       endforeach; ?>
+    </div>
+<div id="contact" class="leftSidebar">
+        <h4>Kontakt:</h4>
+        <span class="bold">Prezes UKS Jedynka:</span><br>
+        Wojciech Kardas<br>
+        tel: 696459906 <br>
+        <br>
+        <span class="bold">Administrator strony:</span><br>
+        Tomasz Kardas<br>
+        <br>
+        <span class="bold">Kontakt z administratorem:</span><br>
+        mail: <a href="mailto:kardi31@o2.pl">kardi31@o2.pl</a><br>
+        gg: 1143273 <br><br>
+        <br>
+</div>

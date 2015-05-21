@@ -1,0 +1,24 @@
+<h1 class="page-title"><?php echo $this->translate('Metatags') ?></h1>
+<div class="container_12 clearfix leading">
+    <section class="grid_12">
+        <section class="portlet grid_12 leading"> 
+            <header>
+                <h2><?php echo $this->translate('Pages') ?></h2> 
+            </header>
+            <section>
+                <table class="full"> 
+                    <tbody> 
+                        <?php foreach($this->pages as $page => $label): ?>
+                        <tr> 
+                            <td><?php echo $label ?></td> 
+                            <td class="ar">
+                                <a href="<?php echo $this->adminUrl('edit-metatag', 'default', array('page' => $page)) ?>" class="edit" title="<?php echo $this->translate('Edit') ?>"></a>
+                            </td> 
+                        </tr> 
+                        <?php endforeach; ?>
+                    </tbody> 
+                </table>
+            </section>
+        </section> 
+    </section>
+</div>

@@ -1,0 +1,4 @@
+application/data/*
+application/session/*
+application/logs/*
+nbproject

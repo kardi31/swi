@@ -1,0 +1,77 @@
+<div class="container">
+    <div id="content" class="single col-lg-12 col-md-12 col-sm-12">
+        <section class="singleheader-wrap">
+            <div class="singleheader">  
+                <div class="container">
+                    <div class="col-lg-6 col-sm-6 col-md-6">
+                        <div class="single-title">
+                            <h3><?php echo $this->translate("Results searching for phrase") ?>: <?php echo "\"".$this->phrase."\""; ?></h3>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </section>
+    </div>
+    <div id="content" class="single col-lg-12 col-md-12 col-sm-12">
+    <?php if(isset($this->paginator)): ?>
+        <?php foreach($this->paginator as $key => $result): ?>
+            <?php if($result['search_type'] == "products"): ?>
+                <?php if($result['Categories'][0]['Translation'][$this->language]['slug'] && $result['Translation'][$this->language]['slug']): ?>
+                    <div class="message " data-effect="slide-bottom">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <a href="<?php echo $this->url(array('category' => $result['Categories'][0]['Translation'][$this->language]['slug'], 'product' => $result['Translation'][$this->language]['slug']), 'domain-i18n:product') ?>">
+                                <h2>
+                                    <?php echo $result['search_title']; ?>
+                                </h2>
+                                <h4>
+                                    <?php echo MF_Text::truncate($result['search_content'], 200, 'letters'); ?>
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if($result['search_type'] == "news"): ?>
+                <?php if($result['Translation'][$this->language]['slug']): ?>
+                    <div class="message " data-effect="slide-bottom">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <a href="<?php echo $this->url(array('slug' => $result['Translation'][$this->language]['slug']), 'domain-i18n:news-item') ?>">
+                              <h2>
+                                <?php echo $result['search_title']; ?>
+                              </h2>
+                              <h4>
+                                <?php echo MF_Text::truncate($result['search_content'], 200, 'letters'); ?>
+                              </h4>
+                            </a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if($result['search_type'] == "pages"): ?>
+                <?php if($result['Translation'][$this->language]['slug']): ?>
+                    <div class="message " data-effect="slide-bottom">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <a href="<?php echo $this->url(array('slug' => $result['Translation'][$this->language]['slug']), 'domain-i18n:page') ?>">
+                                <h2>
+                                    <?php echo $result['search_title']; ?>
+                                </h2>
+                                <h4>
+                                    <?php echo MF_Text::truncate($result['search_content'], 200, 'letters'); ?>
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    <div class="clearfix"></div>
+    <hr>
+                
+    <div class=" text-center">
+        <ul class="pagination">
+            <?php echo $this->paginationControl($this->paginator, 'Sliding', 'search_pagination_control.phtml', array('phrase' => $this->phrase)); ?>
+	</ul>
+    </div>  
+    </div>
+</div>

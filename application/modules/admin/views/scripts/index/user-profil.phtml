@@ -1,0 +1,4 @@
+<?php if(isset($this->user)): ?>
+	<span><?php echo $this->translate('Zalogowany jako') ?>:&nbsp;</span><span><?php echo $this->user->getFirstName() . ' ' . $this->user->getLastName() ?></span>
+	<span><a href="<?php echo $this->url(array(), 'domain-logout') ?>"><?php echo $this->translate('Wyloguj') ?></a></span>
+<?php endif; ?>

@@ -1,0 +1,23 @@
+<div class="widget">
+        <h3>Imprezy w regionie</h3>
+        <div class="article-block">
+            <?php foreach($this->nextEvents as $nextEvent): ?>
+                <div class="item">
+                        <div class="item-header">
+                                 <a href="<?php echo $this->url(array('slug' => $nextEvent['Translation'][$this->language]['slug']),'domain-event-article'); ?>" class="image-hover">
+                                    <img src="/media/photos/<?php echo $nextEvent['PhotoRoot']['offset'];?>/74x74/<?php echo $nextEvent['PhotoRoot']['filename'];?>" alt="">
+                                </a>
+                        </div>
+                        <div class="item-content">
+                                <div class="content-category">
+                                        <a href="<?php //echo $this->url(array('slug' => $nextEvent['Category']['slug']),'domain-news-category'); ?>" class="cat-<?php //echo $nextEvent['Category']['slug']; ?>-title"><?php //echo $nextEvent['Category']['title']; ?></a>
+                                </div>
+                                <span><?php echo MF_Text::timeFormat($nextEvent['publish_date'], 'Y-m-d H:i'); ?></span>
+                                <h4><a href="<?php echo $this->url(array('slug' => $nextEvent['Translation'][$this->language]['slug']),'domain-event-article'); ?>"><?php echo $nextEvent['Translation'][$this->language]['title']; ?></a></h4>
+                        </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        
+</div>
+<?php echo $this->partial('index/newsletter-sidebar.phtml','newsletter'); ?>

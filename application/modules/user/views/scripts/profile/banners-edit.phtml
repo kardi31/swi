@@ -1,0 +1,20 @@
+<section class="profile span8">
+    <header class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Banner') ?>: <?php echo $this->banner['name'] ?></h3>
+    </header>
+    
+    <section>
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="<?php echo $this->form->getEnctype() ?>">
+            <?php if(strlen($this->banner['PhotoRoot']['filename'])): ?>
+            <img src="/media/photos/<?php echo $this->banner['PhotoRoot']['offset'] ?>/280x100/<?php echo $this->banner['PhotoRoot']['filename'] ?>" /><br />
+            <?php else: ?>
+            <img src="/images/layout/article-placeholder.png" /><br />
+            <?php endif; ?>
+            <?php echo $this->form->file ?>
+            <?php echo $this->form->href ?>
+            <?php echo $this->form->submit ?>
+            <?php echo $this->form->id ?>
+        </form>
+    </section>
+    
+</section>

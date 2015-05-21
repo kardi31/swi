@@ -1,0 +1,29 @@
+<?php // if(isset($this->tree)): ?>
+<!--<ul id="treeData" style="display: none;" class="folder">-->
+<?php // elseif(isset($this->subtree)): ?>
+<ul>
+<?php // endif; ?>
+
+    <?php if(isset($this->tree)): ?>
+    
+        <?php foreach($this->tree as $item): ?>
+        <li id="node<?php echo $item->getId() ?>" class="<?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?> folder"><a href="<?php echo $this->adminUrl('edit-menu-item', 'menu', array('id' => $item->getMenuId(), 'item' => $item->getId())) ?>"><?php echo $item->Translation[$this->language]['title'] ?></a>
+            <?php if($item->getNode()->getChildren()): ?>
+            <?php echo $this->partial('menu_tree.phtml', 'menu', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'language' => $this->language)) ?>
+            <?php endif; ?>
+        </li>
+        <?php endforeach; ?>
+    
+    <?php elseif(isset($this->subtree)): ?>
+    
+        <?php foreach($this->subtree as $item): ?>
+        <li id="node<?php echo $item->getId() ?>" class="<?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?>"><a href="<?php echo $this->adminUrl('edit-menu-item', 'menu', array('id' => $item->getMenuId(), 'item' => $item->getId())) ?>"><?php echo $item->Translation[$this->language]['title'] ?></a>
+            <?php if($item->getNode()->getChildren()): ?>
+            <?php echo $this->partial('menu_tree.phtml', 'menu', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'language' => $this->language)) ?>
+            <?php endif; ?>
+        </li>
+        <?php endforeach; ?>
+        
+    <?php endif; ?>
+    
+</ul>

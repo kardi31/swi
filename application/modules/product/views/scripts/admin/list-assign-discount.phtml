@@ -1,0 +1,48 @@
+<div class="row-fluid">
+    
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Choose whom do you want to assign') ?> <?php echo $this->discount->Translation[$this->language]->name.' '.$this->discount->getAmount(); ?>%</span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                <div class="centerContent">
+                    <ul class="bigBtnIcon" style="margin-left: 20%">
+                        <li>
+                            <a href="<?php echo $this->adminUrl('assign-discount-product', 'product', array('id' => $this->discount->getId())) ?>" title="<?php echo $this->translate('Assign discount products') ?>" class="tipB">
+                                <span class="icon icomoon-icon-list-view"></span>
+                                <span class="txt"><?php echo $this->translate('Products') ?></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->adminUrl('assign-discount-producer', 'product', array('id' => $this->discount->getId())) ?>" title="<?php echo $this->translate('Assign discount producers') ?>" class="tipB">
+                                <span class="icon icomoon-icon-user-4"></span>
+                                <span class="txt"><?php echo $this->translate('Producers') ?></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->adminUrl('assign-discount-client', 'product', array('id' => $this->discount->getId())) ?>" title="<?php echo $this->translate('Assign discount clients') ?>" class="tipB">
+                                <span class="icon icomoon-icon-user"></span>
+                                <span class="txt"><?php echo $this->translate('Clients') ?></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->adminUrl('assign-discount-group-client', 'product', array('id' => $this->discount->getId())) ?>" title="<?php echo $this->translate('Assign discount group of clients') ?>" class="tipB">
+                                <span class="icon icomoon-icon-users"></span>
+                                <span class="txt"><?php echo $this->translate('Groups of clients') ?></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

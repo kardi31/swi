@@ -1,0 +1,68 @@
+<?php $person = $this->person;
+$photoRoot = $person->get('PhotoRoot');
+$videoRoot = $person->get('VideoRoot');
+?>
+<div class="block_breadcrumbs">
+<!--    <div class="text"><p>Tu jesteś: </p></div>-->
+
+    <ul>
+        <li><a href="/">Strona głowna</a></li>
+        <li><a href="<?php echo $this->url(array(),'domain-list-people'); ?>">Ciekawe sylwetki</a></li>
+        <li><?php echo $person['Translation'][$this->language]['title']; ?></li>
+    </ul>
+</div>
+<div class="separator" style="height:30px;"></div>
+
+<article class="block_single_news">
+        <div class="f_pic">
+            <a href="#">
+                <img src="/media/photos/<?php echo $photoRoot['offset'];?>/x210/<?php echo $photoRoot['filename'];?>" alt=""></a>
+        </div>
+  <p class="title"><?php echo $person['Translation'][$this->language]['title']; ?></p>
+    <!--<p class="subtitle">Many variations of passages of available, but the majority have suffered alteration in some form. Humour, or randomised words which don't look even slightly believable.</p>-->
+
+   
+
+    <div class="content">
+        <?php echo $person['Translation'][$this->language]['content']; ?>
+    </div>
+
+</article>
+<div class="line_3" style="margin:10px 0px 15px;"></div>
+<div class="block_related_posts">
+        <h3>Galeria</h3>
+    <div class="block_main_news">
+        <?php foreach($photoRoot->getNode()->getChildren() as $photo): ?>
+        <div class="block_news_post">
+            <div class="f_pic">
+                <a href="/media/photos/<?php echo $photo['offset'];?>/<?php echo $photo['filename'];?>" data-rel='prettyPhoto' title='<?php echo $person['Translation'][$this->language]['title']; ?>' >
+                    <img src="/media/photos/<?php echo $photo['offset'];?>/130x130/<?php echo $photo['filename'];?>" alt="">
+                </a>
+            </div>
+        </div>
+          <?php endforeach; ?>
+
+
+        <div class="clearboth"></div>
+        
+        <?php if($videoRoot->getNode()->hasChildren()): ?>
+        <h3>Video</h3>
+            <?php foreach($videoRoot->getNode()->getChildren() as $video): ?>
+            <div class="block_video">
+                <iframe width="612" height="344" src="<?php echo $video->url; ?>" frameborder="0" allowfullscreen=""></iframe>
+            </div>
+              <?php endforeach; ?>
+
+        <?php endif; ?>
+    </div>
+</div>
+<div class="separator" style="height:4px;"></div>
+
+
+
+<div class="line_2" style="margin:5px 0px 30px;"></div>
+
+
+
+
+                        

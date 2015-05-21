@@ -1,0 +1,31 @@
+<div id="promote-esocrtgirl-feature" class="promote-escortgirl">
+    <div class="promote-escortgirl <?php echo ($this->escortPromoteAvailability['feature'] > 0) ? 'pos' : 'neg' ?>">
+        <h4>Feature</h4>
+        <p class="description">Lorem ipsum</p>
+        <div class="parameters">
+            <a class="promote <?php if($this->escortPromoteAvailability['feature'] > 0): ?>active<?php else: ?>inactive<?php endif; ?>" href="<?php echo $this->url(array('action' => 'add-promotion', 'id' => $this->escort['id'], 'type' => 'feature'), 'domain-user-ajax') ?>">homepage</a>
+            <?php if(isset($this->escortPromoteTariffs['feature']['price'])): ?>
+            <p class="price"><?php echo $this->currency($this->escortPromoteTariffs['feature']['price']) ?> per month</p>
+            <?php endif; ?>
+            <p class="availability">
+                <?php echo ($this->escortPromoteAvailability['feature'] > 0) ? $this->escortPromoteAvailability['feature'] : 'No' ?> <?php echo (isset($this->escortPromoteAvailability['feature']) && $this->escortPromoteAvailability['feature'] == 1) ? 'slot' : 'slots' ?> available!
+            </p>
+        </div>
+    </div>
+    </div>
+
+    <div id="promote-esocrtgirl-homepagee" class="promote-escortgirl">
+    <div class="promote-escortgirl <?php echo ($this->escortPromoteAvailability['homepage'] > 0) ? 'pos' : 'neg' ?>">
+        <h4>Homepage list</h4>
+        <p class="description">Lorem ipsum</p>
+        <div class="parameters">
+            <a class="promote <?php if($this->escortPromoteAvailability['homepage'] > 0): ?>active<?php else: ?>inactive<?php endif; ?>" href="<?php echo $this->url(array('action' => 'add-promotion', 'id' => $this->escort['id'], 'type' => 'homepage'), 'domain-user-ajax') ?>">homepage</a>
+            <?php if(isset($this->escortPromoteTariffs['homepage']['price'])): ?>
+            <p class="price"><?php echo $this->currency($this->escortPromoteTariffs['homepage']['price']) ?> per month</p>
+            <?php endif; ?>
+            <p class="availability">
+                <?php echo ($this->escortPromoteAvailability['homepage'] > 0) ? $this->escortPromoteAvailability['homepage'] : 'No' ?> <?php echo (isset($this->escortPromoteAvailability['homepage']) && $this->escortPromoteAvailability['homepage'] == 1) ? 'slot' : 'slots' ?> available!
+            </p>
+        </div>
+    </div>
+</div>

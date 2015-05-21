@@ -1,0 +1,69 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#client_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": true,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-client-data', 'user') ?>",
+        "aaSorting": [[ 5, "desc" ]],
+        "aoColumns": [
+            null,
+            null,
+            { sWidth: '150px' },
+            { sWidth: '200px' },
+            { sWidth: '150px' },
+            { "bSortable": false, sWidth: '50px' },
+            { "bSortable": false, sWidth: '50px' }
+        ]
+    });
+    
+    $("#client_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-user-3"></span>
+                    <span><?php echo $this->translate('Clients') ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+
+                <table id="client_table" cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" width="100%">
+                    <thead>
+                        <th><?php echo $this->translate('Name') ?></th>
+                        <th><?php echo $this->translate('Email') ?></th>
+                        <th><?php echo $this->translate('City') ?></th>
+                        <th><?php echo $this->translate('Province') ?></th>
+                        <th><?php echo $this->translate('Registered at') ?></th>
+                        <th><?php echo $this->translate('Status') ?></th>
+                        <th><?php echo $this->translate('Options') ?></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

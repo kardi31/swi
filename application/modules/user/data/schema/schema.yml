@@ -1,0 +1,165 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+User:
+  tableName: user_user
+  actAs: 
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    fb_id:
+      type: string(128)
+    first_name:
+      type: string(255)
+    last_name:
+      type: string(255)
+    email:
+      type: string(255)
+    username:
+      type: string(255)
+    salt:
+      type: string(255)
+    password:
+      type: string(255)
+    role:
+      type: string(255)
+    token:
+      type: string(255)
+    active:
+      type: boolean
+      default: 1
+    discount_id:
+      type: integer(4)
+Profile:
+  tableName: user_profile
+  actAs: 
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    about:
+      type: clob
+    address:
+      type: string(255)
+    postal_code:
+      type: string(128)
+    phone: 
+      type: string(255)
+    company_name:
+      type: string(255)
+    city:
+      type: string(255)
+    province:
+      type: string(255)
+    province_id:
+      type: integer(4)
+    city_id:
+      type: integer(4)
+    website:
+      type: string(255)
+    nip:
+      type: string(255)
+    proxy_name:
+      type: string(255)
+    photo_root_id:
+      type: string(255)
+  relations:
+    User:
+      local: user_id
+      foreign: id
+      foreignType: one
+Update:
+  tableName: user_update
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    token:
+      type: string(255)
+    type:
+      type: string(255)
+    value:
+      type: string(255)
+  relations:
+    User:
+      local: user_id
+      foreign: id
+Group:
+  tableName: user_group
+  actAs: 
+    I18n:
+      fields: [name, slug, description]
+      tableName: user_group_translation
+      className: GroupTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+    description:
+      type: clob
+    discount_id:
+      type: integer(4)
+    status:
+      type: boolean
+      default: 1
+  relations:
+    User:
+      refClass: UserGroup
+      local: group_id
+      foreign: user_id
+      foreignType: many
+      foreignAlias: Groups
+      alias: Users     
+GroupTranslation:
+  tableName: user_group_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+    description: 
+      type: clob
+  relations:
+    Group:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Group
+      type: one
+      foreignType: many
+UserGroup:
+  tableName: user_user_group
+  columns:
+    user_id:
+      primary: true
+      type: integer(4)
+    group_id:
+      primary: true
+      type: integer(4)

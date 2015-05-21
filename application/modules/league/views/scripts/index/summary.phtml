@@ -1,0 +1,76 @@
+<?php $values = $this->values; ?>
+<h2><span><?php echo $this->translate('Order summary'); ?></span></h2>
+
+<h3><span><?php echo $this->translate('Order data'); ?></span></h3>
+<table>
+    <th></th>
+    <th><?php echo $this->translate('Product name'); ?></th>
+    <th><?php echo $this->translate('Quantity'); ?></th>
+    <th><?php echo $this->translate('Price'); ?></th>
+    <?php 
+
+foreach($this->cart['Product_Model_Doctrine_Product'] as $key=>$item):
+    foreach($item as $itemDetail):
+    ?>
+   
+    <tr>
+        <td><img src="/media/photos/3204088737/140x/zabek_ikonka-1.png" alt=""></td>
+        <td><?php echo $itemDetail['name']; ?></td>
+        <td><?php echo $itemDetail['count']; ?></td>
+        <td><?php echo $itemDetail['price']; ?></td>
+        <td></td>
+    </tr>
+<?php
+    endforeach;
+endforeach;
+?>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Wartość zamówienia</td>
+        <td class="bold">
+            <?php echo $values['total_price']; ?> zł
+            <?php
+            if(isset($this->prices['discount'])): ?>
+            <br />
+            <span style="text-decoration:line-through">
+            <?php echo $this->prices['total_price']; ?> zł
+            </span>
+            <?php endif; ?>
+            
+            </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Koszt dostawy</td>
+        <td class="bold"><?php echo $values['delivery_price']; ?> zł</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Do zapłaty</td>
+        <td class="bold"><?php echo $values['total_cost']; ?> zł</td>
+    </tr>
+</table>
+
+
+<h3><span><?php echo $this->translate('Delivery data'); ?></span></h3>
+
+<table>
+    <th><?php echo $this->translate('Name'); ?></th>
+    <th><?php echo $this->translate('Address'); ?></th>
+    <th><?php echo $this->translate('Mail'); ?></th>   
+    <th><?php echo $this->translate('Delivery type'); ?></th>
+    <th><?php echo $this->translate('Payment type'); ?></th> 
+    <tr>
+        <td><?php echo $values['name']; ?></td>
+        <td><?php echo $values['address']." ".$values['postal_code']." ".$values['city']." ,".$values['province_id']; ?></td>
+        <td><?php echo $values['email']; ?></td>
+        <td><?php echo $values['delivery_name']; ?></td>
+        <td><?php echo $values['payment_name']; ?></td>
+    </tr>
+</table>

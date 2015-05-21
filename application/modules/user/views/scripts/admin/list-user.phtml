@@ -1,0 +1,49 @@
+<link rel="stylesheet" media="screen" href="/lib/datatables/css/vpad.css" />
+<script type="text/javascript" src="/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/js/jquery.jeditable.mini.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+        var oTable = $("#table").dataTable( {
+            "sPaginationType": "full_numbers",
+            "oLanguage": {
+                "sUrl": "/lib/datatables/datatables.polish.txt"
+            },
+            "bFilter": true,
+            "bProcessing": true,
+            "bServerSide": true,
+            "sAjaxSource": "<?php echo $this->adminUrl('fill-list', 'user') ?>",
+            "aoColumns": [
+                null,
+                null,
+                { "bSortable": false },
+                { "bSortable": false }
+            ]
+        } );
+        
+    } );
+</script> 
+<h1 class="page-title"><?php echo $this->translate('Users') ?></h1>
+<div class="container_12 clearfix leading">
+    
+    <div class="grid_12">
+        <a href="<?php echo $this->adminUrl('add-user', 'user') ?>"><?php echo $this->formButton('', $this->translate('Add new'), array('id' => 'add-item')) ?></a>
+        
+        <div id="items" class="clearfix">
+            
+            <table class="display" id="table">
+                <thead>
+                    <tr>
+                        <th><?php echo $this->translate('Username') ?></th>
+                        <th><?php echo $this->translate('Email') ?></th>
+                        <th><?php echo $this->translate('Type') ?></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div> <!-- users -->
+    </div>
+</div>

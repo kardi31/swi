@@ -1,0 +1,36 @@
+<?php foreach($this->categories as $category): ?>
+    <div class="block_big_dropdown" data-menu="<?php echo $category['slug']; ?>">
+            <div class="content">
+                <?php foreach($this->galleries[$category['title']] as $gallery):
+                    $photo = $gallery['PhotoRoot'];
+                    ?> 
+                <div class="image">
+                        <a href="<?php echo $this->url(array('slug' => $gallery['Translation'][$this->language]['slug']),'domain-i18n:gallery'); ?>" class="pic"><img src="/media/photos/<?php echo $photo['offset'];?>/130x130/<?php echo $photo['filename']; ?>" alt=""></a>
+                        <p><a href="<?php echo $this->url(array('slug' => $gallery['Translation'][$this->language]['slug']),'domain-i18n:gallery'); ?>"><?php echo $gallery['Translation'][$this->language]['title']; ?></a></p>
+                </div>
+                <div class="line"></div>
+                <?php endforeach; ?>
+                
+                <div class="popular_posts">
+                    <div class="title"><p>Ostatnie wiadomości</p></div>
+                    <ul>
+                        <?php foreach($this->newsList[$category['title']] as $news): ?>
+                        <li><a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>"><span><?php echo MF_Text::polishTimeFormat($news['publish_date'], 'd M Y'); ?></span><?php echo $news['Translation'][$this->language]['title']; ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <div class="line"></div>
+
+                <div class="more">
+                        <div class="title"><p>Pozostałe</p></div>
+                    <ul>
+                        <li><a href="<?php echo $this->url(array('category' => $news['Category']['slug']),'domain-list-category-news'); ?>">Informacje</a></li>
+                        <li><a href="<?php echo $this->url(array('category' => $gallery['Category']['slug']),'domain-list-category-gallery'); ?>">Galeria</a></li>
+                    </ul>
+                </div>
+
+                <div class="clearboth"></div>
+            </div>
+    </div>
+<?php endforeach; ?>
+                        

@@ -1,0 +1,28 @@
+<?php foreach($this->photos as $photo): ?>
+<li class="pull-left">
+    <?php if($photo->getOffset()): ?>
+    <div style="position:relative">
+        <a id="main_photo" href="/media/photos/<?php echo $photo->getOffset() ?>/<?php echo $photo->getFilename() ?>" rel="prettyPhoto" title="<?php echo $photo->getTitle() ?>">
+            <img src="/media/photos/<?php echo $photo->getOffset() ?>/126x126/<?php echo $photo->getFilename() ?>" data-original="/media/photos/<?php echo $photo->getOffset() ?>/<?php echo $photo->getFilename() ?>" alt="<?php echo $photo->getTitle() ?>" />
+        </a>
+        <div class="actionBtn">
+            <a class="move" href="<?php echo $this->adminUrl('move-gallery-photo', 'gallery', array('id' => $photo->id, 'move' => 'up', 'gallery' => $this->gallery->id)) ?>"><span class="icon16 minia-icon-arrow-left white"></span></a>
+            
+            <a href="<?php echo $this->adminUrl('edit-photo', 'default', array('type' => 'gallery','element-id' => $this->gallery->getId(),'id' => $photo->getId())) ?>" class="edit"><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+                                    <a href="#" rel="<?php echo $photo->id; ?>" class="delete"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+            <a class="move" href="<?php echo $this->adminUrl('move-gallery-photo', 'gallery', array('id' => $photo->id, 'move' => 'down', 'gallery' => $this->gallery->id)) ?>"><span class="icon16 minia-icon-arrow-right white"></span></a>
+
+        </div>
+    </div>
+    <?php else: ?>
+    <a id="main_photo" href="/images/gallery/1.jpg" rel="prettyPhoto" title="<?php echo $this->translate('No photo') ?>">
+        <img src="/images/gallery/preload.png" data-original="/images/gallery/thumbnails/1.jpg" alt="<?php echo $this->translate('No photo') ?>">
+    </a>
+    <?php endif; ?>
+    
+    <br />
+    <?php echo $this->translate('Current photo name'); ?> : <div rel="<?php $photo->id; ?>" class="gallery-photo-name" style="font-weight:bold;margin-bottom:10px;"><?php echo $photo->title; ?></div>
+    <input type="text" placeholder="Nowa nazwa zdjęcia" rel="<?php echo $photo->id; ?>" name="photo_name" class="photo_name" style="text-align: center;width:150px; display:block;margin:0 auto;" /> <br />
+    <button rel="<?php echo $photo->id; ?>" class="changePhotoName"><?php echo $this->translate('Save new photo name'); ?></button>
+</li>
+<?php endforeach; ?>

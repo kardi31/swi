@@ -1,0 +1,97 @@
+<script>
+    $(document).ready(function(){
+        
+        var currentOrder = "<?php echo $this->orderParam; ?>";
+        $('option[value="'+currentOrder+'"]').prop('selected',true);
+        $('.orderBox select').change(function(){
+           $(location).attr('href',  $(this).find(":selected").attr('href'));
+        });
+    });
+</script>
+<div id="content" class="single col-lg-12 col-md-12 col-sm-12">
+<section class="singleheader-wrap">
+    <div class="singleheader">
+        <div class="container">
+            <h3 class="new-title" style="text-align: left;"><?php echo $this->translate('Shop') ?></h3>
+            <div class="col-lg-12 col-sm-12 col-md-12">
+                <div class="single-title">
+                    <h3><?php echo $this->category->Translation[$this->language]->name; ?></h3>
+                    <div class="container"><?php echo $this->category->Translation[$this->language]->description; ?></div>
+                </div>
+            </div>
+            
+        </div>  
+    </div>
+</section>
+</div>         
+<section class="homecolon">
+    <div class="container">
+        <div id="content" class="single col-lg-12 col-md-12 col-sm-12">
+
+            <div class="shop-top">
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                    <p><?php echo count($this->results); ?> wyników</p>
+                </div>
+                    
+                <div class="pull-right col-lg-4 col-md-4 col-sm-6 col-xs-12 orderBox">
+                           
+                    <select class="form-control">
+                        <option value="name_asc" href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug, 'order' => 'name_asc'),'domain-i18n:category-facebook');?>">By name A-Z</option>
+                        <option value="name_desc"  href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug, 'order' => 'name_desc'),'domain-i18n:category-facebook');?>">By name Z-A</option>
+                        <!--<option value="rating" >Sort by average rating</option>-->
+                        <option value="new_desc"  href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug, 'order' => 'new_desc'),'domain-i18n:category-facebook');?>">Sort by newness</option>
+                        <option value="price_asc"  href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug, 'order' => 'price_asc'),'domain-i18n:category-facebook');?>">Sort by price: low to high</option>
+                        <option value="price_desc" href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug, 'order' => 'price_desc'),'domain-i18n:category-facebook');?>">Sort by price: high to low</option>	
+                    </select>
+                </div>
+            </div>
+                        
+            <div class="clearfix"></div>
+                        
+            <?php if(isset($this->results)): ?>
+                <?php foreach($this->results as $product):?>
+                    <?php if($this->category->Translation[$this->language]->slug && $product['Translation'][$this->language]['slug']): ?>
+                        <div class="shopcol col-lg-3 col-md-3 col-sm-6 col-xs-12" data-effect="slide-bottom">
+
+                            <div class="product1 image-hover he-wrap tpl6">
+                                <?php if($product['new']): ?>
+                                    <span class="onsale">Sale!</span>
+                                <?php endif; ?>
+                                <?php if($product['PhotoRoot']['offset']): ?>
+                                    <img class="img-responsive" src="/media/photos/<?php echo $product['PhotoRoot']['offset'] ?>/243x243/<?php echo $product['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $product['PhotoRoot']['offset'] ?>/<?php echo $product['PhotoRoot']['filename'] ?>" alt="<?php echo $product['PhotoRoot']['alternate_text']; ?>" title="<?php echo $product['PhotoRoot']['title'] ?>" />
+                                <?php else: ?>
+                                    <img class="img-responsive" src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" width='243' height='243' alt="<?php echo $this->translate('No photo') ?>"  />
+                                <?php endif; ?>
+                                <div class="he-view">
+                                    <div class="bg a0" data-animate="fadeIn">
+                                        <h3 class="a1" data-animate="fadeInDown"><?php echo $this->category->Translation[$this->language]->name; ?></h3>
+                                        <a href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug, 'product' => $product['Translation'][$this->language]['slug']), 'domain-i18n:product') ?>" class="btn a2" data-animate="rotateInLeft" target="_blank"><i class="fa fa-search marginR5"></i>  ZOBACZ</a>
+                                         
+                                    </div>
+                                </div>			
+                            </div>                       
+                            <div class="product-details">
+                                <h4>
+                                    <a href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug, 'product' => $product['Translation'][$this->language]['slug']), 'domain-i18n:product') ?>" target="_blank">
+                                        <?php echo MF_Text::truncate($product['Translation'][$this->language]['name'], 35, 'letters') ?>
+                                    </a>
+                                </h4>
+                                <div class="amount">
+                                    <ul class="rating">
+                                        <?php for($i=0;$i<$product['rate']; $i++): ?>
+                                            <li><i class="star-on"></i></li>
+                                        <?php endfor; ?>
+                                        <?php for($i;$i<5;$i++): ?>
+                                             <li><i class="star-off"></i></li>
+                                        <?php endfor; ?>
+                                    </ul>
+                                </div>  
+                                
+                            </div><!-- product details -->
+                        </div><!-- col-3 -->
+                    <?php endif; ?>
+                <?php endforeach; ?>
+          <?php endif; ?>
+        </div><!-- end content -->
+    </div><!-- end container -->
+</section><!-- end slider products -->

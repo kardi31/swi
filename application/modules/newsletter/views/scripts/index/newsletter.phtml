@@ -1,0 +1,15 @@
+
+<div class="title">
+    <h4>
+        <span><?php echo $this->translate('Wpisz sie na newsletter') ?></span>
+    </h4>
+</div>
+<div class="content">
+    <form class="form-horizontal" action="<?php echo $this->formm->getAction() ?>" method="post" enctype="multipart/form-data">
+        <?php echo $this->formm->name ?>
+        <?php echo $this->formm->email ?>
+
+        <?php echo $this->formm->submit ?>
+        <?php echo $this->formm->id ?>
+    </form>
+</div>

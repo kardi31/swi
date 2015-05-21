@@ -1,0 +1,19 @@
+<ul class="menu">
+    <?php if($this->root): ?>
+    <?php foreach($this->root->getNode()->getChildren() as $node): ?>
+    <li><?php echo $node->Translation[$this->language]->title ?>
+        <span class="options">
+            <a href="<?php echo $this->adminUrl('delete-menu-item', 'menu', array('menu' => $this->menu->getId(), 'id' => $node->getId())) ?>" class="delete-item" title="<?php echo $this->translate('Delete') ?>"><?php echo $this->translate('delete') ?></a>
+            <a href="<?php echo $this->adminUrl('move-menu-item', 'menu', array('menu' => $this->menu->getId(), 'id' => $node->getId(), 'move' => 'down')) ?>" class="move-down-item" title="<?php echo $this->translate('Move down') ?>"><?php echo $this->translate('Move down') ?></a>
+            <a href="<?php echo $this->adminUrl('move-menu-item', 'menu', array('menu' => $this->menu->getId(), 'id' => $node->getId(), 'move' => 'up')) ?>" class="move-up-item" title="<?php echo $this->translate('Move up') ?>"><?php echo $this->translate('Move up') ?></a>
+            <a href="<?php echo $this->adminUrl('edit-menu-item', 'menu', array('menu' => $this->menu->getId(), 'id' => $node->getId())) ?>" class="edit-item" title="<?php echo $this->translate('Edit') ?>"><?php echo $this->translate('edit') ?>></a>
+            <a href="<?php echo $this->adminUrl('add-menu-item', 'menu', array('menu' => $this->menu->getId(), 'parent' => $node->getId())) ?>" class="add-item" title="<?php echo $this->translate('Add new item') ?>"><?php echo $this->translate('add item') ?>></a>
+        </span>
+        
+        <?php if($node->getNode()->getNumberChildren()): ?>
+        <?php echo $this->partial('_manage_menu.phtml', null, array('root' => $node, 'menu' => $this->menu, 'language' => $this->language)) ?>
+        <?php endif; ?>
+    </li>
+    <?php endforeach; ?>
+    <?php endif; ?>
+</ul>

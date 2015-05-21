@@ -1,0 +1,30 @@
+<?php if(isset($this->tree)): ?>
+<ul id="treeData" style="display: none;" class="folder">
+<?php elseif(isset($this->subtree)): ?>
+<ul>
+<?php endif; ?>
+
+    <?php if(isset($this->tree)): ?>
+    
+        <?php foreach($this->tree->fetchRoots() as $item): ?>
+        <li id="node<?php echo $item->getId() ?>" class="<?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?> folder"><a href="<?php echo $this->adminUrl('list-category', 'product', array('id' => $item->getId())) ?>"><?php echo $item->Translation[$this->adminLanguage]->name; ?></a>
+            <?php if($item->getNode()->getChildren()): ?>
+            <?php echo $this->partial('category-tree.phtml', 'product', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'adminLanguage' => $this->adminLanguage)) ?>
+            <?php endif; ?>
+        </li>
+        <li id="trash"  data="addClass:'trash'"><?php echo $this->translate('Delete') ?></li>
+        <?php endforeach; ?>
+    
+    <?php elseif(isset($this->subtree)): ?>
+    
+        <?php foreach($this->subtree as $item): ?>
+            <li id="node<?php echo $item->getId() ?>" class="<?php if(isset($this->parent) && $this->parent->getId() == $item->getId()): ?>active<?php endif; ?>"><a href="<?php echo $this->adminUrl('list-sub-category', 'product', array('id' => $item->getId())) ?>"><?php echo $item->Translation[$this->adminLanguage]->name; ?></a>
+                <?php if($item->getNode()->getChildren()): ?>
+                <?php echo $this->partial('category-tree.phtml', 'product', array('subtree' => $item->getNode()->getChildren(), 'parent' => $this->parent, 'adminLanguage' => $this->adminLanguage)) ?>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+        
+    <?php endif; ?>
+    
+</ul>

@@ -1,0 +1,112 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#category_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": true,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-category-data', 'news') ?>",
+        "aaSorting": [[ 0, "desc" ]],
+        "aoColumns": [
+            null,
+            null,
+            { "bSortable": false, sWidth: '50px' }
+        ]
+    });
+    
+    $("#category_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+    
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span6">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('New category') ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                
+                <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+                    
+                    <ul id="myTab" class="nav nav-tabs pattern">
+                        <li class="dropdown">
+                            <?php foreach($this->languages as $key => $language): ?>
+                            <li class="<?php if($key == 0): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                            <?php endforeach; ?>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <?php foreach($this->languages as $key => $language): ?>
+                        <div class="tab-pane<?php if($key == 0): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                        <?php if($this->form->translations->getSubForm($language)): ?>
+                            <?php echo $this->form->translations->getSubForm($language)->name ?>
+                        <?php endif; ?>
+
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                    
+                    <?php echo $this->form->id ?>
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-category', 'news') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+                </form>
+            
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <div class="span6">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edycja') ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+
+                <table id="category_table" cellpadding="0" cellspacing="0" border="0" class="responsive display table table-bordered" width="100%">
+                    <thead>
+                        <th><?php echo $this->translate('Name') ?></th>
+                        <th><?php echo $this->translate('Number of articles') ?></th>
+                        <th><?php echo $this->translate('Options') ?></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+
+
+</div>

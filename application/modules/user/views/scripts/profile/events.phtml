@@ -1,0 +1,70 @@
+<div class="content-profile">
+    <header>
+        <?php echo $this->translate('Events') ?>
+    </header>
+    <div class="events-profile">
+        <div class="event_item">
+            <div class="add_button">
+                <a href="<?php echo $this->url(array('action' => 'add-event'), 'domain-user-profile') ?>">
+                         <?php if ($this->language == 'en'): ?>
+                        <img src="/images/layout/ajurweda/dodaj_wydarzenie_en.png"/>
+                    <?php else: ?>
+                        <img src="/images/layout/ajurweda/dodaj_wydarzenie_pl.png"/>
+                    <?php endif; ?>
+                </a>
+            </div>
+        <?php if(isset($this->paginator)): ?>
+            <?php foreach($this->paginator as $eventItem):?>
+                 <?php if($eventItem['Translation'][$this->language]['slug']): ?>
+                    <article>
+                        <div class="content">
+                            <?php if($eventItem['type'] == "promoted"): ?>
+                                <div class="picture">
+                                    <?php if($eventItem['type'] == "promoted"): ?>
+                                        <?php if($eventItem['PhotoRoot']['offset']): ?>
+                                            <img src="/media/photos/<?php echo $eventItem['PhotoRoot']['offset'] ?>/122x77/<?php echo $eventItem['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $eventItem['PhotoRoot']['offset'] ?>/<?php echo $eventItem['PhotoRoot']['filename'] ?>" alt="<?php echo $eventItem['PhotoRoot']['title'] ?>" />
+                                        <?php else: ?>
+                                            <img src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 77px; height: 77px" />
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                    <div class="clear"></div>
+                                </div>
+                            <?php endif; ?>
+                            <div class="desc">
+                                    <?php if($eventItem['type'] != "promoted" && $eventItem['href']): ?>
+                                        <a href="<?php echo $eventItem['href']; ?>">
+                                            <div class="date"><?php echo $eventItem['event_date']; ?></div>
+                                            <header><?php echo $eventItem['Translation'][$this->language]['title']; ?></header>
+                                            <div class="location"><?php echo $eventItem['location']; ?></div>
+                                        </a>
+                                    <?php else: ?>
+                                        <div class="date"><?php echo $eventItem['event_date']; ?></div>
+                                        <header><?php echo $eventItem['Translation'][$this->language]['title']; ?></header>
+                                        <div class="location"><?php echo $eventItem['location']; ?></div>
+                                    <?php endif; ?>
+                            </div>
+                            <div class="edit_button">
+                                <a href="<?php echo $this->url(array('action' => 'edit-event', 'event-type' => $eventItem['type'], 'id' => $eventItem['id']), 'domain-user-profile') ?>">
+                                    <img src="/images/layout/ajurweda/edit_icon.png" />
+                                </a>
+                            </div>
+                        </div>  
+                        <div class="line"></div> 
+                    </article>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <?php if ($this->paginator->count() == 0): ?>
+            <span class="empty-list"><?php echo $this->translate('No definied events') ?></span>
+        <?php endif; ?>
+        </div>
+    <div class="clearfix"></div>
+    <div class="bottom_bar">
+        <div class="pagination">
+            <?php echo $this->paginationControl($this->paginator, 'Sliding', 'profile_pagination_control.phtml') ?>
+        </div>
+    </div>  
+    </div>
+</div>
+
+

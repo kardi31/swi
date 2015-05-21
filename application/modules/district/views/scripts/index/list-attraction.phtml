@@ -1,0 +1,41 @@
+<div class="block_breadcrumbs">
+    <ul>
+        <li><a href="/">Strona główna</a></li>
+        <li>Atrakcje regionu</li>
+    </ul>
+</div>
+<div class="separator" style="height:30px;"></div>
+<h3 style="font-size:16px;">Atrakcje regionu</h3>
+<div class="line_4" style="margin:-4px 0px 18px;"></div>
+                        
+<p class="general_subtitle" style="padding-bottom:0px;">Tutaj można znaleźć najlepsze atrakcje regionu</p>
+
+<div class="block_blog_1">
+    <?php foreach($this->attractions as $attraction):
+        $photo = $attraction['PhotoRoot'];
+        ?>
+    <article class="blog_post">
+        <div class="tail"></div>
+        <div class="f_pic"><a href="<?php echo $this->url(array('slug' => $attraction['Translation'][$this->language]['slug']),'domain-i18n:attraction'); ?>"><img src="/media/photos/<?php echo $photo['offset'];?>/610x292/<?php echo $photo['filename']; ?>" alt=""></a></div>
+
+        <h4 class="title"><a href="<?php echo $this->url(array('slug' => $attraction['Translation'][$this->language]['slug']),'domain-i18n:attraction'); ?>"><?php echo $attraction['Translation'][$this->language]['title']; ?></a></h4>
+
+        <div class="info">
+            <div class="date"><p><?php echo MF_Text::polishTimeFormat($attraction['publish_date']); ?></p></div>
+            <div class="author"><p>Autor:  <a href="#"><?php echo $attraction['UserCreated']['first_name']." ".$attraction['UserCreated']['last_name']; ?></a></p></div>
+
+        </div>
+
+        <div class="content">
+            <p><?php echo MF_Text::truncate(strip_tags($attraction['Translation'][$this->language]['content']),200); ?></p>
+             
+        </div>
+        <div class="text-align-right">
+                 <a class="lnk_all_news" href="<?php echo $this->url(array('slug' => $attraction['Translation'][$this->language]['slug']),'domain-i18n:attraction'); ?>">Czytaj więcej...</a>
+             </div>
+        <div class="separator" style="height:15px;"></div>
+    </article>
+    <?php endforeach; ?>
+</div>
+                        
+<div class="line_2" style="margin:24px 0px 25px;"></div>

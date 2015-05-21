@@ -1,0 +1,77 @@
+<?php  $video = $this->video; ?>
+
+
+<div class="breadcrumbs">
+    <ul>
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="<?php echo $this->url(array(),'domain-gallery-list'); ?>">Galeria</a></li>
+        <li><?php echo $video['Translation'][$this->language]['name']; ?></li>
+    </ul>
+</div>
+<article id="content">
+        <div class="wrapper tabs">
+                <div class="tab-content" id="tab1">
+                        <h5>
+				<?php echo $video['Translation'][$this->language]['name']; ?>
+			</h5>
+                        <div class="wrapper pad_bot2">
+                            <iframe class="fleft" src='<?php echo $video['VideoRoot']['url']; ?>' width='400' height='250' ></iframe>
+                                <p class="pad_bot1"><?php echo $video['Translation'][$this->language]['description']; ?></p>
+                                
+			</div>
+		</div>
+                <div class="share-article-body">
+                        <div class="main-title">
+                                <h2>Poleć znajomym</h2>
+                                <!--<span>Poinformuj innych o artykule</span>-->
+                        </div>
+                        <div class="">
+                                <a href="http://www.facebook.com/share.php?u=<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-facebook"><i class="fa fa-facebook"></i><span></span></a>
+                                <a href="https://twitter.com/share" class="share-body ot-twitter"><i class="fa fa-twitter"></i><span></span></a>
+                                <a href="https://plusone.google.com/_/+1/confirm?<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-google"><i class="fa fa-google-plus"></i><span></span></a>
+                                <a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-linkedin"><i class="fa fa-linkedin"></i><span></span></a>
+                                <a href="http://pinterest.com/pin/create/button/?<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-pinterest"><i class="fa fa-pinterest"></i><span></span></a>
+                        </div>
+                </div>
+        </div>
+    
+        
+
+</article>
+
+
+<?php /*
+<article class="grid_8">
+<h1><?php echo $this->gallery['Translation'][$this->language]['name'] ?></h1>
+<?php echo $this->gallery['Translation'][$this->language]['description'] ?>
+<?php if($this->gallery->get('PhotoRoot')){ ?>
+    <div class="gallery-container gallery-list">
+
+                <div class="gallery-box">
+                        <ul>
+                            <?php foreach($this->gallery->get('PhotoRoot')->getNode()->getChildren() as $photo): ?>
+                                <li>
+                                    <a href="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['title'] ?>"
+                                       data-lightview-group='<?php echo $this->gallery['Translation'][$this->language]['slug'] ?>'
+                                       data-lightview-title="<?php echo $photo['title'] ?>"
+                                       class='lightview' 
+                                       data-lightview-options="
+                                           width: 800,
+                                           height: 460,
+                                           viewport: 'false',
+                                         "
+                                       >
+                                        <img src="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $this->photoDimension; ?>/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['title'] ?>" />
+                                    </a>
+                                </li>
+                                <?php endforeach; ?>
+                        </ul>	
+
+
+                </div>
+
+            </div>
+<?php
+}
+?>
+</article>

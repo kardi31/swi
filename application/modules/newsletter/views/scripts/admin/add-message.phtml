@@ -1,0 +1,54 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    
+    $("#subscriber_id").select2();
+    $("#group_id").select2();
+//    $("#news_id").select2();
+//    $("#event_id").select2();
+    $("#product_id").select2();
+//    $("#company_id").select2();
+
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Add message') ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                
+                <form class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
+                                        
+                    <?php echo $this->form->title ?>
+                    <?php //echo $this->form->news_id->setAttribs(array('class' => 'nostyle')); ?> 
+                    <?php //echo $this->form->event_id->setAttribs(array('class' => 'nostyle')); ?> 
+                    <?php //echo $this->form->company_id->setAttribs(array('class' => 'nostyle')); ?> 
+                    <?php // echo $this->form->product_id->setAttribs(array('class' => 'nostyle')); ?> 
+                    <?php echo $this->form->all_subscribers ?>
+                    <?php echo $this->form->subscriber_id->setAttribs(array('class' => 'nostyle')); ?> 
+                    <?php echo $this->form->group_id->setAttribs(array('class' => 'nostyle')); ?>
+                    
+                    <?php echo $this->form->id ?>
+                    
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-message', 'newsletter') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+                </form>
+            
+            </div>
+            
+        </div>
+        
+    </div>
+</div>

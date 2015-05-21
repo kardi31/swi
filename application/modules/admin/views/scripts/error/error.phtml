@@ -1,0 +1,19 @@
+<h2 class="page-title">An error occurred</h2>
+<div class="tagline"><?php echo $this->message ?></div>
+
+<?php if (isset($this->exception)): ?>
+
+<h2>Exception information:</h2>
+<p>
+    <b>Message:</b> <?php echo $this->exception->getMessage() ?>
+</p>
+
+<h2>Stack trace:</h2>
+<pre><?php echo $this->exception->getTraceAsString() ?>
+</pre>
+
+<h2>Request Parameters:</h2>
+<pre><?php echo $this->escape(var_export($this->request->getParams(), true)) ?>
+</pre>
+
+<?php endif ?>

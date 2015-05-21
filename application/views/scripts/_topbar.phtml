@@ -1,0 +1,21 @@
+<div class="topbar">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div id="site-info">
+                 <span><?php echo $this->translate('Call us now!'); ?></span> 34 344 00 31  
+            </div>
+        </div><!-- col-2 -->                        
+        <div class=" col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="select-options pull-right">
+                <div class="btn-toolbar" role="toolbar">
+                     
+                    <?php echo $this->partial('_lang.phtml', array('route' => $this->route, 'languages' => $this->activeLanguages, 'language' => $this->language)) ?>
+                        
+                       
+                       
+                    </div><!-- /btn-toolbar -->
+                </div><!-- select-options -->
+            </div><!-- col-6 -->
+        </div><!-- row -->
+</div><!-- topbar -->
+        

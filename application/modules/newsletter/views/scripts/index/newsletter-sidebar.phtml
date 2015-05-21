@@ -1,0 +1,17 @@
+<div class="widget">
+        <h3>Newsletter</h3>
+        <div class="subscribe-feed">
+                <p>Zapisz się do newslettera. Badź zawsze na bieżąco.</p>
+
+                            <?php echo $this->messages()->render(); ?>
+
+                <form name="aweber-form" method="POST" class="subscribe-form aweber-form">
+                        <p class="sub-email">
+                                <input type="text" value="" placeholder="Adres email" name="email" class="email">
+                        </p>
+                        <p class="sub-submit">
+                                <input type="submit" value="Zapisz się" name="sign_newsletter" class="button aweber-submit">
+                        </p>
+                </form>
+        </div>
+</div>

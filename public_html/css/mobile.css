@@ -1,0 +1,174 @@
+﻿body {
+    margin:0 auto;
+color:#333333;
+font: 0.813em/1.5em "Signika";
+background-color: #f6f6f6;
+
+}
+
+#mainSlider,#images{
+    display:none;
+}
+
+#mainLogo{
+    display:block;
+    margin:0 auto;
+    margin-top:2%;
+}
+
+#myslidemenu li a{
+    padding:12px;
+    
+    border-radius:6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    background:#414141;
+    display:block;
+}
+
+#myslidemenu li a:hover{
+    background:#414141;
+}
+
+#topMenu li:first-of-type{
+    display:none;
+}
+
+
+.jqueryslidemenu ul {
+    padding-left:0px;
+}   
+
+.jqueryslidemenu ul li {
+    position: relative;
+    display: inline-block;
+}   
+
+
+
+.jqueryslidemenu ul ul {
+    list-style-type:none;
+    padding-left:0px;
+    margin-top:5px;
+} 
+
+#myslidemenu li li{
+    display:none;
+}
+
+#myslidemenu li a{
+    color:#fff;
+}
+
+.mainMobile a {
+    color:#333 !important;
+}
+
+.newsPhotos{
+    display:none;
+}
+
+
+.sidebar{
+    text-align:center;
+}
+
+#contact h4{
+    font-size:24px;
+}
+
+footer{
+    background:#333;
+}
+
+@media screen and (max-width: 800px){
+.hnews{
+    display:inline-block;
+    width:46%;
+    margin:1%;
+    vertical-align:top;
+}
+
+
+#topMenu li,#myslidemenu li{
+    width:47%;
+    text-align:center;
+    margin:1%;
+    vertical-align: top;
+}
+}
+@media screen and (max-width: 1024px){
+.hnews{
+    display:inline-block;
+    width:46%;
+    margin:1%;
+    vertical-align:top;
+}
+#footer{
+    width:auto !important;
+}
+.newsPhoto{
+    margin-bottom:15px;
+}
+
+#topMenu li,#myslidemenu li{
+    width:47%;
+    text-align:center;
+    margin:1%;
+    vertical-align: top;
+}
+
+.newsTitle{
+    min-height:54px;
+    display: block;
+}
+.newsDate{
+    margin-bottom: 20px;
+}
+
+}
+@media screen and (max-width: 790px){
+.hnews{
+    display:inline-block;
+    width:100%;
+    vertical-align:top;
+}
+
+
+#topMenu li,#myslidemenu li{
+    width:100%;
+    text-align:center;
+    vertical-align: top;
+}
+}
+#results  .matchHeader h4{
+display:inline-block;
+font-weight:bold;
+font-size:1em !important;
+}
+#results .matchHeader{
+font-size:1.5em !important;
+}
+#results h4{
+	display:inline-block;
+}
+h1{
+	font-size:2em !important;
+}
+
+#showTable table tr td:nth-of-type(4),
+#showTable table tr th:nth-of-type(4),
+#showTable table tr td:nth-of-type(5),
+#showTable table tr th:nth-of-type(5),
+#showTable table tr td:nth-of-type(6),
+#showTable table tr th:nth-of-type(6)
+{
+display:none;
+}
+
+#showTable table{
+word-wrap: break-word;
+}
+#showTable td{
+width:3%;
+}

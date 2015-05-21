@@ -1,0 +1,122 @@
+<article id="content">
+        <div class="wrapper">
+                <section class="col1">
+                    <div class="shadowBoxLeft">
+                        <h1 class="under mainPage"><?php echo $this->page['Translation'][$this->language]['title']; ?></h1>
+                        <div class="wrapper">
+                                <figure class="left marg_right1">
+                                    <?php if(strlen($page['PhotoRoot']['offset'])): ?>
+                                        <img src="<?php echo MF_Text::getPhotoPath($page['PhotoRoot']); ?>" alt="<?php echo $this->page['Translation'][$this->language]['title']; ?>" title="<?php echo $this->page['Translation'][$this->language]['title']; ?>">
+                                    <?php else: ?>
+                                        <img src="/assets/images/page1_img1.jpg" alt="">
+                                    <?php endif; ?>
+                                </figure>
+                                <?php echo $this->page['Translation'][$this->language]['content']; ?>
+                        </div>
+                    </div>
+                    
+                    <?php echo $this->action('banner-over-news','index','banner'); ?>
+                    
+                </section>
+            
+            
+                <section class="col2 pad_left_30 mainPageRightCol">
+                    <div class="shadowBoxRightSmall">
+                         <h2 class="nextEventHeader under">Najbliższe wydarzenie</h2>
+                        <div class=" nextEvents testimonials">
+                            <div id="nextEvent">
+                              <ul>
+                                  <?php foreach($this->nextEvents as $nextEvent): ?>
+                                    <li>
+                                            <div>
+                                                <h6><?php echo $nextEvent['Translation'][$this->language]['title']; ?></h6>
+                                                   <?php echo $nextEvent['Translation'][$this->language]['content']; ?>
+                                            </div>
+                                    </li>
+                                    <?php endforeach; ?>
+                              </ul>
+                            </div>
+                        <a href="#" class="upEvent"></a>
+                        <a href="#" class="downEvent"></a>
+                        </div>
+                    </div>
+                    
+                    <?php echo $this->action('banner-right','index','banner'); ?>
+			<div id="activeLeagues" class="shadowBoxRightSmall">
+			    <div id="selectLeague">
+				<?php foreach($this->leagues as  $key => $league): ?>
+				    <a href="javascript:void(0)" class="leagueChoose <?php if($key==0) echo "active"; ?>" rel="<?php echo $league['id']; ?>"><?php echo $league['name']; ?></a>
+				<?php endforeach; ?>
+			    </div>
+			    <?php foreach($this->leagues as $key=>$league): 
+				$leagueId = $league['id'];
+				?>
+			    <div class="activeLeague <?php if($key==0) echo "first"; ?>" id="league_<?php echo $league['id']; ?>">
+				<h2><?php echo $league['name']; ?></h2>
+				<table>
+				    <thead>
+					<tr>
+					    <th></th>
+					    <th>Drużyna</th>
+					    <th>M. </th>
+					    <th>B. zd.</th>
+					    <th>B. st. </th>
+					    <th>Pkt.</th>
+					</tr>
+				    </thead>
+				    <tbody>
+				    <?php foreach($league['Tabela'] as $key2 => $tabelaItem): ?>
+					<tr <?php if($tabelaItem['Team']['my_team']) echo 'class="myteam"'; ?>>
+					    <td><?php echo $key2+1; ?></td>
+					    <td><?php echo $tabelaItem['Team']['name']; ?></td>
+					    <td><?php echo $tabelaItem['games']; ?></td>
+					    <td><?php echo $tabelaItem['goals_scored']; ?></td>
+					    <td><?php echo $tabelaItem['goals_lost']; ?></td>
+					    <td><?php echo $tabelaItem['points']; ?></td>
+					</tr>
+				    <?php endforeach; ?>
+					
+				    </tbody>
+				</table>
+				<br />
+				<h3>Poprzednie mecze</h3>
+				<?php if(isset($this->prevMatches[$leagueId])): ?>
+				<strong><?php echo MF_Text::timeFormat($this->prevMatches[$leagueId][0]['match_date'],'d-m-Y'); ?></strong><br />
+				    <?php foreach($this->prevMatches[$leagueId] as $prevMatch):
+					    echo MF_Text::timeFormat($prevMatch['match_date'],'H:i'); 
+					    echo " ".$prevMatch['team1_name']." - ".$prevMatch['team2_name']." ".$prevMatch['goal1'].":".$prevMatch['goal2']. "<br />"; 
+					
+				
+					 endforeach; ?>
+				
+				<?php endif; ?>
+				<br />
+				<h3>Najbliższe mecze</h3>
+				<?php if(isset($this->nextMatches[$leagueId])): ?>
+				<strong><?php echo MF_Text::timeFormat($this->nextMatches[$leagueId][0]['match_date'],'d-m-Y'); ?></strong><br />
+				    <?php foreach($this->nextMatches[$leagueId] as $nextMatch):
+					    echo MF_Text::timeFormat($nextMatch['match_date'],'H:i'); 
+					    echo " ".$nextMatch['team1_name']." - ".$nextMatch['team2_name']. "<br />"; 
+					
+				
+					 endforeach; ?>
+				
+				<?php endif; ?>
+			    </div>
+			    <?php endforeach; ?>
+			</div>
+                </section>
+        </div>
+</article>
+<script>
+    $(document).ready(function(){
+	$('#selectLeague a').click(function(){
+	    var rel = $(this).attr('rel');
+	    $('.activeLeague').hide();
+	    $('#league_'+rel).show();
+	    $('.leagueChoose').removeClass('active');
+	    $(this).addClass('active');
+	})
+    });
+
+</script>

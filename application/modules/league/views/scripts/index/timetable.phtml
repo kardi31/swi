@@ -1,0 +1,19 @@
+
+<div id="timetable" class="content">
+    <?php 
+$this->headTitle('Terminarz - '.$this->league['name'],'SET');
+foreach($this->data as $data):
+    $date = substr($data['match_date'],0,10); 
+    $dzien = date('N', strtotime($date));
+    $dni_tygodnia = array('Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota','Niedziela');
+
+    
+    echo $dni_tygodnia[$dzien-1]." ".substr($data['match_date'],8,2).".".substr($data['match_date'],5,2).".".substr($data['match_date'],0,4)."<br>";
+    foreach($this->timetable as $timetable):
+        if(substr($timetable['match_date'],0,10)==substr($data['match_date'],0,10))
+             echo substr($timetable['match_date'],11,5)."  ".$timetable['Team1']['name']." : ".$timetable['Team2']['name']." <br />";
+    endforeach;
+    echo "<br />";
+endforeach;
+?>
+</div>

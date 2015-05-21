@@ -1,0 +1,17 @@
+<article class="profile span8">
+    <div class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Banner') ?>: <?php echo $this->banner['name'] ?></h3>
+        <span class="span4"><a href="<?php echo $this->url(array('action' => 'banners-edit', 'banner-id' => $this->banner['id']), 'domain-user-profile') ?>" class="btn btn-small btn-success pull-right"><?php echo $this->translate('Edit banner') ?></a></span>
+    </div>
+    
+    <section class="article clearfix">
+        <p><?php echo $this->banner['href'] ?></p>
+        <p><?php echo $this->translate('View count') ?>: <?php echo $this->banner['views'] ?> / <?php echo $this->translate('Click count') ?>: <?php echo $this->banner['clicks'] ?></p>
+        <?php if(strlen($this->banner['PhotoRoot']['filename'])): ?>
+        <img src="/media/photos/<?php echo $this->banner['PhotoRoot']['offset'] ?>/280x100/<?php echo $this->banner['PhotoRoot']['filename'] ?>" /><br />
+        <?php else: ?>
+        <img src="/images/layout/article-placeholder.png" /><br />
+        <?php endif; ?>
+    </section>
+    
+</article>

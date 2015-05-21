@@ -1,0 +1,18 @@
+<article class="profile span8">
+    <div class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Article') ?>: <?php echo $this->text()->truncate($this->article['title'], 100, 'letters') ?></h3>
+        <span class="span4"><a href="<?php echo $this->url(array('action' => 'articles-edit', 'article-id' => $this->article['id']), 'domain-user-profile') ?>" class="btn btn-small btn-success pull-right"><?php echo $this->translate('Edit article') ?></a></span>
+    </div>
+    
+    <section class="article clearfix">
+        <?php if(strlen($this->article['PhotoRoot']['filename'])): ?>
+        <img src="/media/photos/<?php echo $this->article['PhotoRoot']['offset'] ?>/650x262/<?php echo $this->article['PhotoRoot']['filename'] ?>" /><br />
+        <?php else: ?>
+        <img src="/images/layout/article-placeholder.png" /><br />
+        <?php endif; ?>
+        <div class="content">
+            <?php echo $this->article['content'] ?>
+        </div>
+    </section>
+    
+</article>

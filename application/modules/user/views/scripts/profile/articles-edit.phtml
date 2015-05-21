@@ -1,0 +1,49 @@
+<section class="profile span8">
+    <header class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Article') ?>: <?php echo $this->article['title'] ?></h3>
+    </header>
+    
+    <?php /*
+    <div class="clearfix">
+        <div class="photo-list">
+            <ul class="photos">
+                <?php if($this->article['PhotoRoot']['filename']): ?>
+                <li>
+                    <?php if(strlen($this->article['PhotoRoot']['filename'])): ?>
+                    <img src="/media/photos/<?php echo $this->article['PhotoRoot']['offset'] ?>/255x122/<?php echo $this->article['PhotoRoot']['filename'] ?>" /><br />
+                    <?php else: ?>
+                    <img src="/images/layout/placeholder.png" /><br />
+                    <?php endif; ?>
+                    <a class="delete-photo" href="<?php echo $this->url(array('action' => 'delete-photo', 'id' => $this->article['PhotoRoot']['id']), 'domain-user-profile') ?>"><?php echo $this->translate('Delete') ?></a>
+                </li>
+                <?php else: ?>
+                    <li>
+                        <img src="/images/layout/placeholder.png" /><br />
+                    </li> 
+                <?php endif; ?>
+            </ul>
+        </div>
+        <ul id="file-uploader-wrapper">
+            <li>
+                <a id="file-uploader" data-id="<?php echo $this->article['id'] ?>" data-href="<?php echo $this->url(array('action' => 'upload-article-photo'), 'domain-user-profile') ?>"><?php echo $this->translate('Upload photo') ?></a>
+            </li>
+        </ul>
+    </div>
+    */ ?>
+    
+    <section>
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="<?php echo $this->form->getEnctype() ?>">
+            <?php if(strlen($this->article['PhotoRoot']['filename'])): ?>
+            <img src="/media/photos/<?php echo $this->article['PhotoRoot']['offset'] ?>/255x122/<?php echo $this->article['PhotoRoot']['filename'] ?>" /><br />
+            <?php else: ?>
+            <img src="/images/layout/article-placeholder.png" /><br />
+            <?php endif; ?>
+            <?php echo $this->form->file ?>
+            <?php echo $this->form->title ?>
+            <?php echo $this->form->content ?>
+            <?php echo $this->form->submit ?>
+            <?php echo $this->form->id ?>
+        </form>
+    </section>
+    
+</section>

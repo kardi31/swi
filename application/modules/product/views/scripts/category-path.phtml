@@ -1,0 +1,17 @@
+<?php if(isset($this->category)): ?>
+    <?php if($this->category->getNode()->getParent()): ?>
+        <?php echo $this->partial('category-path.phtml', 'product', array('category' => $this->category->getNode()->getParent(), 'activeCategory' => $this->activeCategory, 'language' => $this->language)) ?>
+    <?php endif; ?>
+    <?php if($this->category['level'] > 0 &&  $this->category->Translation[$this->language]->slug): ?>
+        <li>
+            <a href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug), 'domain-i18n:category') ?>">
+                <?php if ($this->category->id == $this->activeCategory->id): ?>
+                        <h1><?php echo ucfirst($this->category->Translation[$this->language]->name); ?></h1>
+                    <?php else: ?>
+                        <?php echo ucfirst($this->category->Translation[$this->language]->name); ?>
+                    <?php endif; ?>       
+            </a>
+        </li>
+    <?php endif; ?>
+<?php endif; ?>
+

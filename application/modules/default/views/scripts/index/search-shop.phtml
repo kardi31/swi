@@ -1,0 +1,55 @@
+<section id="search_buttons">
+    <div id="search">
+        <div class="form_search">
+            <form action="<?php echo $this->url(array(), 'domain-i18n:results-searching') ?>" method="get" enctype="application/x-www-form-urlencoded" >
+                <?php echo $this->form->phrase; ?>
+                <?php echo $this->form->category_main_filter; ?>
+                <?php echo $this->form->submit; ?>
+            </form>
+        </div>
+        <ul class="buttons">
+            <li class="first">
+                <a href="<?php echo $this->url(array(), 'domain-i18n:cart') ?>" title="<?php echo $this->translate('cart'); ?>">
+                    <div class="cart">
+                        <div class="counter"><?php echo $this->counterCart; ?></div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="mailto:sklep@a-ti.pl" title="<?php echo $this->translate('email'); ?>">
+                    <div class="email"></div>
+                </a>
+            </li>
+<!--            <li>
+                <a href="" title="<?php //echo $this->translate('chat'); ?>">
+                    <div class="chat"></div>
+                </a>
+            </li>-->
+            <li>
+                <a href="http://www.pinterest.com/ajurweda/" target="_blank" title="<?php echo $this->translate('pinterest'); ?>">
+                    <div class="pinterest"></div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.facebook.com/AjurwedaPolska" target="_blank" title="<?php echo $this->translate('facebook'); ?>">
+                    <div class="facebook"></div>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/AjurwedaPolska" target="_blank" title="<?php echo $this->translate('twitter'); ?>">
+                    <div class="twitter"></div>
+                </a>
+            </li>
+<!--            <li>
+                <a href="" title="<?php //echo $this->translate('email'); ?>">
+                    <div class="tw"></div>
+                </a>
+            </li>-->
+            <li>
+                <a href="https://plus.google.com/110440255114864902502" rel="author" target="_blank" title="<?php echo $this->translate('google'); ?>">
+                    <div class="google"></div>
+                </a>
+            </li>
+        </ul>    
+    </div>
+</section>

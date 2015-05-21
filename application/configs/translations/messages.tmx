@@ -1,0 +1,1321 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="pl-pl" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>
+       <tu tuid='Example'>
+           <tuv xml:lang="pl"><seg>Przykład</seg></tuv>
+           <tuv xml:lang="en"><seg>Example</seg></tuv>
+       </tu>
+       <tu tuid='1 month'>
+           <tuv xml:lang="pl"><seg>1 miesiąc</seg></tuv>
+       </tu>
+       <tu tuid='2 months'>
+           <tuv xml:lang="pl"><seg>2 miesiące</seg></tuv>
+       </tu>
+       
+       <tu tuid='3 months'>
+           <tuv xml:lang="pl"><seg>3 miesiące</seg></tuv>
+       </tu>
+       <tu tuid='Register'>
+           <tuv xml:lang="pl"><seg>Rejestracja</seg></tuv>
+       </tu>
+       <tu tuid='About us'>
+           <tuv xml:lang="pl"><seg>O nas</seg></tuv>
+       </tu>
+       <tu tuid='Active'>
+           <tuv xml:lang="pl"><seg>Aktywny</seg></tuv>
+       </tu>
+       <tu tuid='Change status'>
+           <tuv xml:lang="pl"><seg>Zmień status</seg></tuv>
+       </tu>
+       <tu tuid='Code'>
+           <tuv xml:lang="pl"><seg>Kod</seg></tuv>
+       </tu>
+       <tu tuid='Add'>
+           <tuv xml:lang="pl"><seg>Dodaj</seg></tuv>
+       </tu>
+        <tu tuid='This lamp is sold together with a shade'>
+           <tuv xml:lang="pl"><seg>Ta lampa jest sprzedawana z abażurem</seg></tuv>
+       </tu>
+        <tu tuid='This lamp is sold without a shade'>
+           <tuv xml:lang="pl"><seg>Ta lampa jest sprzedawana bez abażuru</seg></tuv>
+       </tu>
+       <tu tuid='Follow to buy a shade'>
+           <tuv xml:lang="pl"><seg>Przejdź aby kupić abażur</seg></tuv>
+       </tu>
+       <tu tuid='Order summary'>
+           <tuv xml:lang="pl"><seg>Podsumowanie zamówienia</seg></tuv>
+       </tu>
+       <tu tuid='Order data'>
+           <tuv xml:lang="pl"><seg>Dane zamówienia</seg></tuv>
+       </tu>
+       <tu tuid='Total to pay'>
+           <tuv xml:lang="pl"><seg>Łącznie do zapłaty</seg></tuv>
+       </tu>
+       <tu tuid='Delivery data'>
+           <tuv xml:lang="pl"><seg>Dane dostawy</seg></tuv>
+       </tu>
+       <tu tuid='Postal code'>
+           <tuv xml:lang="pl"><seg>Kod pocztowy</seg></tuv>
+       </tu>
+       <tu tuid='Registration completed successfully'>
+           <tuv xml:lang="pl"><seg>Rejestracja została ukończona pomyślnie</seg></tuv>
+       </tu>
+       <tu tuid='Payment type'>
+           <tuv xml:lang="pl"><seg>Sposób płatności</seg></tuv>
+       </tu>
+       <tu tuid='Quantity'>
+           <tuv xml:lang="pl"><seg>Ilość</seg></tuv>
+       </tu>
+       <tu tuid='Catalogs'>
+           <tuv xml:lang="pl"><seg>Katalogi</seg></tuv>
+       </tu>
+       <tu tuid='New products'>
+           <tuv xml:lang="pl"><seg>Nowości</seg></tuv>
+       </tu>
+       <tu tuid='Thank you, your message was sent. We will contact you soon'>
+           <tuv xml:lang="pl"><seg>Dziękujemy, Twoja wiadomość została wysłana. Skontaktujemy się z Tobą wkrótce</seg></tuv>
+       </tu>
+       <tu tuid='Thank you for signing to our newsletter'>
+           <tuv xml:lang="pl"><seg>Dziękujemy za zapisanie się do naszego newslettera</seg></tuv>
+       </tu>
+       <tu tuid='Accept the rules first!'>
+           <tuv xml:lang="pl"><seg>Zaakceptuj regulamin!</seg></tuv>
+       </tu>
+       
+       <tu tuid='Delivery type'>
+           <tuv xml:lang="pl"><seg>Sposób dostawy</seg></tuv>
+       </tu>
+       <tu tuid='Contact data'>
+           <tuv xml:lang="pl"><seg>Dane kontaktowe</seg></tuv>
+       </tu>
+       <tu tuid='Opening hours'>
+           <tuv xml:lang="pl"><seg>Godziny otwarcia</seg></tuv>
+       </tu>
+        <tu tuid='Service name'>
+           <tuv xml:lang="pl"><seg>Nazwa serwisu</seg></tuv>
+       </tu>
+        <tu tuid='All rights reserved'>
+           <tuv xml:lang="pl"><seg>Wszelkie prawa zastrzeżone</seg></tuv>
+       </tu>
+       <tu tuid='Do not have an account yet? Create it for free by going to the'>
+           <tuv xml:lang="pl"><seg>Nie masz jeszcze konta? Stwórz je za darmo przechodząc do</seg></tuv>
+       </tu>
+       <tu tuid='registration page'>
+           <tuv xml:lang="pl"><seg>strony rejestracji</seg></tuv>
+       </tu>
+       <tu tuid='login'>
+           <tuv xml:lang="pl"><seg>zaloguj się</seg></tuv>
+       </tu>
+       <tu tuid='Address data'>
+           <tuv xml:lang="pl"><seg>Dane adresowe</seg></tuv>
+       </tu>
+       <tu tuid='Buyer data'>
+           <tuv xml:lang="pl"><seg>Dane zamawiającego</seg></tuv>
+       </tu>
+       <tu tuid='PRODUCER'>
+           <tuv xml:lang="pl"><seg>PRODUCENT</seg></tuv>
+       </tu>
+       <tu tuid='SPECIFICATIONS'>
+           <tuv xml:lang="pl"><seg>DANE TECHNICZNE</seg></tuv>
+       </tu>
+       <tu tuid='* Required fields'>
+           <tuv xml:lang="pl"><seg>* Pola wymagane</seg></tuv>
+       </tu>
+        <tu tuid='CATEGORY'>
+           <tuv xml:lang="pl"><seg>KATEGORIA</seg></tuv>
+       </tu>
+       <tu tuid='COLLECTION'>
+           <tuv xml:lang="pl"><seg>KOLEKCJA</seg></tuv>
+       </tu>
+       <tu tuid='SIGN UP FOR OUR NEWSLETTER TO STAY UPDATED'>
+           <tuv xml:lang="pl"><seg>ZAPISZ SIĘ DO NASZEGO NEWSLETTERA, ABY MIEĆ ZAWSZE ŚWIEŻE INFORMACJE</seg></tuv>
+       </tu>
+       <tu tuid='I accept the rules of newsletter'>
+           <tuv xml:lang="pl"><seg>Akceptuję warunki biuletynu</seg></tuv>
+       </tu>
+       <tu tuid='Different address for shipping'>
+           <tuv xml:lang="pl"><seg>Adres do wysyłki inny niż dane zamawiającego</seg></tuv>
+       </tu>
+       <tu tuid='ADD TO BASKET'>
+           <tuv xml:lang="pl"><seg>DO KOSZYKA</seg></tuv>
+       </tu>
+       <tu tuid='COLLECTION PRODUCTS'>
+           <tuv xml:lang="pl"><seg>PRODUKTY Z KOLEKCJI</seg></tuv>
+       </tu>
+       <tu tuid='Back to shop'>
+           <tuv xml:lang="pl"><seg>Wróć do zakupów</seg></tuv>
+       </tu>
+       <tu tuid='Collection'>
+           <tuv xml:lang="pl"><seg>Kolekcja</seg></tuv>
+       </tu>
+       <tu tuid='or'>
+           <tuv xml:lang="pl"><seg>lub</seg></tuv>
+       </tu>
+        <tu tuid='Collections'>
+           <tuv xml:lang="pl"><seg>Kolekcje</seg></tuv>
+       </tu>
+        <tu tuid='Add collection'>
+           <tuv xml:lang="pl"><seg>Dodaj kolekcje</seg></tuv>
+       </tu>
+       <tu tuid='create account'>
+           <tuv xml:lang="pl"><seg>utwórz konto</seg></tuv>
+       </tu>
+       <tu tuid='logout'>
+           <tuv xml:lang="pl"><seg>wyloguj się</seg></tuv>
+       </tu>
+        <tu tuid='SEARCH'>
+           <tuv xml:lang="pl"><seg>SZUKAJ</seg></tuv>
+       </tu>
+       <tu tuid='HOME'>
+           <tuv xml:lang="pl"><seg>STRONA GŁÓWNA</seg></tuv>
+       </tu>
+       <tu tuid='Shipping data'>
+           <tuv xml:lang="pl"><seg>Dane do wysyłki</seg></tuv>
+       </tu>
+       <tu tuid='change'>
+           <tuv xml:lang="pl"><seg>zmień</seg></tuv>
+       </tu>
+       <tu tuid='MY ACCOUNT'>
+           <tuv xml:lang="pl"><seg>MOJE KONTO</seg></tuv>
+       </tu>
+       <tu tuid='CHECKOUT'>
+           <tuv xml:lang="pl"><seg>DO KASY</seg></tuv>
+       </tu>
+       
+       <tu tuid='Enter your mail to receive our newsletters'>
+           <tuv xml:lang="pl"><seg>Podaj swój mail aby zapisać się na nasz newsletter</seg></tuv>
+       </tu>
+       <tu tuid='Sign up!'>
+           <tuv xml:lang="pl"><seg>Zapisz się!</seg></tuv>
+       </tu>
+       <tu tuid='Add new'>
+           <tuv xml:lang="pl"><seg>Dodaj</seg></tuv>
+       </tu>
+       <tu tuid='Promoted products'>
+           <tuv xml:lang="pl"><seg>Promowane produkty</seg></tuv>
+       </tu>
+       <tu tuid='Add discount code'>
+           <tuv xml:lang="pl"><seg>Dodaj kod rabatowy</seg></tuv>
+       </tu>
+       <tu tuid='Save changes'>
+           <tuv xml:lang="pl"><seg>Zapisz zmiany</seg></tuv>
+       </tu>
+       <tu tuid='Search'>
+           <tuv xml:lang="pl"><seg>Szukaj</seg></tuv>
+       </tu>
+       <tu tuid='STRONA GŁÓWNA'>
+           <tuv xml:lang="pl"><seg>HOME</seg></tuv>
+       </tu>
+       <tu tuid='MOJE KONTO'>
+           <tuv xml:lang="pl"><seg>MY ACCOUNT</seg></tuv>
+       </tu>
+       <tu tuid='DO KASY'>
+           <tuv xml:lang="pl"><seg>CHECKOUT</seg></tuv>
+       </tu>
+       
+       <tu tuid='Basket'>
+           <tuv xml:lang="pl"><seg>Koszyk</seg></tuv>
+       </tu>
+       <tu tuid='Shop'>
+           <tuv xml:lang="pl"><seg>Dodaj do koszyka</seg></tuv>
+       </tu>
+       <tu tuid='Add category'>
+           <tuv xml:lang="pl"><seg>Dodaj kategorie</seg></tuv>
+       </tu>
+       <tu tuid='Make order'>
+           <tuv xml:lang="pl"><seg>Złóż zamówienie</seg></tuv>
+       </tu>
+       <tu tuid='Add delivery type'>
+           <tuv xml:lang="pl"><seg>Dodaj typ dostawy</seg></tuv>
+       </tu>
+       <tu tuid='Count'>
+           <tuv xml:lang="pl"><seg>Liczba</seg></tuv>
+       </tu>
+       <tu tuid='Street'>
+           <tuv xml:lang="pl"><seg>Ulica</seg></tuv>
+       </tu>
+       <tu tuid='House number'>
+           <tuv xml:lang="pl"><seg>Nr domu</seg></tuv>
+       </tu>
+       <tu tuid='Flat number'>
+           <tuv xml:lang="pl"><seg>Nr lokalu</seg></tuv>
+       </tu>
+       <tu tuid='Count'>
+           <tuv xml:lang="pl"><seg>Liczba</seg></tuv>
+       </tu>
+       <tu tuid='Add new dimension'>
+           <tuv xml:lang="pl"><seg>Dodaj nowy rozmiar</seg></tuv>
+       </tu>
+       <tu tuid='Add new element'>
+           <tuv xml:lang="pl"><seg>Dodaj nowy element</seg></tuv>
+       </tu>
+       <tu tuid='Add new price'>
+           <tuv xml:lang="pl"><seg>Dodaj nową cenę</seg></tuv>
+       </tu>
+       <tu tuid='Related products'>
+           <tuv xml:lang="pl"><seg>Podobne produkty</seg></tuv>
+       </tu>
+       <tu tuid='Add notice'>
+           <tuv xml:lang="pl"><seg>Dodaj ogłoszenie</seg></tuv>
+       </tu>
+       <tu tuid='Add offer'>
+           <tuv xml:lang="pl"><seg>Dodaj ofertę</seg></tuv>
+       </tu>
+       <tu tuid='Add user'>
+           <tuv xml:lang="pl"><seg>Dodaj użytkownika</seg></tuv>
+       </tu>
+       <tu tuid='Add discount'>
+           <tuv xml:lang="pl"><seg>Dodaj rabat</seg></tuv>
+       </tu>
+       <tu tuid='Add order status'>
+           <tuv xml:lang="pl"><seg>Dodaj status zamówienia</seg></tuv>
+       </tu>
+       <tu tuid='Add subcategories'>
+           <tuv xml:lang="pl"><seg>Dodaj podkategorie</seg></tuv>
+       </tu>
+       <tu tuid='Add to cart'>
+           <tuv xml:lang="pl"><seg>Dodaj do koszyka</seg></tuv>
+       </tu>
+       <tu tuid='Address'>
+           <tuv xml:lang="pl"><seg>Adres</seg></tuv>
+       </tu>
+       <tu tuid='Administrators'>
+           <tuv xml:lang="pl"><seg>Administratorzy</seg></tuv>
+       </tu>
+       <tu tuid='Advanced search'>
+           <tuv xml:lang="pl"><seg>Wyszukiwanie zaawansowane</seg></tuv>
+       </tu>
+       <tu tuid='Advertisements'>
+           <tuv xml:lang="pl"><seg>Ogłoszenia</seg></tuv>
+       </tu>
+       <tu tuid='Agent'>
+           <tuv xml:lang="pl"><seg>Oferent</seg></tuv>
+       </tu>
+       <tu tuid='agent'>
+           <tuv xml:lang="pl"><seg>oferent</seg></tuv>
+       </tu>
+       <tu tuid='Agents'>
+           <tuv xml:lang="pl"><seg>Oferenci</seg></tuv>
+       </tu>
+       <tu tuid='All'>
+           <tuv xml:lang="pl"><seg>Wszyscy</seg></tuv>
+       </tu>
+       <tu tuid='Amount'>
+           <tuv xml:lang="pl"><seg>Kwota</seg></tuv>
+       </tu>
+       <tu tuid='Amount in "%"'>
+           <tuv xml:lang="pl"><seg>Procent zniżki %</seg></tuv>
+       </tu>
+       <tu tuid='Article'>
+           <tuv xml:lang="pl"><seg>Artykuł</seg></tuv>
+       </tu>
+       <tu tuid='Articles'>
+           <tuv xml:lang="pl"><seg>Artykuły</seg></tuv>
+       </tu>
+       <tu tuid='Assign'>
+           <tuv xml:lang="pl"><seg>Przydziel</seg></tuv>
+       </tu>
+       <tu tuid='Discount codes'>
+           <tuv xml:lang="pl"><seg>Kody rabatowe</seg></tuv>
+       </tu>
+       <tu tuid='Assign discount'>
+           <tuv xml:lang="pl"><seg>Przydziel rabat</seg></tuv>
+       </tu>
+       <tu tuid='Assign discount clients'>
+           <tuv xml:lang="pl"><seg>Przydziel rabat klientom</seg></tuv>
+       </tu>
+       <tu tuid='Assign discount producers'>
+           <tuv xml:lang="pl"><seg>Przydziel rabat producentom</seg></tuv>
+       </tu>
+       <tu tuid='Assign discount products'>
+           <tuv xml:lang="pl"><seg>Przydziel rabat produktom</seg></tuv>
+       </tu>
+       <tu tuid='Assign discount group of clients'>
+           <tuv xml:lang="pl"><seg>Przydziel rabat grupie klientów</seg></tuv>
+       </tu>
+       <tu tuid='Attachments'>
+           <tuv xml:lang="pl"><seg>Powiązania</seg></tuv>
+       </tu>
+       <tu tuid='Available'>
+           <tuv xml:lang="pl"><seg>Dostępny</seg></tuv>
+       </tu>
+       <tu tuid='Availability'>
+           <tuv xml:lang="pl"><seg>Dostępność</seg></tuv>
+       </tu>
+       <tu tuid='Back'>
+           <tuv xml:lang="pl"><seg>Wstecz</seg></tuv>
+       </tu>
+       <tu tuid='Back to dashboard'>
+           <tuv xml:lang="pl"><seg>Powrót do strony głównej</seg></tuv>
+       </tu>
+       <tu tuid='Banners'>
+           <tuv xml:lang="pl"><seg>Banery</seg></tuv>
+       </tu>
+       <tu tuid='Basic informations'>
+           <tuv xml:lang="pl"><seg>Podstawowe dane</seg></tuv>
+       </tu>
+       <tu tuid='Bestsellers'>
+           <tuv xml:lang="pl"><seg>Bestsellery</seg></tuv>
+       </tu>
+       <tu tuid='Bottom slider'>
+           <tuv xml:lang="pl"><seg>Dolny slider</seg></tuv>
+       </tu>
+       <tu tuid='Buy'>
+           <tuv xml:lang="pl"><seg>Kup</seg></tuv>
+       </tu>
+       <tu tuid='Buyer'>
+           <tuv xml:lang="pl"><seg>Kupujący</seg></tuv>
+       </tu>
+       <tu tuid='Cancel'>
+           <tuv xml:lang="pl"><seg>Anuluj</seg></tuv>
+       </tu>
+       <tu tuid='Captcha value is wrong'>
+           <tuv xml:lang="pl"><seg>Podano błędny kod</seg></tuv>
+       </tu>
+       <tu tuid='Categories'>
+           <tuv xml:lang="pl"><seg>Kategorie</seg></tuv>
+       </tu>
+       <tu tuid='Category'>
+           <tuv xml:lang="pl"><seg>Kategoria</seg></tuv>
+       </tu>
+       <tu tuid='Category list'>
+           <tuv xml:lang="pl"><seg>Lista kategorii</seg></tuv>
+       </tu>
+       <tu tuid='Category name'>
+           <tuv xml:lang="pl"><seg>Nazwa kategorii</seg></tuv>
+       </tu>
+       <tu tuid='Category tree'>
+           <tuv xml:lang="pl"><seg>Drzewo kategorii</seg></tuv>
+       </tu>
+       <tu tuid='Choose whom do you want to assign'>
+           <tuv xml:lang="pl"><seg>Wybierz kogo chcesz przypisać do</seg></tuv>
+       </tu>
+       <tu tuid='Choose offer'>
+           <tuv xml:lang="pl"><seg>Wybierz ofertę</seg></tuv>
+       </tu>
+       <tu tuid='City'>
+           <tuv xml:lang="pl"><seg>Miasto</seg></tuv>
+       </tu>
+       <tu tuid='Click count'>
+           <tuv xml:lang="pl"><seg>Ilość kliknięść</seg></tuv>
+       </tu>
+       <tu tuid='Client'>
+           <tuv xml:lang="pl"><seg>Klient</seg></tuv>
+       </tu>
+       <tu tuid='Client mark'>
+           <tuv xml:lang="pl"><seg>Ocena klienta</seg></tuv>
+       </tu>
+       <tu tuid='client'>
+           <tuv xml:lang="pl"><seg>klient</seg></tuv>
+       </tu>
+       <tu tuid='Clients'>
+           <tuv xml:lang="pl"><seg>Klienci</seg></tuv>
+       </tu>
+       <tu tuid='Comments'>
+           <tuv xml:lang="pl"><seg>Komentarze</seg></tuv>
+       </tu>
+       <tu tuid='CLIENT ORDER HISTORY'>
+           <tuv xml:lang="pl"><seg>Historia zamówień klienta</seg></tuv>
+       </tu>
+       <tu tuid='Client account'>
+           <tuv xml:lang="pl"><seg>Konto klienta</seg></tuv>
+       </tu>
+       <tu tuid='Order history'>
+           <tuv xml:lang="pl"><seg>Historia zamówień</seg></tuv>
+       </tu>
+       <tu tuid='Here are displayed all your orders sorted by date'>
+           <tuv xml:lang="pl"><seg>Poniżej wyświetlone są wszystkie Twoje zamówienia posortowane według daty dodania</seg></tuv>
+       </tu>
+       <tu tuid='Company data'>
+           <tuv xml:lang="pl"><seg>Dane firmy</seg></tuv>
+       </tu>
+       <tu tuid='Company name'>
+           <tuv xml:lang="pl"><seg>Nazwa firmy</seg></tuv>
+       </tu>
+       <tu tuid='Confirm password'>
+           <tuv xml:lang="pl"><seg>Potwierdź hasło</seg></tuv>
+       </tu>
+       <tu tuid='Consignment'>
+           <tuv xml:lang="pl"><seg>Przesyłka</seg></tuv>
+       </tu>
+       <tu tuid='Contact'>
+           <tuv xml:lang="pl"><seg>Kontakt</seg></tuv>
+       </tu>
+       <tu tuid='Contact email'>
+           <tuv xml:lang="pl"><seg>Email kontaktowy</seg></tuv>
+       </tu>
+       <tu tuid='Contact revealed'>
+           <tuv xml:lang="pl"><seg>Kontakt udostępniony</seg></tuv>
+       </tu>
+       <tu tuid='Contacts'>
+           <tuv xml:lang="pl"><seg>Kontakty</seg></tuv>
+       </tu>
+       <tu tuid='Content'>
+           <tuv xml:lang="pl"><seg>Treść</seg></tuv>
+       </tu>
+       <tu tuid='Create news article'>
+           <tuv xml:lang="pl"><seg>Utwórz nowy artykuł</seg></tuv>
+       </tu>
+       <tu tuid='Credential invalid'>
+           <tuv xml:lang="pl"><seg>Nieprawidłowe hasło</seg></tuv>
+       </tu>
+       <tu tuid='Customer data'>
+           <tuv xml:lang="pl"><seg>Dane kupujacego</seg></tuv>
+       </tu>
+       <tu tuid='Customer signature'>
+           <tuv xml:lang="pl"><seg>Podpis klienta</seg></tuv>
+       </tu>
+       <tu tuid='Dashboard'>
+           <tuv xml:lang="pl"><seg>Panel administracyjny</seg></tuv>
+       </tu>
+       <tu tuid='Date'>
+           <tuv xml:lang="pl"><seg>Data</seg></tuv>
+       </tu>
+       <tu tuid='Default'>
+           <tuv xml:lang="pl"><seg>Domyślny</seg></tuv>
+       </tu>
+       <tu tuid='Define new dimensions'>
+           <tuv xml:lang="pl"><seg>Zdefiniuj nowe rozmiary</seg></tuv>
+       </tu>
+       <tu tuid='Delete'>
+           <tuv xml:lang="pl"><seg>Usuń</seg></tuv>
+       </tu>
+       <tu tuid='Dimension'>
+           <tuv xml:lang="pl"><seg>Rozmiar</seg></tuv>
+       </tu>
+       <tu tuid='Dimensions'>
+           <tuv xml:lang="pl"><seg>Rozmiary</seg></tuv>
+       </tu>
+       <tu tuid='Description'>
+           <tuv xml:lang="pl"><seg>Opis</seg></tuv>
+       </tu>
+       <tu tuid='Delivery'>
+           <tuv xml:lang="pl"><seg>Dostawa</seg></tuv>
+       </tu>
+       <tu tuid='Delivery method'>
+           <tuv xml:lang="pl"><seg>Rodzaj dostawy</seg></tuv>
+       </tu>
+       <tu tuid='Deliveries types'>
+           <tuv xml:lang="pl"><seg>Opcje dostawy</seg></tuv>
+       </tu>
+       <tu tuid='Discount'>
+           <tuv xml:lang="pl"><seg>Rabat</seg></tuv>
+       </tu>
+       <tu tuid='Discounts'>
+           <tuv xml:lang="pl"><seg>Rabaty</seg></tuv>
+       </tu>
+       <tu tuid='Do you really want to delete item?'>
+           <tuv xml:lang="pl"><seg>Czy na pewno chcesz usunąć element?</seg></tuv>
+       </tu>
+       <tu tuid='Edit'>
+           <tuv xml:lang="pl"><seg>Edytuj</seg></tuv>
+       </tu>
+       <tu tuid='Edit account'>
+           <tuv xml:lang="pl"><seg>Edycja konta</seg></tuv>
+       </tu>
+       <tu tuid='Edit article'>
+           <tuv xml:lang="pl"><seg>Edycja artykułu</seg></tuv>
+       </tu>
+       <tu tuid='Edit category'>
+           <tuv xml:lang="pl"><seg>Edytcja kategorii</seg></tuv>
+       </tu>
+       <tu tuid='Edit delivery type'>
+           <tuv xml:lang="pl"><seg>Edycja typu dostawy</seg></tuv>
+       </tu>
+       <tu tuid='Edit notice'>
+           <tuv xml:lang="pl"><seg>Edytuj ogłoszenie</seg></tuv>
+       </tu>
+       <tu tuid='Edit offer'>
+           <tuv xml:lang="pl"><seg>Edytuj ofertę</seg></tuv>
+       </tu>
+       <tu tuid='Edit order status'>
+           <tuv xml:lang="pl"><seg>Edytuj status zamówienia</seg></tuv>
+       </tu>
+       <tu tuid='Edit page'>
+           <tuv xml:lang="pl"><seg>Edytuj stronę</seg></tuv>
+       </tu>
+       <tu tuid='Edit payment type'>
+           <tuv xml:lang="pl"><seg>Edytuj rodzaj płatności</seg></tuv>
+       </tu>
+       <tu tuid='Edit products'>
+           <tuv xml:lang="pl"><seg>Edytuj produkty</seg></tuv>
+       </tu>
+       <tu tuid='Edit settings'>
+           <tuv xml:lang="pl"><seg>Edytuj ustawienia</seg></tuv>
+       </tu>
+       <tu tuid='Email'>
+           <tuv xml:lang="pl"><seg>E-mail</seg></tuv>
+       </tu>
+       <tu tuid='Extension'>
+           <tuv xml:lang="pl"><seg>Rozszerzenie</seg></tuv>
+       </tu>
+       <tu tuid='Finish date'>
+           <tuv xml:lang="pl"><seg>Data końca</seg></tuv>
+       </tu>
+       <tu tuid='First name'>
+           <tuv xml:lang="pl"><seg>Imię</seg></tuv>
+       </tu>
+       <tu tuid='Fixed price'>
+           <tuv xml:lang="pl"><seg>Stała cena</seg></tuv>
+       </tu>
+       <tu tuid='for clients'>
+           <tuv xml:lang="pl"><seg>dla klientów</seg></tuv>
+       </tu>
+       <tu tuid='for groups'>
+           <tuv xml:lang="pl"><seg>dla grup</seg></tuv>
+       </tu>
+       <tu tuid='for producers'>
+           <tuv xml:lang="pl"><seg>dla producentów</seg></tuv>
+       </tu>
+       <tu tuid='for products'>
+           <tuv xml:lang="pl"><seg>dla produktów</seg></tuv>
+       </tu>
+       <tu tuid='Forgot password?'>
+           <tuv xml:lang="pl"><seg>Zapomniałeś hasło?</seg></tuv>
+       </tu>
+       <tu tuid='Forward'>
+           <tuv xml:lang="pl"><seg>Dalej</seg></tuv>
+       </tu>
+       <tu tuid='From'>
+           <tuv xml:lang="pl"><seg>Od</seg></tuv>
+       </tu>
+       <tu tuid='for products'>
+           <tuv xml:lang="pl"><seg>dla produktów</seg></tuv>
+       </tu>
+       <tu tuid='Gross price'>
+           <tuv xml:lang="pl"><seg>Cena brutto</seg></tuv>
+       </tu>
+       <tu tuid='Groups of clients'>
+           <tuv xml:lang="pl"><seg>Grupy klientów</seg></tuv>
+       </tu>
+       <tu tuid='Go to link below to finish registration'>
+           <tuv xml:lang="pl"><seg>Kliknij link poniżej żeby dokończyć rejestrację</seg></tuv>
+       </tu>
+       <tu tuid='Go to the login page'>
+           <tuv xml:lang="pl"><seg>Przejdź do strony logowania</seg></tuv>
+       </tu>
+       <tu tuid='Height'>
+           <tuv xml:lang="pl"><seg>Wysokość</seg></tuv>
+       </tu>
+       <tu tuid='Home'>
+           <tuv xml:lang="pl"><seg>Strona główna</seg></tuv>
+       </tu>
+       <tu tuid='Homepage'>
+           <tuv xml:lang="pl"><seg>Strona główna</seg></tuv>
+       </tu>
+       <tu tuid='in many dimensions'>
+           <tuv xml:lang="pl"><seg>w wielu wymiarach</seg></tuv>
+       </tu>
+       <tu tuid='Invoice'>
+           <tuv xml:lang="pl"><seg>Faktura</seg></tuv>
+       </tu>
+       <tu tuid='Invoice date'>
+           <tuv xml:lang="pl"><seg>Data faktury</seg></tuv>
+       </tu>
+       <tu tuid='Invoice item'>
+           <tuv xml:lang="pl"><seg>Pozycja</seg></tuv>
+       </tu>
+       <tu tuid='Item has been added'>
+           <tuv xml:lang="pl"><seg>Element został dodany</seg></tuv>
+       </tu>
+       <tu tuid='Item has been updated'>
+           <tuv xml:lang="pl"><seg>Element został zmieniony</seg></tuv>
+       </tu>
+       <tu tuid='Keep me logged in'>
+           <tuv xml:lang="pl"><seg>Nie wylogowuj mnie</seg></tuv>
+       </tu>
+       <tu tuid='Languages'>
+           <tuv xml:lang="pl"><seg>Języki</seg></tuv>
+       </tu>
+       <tu tuid='Last name'>
+           <tuv xml:lang="pl"><seg>Nazwisko</seg></tuv>
+       </tu>
+       <tu tuid='Last new'>
+           <tuv xml:lang="pl"><seg>Nowość</seg></tuv>
+       </tu>
+       <tu tuid='Log in'>
+           <tuv xml:lang="pl"><seg>Zaloguj</seg></tuv>
+       </tu>
+       <tu tuid='Log In'>
+           <tuv xml:lang="pl"><seg>Logowanie</seg></tuv>
+       </tu>
+       <tu tuid='Logout'>
+           <tuv xml:lang="pl"><seg>Wyloguj</seg></tuv>
+       </tu>
+       <tu tuid='Main slider'>
+           <tuv xml:lang="pl"><seg>Główny slider</seg></tuv>
+       </tu>
+       <tu tuid="Maximum allowed width for image '%value%' should be '%maxwidth%' but '%width%' detected">
+           <tuv xml:lang="pl"><seg>Szerokość obrazka '%value%' nie może przekraczać '%maxwidth%'</seg></tuv>
+       </tu>
+       <tu tuid="Minimum expected width for image '%value%' should be '%minwidth%' but '%width%' detected">
+           <tuv xml:lang="pl"><seg>Szerokość obrazka '%value%' nie może być mniejsza niż '%maxwidth%'</seg></tuv>
+       </tu>
+       <tu tuid="Maximum allowed height for image '%value%' should be '%maxheight%' but '%height%' detected">
+           <tuv xml:lang="pl"><seg>Wysokość obrazka '%value%' nie może przekraczać '%maxwidth%'</seg></tuv>
+       </tu>
+       <tu tuid="Minimum expected height for image '%value%' should be '%minheight%' but '%height%' detected">
+           <tuv xml:lang="pl"><seg>Wysokość obrazka '%value%' nie może być mniejsza niż '%maxwidth%'</seg></tuv>
+       </tu>
+       <tu tuid='Messages'>
+           <tuv xml:lang="pl"><seg>Wiadomości</seg></tuv>
+       </tu>
+       <tu tuid='Message count'>
+           <tuv xml:lang="pl"><seg>Ilość wiadomości</seg></tuv>
+       </tu>
+       <tu tuid='more'>
+           <tuv xml:lang="pl"><seg>więcej</seg></tuv>
+       </tu>
+       <tu tuid='Metatags'>
+           <tuv xml:lang="pl"><seg>Metatagi</seg></tuv>
+       </tu>
+       <tu tuid='Most frequently purchased'>
+           <tuv xml:lang="pl"><seg>Najczęściej kupowany</seg></tuv>
+       </tu>
+       <tu tuid='Most frequently purchased products'>
+           <tuv xml:lang="pl"><seg>Najczęściej kupowane produkty</seg></tuv>
+       </tu>
+       <tu tuid='Name'>
+           <tuv xml:lang="pl"><seg>Nazwa</seg></tuv>
+       </tu>
+       <tu tuid='Name product'>
+           <tuv xml:lang="pl"><seg>Nazwa produktu</seg></tuv>
+       </tu>
+       <tu tuid='Nett price'>
+           <tuv xml:lang="pl"><seg>Cena netto</seg></tuv>
+       </tu>
+       <tu tuid='New administrator'>
+           <tuv xml:lang="pl"><seg>Nowy administrator</seg></tuv>
+       </tu>
+       <tu tuid='New article'>
+           <tuv xml:lang="pl"><seg>Nowy artykuł</seg></tuv>
+       </tu>
+       <tu tuid='New articles'>
+           <tuv xml:lang="pl"><seg>Nowe artykuły</seg></tuv>
+       </tu>
+       <tu tuid='New banner'>
+           <tuv xml:lang="pl"><seg>Nowy banner</seg></tuv>
+       </tu>
+       <tu tuid='New category'>
+           <tuv xml:lang="pl"><seg>Nowa kategoria</seg></tuv>
+       </tu>
+       <tu tuid='New language'>
+           <tuv xml:lang="pl"><seg>Nowy język</seg></tuv>
+       </tu>
+       <tu tuid='New news'>
+           <tuv xml:lang="pl"><seg>Nowy artykuł</seg></tuv>
+       </tu>
+       <tu tuid='New offer'>
+           <tuv xml:lang="pl"><seg>Nowa oferta</seg></tuv>
+       </tu>
+       <tu tuid='New page'>
+           <tuv xml:lang="pl"><seg>Nowa strona</seg></tuv>
+       </tu>
+       <tu tuid='New parameter'>
+           <tuv xml:lang="pl"><seg>Nowy parametr</seg></tuv>
+       </tu>
+       <tu tuid='News'>
+           <tuv xml:lang="pl"><seg>Aktualności</seg></tuv>
+       </tu>
+       <tu tuid='next'>
+           <tuv xml:lang="pl"><seg>dalej</seg></tuv>
+       </tu>
+       <tu tuid='No'>
+           <tuv xml:lang="pl"><seg>Nie</seg></tuv>
+       </tu>
+       <tu tuid='None'>
+           <tuv xml:lang="pl"><seg>Brak</seg></tuv>
+       </tu>
+       <tu tuid='no mark'>
+           <tuv xml:lang="pl"><seg>brak oceny</seg></tuv>
+       </tu>
+       <tu tuid='Notice'>
+           <tuv xml:lang="pl"><seg>Ogłoszenie</seg></tuv>
+       </tu>
+       <tu tuid='Notice count'>
+           <tuv xml:lang="pl"><seg>Liczba ogłoszeń</seg></tuv>
+       </tu>
+       <tu tuid='Notice deal messages'>
+           <tuv xml:lang="pl"><seg>Wiadomości dla kontaktu</seg></tuv>
+       </tu>
+       <tu tuid='Notice deals'>
+           <tuv xml:lang="pl"><seg>Kontakty dla ogłoszenia</seg></tuv>
+       </tu>
+       <tu tuid='Notice parameters'>
+           <tuv xml:lang="pl"><seg>Parametry ogłoszeń</seg></tuv>
+       </tu>
+       <tu tuid='Notices'>
+           <tuv xml:lang="pl"><seg>Ogłoszenia</seg></tuv>
+       </tu>
+       <tu tuid='Notifications'>
+           <tuv xml:lang="pl"><seg>Powiadomienia</seg></tuv>
+       </tu>
+       <tu tuid='Number'>
+           <tuv xml:lang="pl"><seg>Numer</seg></tuv>
+       </tu>
+       <tu tuid='Observe'>
+           <tuv xml:lang="pl"><seg>Obserwuj</seg></tuv>
+       </tu>
+       <tu tuid='Offer'>
+           <tuv xml:lang="pl"><seg>Oferta</seg></tuv>
+       </tu>
+       <tu tuid='Offer parameters'>
+           <tuv xml:lang="pl"><seg>Parametry ofert</seg></tuv>
+       </tu>
+       <tu tuid='Offer templates'>
+           <tuv xml:lang="pl"><seg>Wzory ofert</seg></tuv>
+       </tu>
+       <tu tuid='Offers'>
+           <tuv xml:lang="pl"><seg>Oferty</seg></tuv>
+       </tu>
+       <tu tuid='Options'>
+           <tuv xml:lang="pl"><seg>Opcje</seg></tuv>
+       </tu>
+       <tu tuid='Pages'>
+           <tuv xml:lang="pl"><seg>Strony</seg></tuv>
+       </tu>
+       <tu tuid='Order'>
+           <tuv xml:lang="pl"><seg>Zamówienie</seg></tuv>
+       </tu>
+       <tu tuid='Order items'>
+           <tuv xml:lang="pl"><seg>Zamówione produkty</seg></tuv>
+       </tu>
+       <tu tuid='Order status'>
+           <tuv xml:lang="pl"><seg>Status zamówienia</seg></tuv>
+       </tu>
+       <tu tuid='Orders'>
+           <tuv xml:lang="pl"><seg>Zamówienia</seg></tuv>
+       </tu>
+       <tu tuid='Orders status'>
+           <tuv xml:lang="pl"><seg>Statusy zamówienia</seg></tuv>
+       </tu>
+       <tu tuid='Parameters'>
+           <tuv xml:lang="pl"><seg>Parametry</seg></tuv>
+       </tu>
+       <tu tuid='Password'>
+           <tuv xml:lang="pl"><seg>Hasło</seg></tuv>
+       </tu>
+       <tu tuid='Message'>
+           <tuv xml:lang="pl"><seg>Treść</seg></tuv>
+       </tu>
+       <tu tuid='password'>
+           <tuv xml:lang="pl"><seg>hasło</seg></tuv>
+       </tu>
+       <tu tuid='remember me'>
+           <tuv xml:lang="pl"><seg>zapamiętaj</seg></tuv>
+       </tu>
+       <tu tuid='Payment date'>
+           <tuv xml:lang="pl"><seg>Data płatności</seg></tuv>
+       </tu>
+       <tu tuid='Payment method'>
+           <tuv xml:lang="pl"><seg>Metoda zapłaty</seg></tuv>
+       </tu>
+       <tu tuid='Payments types'>
+           <tuv xml:lang="pl"><seg>Rodzaje płatności</seg></tuv>
+       </tu>
+       <tu tuid='Payments'>
+           <tuv xml:lang="pl"><seg>Płatności</seg></tuv>
+       </tu>
+       <tu tuid='Payment'>
+           <tuv xml:lang="pl"><seg>Płatność</seg></tuv>
+       </tu>
+       <tu tuid='Contact form'>
+           <tuv xml:lang="pl"><seg>Formularz kontaktowy</seg></tuv>
+       </tu>
+        <tu tuid='Submit'>
+           <tuv xml:lang="pl"><seg>Zatwierdź</seg></tuv>
+       </tu>
+       <tu tuid='Popular products'>
+           <tuv xml:lang="pl"><seg>Popularne produkty</seg></tuv>
+       </tu>
+       <tu tuid='previous'>
+           <tuv xml:lang="pl"><seg>wstecz</seg></tuv>
+       </tu>
+       <tu tuid='Price'>
+           <tuv xml:lang="pl"><seg>Cena</seg></tuv>
+       </tu>
+       <tu tuid='Prices and dimensions'>
+           <tuv xml:lang="pl"><seg>Ceny i rozmiary</seg></tuv>
+       </tu>
+       <tu tuid='Price list'>
+           <tuv xml:lang="pl"><seg>Cennik</seg></tuv>
+       </tu>
+       <tu tuid='Product code'>
+           <tuv xml:lang="pl"><seg>Kod produktu</seg></tuv>
+       </tu>
+       <tu tuid='Product name'>
+           <tuv xml:lang="pl"><seg>Nazwa produktu</seg></tuv>
+       </tu>
+       <tu tuid='products'>
+           <tuv xml:lang="pl"><seg>produktów</seg></tuv>
+       </tu>
+       <tu tuid='Products related with product'>
+           <tuv xml:lang="pl"><seg>Produkty powiązane z produktem</seg></tuv>
+       </tu>
+       <tu tuid='Product in different sizes'>
+           <tuv xml:lang="pl"><seg>Produkt w różnych rozmiarach</seg></tuv>
+       </tu>
+       <tu tuid='Profile'>
+           <tuv xml:lang="pl"><seg>Profil</seg></tuv>
+       </tu>
+       <tu tuid='Promotion'>
+           <tuv xml:lang="pl"><seg>Promocja</seg></tuv>
+       </tu>
+       <tu tuid='Promotions'>
+           <tuv xml:lang="pl"><seg>Promocje</seg></tuv>
+       </tu>
+       <tu tuid='Promotion price'>
+           <tuv xml:lang="pl"><seg>Cena promocyjna</seg></tuv>
+       </tu>
+       <tu tuid='Promoted'>
+           <tuv xml:lang="pl"><seg>Promowanie</seg></tuv>
+       </tu>
+       <tu tuid='Province'>
+           <tuv xml:lang="pl"><seg>Województwo</seg></tuv>
+       </tu>
+       <tu tuid='Proxy name'>
+           <tuv xml:lang="pl"><seg>Osoba reprezentująca firmę</seg></tuv>
+       </tu>
+       <tu tuid='Publish'>
+           <tuv xml:lang="pl"><seg>Publikuj</seg></tuv>
+       </tu>
+       <tu tuid='Publish date'>
+           <tuv xml:lang="pl"><seg>Data publikacji</seg></tuv>
+       </tu>
+       <tu tuid='Purchase date'>
+           <tuv xml:lang="pl"><seg>Data zakupu</seg></tuv>
+       </tu>
+       <tu tuid='pounds'>
+           <tuv xml:lang="pl"><seg>zł</seg></tuv>
+       </tu>
+       <tu tuid='Recent articles'>
+           <tuv xml:lang="pl"><seg>Najnowsze artykuły</seg></tuv>
+       </tu>
+       <tu tuid='Recent news'>
+           <tuv xml:lang="pl"><seg>Najnowsze aktualności</seg></tuv>
+       </tu>
+       <tu tuid='Recent payments'>
+           <tuv xml:lang="pl"><seg>Najnowsze płatności</seg></tuv>
+       </tu>
+       <tu tuid='Recent payment list'>
+           <tuv xml:lang="pl"><seg>Lista najnowszych płatności</seg></tuv>
+       </tu>
+       <tu tuid='Registered at'>
+           <tuv xml:lang="pl"><seg>Data rejestracji</seg></tuv>
+       </tu>
+       <tu tuid='Relate'>
+           <tuv xml:lang="pl"><seg>Relacje</seg></tuv>
+       </tu>
+       <tu tuid='Remark'>
+           <tuv xml:lang="pl"><seg>Uwagi</seg></tuv>
+       </tu>
+       <tu tuid='Remember me'>
+           <tuv xml:lang="pl"><seg>Nie wylogowuj mnie</seg></tuv>
+       </tu>
+       <tu tuid='Remove'>
+           <tuv xml:lang="pl"><seg>Usuń</seg></tuv>
+       </tu>
+       <tu tuid='Reply'>
+           <tuv xml:lang="pl"><seg>Odpowiedz</seg></tuv>
+       </tu>
+       <tu tuid='Responses'>
+           <tuv xml:lang="pl"><seg>Odpowiedzi</seg></tuv>
+       </tu>
+       <tu tuid='Rewrite the chars'>
+           <tuv xml:lang="pl"><seg>Przepisz kod z obrazka</seg></tuv>
+       </tu>
+       <tu tuid='Save'>
+           <tuv xml:lang="pl"><seg>Zapisz</seg></tuv>
+       </tu>
+       <tu tuid='Search'>
+           <tuv xml:lang="pl"><seg>Szukaj</seg></tuv>
+       </tu>
+       <tu tuid='Search notices'>
+           <tuv xml:lang="pl"><seg>Wyszukiwarka ogłoszeń</seg></tuv>
+       </tu>
+       <tu tuid='Selected'>
+           <tuv xml:lang="pl"><seg>Zaznaczone</seg></tuv>
+       </tu>
+       <tu tuid='Send'>
+           <tuv xml:lang="pl"><seg>Wyślij</seg></tuv>
+       </tu>
+       <tu tuid='Send an offer'>
+           <tuv xml:lang="pl"><seg>Wyślij ofertę</seg></tuv>
+       </tu>
+       <tu tuid='Setting'>
+           <tuv xml:lang="pl"><seg>Ustawienie</seg></tuv>
+       </tu>
+       <tu tuid='Settings'>
+           <tuv xml:lang="pl"><seg>Ustawienia</seg></tuv>
+       </tu>
+       <tu tuid='Short description'>
+           <tuv xml:lang="pl"><seg>Krótki opis</seg></tuv>
+       </tu>
+       <tu tuid='Sign In'>
+           <tuv xml:lang="pl"><seg>Logowanie</seg></tuv>
+       </tu>
+       <tu tuid='Sign in'>
+           <tuv xml:lang="pl"><seg>Zaloguj się</seg></tuv>
+       </tu>
+       <tu tuid='Sign Up'>
+           <tuv xml:lang="pl"><seg>Rejestracja</seg></tuv>
+       </tu>
+       <tu tuid='Sign up'>
+           <tuv xml:lang="pl"><seg>Załóż konto</seg></tuv>
+       </tu>
+       <tu tuid='Signature of issuing'>
+           <tuv xml:lang="pl"><seg>Podpis wydającego</seg></tuv>
+       </tu>
+       <tu tuid='Site'>
+           <tuv xml:lang="pl"><seg>Strona</seg></tuv>
+       </tu>
+       <tu tuid='Site settings'>
+           <tuv xml:lang="pl"><seg>Ustawienia strony</seg></tuv>
+       </tu>
+       <tu tuid='Slides'>
+           <tuv xml:lang="pl"><seg>Slajdy</seg></tuv>
+       </tu>
+       <tu tuid='Sponsored articles'>
+           <tuv xml:lang="pl"><seg>Artykuły sponsorowane</seg></tuv>
+       </tu>
+       <tu tuid='Start date'>
+           <tuv xml:lang="pl"><seg>Data startu</seg></tuv>
+       </tu>
+       <tu tuid='Subcategories'>
+           <tuv xml:lang="pl"><seg>Subkategorie</seg></tuv>
+       </tu>
+       <tu tuid='Subject'>
+           <tuv xml:lang="pl"><seg>Temat</seg></tuv>
+       </tu>
+       <tu tuid='Subscribers'>
+           <tuv xml:lang="pl"><seg>Subskrybenci</seg></tuv>
+       </tu>
+       <tu tuid='Subscriber groups'>
+           <tuv xml:lang="pl"><seg>Grupy subskrybentow</seg></tuv>
+       </tu>
+        <tu tuid='Type'>
+           <tuv xml:lang="pl"><seg>Typ</seg></tuv>
+       </tu>
+       <tu tuid='Groups'>
+           <tuv xml:lang="pl"><seg>Grupa</seg></tuv>
+       </tu>
+       
+       <tu tuid='Sum'>
+           <tuv xml:lang="pl"><seg>Suma</seg></tuv>
+       </tu>
+       <tu tuid='Summary'>
+           <tuv xml:lang="pl"><seg>Podsumowanie</seg></tuv>
+       </tu>
+       <tu tuid='Tags'>
+           <tuv xml:lang="pl"><seg>Tagi</seg></tuv>
+       </tu>
+       <tu tuid='Term'>
+           <tuv xml:lang="pl"><seg>Wyszukiwana fraza</seg></tuv>
+       </tu>
+       <tu tuid='Title'>
+           <tuv xml:lang="pl"><seg>Tytuł</seg></tuv>
+       </tu>
+       <tu tuid='To'>
+           <tuv xml:lang="pl"><seg>Do</seg></tuv>
+       </tu>
+       <tu tuid='Top categories'>
+           <tuv xml:lang="pl"><seg>Pupularne kategorie</seg></tuv>
+       </tu>
+       <tu tuid='Total amount'>
+           <tuv xml:lang="pl"><seg>Suma</seg></tuv>
+       </tu>
+       <tu tuid='Total cost'>
+           <tuv xml:lang="pl"><seg>Całkowity koszt</seg></tuv>
+       </tu>
+       <tu tuid='Translations'>
+           <tuv xml:lang="pl"><seg>Tłumaczenia</seg></tuv>
+       </tu>
+       <tu tuid='This dimension is already taken'>
+           <tuv xml:lang="pl"><seg>Podany rozmiar ma już przypisaną cenę!</seg></tuv>
+       </tu>
+       <tu tuid='Trash'>
+           <tuv xml:lang="pl"><seg>Kosz</seg></tuv>
+       </tu>
+       <tu tuid='Upload photo'>
+           <tuv xml:lang="pl"><seg>Wyślij zdjęcie</seg></tuv>
+       </tu>
+       <tu tuid='User'>
+           <tuv xml:lang="pl"><seg>Użytkownik</seg></tuv>
+       </tu>
+       <tu tuid='User already exists'>
+           <tuv xml:lang="pl"><seg>Użytkownik już istnieje</seg></tuv>
+       </tu>
+       <tu tuid='User list'>
+           <tuv xml:lang="pl"><seg>Lista użytkowników</seg></tuv>
+       </tu>
+       <tu tuid='User not found'>
+           <tuv xml:lang="pl"><seg>Nie znaleziono użytkownika</seg></tuv>
+       </tu>
+       <tu tuid='Users'>
+           <tuv xml:lang="pl"><seg>Użytkownicy</seg></tuv>
+       </tu>
+       <tu tuid='Value'>
+           <tuv xml:lang="pl"><seg>Wartość</seg></tuv>
+       </tu>
+       <tu tuid="Value is required and can't be empty">
+           <tuv xml:lang="pl"><seg>To pole jest wymagane</seg></tuv>
+       </tu>
+       <tu tuid='Vat amount'>
+           <tuv xml:lang="pl"><seg>Kwota VAT</seg></tuv>
+       </tu>
+       <tu tuid='View count'>
+           <tuv xml:lang="pl"><seg>Ilość wyświetleń</seg></tuv>
+       </tu>
+       <tu tuid='Website'>
+           <tuv xml:lang="pl"><seg>Strona internetowa</seg></tuv>
+       </tu>
+       <tu tuid='Width'>
+           <tuv xml:lang="pl"><seg>Szerokość</seg></tuv>
+       </tu>
+       <tu tuid='Yes'>
+           <tuv xml:lang="pl"><seg>Tak</seg></tuv>
+       </tu>
+       <tu tuid="You don't have sufficient permissions">
+           <tuv xml:lang="pl"><seg>Nie masz wystarczajacych uprawnień</seg></tuv>
+       </tu>
+       
+       
+       
+       <tu tuid='Producers'>
+           <tuv xml:lang="pl"><seg>Producenci</seg></tuv>
+       </tu> 
+       <tu tuid='Producer'>
+           <tuv xml:lang="pl"><seg>Producent</seg></tuv>
+       </tu>
+       <tu tuid='Owner'>
+           <tuv xml:lang="pl"><seg>Właściciel</seg></tuv>
+       </tu> 
+       <tu tuid='Edit producer'>
+           <tuv xml:lang="pl"><seg>Edycja producenta</seg></tuv>
+       </tu> 
+       <tu tuid='Name of producer'>
+           <tuv xml:lang="pl"><seg>Nazwa producenta</seg></tuv>
+       </tu>
+       <tu tuid='Name of owner'>
+           <tuv xml:lang="pl"><seg>Imię właściciela</seg></tuv>
+       </tu>
+       <tu tuid='Surname of owner'>
+           <tuv xml:lang="pl"><seg>Nazwisko właściciela</seg></tuv>
+       </tu>
+       <tu tuid='Phone'>
+           <tuv xml:lang="pl"><seg>Telefon</seg></tuv>
+       </tu>
+       <tu tuid='Post code'>
+           <tuv xml:lang="pl"><seg>Kod pocztowy</seg></tuv>
+       </tu>    
+       <tu tuid='Add producer'>
+           <tuv xml:lang="pl"><seg>Dodaj producenta</seg></tuv>
+       </tu>
+       <tu tuid='Producer photos'>
+           <tuv xml:lang="pl"><seg>Zdjęcia producenta</seg></tuv>
+       </tu>
+       <tu tuid='Qr code'>
+           <tuv xml:lang="pl"><seg>Kod Qr</seg></tuv>
+       </tu>
+       <tu tuid='Logo'>
+           <tuv xml:lang="pl"><seg>Logotyp</seg></tuv>
+       </tu>
+       <tu tuid='Gallery View'>
+           <tuv xml:lang="pl"><seg>Galeria</seg></tuv>
+       </tu>
+       <tu tuid='Move'>
+           <tuv xml:lang="pl"><seg>Przesuń</seg></tuv>
+       </tu>
+       <tu tuid='Photo'>
+           <tuv xml:lang="pl"><seg>Zdjęcie</seg></tuv>
+       </tu>
+       <tu tuid='Photos'>
+           <tuv xml:lang="pl"><seg>Zdjęcia</seg></tuv>
+       </tu>
+       <tu tuid='Products'>
+           <tuv xml:lang="pl"><seg>Produkty</seg></tuv>
+       </tu>
+       <tu tuid='Product'>
+           <tuv xml:lang="pl"><seg>Produkt</seg></tuv>
+       </tu>
+       <tu tuid='Edit product'>
+           <tuv xml:lang="pl"><seg>Edycja produktu</seg></tuv>
+       </tu>
+       <tu tuid='Name of product'>
+           <tuv xml:lang="pl"><seg>Nazwa produktu</seg></tuv>
+       </tu>
+       <tu tuid='Add photo'>
+           <tuv xml:lang="pl"><seg>Dodaj zdjęcie</seg></tuv>
+       </tu>
+       <tu tuid='Main page photos'>
+           <tuv xml:lang="pl"><seg>Zdjęcia na stronę główną</seg></tuv>
+       </tu>
+       
+       <tu tuid='NEWS'>
+           <tuv xml:lang="pl"><seg>AKTUALNOŚCI</seg></tuv>
+       </tu>
+       <tu tuid='CALVARY CRAFTS'>
+           <tuv xml:lang="pl"><seg>RZEMIOSŁO KALWARYSKIE</seg></tuv>
+       </tu>
+       <tu tuid='CRAFT AFFAIRS'>
+           <tuv xml:lang="pl"><seg>SPRAWY CECHOWE</seg></tuv>
+       </tu>
+       <tu tuid='FURNITURE EXHIBITION'>
+           <tuv xml:lang="pl"><seg>WYSTAWA MEBLI</seg></tuv>
+       </tu>
+       <tu tuid='CONTACT'>
+           <tuv xml:lang="pl"><seg>KONTAKT</seg></tuv>
+       </tu>
+       <tu tuid='Calvary crafts'>
+           <tuv xml:lang="pl"><seg>Rzemiosło kalwaryjskie</seg></tuv>
+       </tu>
+       <tu tuid='Furniture exhibition'>
+           <tuv xml:lang="pl"><seg>Wystawa mebli</seg></tuv>
+       </tu>
+       <tu tuid='Craft affairs'>
+           <tuv xml:lang="pl"><seg>Sprawy cechowe</seg></tuv>
+       </tu>
+       
+       <tu tuid='Main product'>
+           <tuv xml:lang="pl"><seg>Produkt główny</seg></tuv>
+       </tu>
+       <tu tuid="'%value%' is not a valid email address in the basic format local-part@hostname">
+           <tuv xml:lang="pl"><seg>Adres email jest niepoprawny</seg></tuv>
+       </tu>
+       <tu tuid="Message sent">
+           <tuv xml:lang="pl"><seg>Wiadomość wysłana</seg></tuv>
+       </tu>
+       <tu tuid="Guests book">
+           <tuv xml:lang="pl"><seg>Księga gości</seg></tuv>
+       </tu>
+       <tu tuid='Entries'>
+           <tuv xml:lang="pl"><seg>Wpisy</seg></tuv>
+       </tu>
+       <tu tuid='Edit entry'>
+           <tuv xml:lang="pl"><seg>Edycja wpisu</seg></tuv>
+       </tu>
+       <tu tuid='New entry'>
+           <tuv xml:lang="pl"><seg>Nowy wpis</seg></tuv>
+       </tu>
+       <tu tuid='Add product'>
+           <tuv xml:lang="pl"><seg>Dodaj produkt</seg></tuv>
+       </tu>
+       <tu tuid='Add article'>
+           <tuv xml:lang="pl"><seg>Dodaj artykuł</seg></tuv>
+       </tu>
+       <tu tuid='Guests Book'>
+           <tuv xml:lang="pl"><seg>Księga gości</seg></tuv>
+       </tu>
+       <tu tuid='Edit post'>
+           <tuv xml:lang="pl"><seg>Edytuj post</seg></tuv>
+       </tu>
+       <tu tuid="'%value%' is less than %min% characters long">
+           <tuv xml:lang="pl"><seg>Minimalna długość wpisu wynosi 50 znaków</seg></tuv>
+       </tu>
+       <tu tuid="Add page">
+           <tuv xml:lang="pl"><seg>Dodaj stronę</seg></tuv>
+       </tu>
+       <tu tuid="Add post">
+           <tuv xml:lang="pl"><seg>Dodaj post</seg></tuv>
+       </tu>
+       <tu tuid="New post">
+           <tuv xml:lang="pl"><seg>Nowy post</seg></tuv>
+       </tu>
+       <tu tuid="Create new post">
+           <tuv xml:lang="pl"><seg>Utwórz nowy post</seg></tuv>
+       </tu>
+       <tu tuid="Exhibition">
+           <tuv xml:lang="pl"><seg>Wystawa</seg></tuv>
+       </tu>
+       <tu tuid="Add banner">
+           <tuv xml:lang="pl"><seg>Dodaj banner</seg></tuv>
+       </tu>
+       <tu tuid='Edit banner'>
+           <tuv xml:lang="pl"><seg>Edycja bannera</seg></tuv>
+       </tu>
+       <tu tuid='Clicks / Views'>
+           <tuv xml:lang="pl"><seg>Kliknięcia / Wyświetlenia</seg></tuv>
+       </tu>
+       <tu tuid='Positions'>
+           <tuv xml:lang="pl"><seg>Stanowiska</seg></tuv>
+       </tu>
+       <tu tuid='Building'>
+           <tuv xml:lang="pl"><seg>Budynek</seg></tuv>
+       </tu>
+       <tu tuid='Sector'>
+           <tuv xml:lang="pl"><seg>Sektor</seg></tuv>
+       </tu>
+       <tu tuid='Stand'>
+           <tuv xml:lang="pl"><seg>Stanowisko</seg></tuv>
+       </tu>
+       <tu tuid='Edit position'>
+           <tuv xml:lang="pl"><seg>Edycja stanowiska</seg></tuv>
+       </tu>
+       <tu tuid='Add position'>
+           <tuv xml:lang="pl"><seg>Dodaj stanowisko</seg></tuv>
+       </tu>
+       <tu tuid='The most popular category'>
+           <tuv xml:lang="pl"><seg>Najpopularniejsze kategorie</seg></tuv>
+       </tu>
+       <tu tuid='Exhibition pavilion'>
+           <tuv xml:lang="pl"><seg>Pawilon wystawowy</seg></tuv>
+       </tu>
+       <tu tuid='Main photo'>
+           <tuv xml:lang="pl"><seg>Zdjęcie główne</seg></tuv>
+       </tu>
+       <tu tuid='Seller'>
+           <tuv xml:lang="pl"><seg>Sprzedający</seg></tuv>
+       </tu>
+       <tu tuid='Sale date'>
+           <tuv xml:lang="pl"><seg>Data sprzedaży</seg></tuv>
+       </tu>
+       <tu tuid='Statistics'>
+           <tuv xml:lang="pl"><seg>Statystyki</seg></tuv>
+       </tu>
+       <tu tuid='Status'>
+           <tuv xml:lang="pl"><seg>Status</seg></tuv>
+       </tu>
+       <tu tuid='Save settings'>
+           <tuv xml:lang="pl"><seg>Zapisz ustawienia</seg></tuv>
+       </tu>
+       <tu tuid='Company address'>
+           <tuv xml:lang="pl"><seg>Adres firmy</seg></tuv>
+       </tu>
+       <tu tuid='Company city'>
+           <tuv xml:lang="pl"><seg>Miasto firmy</seg></tuv>
+       </tu>
+       <tu tuid='Company province'>
+           <tuv xml:lang="pl"><seg>Województwo firmy</seg></tuv>
+       </tu>
+       <tu tuid='Company postal code'>
+           <tuv xml:lang="pl"><seg>Kod pocztowy firmy</seg></tuv>
+       </tu>
+       <tu tuid='Company phone'>
+           <tuv xml:lang="pl"><seg>Telefon firmy</seg></tuv>
+       </tu>
+       <tu tuid='Company fax'>
+           <tuv xml:lang="pl"><seg>Fax firmy</seg></tuv>
+       </tu>
+       <tu tuid='New producer'>
+           <tuv xml:lang="pl"><seg>Nowy producent</seg></tuv>
+       </tu>
+       <tu tuid='Google Analytics Profile Id'>
+           <tuv xml:lang="pl"><seg>Id profilu analitycznego Google</seg></tuv>
+       </tu>
+       <tu tuid='Producers list'>
+           <tuv xml:lang="pl"><seg>Lista producentów</seg></tuv>
+       </tu>
+       <tu tuid='Entries list'>
+           <tuv xml:lang="pl"><seg>Lista wpisów</seg></tuv>
+       </tu>
+       <tu tuid='Movie'>
+           <tuv xml:lang="pl"><seg>Film</seg></tuv>
+       </tu>
+       
+   </body>
+</tmx>

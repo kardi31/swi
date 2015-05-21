@@ -1,0 +1,30 @@
+<?php if(count($this->rightBanners)>0): ?>
+    <div id="rightBanner" class="flexslider article-body-banner banner" style="width:240px;height:150px;margin:0 auto;margin-top:15px;">
+                <ul class="slides">
+                    <?php foreach($this->rightBanners as $rightBanner): ?>
+                    <li>
+                        <a href="<?php echo $rightBanner['website'] ?>" rel="nofollow" target="_blank" >
+                            <div class="slide">
+                                <img style="width:240px;height:150px;" src="/media/attachments/<?php echo $rightBanner['AttachmentRoot']['filename']; ?>" alt="<?php echo $rightBanner['Translation'][$this->language]['name']; ?>">
+                            </div>
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+
+            <script type="text/javascript">
+                    $(document).ready(function(){
+                            $('#rightBanner').flexslider({
+                                    animation : 'slide',
+                                    controlNav : false,
+                                    directionNav : false,
+                                    animationLoop : true,
+                                    slideshow : true,
+                                    useCSS : false
+                            });
+
+                    });
+            </script>
+
+<?php endif; ?>

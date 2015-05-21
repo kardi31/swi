@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>KM CMS</title>
+    <meta name="author" content="SuggeElson" />
+    <meta name="description" content="Supr admin template - new premium responsive admin template. This template is designed to help you build the site administration without losing valuable time.Template contains all the important functions which must have one backend system.Build on great twitter boostrap framework" />
+    <meta name="keywords" content="admin, admin template, admin theme, responsive, responsive admin, responsive admin template, responsive theme, themeforest, 960 grid system, grid, grid theme, liquid, masonry, jquery, administration, administration template, administration theme, mobile, touch , responsive layout, boostrap, twitter boostrap" />
+    <meta name="application-name" content="Supr admin template" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <!-- Core stylesheets do not remove -->
+    <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/supr-theme/jquery.ui.supr.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/icons.css" rel="stylesheet" type="text/css" />
+
+    <!-- Plugins stylesheets -->
+    <link href="/plugins/misc/qtip/jquery.qtip.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/misc/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/misc/search/tipuesearch.css" type="text/css" rel="stylesheet" />
+    <link href="/plugins/forms/select/select2.css" type="text/css" rel="stylesheet" />
+    <link href="/plugins/misc/qtip/jquery.qtip.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/tables/dataTables/jquery.dataTables.css" type="text/css" rel="stylesheet" />
+    <link href='/plugins/dynatree/src/skin/ui.dynatree.css' rel="stylesheet" type="text/css" />
+    <link href="/plugins/forms/inputlimiter/jquery.inputlimiter.css" type="text/css" rel="stylesheet" />
+    <link href="/plugins/forms/color-picker/color-picker.css" type="text/css" rel="stylesheet" />
+    <link href="/plugins/forms/validate/validate.css" type="text/css" rel="stylesheet" />
+    <link href="/plugins/forms/smartWizzard/smart_wizard.css" type="text/css" rel="stylesheet" />
+    <link href="/plugins/forms/ibutton/jquery.ibutton.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/forms/uniform/uniform.default.css" type="text/css" rel="stylesheet" /> 
+    <link href="/plugins/gallery/jpages/jPages.css" rel="stylesheet" type="text/css" /> 
+    <link href="/plugins/gallery/pretty-photo/prettyPhoto.css" type="text/css" rel="stylesheet" />    
+    <link href="/plugins/jcrop/css/jquery.Jcrop.css" type="text/css" rel="stylesheet" /> 
+    <link href="/plugins/misc/pnotify/jquery.pnotify.default.css" type="text/css" rel="stylesheet" /> 
+    
+     <link href="/css/yadcf.css" rel="stylesheet" type="text/css" /> 
+    <!-- elfinder -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/plugins/elfinder-2.0-rc1/css/elfinder.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/plugins/elfinder-2.0-rc1/css/theme.css">
+
+    <!-- Main stylesheets -->
+    <link href="/css/main.css" rel="stylesheet" type="text/css" /> 
+
+    <!-- Custom stylesheets ( Put your own changes here ) -->
+    <link href="/css/admin.css" rel="stylesheet" type="text/css" /> 
+     <link href="/css/custom.css" rel="stylesheet" type="text/css" /> 
+    
+    
+    <script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.inputmask.bundle.js"></script>
+<script type="text/javascript" src="/js/form-components.js"></script>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-57-precomposed.png" />
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+           FormComponents.init(); 
+        });
+        //adding load class to body and hide page
+        document.documentElement.className += 'loadstate';
+    </script>
+
+    </head>
+      
+    <body>
+    <!-- loading animation -->
+    <div id="qLoverlay"></div>
+    <div id="qLbar"></div> 
+    <div id="header">
+
+        <div class="navbar">
+            <div class="navbar-inner">
+              <div class="container-fluid"><a class="brand" href="<?php echo $this->adminUrl('index', 'index') ?>"><img src="http://www.kardimobile.pl/img/kardimobile.png" style="width: 85px;
+margin-top: -5px;" /></a>
+                <div class="nav-no-collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="<?php echo $this->url(array(), 'domain-homepage', true) ?>" target="_blank"><span class="icon16 icomoon-icon-screen-2"></span> <?php echo $this->translate('Site') ?></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="icon16 icomoon-icon-cog"></span> <?php echo $this->translate('Settings') ?>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="menu">
+                                    <ul>
+                                        <li>                                                    
+                                            <a href="<?php echo $this->adminUrl('list-settings', 'default') ?>"><span class="icon16 icomoon-icon-equalizer"></span><?php echo $this->translate('Site settings') ?></a>
+                                        </li>
+                                        <li>                                                    
+                                            <a href="<?php echo $this->adminUrl('list-language', 'default') ?>"><span class="icon16 icomoon-icon-comments-2"></span><?php echo $this->translate('Languages') ?></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                  
+                    <ul class="nav pull-right usernav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="icon16 icomoon-icon-bell-2"></span>
+                                <?php if($this->newNotificationCount > 0): ?>
+                                <span class="notification"><?php echo $this->newNotificationCount ?></span>
+                                <?php endif; ?>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="menu">
+                                    <ul class="notif">
+                                        <li class="header"><strong><?php echo $this->translate('Notifications') ?></strong> (<?php echo $this->newNotificationCount ?>)</li>
+                                        <?php if($this->newInvoicesCount > 0): ?>
+                                        <li>
+                                            <a href="<?php echo $this->adminUrl('list-invoice', 'invoice') ?>">
+                                                <span class="icon"><span class="icon16 icomoon-icon-basket"></span></span>
+                                                <span class="event"><?php echo $this->translate('New invoices') ?> (<?php echo $this->newInvoicesCount ?> )</span>
+                                            </a>
+                                        </li>
+                                        <?php endif; ?>
+                                        <?php if($this->newArticlesCount > 0): ?>
+                                        <li>
+                                            <a href="<?php echo $this->adminUrl('list-article', 'article') ?>">
+                                                <span class="icon"><span class="icon16 icomoon-icon-pencil-5"></span></span>
+                                                <span class="event"><?php echo $this->translate('New articles') ?> (<?php echo $this->newArticlesCount ?>)</span>
+                                            </a>
+                                        </li>
+                                        <?php endif; ?>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
+                                <?php if(isset($this->user)): ?>
+                                <span class="txt"><?php echo $this->user->getEmail() ?></span>
+                                <?php endif; ?>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="menu">
+                                    <ul>
+                                        <li>
+                                            <a href="<?php echo $this->adminUrl('edit-account', 'user') ?>"><span class="icon16 entypo-icon-settings"></span><?php echo $this->translate('Edit account') ?></a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo $this->adminUrl('add-admin', 'user') ?>"><span class="icon16 icomoon-icon-plus-2"></span><?php echo $this->translate('Add user') ?></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="<?php echo $this->url(array(), 'domain-logout') ?>"><span class="icon16 icomoon-icon-exit"></span> <?php echo $this->translate('Logout') ?></a></li>
+                    </ul>
+                </div><!-- /.nav-collapse -->
+              </div>
+            </div><!-- /navbar-inner -->
+          </div><!-- /navbar --> 
+
+    </div><!-- End #header -->
+
+    <div id="wrapper">
+
+        <!--Responsive navigation button-->  
+        <div class="resBtn">
+            <a href="#"><span class="icon16 minia-icon-list-3"></span></a>
+        </div>
+        
+        <!--Left Sidebar collapse button-->  
+        <div class="collapseBtn leftbar">
+             <a href="#" class="tipR" title="Hide Left Sidebar"><span class="icon12 minia-icon-layout"></span></a>
+        </div>
+
+        <!--Sidebar background-->
+        <div id="sidebarbg"></div>
+        <!--Sidebar content-->
+        <div id="sidebar">
+
+            <div class="shortcuts">
+                <ul>
+                    <li><a href="<?php echo $this->adminUrl('list-product', 'product') ?>" title="<?php echo $this->translate('Products') ?>" class="tip"><span class="icon24 icomoon-icon-list-view"></span></a></li>
+                    <li><a href="<?php echo $this->adminUrl('list-order', 'order') ?>" title="<?php echo $this->translate('Orders') ?>" class="tip"><span class="icon24 icomoon-icon-cart-3"></span></a></li>
+                    <li><a href="<?php echo $this->adminUrl('dashboard', 'admin') ?>" title="<?php echo $this->translate('Statistics') ?>" class="tip"><span class="icon24 icomoon-icon-pie-2"></span></a></li>
+                    <li><a href="<?php echo $this->adminUrl('list-settings', 'default') ?>" title="<?php echo $this->translate('Settings') ?>" class="tip"><span class="icon24 entypo-icon-settings"></span></a></li>
+                </ul>
+            </div><!-- End search -->            
+
+            <div class="sidenav">
+
+                <div class="sidebar-widget" style="margin: -1px 0 0 0;">
+                    <h5 class="title" style="margin-bottom:0"><?php echo $this->translate('Menu') ?></h5>
+                </div><!-- End .sidenav-widget -->
+
+                <div class="mainnav">
+                    <ul>
+                        <li><a href="<?php echo $this->adminUrl('list-event', 'district') ?>"><span class="icon16 icomoon-icon-list-view"></span><?php echo $this->translate('Wydarzenia') ?></a></li>
+                         <li><a href="<?php echo $this->adminUrl('list-league', 'league') ?>"><span class="icon16 icomoon-icon-stack"></span><?php echo $this->translate('Lista lig') ?></a></li>
+                        <?php 
+                        $leagueService = new League_Service_League();
+                        $leagues = $leagueService->getActiveLeagues();
+                        foreach($leagues as $league): 
+                            if(strlen($league['name'])>20):
+                            $badName = explode(' ',$league['name']);
+                            $count = count($badName);
+                            $goodName = $badName[0]." ".$badName[$count-1];
+                            else:
+                                $goodName = $league['name'];
+                            endif;
+                            ?>
+                         <li>
+                            <a href="#"><span class="icon16 icomoon-icon-mail-4"></span><?php echo $goodName; ?></a>
+                            <ul class="sub">
+                                <li><a href="<?php echo $this->adminUrl('list-match', 'league',array('league_id' => $league['id'])) ?>"><span class="icon16 entypo-icon-list"></span><?php echo $this->translate('Wyniki') ?></a></li> 
+                                <li><a href="<?php echo $this->adminUrl('timetable', 'league',array('league_id' => $league['id'])) ?>"><span class="icon16 icomoon-icon-user-3"></span><?php echo $this->translate('Terminarz') ?></a></li>
+                                <!--<li><a href="<?php echo $this->adminUrl('list-booking', 'league',array('league_id' => $league['id'])) ?>"><span class="icon16 icomoon-icon-users"></span><?php echo $this->translate('Kartki') ?></a></li>-->
+                                <li><a href="<?php echo $this->adminUrl('list-team', 'league',array('league_id' => $league['id'])) ?>"><span class="icon16 icomoon-icon-users"></span><?php echo $this->translate('Drużyny') ?></a></li>
+                            </ul>
+                        </li>
+                      <?php  endforeach; ?>
+                        
+                        
+<!--                        <li><a href="<?php //echo $this->adminUrl('list-category', 'product') ?>"><span class="icon16 icomoon-icon-list-view-2"></span><?php //echo $this->translate('Categories') ?></a></li>
+                        <li><a href="<?php //echo $this->adminUrl('list-product', 'product') ?>"><span class="icon16 icomoon-icon-list-view"></span><?php //echo $this->translate('Products') ?></a></li>
+                        <li><a href="<?php //echo $this->adminUrl('list-producer', 'product') ?>"><span class="icon16 icomoon-icon-people"></span><?php// echo $this->translate('Producers') ?></a></li>-->
+                        <li><a href="<?php  echo $this->adminUrl('list-news', 'news') ?>"><span class="icon16 icomoon-icon-newspaper"></span><?php echo $this->translate('News') ?></a></li>
+<!--                        <li>
+                            <a href="#"><span class="icon16 icomoon-icon-mail-4"></span><?php echo $this->translate('Newsletter') ?></a>
+                            <ul class="sub">
+                                <li><a href="<?php echo $this->adminUrl('list-message', 'newsletter') ?>"><span class="icon16 entypo-icon-list"></span><?php echo $this->translate('Messages') ?></a></li> 
+                                <li><a href="<?php echo $this->adminUrl('list-subscriber', 'newsletter') ?>"><span class="icon16 icomoon-icon-user-3"></span><?php echo $this->translate('Subscribers') ?></a></li>
+                                <li><a href="<?php echo $this->adminUrl('list-group', 'newsletter') ?>"><span class="icon16 icomoon-icon-users"></span><?php echo $this->translate('Subscriber groups') ?></a></li>
+                           </ul>
+                        </li>-->
+                        <li><a href="<?php echo $this->adminUrl('list-menu', 'menu') ?>"><span class="icon16 icomoon-icon-list-view"></span><?php echo $this->translate('Menu') ?></a></li>
+<!--                        <li>
+                            <a href="#"><span class="icon16 icomoon-icon-mail-4"></span><?php echo $this->translate('Insurance') ?></a>
+                            <ul class="sub">
+                                <li><a href="<?php //echo $this->adminUrl('list-item', 'insurance') ?>"><span class="icon16 entypo-icon-list"></span><?php //echo $this->translate('Items') ?></a></li> 
+                                <li><a href="<?php //echo $this->adminUrl('list-product', 'insurance') ?>"><span class="icon16 entypo-icon-list"></span><?php// echo $this->translate('Product') ?></a></li> 
+                                <li><a href="<?php //echo $this->adminUrl('list-country', 'insurance') ?>"><span class="icon16 entypo-icon-list"></span><?php //echo $this->translate('Country') ?></a></li> 
+                                <li><a href="<?php //echo $this->adminUrl('list-sport', 'insurance') ?>"><span class="icon16 entypo-icon-list"></span><?php //echo $this->translate('Sport') ?></a></li> 
+                                
+                            </ul>
+                        </li>-->
+                        <li><a href="<?php echo $this->adminUrl('list-gallery', 'gallery') ?>"><span class="icon16  entypo-icon-images"></span><?php echo $this->translate('Gallery') ?></a></li>
+                        <li><a href="<?php echo $this->adminUrl('list-video', 'gallery') ?>"><span class="icon16  eco-videos"></span><?php echo $this->translate('Filmy') ?></a></li>
+                        <li><a href="<?php echo $this->adminUrl('list-banner', 'banner') ?>"><span class="icon16 icomoon-icon-user-3"></span><?php echo $this->translate('Bannery') ?></a></li>
+                        <li><a href="<?php echo $this->adminUrl('list-page', 'page') ?>"><span class="icon16 icomoon-icon-stack"></span><?php echo $this->translate('Pages') ?></a></li>
+                        <li><a href="<?php echo $this->adminUrl('list-slide', 'slider') ?>"><span class="icon16 entypo-icon-images"></span><?php echo $this->translate('Slider') ?></a></li>
+                        
+                        <li>
+                            <a href="#"><span class="icon16 entypo-icon-settings"></span><?php echo $this->translate('Settings') ?></a>
+                            <ul class="sub">
+                                <li><a href="<?php echo $this->adminUrl('list-settings', 'default') ?>"><span class="icon16 icomoon-icon-equalizer"></span><?php echo $this->translate('Site settings') ?></a></li>
+                                <li><a href="<?php echo $this->adminUrl('list-language', 'default') ?>"><span class="icon16 icomoon-icon-comments-2"></span><?php echo $this->translate('Languages') ?></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- End sidenav -->
+
+            <div class="sidebar-widget">
+                <h5 class="title"><?php echo $this->translate('Summary') ?></h5>
+                <div class="content">
+                    <div class="rightnow">
+                        <ul class="unstyled">
+                            <!--<li><span class="number">34</span><span class="icon16 icomoon-icon-new-2"></span>Posts</li>-->
+                            <!--<li><span class="number">7</span><span class="icon16 icomoon-icon-file"></span>Pages</li>-->
+                            <?php /*
+                            <li><span class="number"><?php echo $this->offerCount ?></span><span class="icon16 silk-icon-calculator"></span><?php echo $this->translate('Offers') ?></li>
+                            <li><span class="number"><?php echo $this->noticeCount ?></span><span class="icon16 icomoon-icon-file-2"></span><?php echo $this->translate('Notices') ?></li>
+                             * 
+                             */ ?>
+                            <li><span class="number"><?php echo $this->articleCount ?></span><span class="icon16 icomoon-icon-pencil-2"></span><?php echo $this->translate('News') ?></li>
+                            <li><span class="number"><?php echo $this->categoryCount ?></span><span class="icon16 icomoon-icon-list-view-2"></span><?php echo $this->translate('Categories') ?></li>
+                            <li><span class="number"><?php echo $this->productCount ?></span><span class="icon16 icomoon-icon-cart-2"></span><?php echo $this->translate('Products') ?></li>
+                            <!--<li><span class="number">201</span><span class="icon16 icomoon-icon-tag"></span>Tags</li>-->
+                        </ul>
+                    </div>
+                </div>
+
+            </div><!-- End .sidenav-widget -->
+
+        </div><!-- End #sidebar -->
+
+        <!--Body content-->
+        <div id="mainContent" class="clearfix">
+            <div class="contentwrapper"><!--Content wrapper-->
+                <div class="heading">
+
+                    <h3><?php echo isset($this->adminTitle) ? $this->translate($this->adminTitle) : '' ?></h3>                    
+                    <div class="resBtnSearch">
+                        <a href="#"><span class="icon16 icomoon-icon-search-3"></span></a>
+                    </div>
+
+                    <div class="search">
+                        <?php /*
+                        <form id="searchform" action="search.html">
+                            <input type="text" id="tipue_search_input" class="top-search" placeholder="Search here ..." />
+                            <input type="submit" id="tipue_search_button" class="search-btn" value=""/>
+                        </form>
+                        */ ?>
+                    </div><!-- End search -->
+                    
+                    <?php // echo $this->navigation()->breadcrumbs($this->admincontainer)->setMinDepth(0)->setLinkLast(true)->setSeparator('test')->render() ?>
+                    <?php echo $this->navigation()->breadcrumbs($this->admincontainer)->setLinkLast(false)->setMinDepth(0)->setMaxDepth(10)->renderPartial($this->admincontainer, array('breadcrumbs.phtml', 'admin')) ?>
+
+                </div><!-- End .heading-->
+
+                <!-- Build page from here: -->
+
+                <?php echo $this->layout()->content ?>
+                
+                <div class="modal fade hide" id="myModal1">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span class="icon12 minia-icon-close"></span></button>
+                        <h3>Chat layout</h3>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="messages">
+                            <li class="user clearfix">
+                                <a href="#" class="avatar">
+                                    <img src="/images/avatar2.jpeg" alt="" />
+                                </a>
+                                <div class="message">
+                                    <div class="head clearfix">
+                                        <span class="name"><strong>Lazar</strong> says:</span>
+                                        <span class="time">25 seconds ago</span>
+                                    </div>
+                                    <p>
+                                        Time to go i call you tomorrow.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="admin clearfix">
+                                <a href="#" class="avatar">
+                                    <img src="/images/avatar3.jpeg" alt="" />
+                                </a>
+                                <div class="message">
+                                    <div class="head clearfix">
+                                        <span class="name"><strong>Sugge</strong> says:</span>
+                                        <span class="time">just now</span>
+                                    </div>
+                                    <p>
+                                        OK, have a nice day.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="sendMsg">
+                                <form class="form-horizontal" action="#">
+                                    <textarea class="elastic" id="textarea1" rows="1" placeholder="Enter your message ..." style="width:98%;"></textarea>
+                                    <button type="submit" class="btn btn-info marginT10">Send message</button>
+                                </form>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+                
+            </div><!-- End contentwrapper -->
+        </div><!-- End #content -->
+    
+    </div><!-- End #wrapper -->
+    
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Important plugins put in all pages -->
+    <script type="text/javascript" src="/js/bootstrap/bootstrap.js"></script>  
+    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
+
+    <!-- Charts plugins -->
+    <script type="text/javascript" src="/plugins/charts/flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="/plugins/charts/flot/jquery.flot.grow.js"></script>
+    <script type="text/javascript" src="/plugins/charts/flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="/plugins/charts/flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="/plugins/charts/flot/jquery.flot.tooltip_0.4.4.js"></script>
+    <script type="text/javascript" src="/plugins/charts/flot/jquery.flot.orderBars.js"></script>
+    <script type="text/javascript" src="/plugins/charts/sparkline/jquery.sparkline.min.js"></script><!-- Sparkline plugin -->
+    <script type="text/javascript" src="/plugins/charts/knob/jquery.knob.js"></script><!-- Circular sliders and stats -->
+
+    <!-- Misc plugins -->
+    <script type="text/javascript" src="/plugins/misc/fullcalendar/fullcalendar.min.js"></script><!-- Calendar plugin -->
+    <script type="text/javascript" src="/plugins/misc/qtip/jquery.qtip.min.js"></script><!-- Custom tooltip plugin -->
+    <script type="text/javascript" src="/plugins/misc/totop/jquery.ui.totop.min.js"></script> <!-- Back to top plugin -->
+    <script type="text/javascript" src="/plugins/misc/animated-progress-bar/jquery.progressbar.js"></script>
+    <script type="text/javascript" src="/plugins/misc/pnotify/jquery.pnotify.min.js"></script>
+    
+    <!-- Search plugin -->
+    <script type="text/javascript" src="/plugins/misc/search/tipuesearch_set.js"></script>
+    <script type="text/javascript" src="/plugins/misc/search/tipuesearch_data.js"></script><!-- JSON for searched results -->
+    <script type="text/javascript" src="/plugins/misc/search/tipuesearch.js"></script>
+
+    <!-- Form plugins -->
+    <script type="text/javascript" src="/plugins/forms/watermark/jquery.watermark.min.js"></script>
+    <script type="text/javascript" src="/plugins/forms/elastic/jquery.elastic.js"></script>
+    <script type="text/javascript" src="/plugins/forms/inputlimiter/jquery.inputlimiter.1.3.min.js"></script>
+    <script type="text/javascript" src="/plugins/forms/maskedinput/jquery.maskedinput-1.3.min.js"></script>
+    <script type="text/javascript" src="/plugins/forms/ibutton/jquery.ibutton.min.js"></script>
+    <script type="text/javascript" src="/plugins/forms/uniform/jquery.uniform.min.js"></script>
+    <!-- dynatree drag and drop conflict -->
+<!--    <script type="text/javascript" src="/plugins/forms/stepper/ui.stepper.js"></script>-->
+    <script type="text/javascript" src="/plugins/forms/color-picker/colorpicker.js"></script>
+    <script type="text/javascript" src="/plugins/forms/timeentry/jquery.timeentry.min.js"></script>
+    <script type="text/javascript" src="/plugins/forms/select/select2.min.js"></script>
+    <script type="text/javascript" src="/plugins/forms/dualselect/jquery.dualListBox-1.3.min.js"></script>
+    <script type="text/javascript" src="/plugins/forms/smartWizzard/jquery.smartWizard-2.0.min.js"></script>
+    <script type="text/javascript" src="/plugins/tinymce4/tinymce.min.js"></script>
+    <!--<script type="text/javascript" src="/plugins/tinymce/jquery.tinymce.js"></script>-->
+    
+    <!-- Fix plugins -->
+    <script type="text/javascript" src="/plugins/fix/ios-fix/ios-orientationchange-fix.js"></script>
+
+    <!-- Table plugins -->
+    
+    <script type="text/javascript" language="javascript" src="/plugins/DataTables-1.10.2/media/js/jquery.dataTables.js"></script>
+    <script src="/js/jquery.dataTables.yadcf.js"></script>
+
+    <!-- Important Place before main.js  -->
+    
+    <!-- dataTables and menu slide down compatibility fix -->
+    <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>-->
+<!--    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>-->
+    <script type="text/javascript" src="/js/jquery-ui-1.8.22.min.js"></script>
+    <script type="text/javascript" src="/plugins/fix/touch-punch/jquery.ui.touch-punch.min.js"></script> 
+    <script type="text/javascript" src="/js/supr-theme/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="/js/supr-theme/jquery-ui-sliderAccess.js"></script>
+    <script type="text/javascript" src="/js/widgets.js"></script>
+
+    <!-- Gallery plugins -->
+    <script type="text/javascript" src="/plugins/gallery/lazy-load/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="/plugins/gallery/jpages/jPages.min.js"></script>
+    <script type="text/javascript" src="/plugins/gallery/pretty-photo/jquery.prettyPhoto.js"></script>
+    
+    <!-- Jcrop -->
+    <script type="text/javascript" src="/plugins/jcrop/js/jquery.Jcrop.min.js"></script>
+    
+    <!-- Dynatree -->
+    <script type="text/javascript" src="/plugins/dynatree/src/jquery.dynatree.js"></script><!-- Core js functions -->
+
+    <!-- elfinder -->
+    <script type="text/javascript" src="/plugins/elfinder-2.0-rc1/js/elfinder.min.js"></script>
+    
+    <!-- Init plugins -->
+    <script type="text/javascript" src="/js/main.js"></script><!-- Core js functions -->
+    <script type="text/javascript" src="/js/dashboard.js"></script>
+    <script type="text/javascript" src="/js/tables.js"></script> 
+    <script type="text/javascript" src="/js/forms.js"></script>
+    <script type="text/javascript" src="/js/datatable.js"></script>
+    <script type="text/javascript" src="/js/elements.js"></script><!-- Init plugins only for page -->
+    <script type="text/javascript" src="/js/admin.js"></script>
+    <!--<script src="http://maps.googleapis.com/maps/api/js?v=3.9&sensor=false" type="text/javascript"></script>-->
+    
+    <script type="text/javascript" src="/js/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="/plugins/charts/flot/jqplot.barRenderer.min.js"></script>
+    <script type="text/javascript" src="/plugins/charts/flot/jqplot.categoryAxisRenderer.js"></script>
+    <script type="text/javascript" src="/plugins/charts/flot/jqplot.pointLabels.min.js"></script>
+    <link href="/css/jquery.jqplot.min.css" rel="stylesheet" type="text/css" />
+    
+    <!--Uploader-->
+    <script type="text/javascript" src="/plugins/file-uploader/client/fileuploader.js"></script>
+    <link href="/plugins/file-uploader/client/fileuploader.css" type="text/css" rel="stylesheet" />
+    
+    </body>
+</html>

@@ -1,0 +1,127 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Banner:
+  tableName: banner_banner
+  actAs:
+    I18n:
+      fields: [name, slug, description]
+      tableName: banner_banner_translation
+      className: BannerTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    last_editor_id:
+      type: integer(4)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+    website:
+      type: string(255)
+    position:
+      type: string(255)
+    date_from:
+      type: timestamp
+    date_to:
+      type: timestamp
+    description:
+      type: clob
+    status:
+      type: boolean
+      default: 1
+    attachment_root_id:
+      type: integer(4)
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+BannerTranslation:
+  tableName: banner_banner_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    name:
+      type: string(255)
+    description:
+      type: clob
+  relations:
+   Banner:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Banner
+      type: one
+      foreignType: many
+Ad:
+  tableName: banner_ad
+  actAs:
+    I18n:
+      fields: [title, slug, content]
+      tableName: banner_ad_translation
+      className: AdTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    publish:
+      type: boolean
+      default: 1
+    metatag_id:
+      type: integer(4)
+    video_root_id:
+      type: integer(4)
+    date_from:
+      type: timestamp
+    date_to:
+      type: timestamp
+    target_href:
+      type: string(255)
+    allow_skip:
+      type: boolean
+      default: 0
+AdTranslation:
+  tableName: banner_ad_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    title:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    Ad:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Ad
+      type: one
+      foreignType: many

@@ -1,0 +1,15 @@
+<section class="span8">
+    <h2><?php echo $this->translate('Update user') ?></h2>
+    <?php echo $this->messages()->render() ?><br />
+    <?php if($this->form): ?>
+    <form action="<?php echo $this->form->getAction() ?>" method="<?php echo $this->form->getMethod() ?>" class="form-horizontal">
+        <?php echo $this->form->email ?>
+        <?php echo $this->form->password ?>
+        <?php echo $this->form->confirm_password ?>
+        <?php echo $this->form->submit ?>
+        <?php echo $this->form->user_id ?>
+        <?php echo $this->form->token ?>
+        <?php echo $this->form->csrf ?>
+    </form>
+    <?php endif; ?>
+</section>

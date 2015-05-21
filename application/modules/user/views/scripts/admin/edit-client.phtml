@@ -1,0 +1,45 @@
+<div class="container_12 clearfix leading">
+    
+    <div class="grid_12">
+ 
+        <div class="box">
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edit') ?> <?php echo $this->client['first_name'].' '.$this->client['last_name']; ?></span>
+                    <div class="box-form right">
+                       <a href="<?php echo $this->url(array('module' => 'user', 'controller' => 'update', 'action' => 'update-client-password-admin', 'subject' => 'password', 'id' => $this->client['user_id']), 'domain-client-update-admin'); ?>" class="btn btn-primary btn-mini">Zmiana hasła</a>
+                    </div>
+                </h4>
+
+            </div>
+        
+          <div class="content">
+            <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+
+
+                <?php echo $this->form->id ?>
+                <?php echo $this->form->company_name ?>
+                <?php echo $this->form->first_name ?>
+                <?php echo $this->form->last_name ?>
+                <?php echo $this->form->email ?>
+                <?php echo $this->form->website ?>
+                <?php echo $this->form->phone ?>
+                <?php echo $this->form->address ?>
+                <?php echo $this->form->postal_code ?>   
+                <?php echo $this->form->city ?>
+                <?php echo $this->form->province ?>
+                <?php echo $this->form->nip ?>
+                <?php echo $this->form->discount_id->setAttribs(array('class' => 'nostyle')) ?>
+                <?php echo $this->form->about; ?>
+                    
+                <div class="form-actions">
+                    <?php echo $this->form->submit ?>
+                    <a href="<?php echo $this->adminUrl('list-client', 'user'); ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+               </div>       
+            </form>
+          </div>
+        </div>
+    </div>
+</div>

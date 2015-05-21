@@ -1,0 +1,13 @@
+<div id="results" class="content">
+    <?php 
+$this->headTitle('Skład - '.$this->team['name'],'SET');
+?>
+    <h1>Skład drużyny <?php echo $this->team['name']; ?></h1>
+    <hr />
+    <?php foreach($this->team['Players'] as $player): ?>
+   
+    <?php 
+    echo $player['last_name']." ".$player['first_name']."<br />" ;
+    endforeach;
+?>
+</div>

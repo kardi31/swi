@@ -1,0 +1,58 @@
+<div class="content-profile">
+    <header>
+        <?php echo $this->translate('Silhouettes') ?>
+    </header>
+    <div class="trainers-profile">
+        <div class="trainer_item">
+            <div class="add_button">
+                <a href="<?php echo $this->url(array('action' => 'add-trainer'), 'domain-user-profile') ?>">
+                         <?php if ($this->language == 'en'): ?>
+                        <img src="/images/layout/ajurweda/dodaj_sylwetke_en.png"/>
+                    <?php else: ?>
+                        <img src="/images/layout/ajurweda/dodaj_sylwetke_pl.png"/>
+                    <?php endif; ?>
+                </a>
+            </div>
+        <?php if(isset($this->paginator)): ?>
+            <?php foreach($this->paginator as $trainerItem):?>
+                 <?php if($trainerItem['Translation'][$this->language]['slug']): ?>
+                    <article>
+                        <div class="content">
+                            <div class="picture">
+                                <?php if($trainerItem['PhotoRoot']['offset']): ?>
+                                    <img src="/media/photos/<?php echo $trainerItem['PhotoRoot']['offset'] ?>/122x122/<?php echo $trainerItem['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $trainerItem['PhotoRoot']['offset'] ?>/<?php echo $trainerItem['PhotoRoot']['filename'] ?>" alt="<?php echo $trainerItem['PhotoRoot']['title'] ?>" />
+                                <?php else: ?>
+                                    <img src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 77px; height: 77px" />
+                                <?php endif; ?>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="desc">
+                                <div class="date"><?php echo $trainerItem['event_date']; ?></div>
+                                <header><?php echo $trainerItem['name']; ?></header>
+                                <?php echo $this->text()->truncate($trainerItem['Translation'][$this->language]['curriculum_vitae'], 260, 'letters') ?>
+                            </div>
+                            <div class="edit_button">
+                                <a href="<?php echo $this->url(array('action' => 'edit-trainer', 'type' => $trainerItem['type'], 'id' => $trainerItem['id']), 'domain-user-profile') ?>">
+                                    <img src="/images/layout/ajurweda/edit_icon.png" />
+                                </a>
+                            </div>
+                        </div>  
+                        <div class="line"></div> 
+                    </article>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <?php if ($this->paginator->count() == 0): ?>
+            <span class="empty-list"><?php echo $this->translate('No definied silhouettes') ?></span>
+        <?php endif; ?>
+        </div>
+    <div class="clearfix"></div>
+    <div class="bottom_bar">
+        <div class="pagination">
+            <?php echo $this->paginationControl($this->paginator, 'Sliding', 'profile_pagination_control.phtml') ?>
+        </div>
+    </div>  
+    </div>
+</div>
+
+

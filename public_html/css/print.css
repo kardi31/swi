@@ -1,0 +1,13 @@
+#topDiv,.sidebar,#topMenubar,.topBelka,footer,#like-box{
+	display:none;
+}
+.content table tr{
+	height:30px;
+}
+.content{
+	text-align: center;
+	font-size:15px;
+}
+.content table{
+	margin:0 auto;
+}

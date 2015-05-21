@@ -1,0 +1,55 @@
+<link href="http://vjs.zencdn.net/4.10/video-js.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/4.10/video.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function($)
+    {
+        var player = videojs('really-cool-video', { /* Options */ }, function() {
+              //this.play();
+            }); 
+    });
+
+  </script>
+  <style>
+      .cool-video,video{
+          max-width:100% !important;
+      }
+  </style>
+<div class="main-title">
+        <h2><?php echo $this->stream['Translation'][$this->language]['title']; ?></h2>
+</div>
+<div class="article-content">
+
+        <div class="article-header">
+            <video id="really-cool-video" class="cool-video video-js vjs-big-play-centered vjs-default-skin" controls width="840" height="500">
+                <source src="<?php echo $this->stream->url; ?>" id="source_elem" type="rtmp/mp4">
+                <source src="<?php echo $this->stream->hls_url; ?>" type="application/x-mpegURL">
+                
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a web browser
+                    that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
+            <br />
+                <h1><?php echo $this->stream['Translation'][$this->language]['title']; ?></h1>
+        </div>
+    <div class="article-main-content">
+            <?php echo $this->stream['Translation'][$this->language]['content']; ?>
+        
+    </div>
+</div>
+<div class="share-article-body">
+        <div class="main-title">
+                <h2>Poleć znajomym</h2>
+                <span>Poinformuj innych o artykule</span>
+        </div>
+        <div class="right">
+                <a href="http://www.facebook.com/share.php?u=<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-facebook"><i class="fa fa-facebook"></i><span></span></a>
+                <a href="https://twitter.com/share" class="share-body ot-twitter"><i class="fa fa-twitter"></i><span></span></a>
+                <a href="https://plusone.google.com/_/+1/confirm?<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-google"><i class="fa fa-google-plus"></i><span></span></a>
+                <a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-linkedin"><i class="fa fa-linkedin"></i><span></span></a>
+                <a href="http://pinterest.com/pin/create/button/?<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-pinterest"><i class="fa fa-pinterest"></i><span></span></a>
+        </div>
+</div>
+  
+  <?php echo $this->action('banner-under-stream', 'index', 'banner'); ?>

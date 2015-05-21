@@ -1,0 +1,38 @@
+<section id="register_exists_client">
+    <header>
+        <?php echo $this->translate('Założenie konta w nowym serwisie zielonysklep.com') ?>
+    </header>
+    <div class="register_exists_client_content">
+        <?php if($this->messages()->count()): ?>
+            <div class="alert alert-error">
+                <?php echo $this->messages()->render() ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($this->user && !$this->user->isActive()): ?>
+            <div class="information">
+                <ul>
+                    <li class="username">
+                        <span class="label">Twój nick:</span> <span style="color: red;"><?php echo $this->user->getUsername(); ?></span>
+                    </li>
+                    <li class="email">
+                        <span class="label">Twój email:</span> <span style="color: red;"><?php echo $this->user->getEmail(); ?></span>
+                    </li>
+                <ul>
+            </div>
+            <span style="font-size: 14px; font-family: 'Verdana'; margin-left: 140px;">Wprowadź dwukrotnie swoje hasło:</span>
+            <form action="<?php echo $this->form->getAction() ?>" method="<?php echo $this->form->getMethod() ?>" class="form-horizontal">
+
+            <?php echo $this->form->password ?>
+            <?php echo $this->form->confirm_password ?>
+            <br/>
+            <button type="submit"><?php echo $this->translate('Save') ?></button>
+
+            <?php echo $this->form->csrf ?>
+            <?php echo $this->form->token ?>
+            </form>
+        <?php endif; ?>
+        <?php if ($this->user->isActive()): ?>
+            Twoje konto w nowym serwisie zostało już aktywowane.
+        <?php endif; ?>
+    </div>
+</section>

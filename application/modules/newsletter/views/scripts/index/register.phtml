@@ -1,0 +1,39 @@
+<script type="text/javascript">
+
+$(document).ready(function() { 	
+    
+    <?php if ($this->language == 'en'): ?>
+        $('button#submit').css('background', "url('/images/layout/ajurweda/zapisz_newsl_en.png') no-repeat -5px -10px"); 
+    <?php endif; ?>
+
+});
+
+</script>
+
+<section id="newsletter-register">
+    <header>
+        <?php echo $this->translate('Newsletter') ?>
+    </header>
+    <div class="news_register_content">
+        <?php if($this->messages()->count()): ?>
+            <div class="alert alert-error">
+                <?php echo $this->messages()->render() ?>
+            </div>
+            <?php endif; ?>
+            <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="<?php echo $this->form->getMethod() ?>" enctype="<?php echo $this->form->getEnctype() ?>"> 
+                <?php echo $this->form->username ?>
+                <?php echo $this->form->email ?>
+                
+                <?php if($this->form->captcha): ?>
+                    <div class="control-group">
+                        <div class="controls captcha">
+                            <?php echo $this->form->captcha ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                
+                <?php echo $this->form->submit->setLabel('Zapisz się') ?>
+                <?php echo $this->form->csrf ?>
+            </form>
+      </div>
+</section>

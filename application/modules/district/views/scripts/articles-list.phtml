@@ -1,0 +1,20 @@
+<?php if(isset($this->articles)): ?>
+    <?php $count = 1; ?>
+    <?php foreach($this->articles as $key => $article): ?>
+        <?php if ($count == 1): ?>
+            <li class="newsFisrt">
+                <?php if(isset($article['PhotoRoot']) && $article['PhotoRoot']['filename'] != NULL): ?>
+                    <img src="/media/photos/<?php echo $article['PhotoRoot']['offset'] ?>/<?php echo $article['PhotoRoot']['filename'] ?>" alt="<?php echo $article['PhotoRoot']['title']; ?>" class="newsThumb"/>
+                <?php endif; ?>
+                <a href="<?php echo $this->url(array('slug' => $article['Translation']['pl']['slug']), 'domain-news-article') ?>"><?php echo $article['Translation']['pl']['title']; ?></a><br/>
+                <p><?php echo $this->text()->truncate($article['Translation']['pl']['content'], 200); ?></p>
+            </li>
+        <?php else: ?>
+            <li>
+                <a href="<?php echo $this->url(array('slug' => $article['Translation']['pl']['slug']), 'domain-news-article') ?>"><?php echo $article['Translation']['pl']['title']; ?></a><br/>
+                <p><?php echo $this->text()->truncate($article['Translation']['pl']['content'], 200); ?></p>
+            </li>
+        <?php endif; ?>
+        <?php $count++; ?>
+    <?php endforeach; ?>
+<?php endif; ?>  

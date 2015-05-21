@@ -1,0 +1,14 @@
+<section class="span8">
+    <h1><?php echo $this->translate('Update user') ?></h1>
+    <form action="<?php echo $this->form->getAction() ?>" method="<?php echo $this->form->getMethod() ?>" class="form-horizontal">
+        <?php echo $this->form->first_name ?>
+        <?php echo $this->form->last_name ?>
+        <?php echo $this->form->email ?>
+        <?php echo $this->form->password ?>
+        <?php echo $this->form->confirm_password ?>
+        <?php echo $this->form->type ?>
+        <div class="control-group"><div class="controls span6 offset3"><?php echo $this->form->captcha ?></div></div>
+        <?php echo $this->form->submit ?>
+        <?php echo $this->form->csrf ?>
+    </form>
+</section>

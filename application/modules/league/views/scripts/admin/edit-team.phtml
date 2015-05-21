@@ -1,0 +1,200 @@
+<script type="text/javascript">
+$(document).ready(function() {
+ 
+    $('#explorer').dialog({
+		autoOpen: false,
+		modal: true,
+		dialogClass: 'dialog',
+    });
+   
+    $("#itemCon").delegate(".add", "click", function(e) {
+        e.preventDefault();
+        $("#explorer-content").show();
+       // $("#explorer").modal({
+        //    overlayCss: {"background": "black"}
+       // });
+        
+        var elf = $('#elfinder').elfinder({
+            url : '/admin/media/elfinder',  // connector URL (REQUIRED)
+            getFileCallback : function(href) {
+                var data = { hrefs: href };
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: "<?php echo $this->adminUrl('add-product-photo', 'product') ?>/id/"+$('#id').val(),
+                    data: data,
+                    success: function(resp) {
+                        if(resp.status == "success") {
+                            $("#id").val(resp.id);
+                            $("#main_photo_container").html(resp.body);
+                            $("#itemContainer").trigger('update');
+                        }
+                    }
+                });
+
+                $('#explorer').dialog('close');
+              //  $.modal.close();
+            },
+            commandsOptions : {
+                // configure value for "getFileCallback" used for editor integration
+                getfile : {
+                    // allow to return folders info
+                    onlyURL  : true,
+
+                    // allow to return multiple files info
+                    multiple : true,
+
+                    // allow to return folders info
+                    folders  : false,
+
+                    // action after callback (close/destroy)
+                    oncomplete : ''
+                },
+            }
+        }).elfinder('instance');	
+        
+        $('#explorer').dialog('open');
+    });
+    
+    
+    $("#itemCon").delegate(".actionBtn .delete", "click", function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "<?php echo $this->adminUrl('remove-photo', 'media') ?>/id/"+$('#id').val(),
+                data: data,
+                success: function(resp) {
+                    if(resp.status == "success") {
+                        $("#main_photo_con").html(resp.body);
+                        $("#itemCon").trigger('update');
+                    }
+                }
+            });
+     }); 
+     
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edytuj drużyne').$this->team['name'].' do ligi '.$this->league['name']; ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                <style>
+                    
+                    table tr td{
+                        text-align:center;
+                    }
+                    </style>
+                <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+                    <h3>Dotychczasowi zawodnicy</h3>
+                    <table>
+                        <tr>
+                            <th>Nazwisko</th>
+                            <th>Imię</th>
+                            <th></th>
+                        </tr>
+                    <?php foreach($this->team['Players'] as $player): ?>
+                        <tr>
+                            <td>
+                                <?php echo $player['last_name']; ?>
+                            </td>
+                            <td>
+                                <?php echo $player['first_name']; ?>
+                            </td>
+                            <td style="width:100px;">
+                                <a href="/admin/league/edit-player/id/<?php echo $player['id']; ?>"><span class="icon16 entypo-icon-settings"></span></a>
+                                <a class="remove" href="/admin/league/remove-player/id/<?php echo $player['id']; ?>"><span class="icon16 icomoon-icon-remove"></span></a>
+                            </td>
+                        </tr>
+		    <?php endforeach; ?>
+                    </table>
+		    <br /><br />
+                    
+                    <?php echo $this->form->id ?>
+                    
+                    <?php echo $this->form->name ?>
+		    <br />
+		    <?php for($i=0;$i<15;$i++): ?>
+		    
+		    <div class="row-fluid">
+                        <label class="span4">Nazwisko i imie zawodnika</label>
+                   
+                        <input class="span8" name="new_player1[]" type="text" /><br />
+                    
+                    </div>
+		    <?php endfor; ?>
+                    
+                    <div class="page-header">
+                         <h4><?php echo $this->translate('Logo klubu') ?></h4>
+                    </div>  
+                    <div id="itemCon">
+                        <ul id="main_photo_con" class="galleryView center">
+                            <li class="pull-left">
+                                <?php if($this->team->get('Logo')->getOffset()): ?>
+                                <a id="main_photo" href="/media/photos/<?php echo $this->team->get('Logo')->getOffset() ?>/<?php echo $this->team->get('Logo')->getFilename() ?>" rel="prettyPhoto" title="<?php echo $this->team->get('Logo')->getTitle() ?>">
+                                    <img src="/media/photos/<?php echo $this->team->get('Logo')->getOffset() ?>/126x126/<?php echo $this->team->get('Logo')->getFilename() ?>" data-original="/media/photos/<?php echo $this->team->get('Logo')->getOffset() ?>/<?php echo $this->team->get('Logo')->getFilename() ?>" alt="<?php echo $this->team->get('Logo')->getTitle() ?>">
+                                </a>
+                                <?php else: ?>
+                                <a id="main_photo" href="/images/gallery/preload.png" title="<?php echo $this->translate('No photo') ?>">
+                                    <img src="/images/gallery/preload.png" data-original="/images/gallery/preload.png" alt="<?php echo $this->translate('No photo') ?>">
+                                </a>
+                                <?php endif; ?>
+                                <div class="actionBtn">
+                                    <a href="<?php echo $this->adminUrl('edit-photo', 'default', array('type' => 'team','id' => $this->team->get('Logo')->getId())) ?>" class="edit"><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+                                    <a href="#" class="add"><span class="icon16 iconic-icon-cursor white"></span></a>
+                                    <a href="#" class="delete"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> 
+                    <div class="page-header">
+                         <h4><?php echo $this->translate('Zdjęcie drużyny') ?></h4>
+                    </div>  
+                    <div id="itemCon">
+                        <ul id="main_photo_con" class="galleryView center">
+                            <li class="pull-left">
+                                <?php if($this->team->get('TeamPhoto')->getOffset()): ?>
+                                <a id="main_photo" href="/media/photos/<?php echo $this->team->get('TeamPhoto')->getOffset() ?>/<?php echo $this->team->get('TeamPhoto')->getFilename() ?>" rel="prettyPhoto" title="<?php echo $this->team->get('TeamPhoto')->getTitle() ?>">
+                                    <img src="/media/photos/<?php echo $this->team->get('TeamPhoto')->getOffset() ?>/126x126/<?php echo $this->team->get('TeamPhoto')->getFilename() ?>" data-original="/media/photos/<?php echo $this->team->get('TeamPhoto')->getOffset() ?>/<?php echo $this->team->get('TeamPhoto')->getFilename() ?>" alt="<?php echo $this->team->get('TeamPhoto')->getTitle() ?>">
+                                </a>
+                                <?php else: ?>
+                                <a id="main_photo" href="/images/gallery/preload.png" title="<?php echo $this->translate('No photo') ?>">
+                                    <img src="/images/gallery/preload.png" data-original="/images/gallery/preload.png" alt="<?php echo $this->translate('No photo') ?>">
+                                </a>
+                                <?php endif; ?>
+                                <div class="actionBtn">
+                                    <a href="<?php echo $this->adminUrl('edit-photo', 'default', array('type' => 'team-photo','id' => $this->team->get('TeamPhoto')->getId())) ?>" class="edit"><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+                                    <a href="#" class="add"><span class="icon16 iconic-icon-cursor white"></span></a>
+                                    <a href="#" class="delete"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> 
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-team', 'league') ?>/league_id/<?php echo $this->league_id; ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+                    
+                </form>
+            
+            </div>
+            
+        </div>
+        
+    </div>
+
+
+</div>
+<div id="explorer" class="dialog"><div id="elfinder"></div></div>

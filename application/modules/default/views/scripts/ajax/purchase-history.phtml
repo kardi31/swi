@@ -1,0 +1,13 @@
+<ul>
+    <?php foreach($this->purchaseHistoryPaginator->getCurrentItems() as $key => $performance): ?>
+    <?php if($key == 0): ?>
+    <li class="first">
+    <?php else: ?>
+    <li>
+    <?php endif; ?>
+    <?php echo MF_Text::convertTime($performance['created_at'], 'd') ?> <?php echo Zend_Locale::getTranslation(array('gregorian', 'format', 'wide', MF_Text::convertTime($performance['created_at'], 'n')), 'month'); ?> <?php echo MF_Text::convertTime($performance['created_at'], 'Y H:i') ?> <span class="subscription"><?php echo $performance['title'] ?></span> <span class="location"><?php if($performance['availability_interval'] > 0): ?>ważny do <?php echo MF_Date::formatDate($performance['created_at'], 'd', $performance['availability_interval'] . ' days') ?> <?php echo Zend_Locale::getTranslation(array('gregorian', 'format', 'wide', MF_Date::formatDate($performance['created_at'], 'n', $performance['availability_interval'] . ' days')), 'month'); ?> <?php echo MF_Date::formatDate($performance['created_at'], 'Y H:i', $performance['availability_interval'] . ' days') ?><?php endif; ?></span> <a href="<?php echo $this->url(array('slug' => $performance['slug']), 'hostname-i18n:performance-item') ?>" class="button-min blue">Zobacz Kartę Materiału</a></li>
+    <?php endforeach; ?>
+</ul>
+<div class="pagination">
+    <?php echo $this->paginationControl($this->purchaseHistoryPaginator, 'Sliding', 'purchase_history_pagination_control.phtml') ?>
+</div>

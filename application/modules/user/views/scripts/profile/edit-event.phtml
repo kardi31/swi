@@ -1,0 +1,194 @@
+<script type="text/javascript" src="/js/bootstrap/bootstrap.js"></script>  
+
+<script>
+$(function() {
+    tsf('#event_date').datetimepicker({
+        dateFormat: 'dd/mm/yy'
+    });
+  
+    
+    var uploader = new qq.FileUploaderBasic({
+            // pass the dom node (ex. $(selector)[0] for jQuery users)
+            button: document.getElementById('file-uploader'),
+            // path to server-side upload script
+            action: $("#file-uploader").attr("data-href"),
+            inputName: "file",
+            debug: true,
+            forceMultipart: true,
+            params: {id: $("#file-uploader").attr("data-id"), format: "json"},
+            onSubmit: function(id, fileName) {
+                $(".file-loader").show();
+            },
+            onComplete: function(id, fileName, responseJSON) {
+                if(parseInt(responseJSON.root)) {
+                    if(this.getInProgress() == 0) {
+                        loadphoto(parseInt(responseJSON.root), ".main-photo");
+                    }
+                }
+            }
+    });
+    
+    // file upload
+    function loadphoto(rootId, selector) {
+        $(selector).load("<?php echo $this->url(array('action' => 'load-event-promoted-photo-list'), 'domain-user-ajax-photo') ?>", {id: rootId}, function() {
+            $(".file-loader").hide();
+        });
+    }
+    
+    $(".main-photo").delegate(".delete-event-promoted-photo", "click", function(e) {
+        e.preventDefault();
+        $(".main-photo").load($(this).attr("href"));
+    });
+    
+    var uploader2 = new qq.FileUploaderBasic({
+            // pass the dom node (ex. $(selector)[0] for jQuery users)
+            button: document.getElementById('file-uploader2'),
+            // path to server-side upload script
+            action: "<?php echo $this->url(array('action' => 'upload-event-promoted-gallery-photo', 'event-id' => $this->event->getId()), 'domain-user-ajax-company-gallery') ?>",
+            inputName: "file",
+            forceMultiple: true,
+            debug: true,
+            forceMultipart: true,
+            sizeLimit: 10520000,
+            params: {id: $("#file-uploader2").attr("data-id"), format: "json"},
+            onSubmit: function(id, fileName) {
+                $(".file-loader2").show();
+            },
+            onComplete: function(id, fileName, responseJSON) {
+                if(parseInt(responseJSON.root)) {
+                    if(this.getInProgress() == 0) {
+                        loadphoto2(parseInt(responseJSON.root), null, ".gallery");
+                    }
+                }
+                else{
+                    loadphoto2(responseJSON.flag, responseJSON.eventId, ".gallery");
+                }
+            }
+    });
+
+    function loadphoto2(rootId, flag, selector) {
+        $(selector).load("<?php echo $this->url(array('action' => "load-event-promoted-gallery"), 'domain-user-ajax-photo') ?>", {id: rootId, flag: flag}, function() {
+            $(".file-loader2").hide();
+        });
+    }
+    
+    $(".gallery-photos").delegate(".delete-event-promoted-gallery-photo", "click", function(e) {
+        e.preventDefault();
+        $(".gallery").load($(this).attr("href"));
+    });
+    
+    <?php if ($this->language == 'en'): ?>
+        $('button#submit').css('background', "url('/images/layout/ajurweda/save.png') no-repeat 0px -15px"); 
+    <?php endif; ?>
+        
+
+    <?php foreach ($this->languages as $language): ?>
+      var limitFull = 1800; //ustalamy limit znakow
+       $(".limit-full-info-<?php echo $language; ?>").text(limitFull - $("#<?php echo $language; ?>-content").val().length);
+        $("#<?php echo $language; ?>-content").keyup(function() { //jesli wpisano cos do naszego pola
+               var ile_wpisano = $(this).val().length; //zliczamy ilosc znakow
+               if(ile_wpisano > limitFull) { //jesli przekroczymy limit
+                   reset = $(this).val().substring(0, limitFull); //pobieramy znaki od pierwszego do ustalonego w limicie
+                   $(this).val(reset); //wypisujemy wczesniej pobrane znaki
+               }
+               $(".limit-full-info-<?php echo $language; ?>").text(limitFull - $(this).val().length); //wypisujemy ile znakow pozostalo
+       });
+     <?php endforeach; ?>
+
+  });
+</script>
+     
+<section id="add-event">
+    <header>
+        <?php echo $this->translate('Edit event') ?>
+    </header>
+    <div class="add_event_content">
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post">
+            
+            <div class="translations">
+                <ul id="myTab" class="nav nav-tabs pattern">
+                    <li class="dropdown">
+                        <?php foreach($this->languages as $key => $language): ?>
+                            <li class="<?php if($language == $this->language): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                            <?php endforeach; ?>
+                        </li>
+                </ul>
+               
+                <div class="tab-content">
+                    <?php foreach($this->languages as $key => $language): ?>
+                        <div class="tab-pane<?php if($language == $this->language): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                            <?php if($this->form->translations->getSubForm($language)): ?>
+                                <?php echo $this->form->translations->getSubForm($language)->title ?>
+                                <?php if($this->event->getType() == "promoted"): ?>
+                                    <?php echo $this->form->translations->getSubForm($language)->content ?>
+                                    <div class="limit-characters">
+                                        Pozostało znaków: <span class="strong limit-full-info-<?php echo $language; ?>"></span>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if($this->event->getType() == "promoted"): ?>
+                                <div class="metatags">
+                                    <?php echo $this->form->metatags->translations->getSubForm($language)->meta_keywords; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                   <?php endforeach; ?>
+                 </div>
+            </div>
+             
+            <?php echo $this->form->location ?>
+            <?php echo $this->form->event_date; ?>
+            <?php echo $this->form->href ?>
+            <?php echo $this->form->contact ?>
+            <?php echo $this->form->id ?>
+            
+            <?php if($this->event->getType() == "promoted"): ?>
+                <div class="main-photo-container">
+                    <span class="add-main-photo">
+                        <a id="file-uploader" data-href="<?php echo $this->url(array('action' => 'upload-event-promoted-photo', 'event-id' => $this->event->getId()), 'domain-user-profile') ?>"><?php echo $this->translate('Add photo / logo') ?></a>
+                    </span>
+                    <div class="main-photo">
+                        <ul class="photos">
+                            <?php if($this->event['PhotoRoot']['filename']): ?>
+                            <li>
+                                <?php if(strlen($this->event['PhotoRoot']['filename'])): ?>
+                                    <img src="/media/photos/<?php echo $this->event['PhotoRoot']['offset'] ?>/245x155/<?php echo $this->event['PhotoRoot']['filename'] ?>" /><br />
+                                    <?php else: ?>
+                                    <img src="/images/layout/ajurweda/no_photo.jpg" style="width: 245px; height: 245px;" /><br />
+                                <?php endif; ?>
+                                <a class="delete-event-promoted-photo" href="<?php echo $this->url(array('action' => 'delete-event-promoted-photo', 'id' => $this->event['PhotoRoot']['id']), 'domain-user-profile') ?>"><?php echo $this->translate('Delete') ?></a>
+                            </li>
+                            <?php else: ?>
+                                <img src="/images/layout/ajurweda/no_photo.jpg" style="width: 245px; height: 245px;" /><br />
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
+            
+                <div class="title"><?php echo $this->translate('GALLERY') ?></div>
+                <div class="gallery-photos">
+                    <span class="add-photo">
+                        <a id="file-uploader2" href="#"><?php echo $this->translate('Add photos') ?></a>
+                    </span>
+                    <div class="attention"><?php echo $this->translate('Maximum 5 photos') ?></div>
+                     <ul class="gallery">
+                        <?php foreach($this->photos as $photo): ?>
+                            <li>
+                            <?php if($photo->getOffset()): ?>
+                                <img src="/media/photos/<?php echo $photo->getOffset() ?>/200x133/<?php echo $photo->getFilename() ?>" data-original="/media/photos/<?php echo $this->event->get('PhotoRoot')->getOffset() ?>/<?php echo $photo->getFilename() ?>" alt="<?php echo $photo->getTitle() ?>"><br/>
+                                <a class="delete-event-promoted-gallery-photo" href="<?php echo $this->url(array('action' => 'delete-event-promoted-gallery-photo', 'id' => $photo['id']), 'domain-user-profile') ?>"><?php echo $this->translate('Delete') ?></a>
+                            <?php endif; ?>
+                            </li>
+                        <?php endforeach; ?>
+                     </ul>
+                </div>
+            <?php endif; ?>
+            <div class="save-button">
+            <?php echo $this->form->submit ?>
+            </div>
+
+        </form>
+    </div>
+</section>
+                

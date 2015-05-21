@@ -1,0 +1,66 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#admin_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": true,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-admin-data', 'user') ?>",
+        "aaSorting": [[ 3, "desc" ]],
+        "aoColumns": [
+            null,
+            { sWidth: '200px' },
+            { sWidth: '200px' },
+            { "bSortable": false, sWidth: '50px' }
+        ]
+    });
+    
+    $("#admin_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-user"></span>
+                    <span><?php echo $this->translate('Administrators') ?></span>
+                    <div class="box-form right">
+                        <a href="<?php echo $this->adminUrl('add-admin', 'user') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add new') ?></a>
+                    </div>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+
+                <table id="admin_table" cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" width="100%">
+                    <thead>
+                        <th><?php echo $this->translate('Name') ?></th>
+                        <th><?php echo $this->translate('Email') ?></th>
+                        <th><?php echo $this->translate('Registered at') ?></th>
+                        <th><?php echo $this->translate('Options') ?></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

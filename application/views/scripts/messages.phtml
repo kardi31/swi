@@ -1,0 +1,16 @@
+<?php foreach ($this->messages as $type => $messages): ?>
+	<?php foreach($messages as $message): ?>
+	    <?php if($type == "error"): ?>
+		    <div class="alert_box error r_corners relative fs_medium">
+			<?php echo $message; ?>
+			<i class="icon-cancel close_alert_box tr_all translucent circle t_align_c"></i>
+		    </div>
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <?php else: ?>
+		    <div class="alert_box success r_corners relative fs_medium m_bottom_10">
+			    <?php echo $message; ?>
+			    <i class="icon-cancel close_alert_box tr_all translucent circle t_align_c"></i>
+		    </div>
+	    <?php endif; ?>
+	<?php endforeach; ?>
+<?php endforeach; ?>

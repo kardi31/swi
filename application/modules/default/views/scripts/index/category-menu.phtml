@@ -1,0 +1,7 @@
+<?php if(isset($this->items)): ?>
+    <?php foreach($this->items as $key => $item): ?>
+    <li>        
+        <a id="<?php echo $key ?>" href="<?php echo $this->url(array('category' => $item->getSlug()), 'domain-category') ?>"><span><?php echo $item->getName(); ?></span><span class="catItemCount"><?php echo $item['producer_count']; ?></span></a>
+    </li>
+    <?php endforeach; ?>
+<?php endif; ?>   

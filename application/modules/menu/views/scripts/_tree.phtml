@@ -1,0 +1,24 @@
+<?php if(is_array($this->menuItems) && !empty($this->menuItems)): ?>
+<ul>
+    <?php foreach($this->menuItems as $item): ?>
+    <li 
+        class="<?php if(strlen($item['css_class'])) echo $item['css_class'] ?>"
+        ><a href="<?php switch($item['target_type']) {
+                      case 'homepage': echo $this->url(array(), 'domain-homepage'); break;
+                      case 'contact': echo $this->url(array(), 'domain-contact'); break;
+                      case 'login': echo $this->url(array(), 'domain-login'); break;
+                      case 'logout': echo $this->url(array(), 'domain-logout'); break;
+                      case 'page': echo $this->url(array('page' => $item['Page']['Translation'][$this->language]['slug']), 'domain-page'); break;
+                      case 'category': echo $this->url(array('category' => $item['Category']['Translation'][$this->language]['slug']), 'domain-category'); break;
+                      case 'account' : echo $this->url(array(), 'domain-user-account', true, false); break;
+                      default : 
+                          echo strlen($item['custom_url']) ? $item['custom_url'] : 'javascript:void()';
+                  } ?>"
+        ><?php echo $item['Translation'][$this->language]['title'] ?></a>
+        <?php if(is_array($item['__children']) && !empty($item['__children'])): ?>
+            <?php echo $this->partial('_tree.phtml', 'menu', array('menuItems' => $item['__children'], 'active' => $this->_active, 'activeIds' => $this->_activeIds, 'language' => $this->language)) ?>
+        <?php endif; ?>
+    </li>
+    <?php endforeach; ?>
+</ul>
+<?php endif; ?>

@@ -1,0 +1,31 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <?php echo $this->partial('_head.phtml') ?>
+</head>
+
+<body>
+    <div class="root">
+	<header class="h10 sticky-enabled no-topbar">
+		
+                <?php echo $this->render('_header.phtml') ?>
+            
+		<?php echo $this->layout()->topMenu; ?>
+		
+		
+	</header>
+	
+	<section class="content reverse">
+		<section class="main">
+			<?php echo $this->layout()->content; ?>
+		</section>
+		
+            
+		<a href="#" class="go-top">Go to top of page</a>
+	</section>
+
+            <?php echo $this->layout()->footer; ?>
+    </div>
+</body>
+
+</html>

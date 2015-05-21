@@ -1,0 +1,11 @@
+<div class="menu-profile">
+    <header>
+      <?php if($this->user['Profile']['PhotoRoot']['offset']): ?>
+        <img src="/media/photos/<?php echo $this->user['Profile']['PhotoRoot']['offset'] ?>/30x30/<?php echo $this->user['Profile']['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $this->user['Profile']['PhotoRoot']['offset'] ?>/<?php echo $this->user['Profile']['PhotoRoot']['filename'] ?>" alt="<?php echo $this->user['Profile']['PhotoRoot']['title'] ?>" />
+      <?php else: ?>
+        <img src="/images/layout/shop/user-placeholder.png" width="30" height="30" />
+      <?php endif; ?>
+      <span class="nick"><?php echo $this->user->getUsername() ?></span>
+    </header>
+    <?php echo $this->navigation()->menu($this->profilecontainer)->render() ?>
+</div>

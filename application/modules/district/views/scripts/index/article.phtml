@@ -1,0 +1,165 @@
+<?php $news = $this->article; 
+$video = $news['VideoRoot'];
+?>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function($)
+    {
+        
+            <?php if(strlen($this->videoUrl)): ?>
+        videoPlayer = $("#video").Video({           //ALL PLUGIN OPTIONS
+            autohideControls:15000,                     //autohide HTML5 player controls
+            videoPlayerWidth:829,                   //total player width
+            videoPlayerHeight:420,                  //total player height
+			playlist:"Off",              //choose playlist type: "Right playlist","Bottom playlist", "Off"
+			autoplay:false,                         //autoplay when webpage loads
+            vimeoColor:"F11116",                    //"hexadecimal value", default vimeo color  00adef
+            youtubeSkin:"dark",                     //youtube theme: light,dark
+            youtubeColor:"red",                     //youtube color: red, white
+            videoPlayerShadow:"effect1",            //choose player shadow:  "effect1" , "effect2", "effect3", "effect4", "effect5", "effect6", "off"
+//            posterImg:"/videoplayer/images/preview_images/3.jpg",//player poster image
+            onFinish:"Restart next video",             //"Play next video","Restart video", "Stop video",
+			nowPlayingText:"Yes",                   //enable disable now playing title: "Yes","No"
+            fullscreen:"Fullscreen native",         //choose fullscreen type: "Fullscreen native","Fullscreen browser"
+            rightClickMenu:false,                    //enable/disable right click over player: true/false
+            shareShow:"Yes",                        //enable/disable share option: "Yes","No"
+            facebookLink:"http://codecanyon.net/",  //link to go when facebook button clicked
+            twitterLink:"http://codecanyon.net/",   //link to go when twitter button clicked
+            logoShow:"Yes",                         //"Yes","No"
+            logoClickable:"Yes",                    //"Yes","No"
+            logoPath:"/images/layout/logo_imav.png",        //path to logo image
+            logoGoToLink:"http://imav.tv/",  //redirect to page when logo clicked
+            logoPosition:"bottom-right",            //choose logo position: "bottom-right","bottom-left"
+            embedShow:"Yes",                        //enable/disable embed option: "Yes","No"
+           
+            videos:[
+                {
+                    <?php if (strpos($this->videoUrl,'youtube') !== false): 
+                        $youtubeId = substr($this->videoUrl,strrpos($this->videoUrl,'/')+1);
+                        ?>
+                        videoType:"youtube",
+                        youtubeID:"<?php echo $youtubeId; ?>",    
+                    <?php elseif(strpos($this->videoUrl,'vimeo') !== false):
+                        $vimeoId = substr($this->videoUrl,strrpos($this->videoUrl,'/')+1); ?>
+                        videoType:"vimeo",     
+                        vimeoID:"<?php echo $vimeoId; ?>",
+                    <?php else: ?>
+                        videoType:"HTML5",     
+                        mp4:"<?php echo $this->videoUrl; ?>",//HTML5 video mp4 url
+                        webm:"<?php echo $this->videoUrl; ?>",
+                    <?php endif; ?>
+                 //HTML5 video webm url                                               //show pre-roll "yes","no"                                      //choose video type: "HTML5", "youtube", "vimeo"
+                    title:"<?php echo $video['Translation'][$this->language]['title']; ?>",   
+                    <?php if(is_object($this->ad)>0): ?>
+                        videoAdShow:"yes",  
+                        videoAdGotoLink:"<?php echo $this->ad['target_href']; ?>",                          //pre-roll goto link
+                   
+                    mp4AD:"<?php echo $this->ad['VideoRoot']['url']; ?>",   //pre-roll video mp4 format
+                   webmAD:"<?php echo $this->ad['VideoRoot']['url']; ?>", //pre-roll video webm format
+                   // <?php endif; ?>
+//                    description:"Video description goes here.",                        //video description
+//                    thumbImg:"/videoplayer/images/thumbnail_images/pic3.jpg",                       //path to playlist thumbnail image
+                    info:"Video info goes here"                                        //video info
+                },
+
+            ]
+        });
+        <?php endif; ?>
+    });
+
+  </script>
+<div class="main-title">
+        <h2><?php echo $news['Translation'][$this->language]['title']; ?></h2>
+        <span><?php echo MF_Text::polishTimeFormat($news['publish_date'],'j M Y H:i'); ?></span>
+</div>
+
+<div class="article-content">
+
+        <div class="article-header">
+            <?php if(strlen($this->videoUrl)): ?>
+                <div id="video"></div>
+            <?php else: ?>
+                <img src="/media/photos/<?php echo $news['PhotoRoot']['offset']?>/829x528/<?php echo $news['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $news['PhotoRoot']?>/<?php echo $news['PhotoRoot']['filename'] ?>" alt="<?php echo $news['Translation'][$this->language]['title']; ?>">
+            <?php endif; ?>
+                
+                <h1><?php echo $news['Translation'][$this->language]['title']; ?></h1>
+                <span>
+                        <span> <a href="#"><?php echo $news['UserCreated']['first_name']." ".$news['UserCreated']['last_name']; ?></a></span>
+                        <span><a href="#"><?php echo MF_Text::polishTimeFormat($news['publish_date'],'j M Y H:i'); ?></a></span>
+                </span>
+        </div>
+    <div class="article-main-content">
+        <?php echo $news['Translation'][$this->language]['content']; ?>
+        <div class="gallery-shortcode">
+                <div class="gallery-shortcode-photos">
+
+                       <?php foreach($news['Photos'] as $photo): ?>
+                    
+                        <a class="lightview image-hover" href="/media/photos/<?php echo $photo['offset']?>/<?php echo $photo['filename'] ?>"  data-lightview-type="image" data-lightview-group="<?php echo $news['Translation'][$this->language]['slug']; ?>" data-lightview-options="
+                               width: 800,
+                               height: 600,
+                             " data-lightbox="lightbox" class="image-hover" data-path-hover="M 34,56 45,34 63,41 64,66 47,76 z">
+                                <figure>
+                                         <img src="/media/photos/<?php echo $photo['offset']?>/263x188/<?php echo $photo['filename'] ?>" alt="<?php echo $news['Translation'][$this->language]['title']; ?>">
+                                          <svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M 20,100 60,100 50,100 80,100 z" fill="" /></svg>
+                                        <figcaption>
+                                                <span class="hover-text"><i class="fa fa-search"></i></span>
+                                        </figcaption>
+                                </figure>
+                        </a>
+                        <?php endforeach; ?>
+                </div>
+                <div class="gallery-shortcode-content">
+                        <strong><a href="#"><?php echo $news['Translation'][$this->language]['title']; ?></a></strong>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="share-article-body">
+        <div class="main-title">
+                <h2>Poleć znajomym</h2>
+                <span>Poinformuj innych o artykule</span>
+        </div>
+        <div class="right">
+                <a href="http://www.facebook.com/share.php?u=<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-facebook"><i class="fa fa-facebook"></i><span></span></a>
+                <a href="https://twitter.com/share" class="share-body ot-twitter"><i class="fa fa-twitter"></i><span></span></a>
+                <a href="https://plusone.google.com/_/+1/confirm?<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-google"><i class="fa fa-google-plus"></i><span></span></a>
+                <a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-linkedin"><i class="fa fa-linkedin"></i><span></span></a>
+                <a href="http://pinterest.com/pin/create/button/?<?php echo "http://".$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>" class="share-body ot-pinterest"><i class="fa fa-pinterest"></i><span></span></a>
+        </div>
+</div>
+
+<div class="article-body-banner banner">
+        <a href="#" target="_blank"><img src="/assets/images/no-banner-728x90.jpg" alt="" /></a>
+</div>
+
+<div class="similar-articles-list">
+        <div class="main-title" style="border-left: 4px solid #fff;">
+                <h2>Inne wydarzenia</h2>
+                <span>Pozostałe imprezy w regionie</span>
+        </div>
+
+        <div class="similar-articles">
+
+                <?php foreach($this->otherEvents as $categoryArticle): ?>
+
+                <div class="item">
+                        <div class="item-header">
+                                <a href="<?php echo $this->url(array('slug' => $categoryArticle['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="image-hover" style="position:relative">
+                                    <img src="/media/photos/<?php echo $categoryArticle['PhotoRoot']['offset']; ?>/173x130/<?php echo $categoryArticle['PhotoRoot']['filename']; ?>" alt="<?php echo $categoryArticle['Translation'][$this->language]['title'] ?>" />
+                                    <?php if($categoryArticle['videos_count']>1): ?>
+                                <img class="playBtn" src="/images/icon_play.png" />
+                            <?php endif; ?>
+                                </a>
+                            
+                        </div>
+                        <div class="item-content">
+                                <h4><a href="<?php echo $this->url(array('slug' => $categoryArticle['Translation'][$this->language]['slug']),'domain-news-article'); ?>">
+                                       <?php echo $categoryArticle['Translation'][$this->language]['title'] ?>
+                                    </a></h4>
+                                <span><a href="<?php echo $this->url(array('slug' => $categoryArticle['Translation'][$this->language]['slug']),'domain-news-article'); ?>"> <?php echo MF_Text::polishTimeFormat($categoryArticle['publish_date'],'j M Y H:i'); ?></a></span>
+                        </div>
+                </div>
+                <?php endforeach; ?>
+        </div>
+</div>

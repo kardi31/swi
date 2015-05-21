@@ -1,0 +1,70 @@
+<script type="text/javascript">
+$(document).ready(function() {
+   
+    
+     $('.section').hide();
+     $('.contentSection').show();
+     $('.btnList li').click(function(){
+        var rel = $(this).attr('rel');
+        $('.section').hide();
+        $('.'+rel).show();
+     });
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edit news') ?> <?php echo $this->news->Translation[$this->language]->title ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                <ul class="btnList">
+                    <li rel="contentSection"><button class="btn" type="button">Treść</button></li>
+                    <li rel="metatagSection"><button class="btn" type="button">Pokaż metatagi</button></li>
+                </ul>
+                <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+                    
+                    
+                                <span class="section contentSection">
+                                <?php echo $this->form->title ?>
+                                <?php echo $this->form->content->setAttrib('class', 'tinymce') ?>
+                                </span>
+                                <span class="section metatagSection">
+                                    <div class="title" style ="margin-top: 30px;">
+
+                                        <h4>
+                                            <span class="icon16 icomoon-icon-pencil"></span>
+                                            <span><?php echo $this->translate('Metatags') ?></span>
+                                        </h4>
+
+                                    </div>
+                                    <div class="content clearfix">
+                                        <?php echo $this->form->metatags->translations->getSubForm('pl')->meta_title; ?>
+                                        <?php echo $this->form->metatags->translations->getSubForm('pl')->meta_description; ?>
+                                        <?php echo $this->form->metatags->translations->getSubForm('pl')->meta_keywords; ?>
+                                    </div>
+                                </span>
+                            </div>
+                            
+                        <?php echo $this->form->id ?>
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <button name="save_only" id="btnSaveOnly" type="submit" class="btn btn-primary"><?php echo $this->translate('Save and stay') ?></button>
+                        <a href="<?php echo $this->adminUrl('list-group', 'news') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>   
+</div> 
+    

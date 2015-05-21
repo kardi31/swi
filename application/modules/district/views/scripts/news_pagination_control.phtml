@@ -1,0 +1,15 @@
+<?php if ($this->pageCount > 1): ?>
+    <!-- Previous page link -->
+    <?php if (isset($this->previous)): ?>
+        <a class="prev" href="<?php echo $this->url(array('page' => $this->previous), 'domain-i18n:news'); ?>"><img class="s_left" src="/images/a_left.png" alt="" /></a>
+    <?php else: ?>
+        <a class="prev"><img class="s_left" src="/images/a_left_disabled.png" alt="" /></a>
+    <?php endif; ?>
+
+    <!-- Next page link -->
+    <?php if (isset($this->next)): ?>
+        <a class="next" href="<?php echo $this->url(array('page' => $this->next), 'domain-i18n:news'); ?>"><img class="s_right" src="/images/a_right.png" alt="" /></a>
+    <?php else: ?>
+        <a class="next"><img class="s_right" src="/images/a_right_disabled.png" alt="" /></a>
+    <?php endif; ?>
+<?php endif; ?>

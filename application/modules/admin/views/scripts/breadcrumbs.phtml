@@ -1,0 +1,66 @@
+<?php
+
+if (null === $this->container) {
+    $this->container = $this->breadcrumbs()->getContainer();
+}
+
+// find deepest active
+//if (!$active = $this->breadcrumbs()->findActive($this->container)) {
+//    return '';
+//}
+
+$html = '';
+$active = $this->breadcrumbs()->findActive($this->container);
+$active = $active['page'];
+
+// put the deepest active page last in breadcrumbs
+if($active) {
+    if ($this->breadcrumbs()->getLinkLast()) {
+        $label = $active->getLabel();
+        $html = ' <li class=""><a href="#" class="tip" title="' . $this->translate('Back to dashboard') . '">' . $this->escape($label) . '</a></li>' . PHP_EOL;
+    } else {
+        $label = $active->getLabel();
+        if ($this->breadcrumbs()->getUseTranslator() && $t = $this->breadcrumbs()->getTranslator()) {
+            $label = $t->translate($label);
+        }
+        $html = ' <li class="active">' . $this->escape($label) . '</li>' . PHP_EOL;
+    }
+
+    // walk back to root
+    while (($parent = $active->getParent()) != null) {
+        if ($parent === $this->container) {
+            // at the root of the given container
+            break;
+        }
+        
+        if ($parent instanceof Zend_Navigation_Page) {
+            // prepend crumb to html
+            $html = ' <li><a href="' . $parent->getHref() . '">' . $this->breadcrumbs()->htmlify($parent) . '</a><span class="divider"><span class="icon16 icomoon-icon-arrow-right-2"></span></span></li>' . PHP_EOL . $html;
+        }
+
+        $active = $parent;
+    }
+} else {
+    $html = '<li class="active">' . $this->translate('Dashboard') . '</li>';
+}
+echo $this->breadcrumbs()->getIndent() . 
+        '<ul class="breadcrumb"><li><a href="' . $this->adminUrl() . '" class="tip" title="' . $this->translate('Back to dashboard') . '"><span class="icon16 icomoon-icon-screen-2"></span></a> ' . PHP_EOL 
+            . '<span class="divider"><span class="icon16 icomoon-icon-arrow-right-2"></span></span></li>' . PHP_EOL
+                 . $html .  '</ul>';
+
+?>
+<?php /*
+<ul class="breadcrumb">
+    <li><?php echo $this->translate('You are here') ?>:</li>
+    <li>
+        <a href="#" class="tip" title="back to dashboard">
+            <span class="icon16 icomoon-icon-screen-2"></span>
+        </a> 
+        <span class="divider">
+            <span class="icon16 icomoon-icon-arrow-right-2"></span>
+        </span>
+    </li>
+    <li class="active">Dashboard</li>
+</ul>
+ * 
+ */ ?>

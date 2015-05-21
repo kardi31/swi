@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <?php echo $this->partial('_head_mobile.phtml') ?>
+    
+    <body>
+        <div id="" class="container">
+        <?php echo $this->render('_header_mobile.phtml') ?>
+        
+       
+ 
+            <div class="container mainMobile">
+		<div class="col-md-12">
+
+                    <?php echo $this->layout()->content; ?>
+                </div>
+                <div class="col-md-12 sidebar">
+                    <?php echo $this->layout()->sidebar; ?>
+                </div>
+                
+            </div>
+        <?php //echo $this->layout()->rightSidebar; ?>
+        
+        <?php echo $this->render('_footer_mobile.phtml') ?>
+        </div>
+    </body>
+</html>

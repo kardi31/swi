@@ -1,0 +1,7 @@
+<?php if($this->withHome): ?>
+<a href="<?php echo $this->url(array(), 'i18n:default') ?>"><?php echo $this->translate('Homepage') ?></a>
+<?php endif; ?>
+<?php foreach($this->breadcrumbs as $key => $menuItem): ?>
+<?php echo $this->separator ?>
+<a href="<?php echo $menuItem->getTargetHref($this->language) ?>"><?php echo $menuItem->Translation[$this->language]->title ?></a>
+<?php endforeach; ?>

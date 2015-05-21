@@ -1,0 +1,115 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#banner_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": true,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-ad-data', 'banner') ?>",
+        "aaSorting": [[ 2, "desc" ]],
+        "aoColumns": [
+            { "bSortable": true, sWidth: '50px' },
+            null,
+            { "bSortable": true, sWidth: '150px' },
+            { "bSortable": true, sWidth: '150px' },
+            { "bSortable": true, sWidth: '150px' },
+            { "bSortable": true, sWidth: '150px' },
+            { "bSortable": false, sWidth: '50px' }
+        ]
+    }).yadcf([
+        {
+            column_number: 0,
+            filter_type: 'text'
+        },
+        {
+            column_number: 1,
+            filter_type: 'text'
+        },
+        {
+            column_number: 2,
+            filter_type: 'range_date',
+            date_format : "dd/mm/yyyy"
+        },
+        {
+            column_number: 3,
+            filter_type: 'range_date',
+            date_format : "dd/mm/yyyy"
+        },
+        {
+            column_number: 4,
+            filter_type: 'range_date',
+            date_format : "dd/mm/yyyy"
+        }, {
+           
+          column_number: 5,
+           data: [{
+                value: '1',
+                label: 'Tak'
+            }, {
+                value: 'empty_value',
+                label: 'Nie'
+            }],
+        
+        }
+    ]);
+    
+    $("#banner_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+});
+</script>
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-briefcase-2"></span>
+                    <span><?php echo $this->translate('Banners') ?></span>
+                    <div class="box-form right">
+                        <a href="<?php echo $this->adminUrl('add-ad', 'banner') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add new') ?></a>
+                    </div>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                <table id="banner_table" cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" width="100%">
+                    <thead>
+                        <tr>
+                            <th><?php echo $this->translate('Id') ?></th>
+                            <th><?php echo $this->translate('Name') ?></th>
+                            <th><?php echo $this->translate('Created') ?></th>
+                            <th><?php echo $this->translate('Date from') ?></th>
+                            <th><?php echo $this->translate('Date to') ?></th>
+                            <th><?php echo $this->translate('Visible on site') ?></th>
+                            <th><?php echo $this->translate('Options') ?></th>
+                        </tr>
+                        <tr>
+                            <th><?php echo $this->translate('Id') ?></th>
+                            <th><?php echo $this->translate('Name') ?></th>
+                            <th><?php echo $this->translate('Created') ?></th>
+                            <th><?php echo $this->translate('Date from') ?></th>
+                            <th><?php echo $this->translate('Date to') ?></th>
+                            <th><?php echo $this->translate('Visible on site') ?></th>
+                            <th><?php echo $this->translate('Options') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+</div>

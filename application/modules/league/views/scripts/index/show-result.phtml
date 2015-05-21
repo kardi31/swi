@@ -1,0 +1,28 @@
+<div id="results" class="content">
+    <?php $this->headTitle('Wyniki - '.$this->league['name'],'SET'); ?>
+    <h1>Wyniki - <?php echo $this->league['name']; ?></h1>
+    <hr />
+<?php foreach($this->results as $result): ?>
+    <span class="matchHeader"><?php
+    echo "<h4>".$result['Team1']['name']."</h4> : <h4>".$result['Team2']['name']."</h4>  ".$result['goal1']." : ".$result['goal2']."<br />";?>
+    </span><?php
+   $strzelcy1 = $this->shooterService->getGoals($result['id'],$result['team1']);
+   $strzelcy2 = $this->shooterService->getGoals($result['id'],$result['team2']);
+   
+   foreach($strzelcy1 as $key=>$strzelec1):
+       if($key!= count($strzelcy1->toArray())-1)
+            echo "<h4>".$strzelec1['Player']['last_name']." ".mb_substr($strzelec1['Player']['first_name'],0,1,'UTF-8')."</h4> ".$strzelec1['goal']." ,";
+       else
+            echo "<h4>".$strzelec1['Player']['last_name']." ".mb_substr($strzelec1['Player']['first_name'],0,1,'UTF-8')."</h4> ".$strzelec1['goal']." - ";
+   endforeach;
+   foreach($strzelcy2 as $key2=>$strzelec2):
+       if($key2!= count($strzelcy2->toArray())-1)
+            echo "<h4>".$strzelec2['Player']['last_name']." ".mb_substr($strzelec2['Player']['first_name'],0,1,'UTF-8')."</h4> ".$strzelec2['goal']." ,";
+       else
+            echo "<h4>".$strzelec2['Player']['last_name']." ".mb_substr($strzelec2['Player']['first_name'],0,1,'UTF-8')."</h4> ".$strzelec2['goal']." ";
+   endforeach;
+    echo "<br />";
+    echo "<br />";
+endforeach;
+?>
+</div>

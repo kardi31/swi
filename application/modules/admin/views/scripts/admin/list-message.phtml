@@ -1,0 +1,60 @@
+<link rel="stylesheet" media="screen" href="/lib/datatables/css/vpad.css" />
+<script type="text/javascript" src="/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/js/jquery.jeditable.mini.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var oTable = $("#table").dataTable( {
+            "sPaginationType": "full_numbers",
+            "oLanguage": {
+                "sUrl": "/lib/datatables/datatables.polish.txt"
+            },
+            "bFilter": true,
+            "bDestroy": true,
+            "bProcessing": true,
+            "bServerSide": true,
+            "aaSorting": [[ 2, "desc" ]],
+            "sAjaxSource": "<?php echo $this->adminUrl('fill-message-list', 'admin') ?>",
+            "aoColumns": [
+                null,
+                null,
+                { sClass: "alignRight", sWidth: '130px' },
+                { "bSortable": false }
+            ]
+
+        });
+        
+        $("#wrapper").delegate(".delete-item", "click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if(confirm("<?php echo $this->translate('Click OK to delete this row') ?>")) {
+                var link = $(this).attr("href");
+                window.location = link;
+            }
+        });
+        
+    });
+</script> 
+<h1 class="page-title"><?php echo $this->translate('Messages') ?></h1>
+<div class="container_12 clearfix leading">
+    
+    <div class="grid_12">
+        <a href="<?php echo $this->adminUrl('add-message', 'admin') ?>"><?php echo $this->formButton('', $this->translate('Add new message'), array('id' => 'add-message')) ?></a>
+        
+        <div id="users" class="clearfix">
+            
+            <table class="display" id="table">
+                <thead>
+                    <tr>
+                        <th><?php echo $this->translate('Title') ?></th>
+                        <th><?php echo $this->translate('Author') ?></th>
+                        <th><?php echo $this->translate('Publish date') ?></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div> <!-- users -->
+    </div>
+</div>

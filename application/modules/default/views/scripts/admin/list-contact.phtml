@@ -1,0 +1,39 @@
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            <div class="title">
+                <h4>
+                    <span><?php echo $this->translate('Contact data') ?></span>
+                      <div class="box-form right">
+                        <a href="<?php echo $this->adminUrl('edit-contact', 'default') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Edit') ?></a>
+                    </div>
+                   
+               </h4>
+            </div>
+            <div class="content clearfix">
+                <ul>
+                    <li>
+                         <label><?php echo $this->translate('Service name')?></label><span><?php echo $this->serviceData['name'] ?></span><br />
+                    </li>
+                    <li>
+                        <label><?php echo $this->translate('Email')?></label><span><?php echo $this->serviceData['email'] ?></span>
+                    </li>
+                     <li>
+                        <label><?php echo $this->translate('Phone')?></label><span><?php echo $this->serviceData['phone'] ?></span>
+                    </li>
+                     <li>
+                        <label><?php echo $this->translate('Address')?></label><span><?php echo $this->serviceData['address'] ?></span>
+                    </li>
+                     <li>
+                        <label><?php echo $this->translate('Opening hours')?></label><span><?php echo $this->serviceData['opening'] ?></span>
+                    </li>
+                </ul>
+                     
+            </div>
+        </div>
+        
+    </div>
+</div>

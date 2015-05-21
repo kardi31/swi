@@ -1,0 +1,28 @@
+
+<article id="content">
+        <div class="wrapper tabs">
+                <div class="tab-content" id="tab1">
+                    <?php foreach($this->newsList as $category => $news): ?>
+                        <h5>
+			    <span class="dropcap">
+				<strong><?php echo MF_Text::timeFormat($news['publish_date'],'d');?></strong>
+				<span><?php echo MF_Text::polishShortMonth($news['publish_date']);?></span>
+			    </span>
+				<?php echo $news['Translation'][$this->language]['title']; ?>
+			</h5>
+                        <div class="wrapper pad_bot2">
+                                <figure class="left marg_right1">
+				    <?php if(strlen($news['PhotoRoot']['offset'])): ?>
+				        <img src="<?php echo MF_Text::getPhotoPath($news['PhotoRoot'],'180x141'); ?>" alt="<?php echo $news['Translation'][$this->language]['title']; ?>" title="<?php echo $news['Translation'][$this->language]['title']; ?>">
+				    <?php endif; ?>
+				</figure>
+                                <p class="pad_bot1"><?php echo MF_Text::truncate(strip_tags($news['Translation'][$this->language]['content']),300,'letters'); ?></p>
+                                <a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="link1">Czytaj więcej</a>
+                        </div>
+		    <?php endforeach; ?>
+		</div>
+    
+        </div>
+
+</article>
+

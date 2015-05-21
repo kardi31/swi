@@ -1,0 +1,46 @@
+<div class="row-fluid">
+
+    <div class="box">
+            
+        <?php if($this->form->isErrors()): ?>
+        <div class="message error closeable">
+            <span class="message-close"></span>
+            <h3><?php echo $this->translate('Error') ?>!</h3>
+        </div>
+        <?php endif; ?>
+        <?php if($this->messages()->count()): ?>
+        <?php echo $this->messages()->render() ?>
+        <?php endif; ?>
+
+        <div class="title">
+            <h4> 
+                <span><?php echo $this->translate('New administrator') ?></span>
+            </h4>
+        </div>
+        <div class="content">
+
+            <form id="form" class="form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+                <?php
+                foreach($this->form->getElements() as $element) {
+                    if($element->hasErrors()) {
+                        $element->setAttrib('class', 'error');
+                    }
+                }
+                ?>
+                <?php echo $this->form->first_name ?>
+                <?php echo $this->form->last_name ?>
+                <?php echo $this->form->email ?>
+                    
+                <div class="form-actions">
+                    <?php echo $this->form->submit ?>
+                    <a href="<?php echo $this->adminUrl('list-admin', 'user') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                </div>
+            </form>
+
+        </div>
+
+    </div><!-- End .box -->
+    
+</div>
+
+

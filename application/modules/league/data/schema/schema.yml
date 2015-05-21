@@ -1,0 +1,273 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Team:
+  tableName: league_team
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255) 
+    slug:
+      type: string(255)
+    league_id:
+      type: integer(4)
+    my_team:
+      type: boolean
+      default: 0
+    logo_id:
+      type: integer(4)
+    teamphoto_id:
+      type: integer(4)
+League:
+  tableName: league_league
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255) 
+    slug:
+      type: string(255)
+    active:
+      type: boolean
+      default: 1
+    group_id:
+      type: integer(4)
+  relations:
+    Team:
+      local: id
+      foreign: league_id
+      foreignType: one
+      type: many
+      alias: Team
+      foreignAlias: League
+Cup:
+  tableName: league_cup
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255) 
+    slug:
+      type: string(255)
+    description:
+      type: clob
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+Match:
+  tableName: league_match
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    team1:
+      type: integer(4)
+    team2:
+      type: integer(4)
+    goal1:
+      type: integer(11)
+    goal2:
+      type: integer(11)
+    league_id:
+      type: integer(4)
+    match_date:
+      type: datetime
+    played:
+      type: boolean
+      default: 0
+  relations:
+    Team:
+      local: team1
+      foreign: id
+      foreignType: many
+      type: one
+      alias: Team1
+      foreignAlias: Matches1
+    League:
+      local: league_id
+      foreign: id
+      foreignType: many
+      type: one
+      alias: League
+      foreignAlias: Matches
+Tabela:
+  tableName: league_tabela
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    team_id:
+      type: integer(4)
+    games:
+      type: integer(4)
+    won:
+      type: integer(4)
+    draw:
+      type: integer(4)
+    lost:
+      type: integer(4)
+    goals_scored:
+      type: integer(4)
+    goals_lost:
+      type: integer(4)
+    points:
+      type: integer(11)
+    league_id:
+      type: integer(4)
+  relations:
+    Team:
+      local: team_id
+      foreign: id
+      foreignType: one
+      type: one
+      alias: Team
+      foreignAlias: Tabela
+    League:
+      local: league_id
+      foreign: id
+      foreignType: many
+      type: one
+      alias: League
+      foreignAlias: Tabela
+Coach:
+  tableName: league_coach
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    first_name:
+      type: string(255) 
+    last_name:
+      type: string(255)
+    position:
+      type: string(255)
+    description:
+      type: text
+    team_id:
+      type: integer(4)
+    photo_id:
+      type: integer(4)
+  relations:
+    Team:
+      local: team_id
+      foreign: id
+      foreignType: one
+      type: one
+      alias: Team
+      foreignAlias: Coach
+Player:
+  tableName: league_player
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    first_name:
+      type: string(255) 
+    last_name:
+      type: string(255)
+    position:
+      type: string(255)
+    team_id:
+      type: integer(4)
+    photo_id:
+      type: integer(4)
+  relations:
+    Team:
+      local: team_id
+      foreign: id
+      foreignType: many
+      type: one
+      alias: Team
+      foreignAlias: Players
+Board:
+  tableName: league_board
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    first_name:
+      type: string(255) 
+    last_name:
+      type: string(255)
+    position:
+      type: string(255)
+Booking:
+  tableName: league_booking
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    player_id:
+      type: integer(4) 
+    quantity:
+      type: integer(4)
+    weight:
+      type: integer(4)
+    comment:
+      type: string(255)
+    weight:
+      type: integer(4)
+      default: 1
+    active:
+      type: boolean
+      default: 1
+  relations:
+    Player:
+      local: player_id
+      foreign: id
+      foreignType: many
+      type: one
+      alias: Player
+      foreignAlias: Bookings
+Shooter:
+  tableName: league_shooter
+  columns:
+    match_id:
+      primary: true
+      type: integer(4)
+    player_id:
+      type: integer(4) 
+      primary: true
+    goal:
+      type: integer(11)
+  relations:
+    Player:
+      local: player_id
+      foreign: id
+      foreignType: many
+      type: one
+      alias: Player
+      foreignAlias: Shooters
+    Match:
+      local: match_id
+      foreign: id
+      foreignType: one
+      type: many
+      alias: Match
+      foreignAlias: Shooters
+Group:
+  tableName: league_group
+  columns:
+    id: 
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    slug:
+      type: string(255)
+    name:
+      type: string(255)

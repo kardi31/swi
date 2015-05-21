@@ -1,0 +1,167 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Province:
+  tableName: default_province
+  columns:
+    id: 
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+City:
+  tableName: default_city
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    province_id:
+      type: integer(4)
+  relations:
+    Province:
+      foreignAlias: Cities
+      local: province_id
+      foreign: id
+Tag:
+  tableName: default_tag
+  actAs:
+    I18n:
+      fields: [name, slug]
+      tableName: default_tag_translation
+      className: TagTranslation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+TagTranslation:
+  tableName: default_tag_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+  relations:
+    Tag:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many
+Setting:
+  tableName: default_setting
+  columns:
+    id:
+      primary: true
+      type: string(255)
+    value:
+      type: string(1024)
+Language:
+  tableName: default_language
+  columns:
+    id:
+      primary: true
+      type: string(64)
+    name:
+      type: string(255)
+    active: 
+      type: boolean
+    default:
+      type: boolean
+    admin:
+      type: boolean
+Metatag:
+  tableName: default_metatag
+  actAs:
+    I18n:
+      fields: [title, description, keywords]
+      tableName: default_metatag_translation
+      className: MetatagTranslation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    title:
+      type: string(255)
+    description:
+      type: clob
+    keywords:
+      type: clob
+MetatagTranslation:
+  tableName: default_metatag_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    title:
+      type: string(255)
+    description:
+      type: clob
+    keywords:
+      type: clob
+  relations:
+    Metatag:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many
+Service:
+  tableName: default_service
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    name:
+      type: clob
+    email:
+      type: clob
+    phone:
+      type: clob
+    address:
+      type: clob
+    opening:
+      type: clob
+PhotoDimensions:
+  tableName: default_photo_dimensions
+  columns:
+    id:
+      primary: true
+      type: string(255)
+    width:
+      type: int(11)
+    height:
+      type: int(11)
+AvailableRoute:
+  tableName: default_available_route
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    route:
+      type: string(255)
+    name:
+      type: string(255)

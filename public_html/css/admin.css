@@ -1,0 +1,108 @@
+.form-row .form-label { text-align: left; }
+form .page-header { border-bottom: none; margin-bottom: 0; }
+form .nostyle { width: 100%; }
+.bigBtnIcon li { float: left; }
+ul.dynatree-container { border: none; }
+#category_tree .dynatree-folder .dynatree-icon { background-image: url("/images/glyphicons-halflings.png") !important; background-position: -408px -120px; }
+#category_tree .trash .dynatree-icon { background-image: url("/images/glyphicons-halflings.png"); background-position: -454px 4px; }
+
+.form-horizontal .form-actions, .form-actions { padding-left: inherit; text-align: center; }
+
+#itemContainer ul { margin-left: 0; }
+#itemMain ul { margin-left: 0; }
+#itemCon ul { margin-left: 0; }
+.galleryView li {
+    display: inline-block;
+    margin: 5px;
+    zoom: 1;
+    position: relative;
+}
+
+.logoView li {
+    display: inline-block;
+    margin: 5px;
+    zoom: 1;
+    position: relative;
+}
+
+.table tbody td.al { text-align: left; }
+
+.navbar .nav .avatar { padding-left: 10px; }
+
+.galleryView .actionBtn { text-align: center; }
+
+.logoView .actionBtn { text-align: center; }
+.logoView .actionBtn .add { float: none !important; }
+
+.invoice .invoice-info { width: 150px; }
+
+tr.inactive td { background-color: #C4C4C4; }
+
+#prices_and_dimensions select{
+    opacity: 100!important;
+}
+#uniform-displayed_main_box span{
+    text-align:left;
+}
+.errors{
+    list-style-type: none;
+    margin-left:0px;
+    margin-top:5px;
+}
+.errors li,.message.error h3{
+    font-size: 13px;
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+.errors li{
+    padding:8px;
+    padding-left:25px;
+}
+.message.error h3{
+    text-align:center;
+    font-size:20px;
+    padding:15px;
+    margin-bottom: 20px;
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    border: 1px solid transparent;
+    
+}
+form .error{
+    border: 1px solid #ED7A53 !important;
+}
+.roleRadio .controls,.roleRadio label{
+    display:inline-block;
+}
+.roleRadio .controls{
+    height:30px;
+    padding-top:5px;
+}
+.roleRadio label{
+    width:100px;
+}
+.roleRadio label[for="role"]{
+    width:33%;
+}
+.roleRadio br{
+    display:none;
+}
+
+
+.timetable{
+    text-align: center;
+}
+.timetable .control-group,.timetable .form-row{
+    width:200px;
+    display:inline-block;
+    margin:5px 10px;
+}
+.timetable input{
+    margin-bottom:0px;
+    
+}
+.timetable input:focus{
+    background:yellow;
+}

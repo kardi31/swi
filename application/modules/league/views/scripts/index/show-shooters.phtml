@@ -1,0 +1,24 @@
+<div id="shooters" class="content">
+    <h1>Strzelcy - <?php echo $this->league['name']; ?></h1>
+    <hr />
+    <table>
+    <tr>
+    <th> Nazwisko</th>
+    <th> Imie </th>
+    <th> Drużyna </th>
+    <th> Bramki </th>
+    </tr>
+    <?php 
+    foreach($this->strzelcy as $strzelec)
+    {
+        ?>
+    <tr>
+    <td><h4><?php echo $strzelec['Player']['last_name']; ?></h4></td>
+    <td><?php echo $strzelec['Player']['first_name']; ?></td>
+    <td><h4><?php echo $strzelec['Player']['Team']['name']; ?></h4></td>
+    <td><?php echo $strzelec['goals']; ?></td>
+    </tr>
+   
+    <?php } ?>
+     </table>
+</div>

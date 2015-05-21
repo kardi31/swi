@@ -1,0 +1,115 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Gallery:
+  tableName: gallery_gallery
+  actAs:
+    I18n:
+      fields: [name, slug, description]
+      tableName: gallery_gallery_translation
+      className: GalleryTranslation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+    description:
+      type: clob
+    photo_root_id:
+      type: integer(4)
+    group_id:
+      type: integer(4)
+GalleryTranslation:
+  tableName: gallery_gallery_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+    description:
+      type: clob
+  relations:
+    Gallery:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      type: one
+      foreignType: many
+Video:
+  tableName: gallery_video
+  actAs:
+    I18n:
+      fields: [name, slug, description]
+      tableName: gallery_video_translation
+      className: VideoTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    last_user_id:
+      type: integer(4)
+    name:
+      type: string(255)
+    slug:
+      type: string(255)
+    description:
+      type: clob
+    publish:
+      type: boolean
+      default: 1
+    promoted:
+      type: boolean
+      default: 0
+    publish_date:
+      type: timestamp
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    video_root_id:
+      type: integer(4)
+    views:
+      type: integer(11)
+VideoTranslation:
+  tableName: gallery_video_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    name:
+      type: string(255)
+    description:
+      type: clob
+  relations:
+    Video:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Video
+      type: one
+      foreignType: many

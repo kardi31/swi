@@ -1,0 +1,68 @@
+<section id="bc-t">
+        <div class="container">
+        <ul class="breadcrumb">
+                <li><a href="#">Strona główna</a></li><li><span class="sep">   →   </span></li><li><a href="#">Galeria</a></li>
+        </ul>
+
+        <h1 class="blog-title">Galeria</h1>
+        </div>
+</section>
+<!-- Content Section. If need sidebars use the tag: <aside>. If articles use tag: <article> -->
+<section id="gallery-grid">
+    <div class="container">
+        <div class="b-menu">
+                <nav id="blog-menu">
+                                <ul class="clearfix">
+                                    <?php foreach($this->paginator as $key => $gallery): ?>
+                                        <li>
+                                            <a href="<?php echo $this->url(array('slug' => $gallery['Translation'][$this->language]['slug']),'domain-gallery'); ?>">
+                                            <?php echo substr($gallery['Translation'][$this->language]['name'],0,20);
+                                            if(strlen($gallery['Translation'][$this->language]['name'])>20) echo "..."; ?>
+                                            </a>
+                                        </li>
+                                        <?php endforeach; ?>
+
+                                </ul>
+                                <a href="#" id="pull-blog">Menu</a>
+                        </nav>
+        </div>
+        <!-- blog menu end -->
+        <!-- gallery -->
+        
+        <div class="gallery-item isotope js-isotope" data-isotope-options='{ "itemSelector": ".gal", "masonry": { "columnWidth": ".col-3" } }'>
+            <?php foreach($this->paginator as $gallery): ?>
+                <div class="gal col-6">
+                    <a href="<?php echo $this->url(array('slug' => $gallery['Translation'][$this->language]['slug']),'domain-gallery'); ?>">
+                        <?php
+                        if(strlen($gallery['Photos'][1]['filename'])){
+                            $photoUrl = MF_Text::getPhotoPath($gallery['Photos'][1],'470x235');
+                        }
+                        else{
+                            $photoUrl = "http://placehold.it/470x235";
+                        }
+                            
+                            ?>
+                        <img src="<?php echo $photoUrl; ?>" alt="<?php echo $gallery['Translation'][$this->language]['title']; ?>" title="<?php echo $gallery['Translation'][$this->language]['title']; ?>"/>
+                    </a></div>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="pagination">
+                <ul>
+                        <li class="nav-arr prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                        <li><a href="#">7</a></li>
+                        <li><a href="#">8</a></li>
+                        <li><a href="#">9</a></li>
+                        <li><a href="#">10</a></li>
+                        <li class="nav-arr next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                </ul>
+        </div>
+    </div>
+</section>

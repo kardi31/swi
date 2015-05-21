@@ -1,0 +1,184 @@
+options:
+  type: MyISAM
+  collate: utf8_general_ci
+  charset: utf8
+Attraction:
+  tableName: district_attraction
+  actAs:
+    I18n:
+      fields: [title, slug, content]
+      tableName: district_attraction_translation
+      className: AttractionTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    last_user_id:
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    gallery:
+      type: boolean
+      default: 0
+    publish:
+      type: boolean
+      default: 1
+    publish_date:
+      type: timestamp
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    video_root_id:
+      type: integer(4)
+AttractionTranslation:
+  tableName: district_attraction_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    title:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    Attraction:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Attraction
+      type: one
+      foreignType: many
+People:
+  tableName: district_people
+  actAs:
+    I18n:
+      fields: [title, slug, content]
+      tableName: district_people_translation
+      className: PeopleTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    last_user_id:
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    publish:
+      type: boolean
+      default: 1
+    publish_date:
+      type: timestamp
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    video_root_id:
+      type: integer(4)
+PeopleTranslation:
+  tableName: district_people_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    title:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    People:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: People
+      type: one
+      foreignType: many
+Event:
+  tableName: district_event
+  actAs:
+    I18n:
+      fields: [title, slug, content]
+      tableName: district_event_translation
+      className: EventTranslation
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    last_user_id:
+      type: integer(4)
+    title:
+      type: string(255)
+    slug:
+      type: string(255)
+    content:
+      type: clob
+    publish:
+      type: boolean
+      default: 1
+    publish_date:
+      type: timestamp
+    photo_root_id:
+      type: integer(4)
+    metatag_id:
+      type: integer(4)
+    video_root_id:
+      type: integer(4)
+EventTranslation:
+  tableName: district_event_translation
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer(4)
+    lang:
+      primary: true
+      type: string(64)
+    slug:
+      type: string(255)
+    title:
+      type: string(255)
+    content:
+      type: clob
+  relations:
+    Event:
+      local: id
+      foreign: id
+      foreignAlias: Translation
+      alias: Event
+      type: one
+      foreignType: many

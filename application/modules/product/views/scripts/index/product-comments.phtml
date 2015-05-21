@@ -1,0 +1,39 @@
+<script type="text/javascript">
+  
+    $(document).ready(function() { 
+    
+        $(".stars3").jRating({
+            rateMax: 5,
+            decimalLength: 1,
+            isDisabled : true
+        });
+     
+  });
+</script>
+
+<section id="product">
+        <div id="product_top_bar">
+            <ul>
+                <li>
+                    <?php echo $this->product['Translation'][$this->language]->name." - ".$this->translate('comments'); ?>
+                </li>
+            </ul>
+        </div>
+        <div class="comments-page">
+            <?php foreach($this->product['Comments'] as $comment): ?>
+                <?php if($comment['description']): ?>
+                <ul>
+                    <li>
+                        <span class="name"><?php echo $comment['nick']; ?></span>
+                        <span class="partial-rate">
+                            <div class="stars3" data-average="<?php echo $comment['partial_rate']; ?>" data-id="<?php echo $this->product->getId(); ?>"></div>
+                        </span>
+                        <span class="desc"><?php echo $comment['description']; ?></span>
+                    </li>
+                </ul>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+</section>
+        
+        

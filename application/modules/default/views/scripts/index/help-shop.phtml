@@ -1,0 +1,39 @@
+<script type="text/javascript">
+    
+$(document).ready(function(){
+
+    <?php if ($this->language == 'en'): ?>
+        $('button#submit').css('background', "url('/images/layout/shop/wyslij_wiadomosc_en.png') no-repeat"); 
+    <?php endif; ?>
+
+});
+
+</script>
+
+<section id="contact">
+    <header>
+        <?php echo $this->page['Translation'][$this->language]['title'] ?>
+    </header>
+    <div id="contact_content">
+        <?php echo $this->page['Translation'][$this->language]['content'] ?>
+        <div class="title"><?php echo $this->translate('Contact form') ?></div>
+        <div class="messages">
+            <?php echo $this->messages()->render() ?>
+        </div>
+        <form class="form-horizontal" method="post" action="<?php echo $this->form->getAction() ?>" >
+            <?php echo $this->form->name ?>
+            <?php echo $this->form->email ?>
+            <?php echo $this->form->subject ?>
+            <?php echo $this->form->message ?>
+            <?php echo $this->form->csrf ?>
+             <?php if($this->form->captcha): ?>
+                <div class="control-group">
+                    <div class="controls captcha">
+                        <?php echo $this->form->captcha ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php echo $this->form->submit ?>
+        </form>
+    </div>
+</section>

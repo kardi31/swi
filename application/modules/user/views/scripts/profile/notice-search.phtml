@@ -1,0 +1,37 @@
+<section class="profile span8">
+    <header class="row-fluid">
+        <h1 class="span12"><?php echo $this->translate('Search notices') ?></h1>
+    </header>
+    
+    <form class="form-horizontal search" action="<?php echo $this->searchForm->getAction() ?>" method="<?php echo $this->searchForm->getMethod() ?>">
+        <?php echo $this->searchForm->term ?>
+        <a href="#" id="advanced_search_toggle" class="offset3"><?php echo $this->translate('Advanced search') ?></a>
+        <div id="advanced_search" class="parameters clearfix">
+        <?php echo $this->searchForm->parameters ?>
+        </div>
+        <?php echo $this->searchForm->submit ?>
+    </form>
+    
+    <?php if(isset($this->paginator)): ?>
+    <ul class="search-results">
+        <?php foreach($this->paginator as $notice): ?>
+        <li>
+            <h4><a href="<?php echo $this->url(array('action' => 'notice-preview', 'notice-id' => $notice['id'])) ?>"><?php echo $notice['title'] ?></a></h4>
+            <a href="<?php echo $this->url(array('action' => 'notice-preview', 'notice-id' => $notice['id'])) ?>">
+                <p class="clearfix"><span class="category pull-left"><?php echo $notice['Category']['name'] ?></span><span class="publish-date pull-right"><?php echo $this->text()->timeFormat($notice['publish_date'], 'H:i d-m-Y') ?></span></p>
+                <p class="parameters">
+                    <?php foreach($notice['Parameters'] as $parameter): ?>
+                    <?php echo $parameter['ParameterTemplate']['name'] ?>: <?php echo strlen($parameter['value_to']) ? $parameter['value'] . ' - ' . $parameter['value_to'] : $parameter['value'] ?>
+                    <?php endforeach; ?>
+                </p>
+                <div class="content"><?php echo $this->text()->truncate($notice['content'], 200) ?></div>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+    
+    <div class="pagination">
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'profile_pagination_control.phtml'); ?>
+    </div>  
+    <?php endif; ?>
+</section>

@@ -1,0 +1,360 @@
+<script type="text/javascript">
+$(document).ready(function() {
+   
+    $('#explorer').dialog({
+		autoOpen: false,
+		modal: true,
+		dialogClass: 'dialog',
+	});
+        
+        $('#explorer2').dialog({
+		autoOpen: false,
+		modal: true,
+		dialogClass: 'dialog',
+	});
+    
+    $("#itemContainer").delegate(".actionBtn .add", "click", function(e) {
+        e.preventDefault();
+        
+        var elf = $('#elfinder').elfinder({
+            url : '/admin/media/elfinder',  // connector URL (REQUIRED)
+            getFileCallback : function(href) {
+                var data = { hrefs: href };
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: "<?php echo $this->adminUrl('add-event-main-photo', 'district') ?>/id/"+$('#id').val(),
+                    data: data,
+                    success: function(resp) {
+                        if(resp.status == "success") {
+                            $("#main_photo_container").html(resp.body);
+                            $("#itemContainer").trigger('update');
+                        }
+                    }
+                });
+
+                $('#explorer').dialog('close');
+//                $.modal.close();
+            },
+            commandsOptions : {
+                // configure value for "getFileCallback" used for editor integration
+                getfile : {
+                    // allow to return folders info
+                    onlyURL  : true,
+
+                    // allow to return multiple files info
+                    //multiple : true,
+
+                    // allow to return folders info
+                    folders  : false,
+
+                    // action after callback (close/destroy)
+                    oncomplete : ''
+                },
+            }
+        }).elfinder('instance');	
+        
+        $('#explorer').dialog('open');
+    });
+    
+    $("#itemContainer").delegate(".actionBtn .delete", "click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo $this->adminUrl('remove-event-main-photo', 'district') ?>/id/"+$('#id').val(),
+            data: data,
+            success: function(resp) {
+                if(resp.status == "success") {
+                    $("#main_photo_container").html(resp.body);
+                    $("#itemContainer").trigger('update');
+                }
+            }
+        });
+    });
+    
+     $("#itemCon").delegate("#add-photo", "click", function(e) {
+        e.preventDefault();
+        
+        var elf = $('#elfinder2').elfinder({
+            url : '/admin/media/elfinder',  // connector URL (REQUIRED)
+            getFileCallback : function(href) {
+                var data = { hrefs: href };
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: "<?php echo $this->adminUrl('add-event-photo', 'district') ?>/id/"+$('#id').val(),
+                    data: data,
+                    success: function(resp) {
+                        if(resp.status == "success") {
+                            $("#main_photo_con").html(resp.body);
+                            $("#itemCon").trigger('update');
+                        }
+                    }
+                });
+
+                $('#explorer2').dialog('close');
+//                $.modal.close();
+            },
+            commandsOptions : {
+                // configure value for "getFileCallback" used for editor integration
+                getfile : {
+                    // allow to return folders info
+                    onlyURL  : true,
+
+                    // allow to return multiple files info
+                    multiple : true,
+
+                    // allow to return folders info
+                    folders  : false,
+
+                    // action after callback (close/destroy)
+                    oncomplete : ''
+                },
+            }
+        }).elfinder('instance');	
+        
+        $('#explorer2').dialog('open');
+    });
+    
+    $("#itemCon").delegate(".actionBtn .move", "click", function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: $(this).attr('href'),
+                data: data,
+                success: function(resp) {
+                    if(resp.status == "success") {
+                        $("#main_photo_con").html(resp.body);
+                        $("#itemCon").trigger('update');
+                    }
+                }
+            });
+     });
+    
+    
+    $("#category_id").select2();
+    
+   
+     
+     $("#video_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+      $("#itemCon").delegate(".actionBtn .delete", "click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo $this->adminUrl('remove-event-photo', 'district') ?>/id/"+$('#id').val()+"/photo-id/"+$(this).attr('rel'),
+            data: data,
+            success: function(resp) {
+                if(resp.status == "success") {
+                    $("#main_photo_con").html(resp.body);
+                    $("#itemCon").trigger('update');
+                }
+            }
+        });
+    });
+     $('.section').hide();
+     $('.contentSection').show();
+     $('.btnList li').click(function(){
+        var rel = $(this).attr('rel');
+        $('.section').hide();
+        $('.'+rel).show();
+     });
+     
+      var current_url = $('#url');
+   if (current_url.val()) {
+     
+       $('#videoPreview').attr('src',current_url.val()); 
+       
+     
+    }
+   
+   
+    String.prototype.startsWith = function(str) 
+{return (this.match("^"+str)==str)}
+
+    $('#url').on('blur',function(){
+      
+      var val = '';
+                
+     // jeżeli nie zaczyna się od http to dodajemy http
+     if($(this).val().match(/^(?:http:\/\/)/)||$(this).val().match(/^(?:https:\/\/)/))
+          val = $(this).val();
+      else
+          val = "http://" + $(this).val();
+            
+            // dla youtube zamieniamy znacznik watch?=v na embed
+       if(val.indexOf("vimeo") >= 0 && val.indexOf("player") < 0){
+          var index = val.lastIndexOf("/");
+          var res = val.substring(index+1, val.length);
+          val = 'http://player.vimeo.com/video/'+res;
+      }    
+      else{    
+      if(val.indexOf("/watch?") >= 0&&val.indexOf("youtube") >= 0){
+          val = val.replace('/watch\?v=', '/embed/');
+      } 
+        
+      }
+      
+       $('#videoPreview').attr('src',val); 
+       $(this).val(val);
+       
+    });
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icomoon-icon-pencil"></span>
+                    <span><?php echo $this->translate('Edit event') ?> <?php echo $this->event->Translation[$this->language]->title ?></span>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+                <ul class="btnList">
+                    <li rel="contentSection"><button class="btn" type="button">Treść</button></li>
+                    <li rel="optionsSection"><button class="btn" type="button">Opcje</button></li>
+                    <!--<li rel="photoSection"><button class="btn" type="button">Zdjęcia</button></li>-->
+                     <!--<li rel="videoSection"><button class="btn" type="button">Video</button></li>-->
+                    <!--<li rel="metatagSection"><button class="btn" type="button">Pokaż metatagi</button></li>-->
+                </ul>
+                <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+                    
+                    <span class="section contentSection metatagSection">
+                        <div class="page-header">
+                            <h4><?php echo $this->translate('Translations') ?></h4>
+                        </div>
+
+                        <ul id="myTab" class="nav nav-tabs pattern">
+                            <li class="dropdown">
+                                <?php foreach($this->languages as $key => $language): ?>
+                                <li class="<?php if($language == $this->adminLanguage->getId()): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                                <?php endforeach; ?>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <?php foreach($this->languages as $key => $language): ?>
+                            <div class="tab-pane<?php if($language == $this->adminLanguage->getId()): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+                                <span class="section contentSection">
+                            <?php if($this->form->translations->getSubForm($language)): ?>
+                                <?php echo $this->form->translations->getSubForm($language)->title ?>
+                                <?php echo $this->form->translations->getSubForm($language)->content->setAttrib('class', 'tinymce') ?>
+                            <?php endif; ?>
+                                </span>
+                                <span class="section metatagSection">
+                                    <div class="title" style ="margin-top: 30px;">
+
+                                        <h4>
+                                            <span class="icon16 icomoon-icon-pencil"></span>
+                                            <span><?php echo $this->translate('Metatags') ?></span>
+                                        </h4>
+
+                                    </div>
+                                    <div class="content clearfix">
+                                        <?php echo $this->form->metatags->translations->getSubForm($language)->meta_title; ?>
+                                        <?php echo $this->form->metatags->translations->getSubForm($language)->meta_description; ?>
+                                        <?php echo $this->form->metatags->translations->getSubForm($language)->meta_keywords; ?>
+                                    </div>
+                                </span>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                        
+                    </span>
+                    <span class="section optionsSection">
+                        <?php echo $this->form->publish ?>
+                        <?php echo $this->form->publish_date->setAttrib('class', 'combiner-picker') ?>
+                        <?php echo $this->form->student ?>
+                        <?php echo $this->form->student_accept ?>
+                        <?php echo $this->form->id ?>
+                        
+                        
+                    </span>
+                    <span class="section photoSection">
+                        <div class="page-header">
+                            <h4><?php echo $this->translate('Main photo') ?></h4>
+                        </div>
+
+                        <div id="itemContainer">
+                            <ul id="main_photo_container" class="galleryView center">
+                                <li class="pull-left">
+                                <?php if($this->event->get('PhotoRoot')->getOffset()): ?>
+                                    <a id="main_photo" href="/media/photos/<?php echo $this->event->get('PhotoRoot')->getOffset() ?>/<?php echo $this->event->get('PhotoRoot')->getFilename() ?>" rel="prettyPhoto" title="<?php echo $this->event->get('PhotoRoot')->getTitle() ?>">
+                                        <img src="/media/photos/<?php echo $this->event->get('PhotoRoot')->getOffset() ?>/126x126/<?php echo $this->event->get('PhotoRoot')->getFilename() ?>" data-original="/media/photos/<?php echo $this->event->get('PhotoRoot')->getOffset() ?>/<?php echo $this->event->get('PhotoRoot')->getFilename() ?>" alt="<?php echo $this->event->get('PhotoRoot')->getTitle() ?>">
+                                    </a>
+                                    <?php else: ?>
+                                    <a id="main_photo" href="/images/gallery/preload.png" title="<?php echo $this->translate('No photo') ?>">
+                                        <img src="/images/gallery/preload.png" data-original="/images/gallery/preload.png" alt="<?php echo $this->translate('No photo') ?>">
+                                    </a>
+                                    <?php endif; ?>
+                                    <div class="actionBtn">
+                                        <a href="<?php echo $this->adminUrl('edit-event-photo', 'event', array('event-id' => $this->event->getId(), 'id' => $this->event->get('PhotoRoot')->getId())) ?>" class="edit"><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+                                        <a href="#" class="add"><span class="icon16 iconic-icon-cursor white"></span></a>
+                                        <a href="#" class="delete"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                         <div class="page-header">
+                             <h4><?php echo $this->translate('Gallery View') ?></h4>
+                        </div>                  
+                        <div id="itemCon">           
+                            <button href="#" id="add-photo" style="width: 120px;"><?php echo $this->translate('Add photo') ?></button>
+                            <ul id="main_photo_con" class="galleryView center">                           
+                                    <?php echo $this->partial('admin/event-photos.phtml', 'district', array('photos' => $this->event->get('PhotoRoot')->getNode()->getChildren(), 'event' => $this->event)) ?>
+                            </ul>
+                        </div>
+                    </span>
+                
+                    <!-- videos -->
+                    
+<!--                    <span class="section videoSection">
+                        <div class="box" style="width: 97%">
+                            <div class="title">
+                                <h4>
+                                    <span class="icon16 entypo-icon-attachment"></span>
+                                    <span><?php echo $this->translate('Videos') ?></span>
+                                    
+                                </h4>  
+                            </div>    
+
+            <div class="content">
+                   
+                       
+                        <?php //echo $this->videoForm->id ?>
+                        <?php// echo $this->videoForm->url ?>
+                        <?php //echo $this->videoForm->translations->getSubForm('pl')->name ?>
+                        <?php// echo $this->videoForm->ad_id ?>
+                        <iframe id="videoPreview" width="420" height="315" frameborder="0" allowfullscreen></iframe>
+                        
+                       
+            </div>
+          
+                        </div>
+                    </span>-->
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <button name="save_only" id="btnSaveOnly" type="submit" class="btn btn-primary"><?php echo $this->translate('Save and stay') ?></button>
+                        <a href="<?php echo $this->adminUrl('list-event', 'event') ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>   
+</div> 
+<div id="explorer" class="dialog"><div id="elfinder"></div></div>
+<div id="explorer2" class="dialog"><div id="elfinder2"></div></div>
+    

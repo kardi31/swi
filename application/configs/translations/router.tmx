@@ -1,0 +1,159 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+   <header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="pl-pl" o-tmf="abc"
+           creationtool="XYZTool" >
+   </header>
+   <body>
+       <tu tuid='articles'>
+           <tuv xml:lang="pl"><seg>artykuly</seg></tuv>
+       </tu>
+       <tu tuid='articles-edit'>
+           <tuv xml:lang="pl"><seg>artykuly-edycja</seg></tuv>
+       </tu>
+       <tu tuid='articles-new'>
+           <tuv xml:lang="pl"><seg>artykuly-dodaj</seg></tuv>
+       </tu>
+       <tu tuid='articles-show'>
+           <tuv xml:lang="pl"><seg>artykuly-tresc</seg></tuv>
+       </tu>
+       <tu tuid='banners'>
+           <tuv xml:lang="pl"><seg>bannery</seg></tuv>
+       </tu>
+       <tu tuid='banners-edit'>
+           <tuv xml:lang="pl"><seg>bannery-edycja</seg></tuv>
+       </tu>
+       <tu tuid='banners-new'>
+           <tuv xml:lang="pl"><seg>bannery-dodaj</seg></tuv>
+       </tu>
+       <tu tuid='banners-remove'>
+           <tuv xml:lang="pl"><seg>bannery-usun</seg></tuv>
+       </tu>
+       <tu tuid='banners-show'>
+           <tuv xml:lang="pl"><seg>bannery-tresc</seg></tuv>
+       </tu>
+       <tu tuid='checkout'>
+           <tuv xml:lang="pl"><seg>zaplac</seg></tuv>
+       </tu>
+       <tu tuid='news'>
+           <tuv xml:lang="pl"><seg>aktualnosci</seg></tuv>
+       </tu>
+       <tu tuid='notice'>
+           <tuv xml:lang="pl"><seg>ogloszenie</seg></tuv>
+       </tu>
+       <tu tuid='notice-search'>
+           <tuv xml:lang="pl"><seg>wyszukiwarka-ogloszen</seg></tuv>
+       </tu>
+       <tu tuid='notices'>
+           <tuv xml:lang="pl"><seg>ogloszenia</seg></tuv>
+       </tu>
+       <tu tuid='notices-edit'>
+           <tuv xml:lang="pl"><seg>ogloszenia-edycja</seg></tuv>
+       </tu>
+       <tu tuid='notices-new'>
+           <tuv xml:lang="pl"><seg>ogloszenia-dodaj</seg></tuv>
+       </tu>
+       <tu tuid='notice-preview'>
+           <tuv xml:lang="pl"><seg>ogloszenie-podglad</seg></tuv>
+       </tu>
+       <tu tuid='notices-show'>
+           <tuv xml:lang="pl"><seg>ogloszenia-tresc</seg></tuv>
+       </tu>
+       <tu tuid='offer-prepare'>
+           <tuv xml:lang="pl"><seg>oferta-napisz</seg></tuv>
+       </tu>
+       <tu tuid='offer-send'>
+           <tuv xml:lang="pl"><seg>oferta-wyslij</seg></tuv>
+       </tu>
+       <tu tuid='offers'>
+           <tuv xml:lang="pl"><seg>oferty</seg></tuv>
+       </tu>
+       <tu tuid='offers-edit'>
+           <tuv xml:lang="pl"><seg>oferty-edycja</seg></tuv>
+       </tu>
+       <tu tuid='offers-new'>
+           <tuv xml:lang="pl"><seg>oferty-dodaj</seg></tuv>
+       </tu>
+       <tu tuid='offers-preview'>
+           <tuv xml:lang="pl"><seg>oferty-podglad</seg></tuv>
+       </tu>
+       <tu tuid='offers-reply-message'>
+           <tuv xml:lang="pl"><seg>oferty-odpowiedz</seg></tuv>
+       </tu>
+       <tu tuid='offers-show'>
+           <tuv xml:lang="pl"><seg>oferty-tresc</seg></tuv>
+       </tu>
+       <tu tuid='page'>
+           <tuv xml:lang="pl"><seg>strona</seg></tuv>
+       </tu>
+       <tu tuid='period'>
+           <tuv xml:lang="pl"><seg>okres</seg></tuv>
+       </tu>
+       <tu tuid='profile'>
+           <tuv xml:lang="pl"><seg>profil</seg></tuv>
+       </tu>
+       <tu tuid='settings'>
+           <tuv xml:lang="pl"><seg>ustawienia</seg></tuv>
+       </tu>
+       <tu tuid='subscribe'>
+           <tuv xml:lang="pl"><seg>subskrybuj</seg></tuv>
+       </tu>
+       <tu tuid='subscribe-category'>
+           <tuv xml:lang="pl"><seg>subskrybuj-kategoria</seg></tuv>
+       </tu>  
+         
+       <tu tuid='products'>
+           <tuv xml:lang="pl"><seg>produkty</seg></tuv>
+       </tu> 
+       <tu tuid='contact'>
+           <tuv xml:lang="pl"><seg>kontakt</seg></tuv>
+       </tu>    
+       <tu tuid='calvary-crafts'>
+           <tuv xml:lang="pl"><seg>rzemioslo-kalwaryjskie</seg></tuv>
+       </tu>   
+       <tu tuid='craft-affairs'>
+           <tuv xml:lang="pl"><seg>sprawy-cechowe</seg></tuv>
+       </tu>  
+       <tu tuid='furniture-exhibition'>
+           <tuv xml:lang="pl"><seg>wystawa-mebli</seg></tuv>
+       </tu> 
+       <tu tuid='visitors'>
+           <tuv xml:lang="pl"><seg>zwiedzajacy</seg></tuv>
+       </tu> 
+       <tu tuid='media-zone'>
+           <tuv xml:lang="pl"><seg>strefa-mediow</seg></tuv>
+       </tu> 
+       <tu tuid='designers'>
+           <tuv xml:lang="pl"><seg>projektanci</seg></tuv>
+       </tu> 
+       <tu tuid='guests-book'>
+           <tuv xml:lang="pl"><seg>ksiega-gosci</seg></tuv>
+       </tu> 
+       <tu tuid='exhibitioner-list'>
+           <tuv xml:lang="pl"><seg>lista-wystawcow</seg></tuv>
+       </tu> 
+       <tu tuid='promotions'>
+           <tuv xml:lang="pl"><seg>promocje</seg></tuv>
+       </tu> 
+       <tu tuid='previews'>
+           <tuv xml:lang="pl"><seg>zapowiedzi</seg></tuv>
+       </tu> 
+       <tu tuid='site-map'>
+           <tuv xml:lang="pl"><seg>mapa-strony</seg></tuv>
+       </tu> 
+       <tu tuid='about-us'>
+           <tuv xml:lang="pl"><seg>o-nas</seg></tuv>
+       </tu> 
+       <tu tuid='craft-administration'>
+           <tuv xml:lang="pl"><seg>zarzad-cechu</seg></tuv>
+       </tu> 
+       <tu tuid='information-for-members'>
+           <tuv xml:lang="pl"><seg>informacje-dla-czlonkow</seg></tuv>
+       </tu> 
+       <tu tuid='all-producers'>
+           <tuv xml:lang="pl"><seg>wszyscy-producenci</seg></tuv>
+       </tu> 
+       
+   </body>
+</tmx>

@@ -1,0 +1,35 @@
+<article class="profile span8">
+    
+    <header class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('Send an offer') ?></h3>
+    </header>
+    
+    <section class="notice clearfix">
+        <p class="views"><?php echo $this->notice['views'] ?></p>
+        <table class="parameters span5">
+            <?php foreach($this->notice['Parameters'] as $parameter): ?>
+            <tr>
+                <th><?php echo $parameter['ParameterTemplate']['name'] ?></th>
+                <?php if($parameter['ParameterTemplate']['range']): ?>
+                <td><?php echo $parameter['value'] ?> - <?php echo $parameter['value_to'] ?></td>
+                <?php else: ?>
+                <td><?php echo $parameter['value'] ?></td>
+                <?php endif; ?>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <div class="content span5">
+            <?php echo $this->notice['content'] ?>
+        </div>
+    </section>
+    
+    <h3 class="clearfix"><?php echo $this->translate('Choose offer') ?></h3>
+    
+    <ul>
+        <?php foreach($this->offers as $offer): ?>
+        <li><a href="<?php echo $this->url(array('action' => 'offer-send', 'notice-id' => $this->notice['id'], 'offer-id' => $offer['id']), 'domain-user-profile', true) ?>"><?php echo $offer['title'] ?></a></li>
+        <?php endforeach; ?>
+        <?php /* <li><a href="<?php echo $this->url(array('action' => 'offer-send', 'notice-id' => $this->notice['id']), 'domain-user-profile', true) ?>"><?php echo $this->translate('Compose offer') ?></a></li> */ ?>
+    </ul>
+    
+</article>

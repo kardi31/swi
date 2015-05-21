@@ -1,0 +1,21 @@
+<?php if ($this->pageCount > 1): ?>
+    <!-- Previous page link -->
+                        <?php if (isset($this->previous)): ?>
+                                  <a class="prev page-numbers" href="<?php echo $this->url(array('slug' => $this->group,'page' => $this->previous), 'domain-news-group'); ?>"><i class="fa fa-caret-left"></i>Poprzednia</a>
+                          <?php endif;?> 
+                          <?php foreach ($this->pagesInRange as $page): ?>
+                          <?php if($page!= $this->current): ?>
+                                <a class="page-numbers" href="<?php echo $this->url(array('slug' => $this->group,'page' => $page), 'domain-news-category'); ?>"><?php echo $page; ?></a>
+                          <?php else: ?>
+                             <span class="page-numbers current"><?php echo $page; ?></span>
+                          <?php endif; ?>
+                          <?php endforeach; ?>
+                          
+                          <?php if (isset($this->next)): ?>
+                                  <a class="next page-numbers" href="<?php echo $this->url(array('slug' => $this->group,'page' => $this->next), 'domain-news-group'); ?>">Następna<i class="fa fa-caret-right"></i></a>
+                          <?php endif;?> 
+                      
+                
+    <!-- Next page link -->
+    
+<?php endif; ?>

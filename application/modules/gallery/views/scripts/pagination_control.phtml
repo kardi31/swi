@@ -1,0 +1,24 @@
+<?php if ($this->pageCount > 1): ?>
+    <!-- Previous page link -->
+    <?php if (isset($this->previous)): ?>
+        <a class="prev" href="<?php echo $this->adminUrl('list-page', 'page', array('page' => $this->previous)); ?>"><span>&laquo;</span></a>
+    <?php else: ?>
+        <a class="prev"><span>&laquo;</span></a>
+    <?php endif; ?>
+
+    <!-- Numbered page links -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+    <?php if ($page != $this->current): ?>
+        <a href="<?php echo $this->adminUrl('list-page', 'page', array('page' => $page)) ?>"><?php echo $page; ?></a>
+    <?php else: ?>
+        <a class="active" href="#"><?php echo $page; ?></a>
+    <?php endif; ?>
+    <?php endforeach; ?>
+
+    <!-- Next page link -->
+    <?php if (isset($this->next)): ?>
+        <a class="next" href="<?php echo $this->adminUrl('list-page', 'page', array('page' => $this->next)); ?>"><span>&raquo;</span></a>
+    <?php else: ?>
+        <a class="next"><span>&raquo;</span></a>
+    <?php endif; ?>
+<?php endif; ?>

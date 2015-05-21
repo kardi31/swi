@@ -1,0 +1,41 @@
+<section id="register">
+   
+    <div class="register_content">
+        Rejestracja
+         <span id="requiredFields">* Pola wymagane</span>
+        <hr />
+        <?php if($this->messages()->count()): ?>
+            <div class="alert alert-error">
+                <?php echo $this->messages()->render() ?>
+            </div>
+        <?php endif; ?>
+        <form action="<?php echo $this->form->getAction() ?>" method="<?php echo $this->form->getMethod() ?>" class="form-horizontal">
+            <?php echo $this->form->first_name ?>
+            <?php echo $this->form->last_name ?>
+            <?php echo $this->form->email ?>
+            <?php echo $this->form->password ?>
+            <?php echo $this->form->confirm_password ?>
+            <?php echo $this->form->client->company_name ?>
+            <?php echo $this->form->client->street ?>
+            <?php echo $this->form->client->houseNr ?>
+            <?php echo $this->form->client->flatNr ?>
+            <?php echo $this->form->client->postal_code ?>
+            </div>
+            <?php echo $this->form->client->city ?>
+           <?php //echo $this->form->client->phone ?>
+            <span class="phone-invalid"><?php // echo $this->translate('Invalid phone number!'); ?></span>
+            <?php echo $this->form->client->nip ?>
+            <?php //echo $this->form->client->website ?>
+             <?php /*if($this->form->captcha): ?>
+                <div class="control-group">
+                    <div class="controls captcha">
+                        <?php echo $this->form->captcha ?>
+                    </div>
+                </div>
+            <?php endif;*/ ?>
+            <div class="clearfix"></div>
+            <?php echo $this->form->submit ?>
+            <?php echo $this->form->csrf ?>
+        </form>
+    </div>
+</section>

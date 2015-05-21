@@ -1,0 +1,470 @@
+
+    <script type="text/javascript" src="/js/bootstrap/bootstrap.js"></script>  
+     
+<script type="text/javascript">
+$(document).ready(function(){
+  
+   //google maps producer
+    if (typeof(google) != "undefined"){
+        var lng = $("#cord_x").val();
+        var lat = $("#cord_y").val();
+
+        var mapCenter = new google.maps.LatLng(lat, lng); // London
+    //    var mapCenter = new google.maps.LatLng(51.507335,-0.127683); // London
+
+        var mapOptions = {
+            zoom: 12,
+            mapCenter: mapCenter,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var markers = [];
+        function cleanMarkers() {
+            for(marker in markers) {
+                markers[marker].setMap(null);
+            }
+        }
+
+        var map = new google.maps.Map(document.getElementById("google-map"), mapOptions);
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(mapCenter);
+
+        google.maps.event.addListener(map, 'click', function(e) {
+
+            mapCenter = new google.maps.LatLng(e.latLng.lat(), e.latLng.lng());
+            $("#cord_x").val(e.latLng.lng());
+            $("#cord_y").val(e.latLng.lat());
+            cleanMarkers();
+            var marker = new google.maps.Marker({
+                map: map, position: mapCenter, draggable: true
+            });
+            google.maps.event.addListener(marker, 'dragend', function() {
+                $("#cord_x").val(marker.getPosition().lng());
+                $("#cord_y").val(marker.getPosition().lat());
+                mapCenter = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
+                map.setCenter(mapCenter);
+            });
+            markers.push(marker);
+            map.setCenter(mapCenter);
+        });
+        var marker = new google.maps.Marker({
+            map: map, position: mapCenter, draggable: true
+        });
+        google.maps.event.addListener(marker, 'dragend', function() {
+            $("#cord_x").val(marker.getPosition().lng());
+            $("#cord_y").val(marker.getPosition().lat());
+            mapCenter = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
+            map.setCenter(mapCenter);
+        });
+        markers.push(marker);
+
+        var geocoder = new google.maps.Geocoder();
+        var address;
+
+        $("#google-map").bind("address_changed", function() {
+            // var cityOption = $("form #city_id").find("option[value="+$("form #city_id").val()+"]");
+            // var cityString = $(cityOption).attr("label");
+            var cityString = $("form #city").val();
+            //var provinceOption = $("form #province_id").find("option[value="+$("form #province_id").val()+"]");
+            //var provinceString = $(provinceOption).attr("label");
+            var provinceString = $("form #province").val();
+            var addressString = $("form #address").val();     
+            var locationString = addressString + ", " + cityString + ", " + provinceString + ", Polska";
+            //address = $(this).val();
+            geocoder.geocode( { 'address': locationString}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    for(marker in markers) {
+                        markers[marker].setMap(null);
+                    }
+
+                    mapCenter = results[0].geometry.location;
+                    map.setCenter(mapCenter);
+
+                    //add marker to the map
+                    var marker = new google.maps.Marker({
+                        map: map, position: results[0].geometry.location, draggable: true
+                    });
+                    google.maps.event.addListener(marker, 'dragend', function() {
+                        $("#cord_x").val(marker.getPosition().lng());
+                        $("#cord_y").val(marker.getPosition().lat());
+                        mapCenter = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
+                        map.setCenter(mapCenter);
+                    });
+
+
+                    //var latlng = results[0].geometry.location.lat() + "," + results[0].geometry.location.lng();
+                    $("#cord_x").val(results[0].geometry.location.lng());
+                    $("#cord_y").val(results[0].geometry.location.lat());
+                    markers.push(marker);
+    //				map.addOverlay(marker);
+    //                markers.push(results[0].geometry.location);
+    //                map.fitBounds(markers); 
+                }
+            });
+        });
+        
+        $("#google-map").bind("business_address_changed", function() {
+            // var cityOption = $("form #city_id").find("option[value="+$("form #city_id").val()+"]");
+            // var cityString = $(cityOption).attr("label");
+            var cityString = $("form #business_city").val();
+            //var provinceOption = $("form #province_id").find("option[value="+$("form #province_id").val()+"]");
+            //var provinceString = $(provinceOption).attr("label");
+            var provinceString = $("form #province").val();
+            var addressString = $("form #business_address").val();     
+            var locationString = addressString + ", " + cityString + ", " + provinceString + ", Polska";
+            //address = $(this).val();
+            geocoder.geocode( { 'address': locationString}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    for(marker in markers) {
+                        markers[marker].setMap(null);
+                    }
+
+                    mapCenter = results[0].geometry.location;
+                    map.setCenter(mapCenter);
+
+                    //add marker to the map
+                    var marker = new google.maps.Marker({
+                        map: map, position: results[0].geometry.location, draggable: true
+                    });
+                    google.maps.event.addListener(marker, 'dragend', function() {
+                        $("#cord_x").val(marker.getPosition().lng());
+                        $("#cord_y").val(marker.getPosition().lat());
+                        mapCenter = new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng());
+                        map.setCenter(mapCenter);
+                    });
+
+
+                    //var latlng = results[0].geometry.location.lat() + "," + results[0].geometry.location.lng();
+                    $("#cord_x").val(results[0].geometry.location.lng());
+                    $("#cord_y").val(results[0].geometry.location.lat());
+                    markers.push(marker);
+    //				map.addOverlay(marker);
+    //                markers.push(results[0].geometry.location);
+    //                map.fitBounds(markers); 
+                }
+            });
+        });
+    }
+    
+    <?php if ($this->language == 'en'): ?>
+        $('button#submit').css('background', "url('/images/layout/ajurweda/dodaj_firme_en.png') no-repeat 0px -15px"); 
+    <?php endif; ?>
+        
+    $( "#business_card" ).change(function() {
+        if ($("#business_card").val() == "standard"){
+            <?php foreach($this->languages as $language): ?>
+                $("#<?php echo $language; ?>-description").attr("placeholder", "<?php echo $this->translate('Available in premium business card') ?>");
+                $("#<?php echo $language; ?>-description").prop('disabled', true);
+                $("#<?php echo $language; ?>-description").addClass("disabled");
+                
+                $("#<?php echo $language; ?>-short_description").attr("placeholder", "<?php echo $this->translate('Available in premium business card') ?>");
+                $("#<?php echo $language; ?>-short_description").prop('disabled', true);
+                $("#<?php echo $language; ?>-short_description").addClass("disabled");
+            
+                $("#<?php echo $language; ?>-meta_keywords").attr("placeholder", "<?php echo $this->translate('Available in premium business card') ?>");
+                $("#<?php echo $language; ?>-meta_keywords").prop('disabled', true);
+                $("#<?php echo $language; ?>-meta_keywords").addClass("disabled");
+                $( ".standard" ).slideDown( "slow");
+                $( ".premium" ).hide();
+            <?php endforeach; ?>
+        }
+        else if($("#business_card").val() == "premium"){
+            <?php foreach($this->languages as $language): ?>
+                $("#<?php echo $language; ?>-description").attr("placeholder", "");
+                $("#<?php echo $language; ?>-description").prop('disabled', false);
+                $("#<?php echo $language; ?>-description").removeClass("disabled");
+                
+                $("#<?php echo $language; ?>-short_description").attr("placeholder", "");
+                $("#<?php echo $language; ?>-short_description").prop('disabled', false);
+                $("#<?php echo $language; ?>-short_description").removeClass("disabled");
+            
+                $("#<?php echo $language; ?>-meta_keywords").attr("placeholder", "");
+                $("#<?php echo $language; ?>-meta_keywords").prop('disabled', false);
+                $("#<?php echo $language; ?>-meta_keywords").removeClass("disabled");
+            <?php endforeach; ?>
+            $( ".premium" ).slideDown( "slow");
+            $( ".standard" ).hide();
+        } else{
+            <?php foreach($this->languages as $language): ?>
+                 $("#<?php echo $language; ?>-description").attr("placeholder", "");
+                 $("#<?php echo $language; ?>-description").prop('disabled', false);
+                 $("#<?php echo $language; ?>-description").removeClass("disabled");
+
+                 $("#<?php echo $language; ?>-short_description").attr("placeholder", "");
+                 $("#<?php echo $language; ?>-short_description").prop('disabled', false);
+                 $("#<?php echo $language; ?>-short_description").removeClass("disabled");
+
+                 $("#<?php echo $language; ?>-meta_keywords").attr("placeholder", "");
+                 $("#<?php echo $language; ?>-meta_keywords").prop('disabled', false);
+                 $("#<?php echo $language; ?>-meta_keywords").removeClass("disabled");
+            <?php endforeach; ?>  
+            $(".standard").hide();
+            $(".premium").hide();
+        }
+    });   
+    
+    if ($("#business_card").val() == "standard"){
+        <?php foreach($this->languages as $language): ?>
+            $("#<?php echo $language; ?>-description").attr("placeholder", "<?php echo $this->translate('Available in premium business card') ?>");
+            $("#<?php echo $language; ?>-description").prop('disabled', true);
+            $("#<?php echo $language; ?>-description").addClass("disabled");
+                
+            $("#<?php echo $language; ?>-short_description").attr("placeholder", "<?php echo $this->translate('Available in premium business card') ?>");
+            $("#<?php echo $language; ?>-short_description").prop('disabled', true);
+            $("#<?php echo $language; ?>-short_description").addClass("disabled");
+            
+            $("#<?php echo $language; ?>-meta_keywords").attr("placeholder", "<?php echo $this->translate('Available in premium business card') ?>");
+            $("#<?php echo $language; ?>-meta_keywords").prop('disabled', true);
+            $("#<?php echo $language; ?>-meta_keywords").addClass("disabled");
+        <?php endforeach; ?>
+        $( ".standard" ).slideDown( "slow");
+        $( ".premium" ).hide();
+    }
+    else if($("#business_card").val() == "premium"){
+        <?php foreach($this->languages as $language): ?>
+            $("#<?php echo $language; ?>-description").attr("placeholder", "");
+            $("#<?php echo $language; ?>-description").prop('disabled', false);
+            $("#<?php echo $language; ?>-description").removeClass("disabled");
+                
+            $("#<?php echo $language; ?>-short_description").attr("placeholder", "");
+            $("#<?php echo $language; ?>-short_description").prop('disabled', false);
+            $("#<?php echo $language; ?>-short_description").removeClass("disabled");
+            
+            $("#<?php echo $language; ?>-meta_keywords").attr("placeholder", "");
+            $("#<?php echo $language; ?>-meta_keywords").prop('disabled', false);
+            $("#<?php echo $language; ?>-meta_keywords").removeClass("disabled");
+       <?php endforeach; ?>
+       $( ".premium" ).slideDown( "slow");
+       $( ".standard" ).hide();
+     } else{
+       <?php foreach($this->languages as $language): ?>
+            $("#<?php echo $language; ?>-description").attr("placeholder", "");
+            $("#<?php echo $language; ?>-description").prop('disabled', false);
+            $("#<?php echo $language; ?>-description").removeClass("disabled");
+                
+            $("#<?php echo $language; ?>-short_description").attr("placeholder", "");
+            $("#<?php echo $language; ?>-short_description").prop('disabled', false);
+            $("#<?php echo $language; ?>-short_description").removeClass("disabled");
+            
+            $("#<?php echo $language; ?>-meta_keywords").attr("placeholder", "");
+            $("#<?php echo $language; ?>-meta_keywords").prop('disabled', false);
+            $("#<?php echo $language; ?>-meta_keywords").removeClass("disabled");
+       <?php endforeach; ?>  
+       $(".standard").hide();
+       $(".premium").hide();
+     }
+     
+     <?php foreach ($this->languages as $language): ?>
+      var limitShort = 200; //ustalamy limit znakow
+       $(".limit-short-info-<?php echo $language; ?>").text(limitShort); //wypisujemy ten limit 'na dobry poczatek'
+        $("#<?php echo $language; ?>-short_description").keyup(function() { //jesli wpisano cos do naszego pola
+               var ile_wpisano = $(this).val().length; //zliczamy ilosc znakow
+               if(ile_wpisano > limitShort) { //jesli przekroczymy limit
+                   reset = $(this).val().substring(0, limitShort); //pobieramy znaki od pierwszego do ustalonego w limicie
+                                   $(this).val(reset); //wypisujemy wczesniej pobrane znaki
+               }
+               $(".limit-short-info-<?php echo $language; ?>").text(limitShort - $(this).val().length); //wypisujemy ile znakow pozostalo
+       });
+      <?php endforeach; ?>
+      
+      <?php foreach ($this->languages as $language): ?>
+      var limitFull = 1200; //ustalamy limit znakow
+       $(".limit-full-info-<?php echo $language; ?>").text(limitFull); //wypisujemy ten limit 'na dobry poczatek'
+        $("#<?php echo $language; ?>-description").keyup(function() { //jesli wpisano cos do naszego pola
+               var ile_wpisano = $(this).val().length; //zliczamy ilosc znakow
+               if(ile_wpisano > limitFull) { //jesli przekroczymy limit
+                   reset = $(this).val().substring(0, limitFull); //pobieramy znaki od pierwszego do ustalonego w limicie
+                                   $(this).val(reset); //wypisujemy wczesniej pobrane znaki
+               }
+               $(".limit-full-info-<?php echo $language; ?>").text(limitFull - $(this).val().length); //wypisujemy ile znakow pozostalo
+       });
+      <?php endforeach; ?>
+      
+      if ($("#another_address").is(':checked')){
+          $("#business_city").addClass("disabled");
+          $("#business_city").prop('disabled', true);
+          $("#business_address").addClass("disabled");
+          $("#business_address").prop('disabled', true);
+          $("#business_post_code").addClass("disabled");
+          $("#business_post_code").prop('disabled', true);
+          $("form #address").keypress(function(e) {
+                $("#google-map").trigger("address_changed");
+          });
+      }
+      else{
+        $("form #business_address").keypress(function(e) {
+            $("#google-map").trigger("business_address_changed");
+        });
+      }
+      
+      $("#another_address").change(function(){
+        if ($("#another_address").is(':checked')){
+          $("#business_city").addClass("disabled");
+          $("#business_city").prop('disabled', true);
+          $("#business_address").addClass("disabled");
+          $("#business_address").prop('disabled', true);
+          $("#business_post_code").addClass("disabled");
+          $("#business_post_code").prop('disabled', true);
+          $("form #business_address").unbind("keypress");
+          $("form #address").keypress(function(e) {
+            $("#google-map").trigger("address_changed");
+          });
+        }
+        else{
+          $("#business_city").removeClass("disabled");
+          $("#business_city").prop('disabled', false);
+          $("#business_address").removeClass("disabled");
+          $("#business_address").prop('disabled', false);
+          $("#business_post_code").removeClass("disabled");
+          $("#business_post_code").prop('disabled', false);
+          $("form #address").unbind("keypress");
+          $("form #business_address").keypress(function(e) {
+            $("#google-map").trigger("business_address_changed");
+          });
+        }
+      });
+      
+      if ($("#other_activity").is(':checked')){
+            $("#other_activity_id").addClass("disabled");
+            $("#other_activity_id").prop('disabled', true);
+            $("#other_activity_name").removeClass("disabled");
+            $("#other_activity_name").prop('disabled', false);
+        }
+        else{
+            $("#other_activity_id").removeClass("disabled");
+            $("#other_activity_id").prop('disabled', false);
+            $("#other_activity_name").addClass("disabled");
+            $("#other_activity_name").prop('disabled', true);
+    }
+     
+    $("#other_activity").change(function(){
+        if ($("#other_activity").is(':checked')){
+            $("#other_activity_id").addClass("disabled");
+            $("#other_activity_id").prop('disabled', true);
+            $("#other_activity_name").removeClass("disabled");
+            $("#other_activity_name").prop('disabled', false);
+        }
+        else{
+            $("#other_activity_id").removeClass("disabled");
+            $("#other_activity_id").prop('disabled', false);
+            $("#other_activity_name").addClass("disabled");
+            $("#other_activity_name").prop('disabled', true);
+        }
+    });
+    
+    if ($("#basic_activity_id").val() == 14){
+        $(".other-basic-activity-name").show();
+    }
+    else{
+        $(".other-basic-activity-name").hide();
+    }
+    
+    $("#basic_activity_id").change(function(){
+        if ($("#basic_activity_id").val() == 14){
+            $(".other-basic-activity-name").show();
+        }
+        else{
+            $(".other-basic-activity-name").hide();
+        }
+    });
+});
+</script>
+
+<section id="add-company">
+    <header>
+        <?php echo $this->translate('Add company') ?>
+    </header>
+    <div class="add_company_content">
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post">
+            
+            <?php echo $this->form->business_card->setAttribs(array('class' => 'nostyle')) ?>
+            
+                <?php foreach($this->businessCards as $businessCard): ?>
+                    <?php if($businessCard->getType() == "standard"): ?>
+                        <div class="standard">
+                    <?php elseif ($businessCard->getType() == "premium"): ?>
+                        <div class="premium">
+                    <?php endif; ?>
+                    <?php echo $businessCard->Translation[$this->language]->description; ?>
+                    </div>
+                <?php endforeach; ?>
+
+            <div class="translations">
+                <ul id="myTab" class="nav nav-tabs pattern">
+                    <li class="dropdown">
+                        <?php foreach($this->languages as $key => $language): ?>
+                            <li class="<?php if($language == $this->language): ?>active<?php endif; ?>"><a href="#dropdown<?php echo $key + 1 ?>" data-toggle="tab"><?php echo $language ?></a></li>
+                            <?php endforeach; ?>
+                        </li>
+                </ul>
+
+                <div class="tab-content">
+                    <?php foreach($this->languages as $key => $language): ?>
+                        <div class="tab-pane<?php if($language == $this->language): ?> in active<?php endif; ?>" id="dropdown<?php echo $key + 1 ?>">
+
+                            <?php if($this->form->translations->getSubForm($language)): ?>
+                                <?php echo $this->form->translations->getSubForm($language)->name ?>
+                                <?php echo $this->form->translations->getSubForm($language)->short_description ?>
+                                <div class="limit-characters">
+                                    Pozostało znaków: <span class="strong limit-short-info-<?php echo $language; ?>"></span>
+                                </div>
+                                <?php echo $this->form->translations->getSubForm($language)->description ?>
+                                <div class="limit-characters">
+                                    Pozostało znaków: <span class="strong limit-full-info-<?php echo $language; ?>"></span>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="metatags">
+                                <?php echo $this->form->metatags->translations->getSubForm($language)->meta_keywords; ?>
+                            </div>
+                        </div>
+                   <?php endforeach; ?>
+                 </div>
+            </div>
+            <div class="title"><?php echo $this->translate('COMPANY DATA') ?></div>
+                <?php echo $this->form->province ?>
+                <?php echo $this->form->city ?>
+                <?php echo $this->form->address ?>
+                <?php echo $this->form->post_code ?> 
+                <?php echo $this->form->nip ?>
+                <?php echo $this->form->krs_edg ?>
+                <?php echo $this->form->email ?>
+                <?php echo $this->form->email2 ?>
+                <?php echo $this->form->email3 ?>
+                <?php echo $this->form->website ?>
+                <div class="next-websites">
+                    <?php echo $this->form->website2 ?>
+                    <?php echo $this->form->website3 ?>
+                </div>
+                <?php echo $this->form->phone ?>
+                <?php echo $this->form->basic_activity_id->setAttribs(array('class' => 'nostyle')) ?>
+                <div class="other-basic-activity-name">
+                    <?php echo $this->form->basic_activity_name ?>
+                </div>
+                <?php echo $this->form->other_activity_id->setAttribs(array('class' => 'nostyle')) ?>
+                <?php echo $this->form->other_activity ?>
+                <?php echo $this->form->other_activity_name ?>
+            
+            <div class="title"><?php echo $this->translate('ADDRESS THE BUSINESS') ?></div>
+                <?php echo $this->form->another_address ?>
+                <?php echo $this->form->business_city ?>
+                <?php echo $this->form->business_address ?>
+                <?php echo $this->form->business_post_code ?> 
+             
+            <div class="title"><?php echo $this->translate('CONTACT DATA') ?></div>
+                 <?php echo $this->form->contact_name ?>
+                 <?php echo $this->form->contact_phone ?>
+                 <?php echo $this->form->contact_email ?>
+            
+
+                        <?php echo $this->form->cord_x ?>
+                        <?php echo $this->form->cord_y ?>
+                        <?php echo $this->form->parent_id ?>
+                      
+        
+        <div id="google-map" style="margin-top: 20px; border: 1px solid #B8B8B6; height: 352px; width: 95%;"></div> 
+        
+            <?php echo $this->form->submit ?>
+        </form>
+    </div>
+</section>

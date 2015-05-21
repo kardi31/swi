@@ -1,0 +1,18 @@
+<ul class="photos">
+<?php if(count($this->photos)): ?>
+<?php foreach($this->photos as $photo): ?>
+    <li>
+        <?php if(strlen($photo['filename'])): ?>
+        <img src="/media/photos/<?php echo $photo['offset'] ?>/200x200/<?php echo $photo['filename'] ?>" /><br />
+        <?php else: ?>
+        <img src="/images/layout/placeholder.png" /><br />
+        <?php endif; ?>
+        <a class="delete-photo" href="<?php echo $this->url(array('action' => 'delete-photo', 'id' => $photo['id']), 'domain-user-profile') ?>">Delete</a>
+    </li>   
+<?php endforeach; ?>
+<?php else: ?>
+    <li>
+        <img src="/images/layout/placeholder.png" /><br />
+    </li> 
+<?php endif; ?>
+</ul>

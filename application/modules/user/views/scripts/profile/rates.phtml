@@ -1,0 +1,47 @@
+<script type="text/javascript">
+  
+    $(document).ready(function() { 
+        
+    $(".stars").jRating({
+        rateMax: 5,
+        decimalLength: 1,
+        isDisabled : true
+    });
+     
+  });
+</script>
+
+<div class="content-profile">
+    <header>
+        <?php echo $this->translate('Rates') ?>
+    </header>
+    <div class="rates">
+        <?php if(isset($this->paginator)): ?>
+            <?php foreach($this->paginator as $rate):?>
+                <article>
+                    <div class="rate">
+                        <div class="left">
+                            <div class="product_name"><?php echo $rate['Product']['Translation'][$this->language]['name']; ?></div>
+                            <div class="description"><?php echo $rate['description']; ?></div>
+                        </div>
+                        <div class="right">
+                            <div class="rating">
+                                <span><?php echo $this->translate('rate') ?></span>
+                                <div class="stars" data-average="<?php echo $rate['partial_rate']; ?>"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <?php if ($this->paginator->count() == 0): ?>
+            <span class="empty-list"><?php echo $this->translate('No rates') ?></span>
+        <?php endif; ?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="bottom_bar">
+        <div class="pagination">
+            <?php echo $this->paginationControl($this->paginator, 'Sliding', 'profile_pagination_control.phtml') ?>
+        </div>
+    </div>  
+</div>

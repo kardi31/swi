@@ -1,0 +1,79 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#banner_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": true,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-banner-right-data', 'banner') ?>",
+        "aaSorting": [[ 3, "desc" ]],
+        "aoColumns": [
+            null,
+            { "bSortable": false, sWidth: '100px' },
+            { "bSortable": false, sWidth: '100px' },
+            { "bSortable": false, sWidth: '100px' }
+        ]
+    });
+    
+    $("#banner_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+    $("#banner_table").delegate("td .move", "click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("href"),
+            type: "post",
+            dataType: "json",
+            data: {format: "json"},
+            success: function (resp) {
+                $("#banner_table").trigger("update");
+            }
+        });
+    });
+    
+});
+</script>
+
+<div class="row-fluid">
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+                
+                <h4>
+                    <span class="icon16 entypo-icon-list"></span>
+                    <span><?php echo $this->translate('Left banners') ?></span>
+                    <div class="box-form right">
+                        <a href="<?php echo $this->adminUrl('add-banner-right', 'banner') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add new') ?></a>
+                    </div>
+                </h4>
+                
+            </div>
+            <div class="content clearfix">
+
+                <table id="banner_table" cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" width="100%">
+                    <thead>
+                        <th><?php echo $this->translate('Name') ?></th>
+                        <th><?php echo $this->translate('Clicks') ?></th>
+                        <th><?php echo $this->translate('Move') ?></th>
+                        <th><?php echo $this->translate('Options') ?></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+
+
+</div>

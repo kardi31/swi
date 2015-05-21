@@ -1,0 +1,50 @@
+<div class="row-fluid">
+
+        <div class="box">
+
+            <?php if($this->form->isErrors()): ?>
+            <div class="message error closeable">
+                <span class="message-close"></span>
+                <h3><?php echo $this->translate('Error') ?>!</h3>
+            </div>
+            <?php endif; ?>
+            <?php if($this->messages()->count()): ?>
+            <?php echo $this->messages()->render() ?>
+            <?php endif; ?>
+            
+            <div class="title">
+
+                <h4> 
+                    <span><?php echo $this->translate('Edit administrator') ?></span>
+                    <div class="box-form right">
+                       <a href="<?php echo $this->url(array('module' => 'user', 'controller' => 'update', 'action' => 'update-admin-password', 'subject' => 'password', 'id' => $this->admin['id']), 'domain-update-admin-password'); ?>" class="btn btn-primary btn-mini">Zmiana hasła</a>
+                    </div>
+                </h4>
+
+            </div>
+            <div class="content">           
+                <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="multipart/form-data">
+                    <?php
+                    foreach($this->form->getElements() as $element) {
+                        if($element->hasErrors()) {
+                            $element->setAttrib('class', 'error');
+                        }
+                    }
+                    ?>
+                    
+                    <?php echo $this->form->first_name ?>
+                    <?php echo $this->form->last_name ?>
+                    <?php echo $this->form->email ?>
+                    
+                    <div class="form-actions">
+                        <?php echo $this->form->submit ?>
+                        <a href="<?php echo $this->adminUrl('list-admin', 'user'); ?>" class="btn"><?php echo $this->translate('Cancel') ?></a>
+                    </div>     
+                    
+                </form>
+
+            </div>
+
+        </div><!-- End .box -->
+    
+</div>

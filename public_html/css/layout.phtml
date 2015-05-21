@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pl-PL"> <!--<![endif]-->
+    <head>
+        <?php echo $this->render('_head.phtml') ?>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/js/jquery-1.7.2.min.js"></script>
+    </head>
+    <body>
+        <div id="content" class="content"> 
+            <?php echo $this->layout()->search; ?> 
+            <?php echo $this->render('_header.phtml') ?>
+            <?php echo $this->layout()->slider; ?> 
+          
+             
+            <?php echo $this->layout()->content ?>
+            
+            <?php echo $this->render('_footer.phtml') ?>
+        </div>
+        
+        <div class="photoLayer hidden">
+            
+        </div>
+        <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+
+        <script src="/js/layout.js" type="text/javascript" charset="UTF-8"></script>
+     
+        <script src="/js/lightbox.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'>
+    </body>
+</html>
+
+
+
+
+
+<?php /*echo $this->doctype() ?>
+<html lang="pl">
+<head>
+	<?php echo $this->render('_head.phtml') ?>
+</head>
+<body>
+    <?php echo $this->render('_header.phtml') ?>
+    
+    <?php echo $this->render('_banner.phtml') ?>
+    
+    <?php echo $this->render('_menu.phtml') ?>
+
+    <?php //echo $this->render('_footer.phtml') ?>
+
+    <?php //echo $this->partial('_ga.phtml') ?>
+   <!-- 
+    <script src="/js/jquery-1.9.0.min.js"></script>
+    <script src="/plugins/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="/plugins/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/plugins/tinymce/jquery.tinymce.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    -->
+</body>
+</html>
+
+<!--
+    <div id="main">
+        <div class="container">
+            <div class="breadcrumbs container">
+                <?php //echo $this->navigation()->breadcrumbs($this->breadcrumbscontainer)->setMinDepth(1)->setMaxDepth(20)->setSeparator('&nbsp;&raquo;&nbsp;')->setRenderInvisible(true)->render() ?>
+            </div>
+            <div class="row-fluid">
+                <?php //echo $this->layout()->content ?>
+                <?php //echo $this->layout()->sidebar ?>
+            </div>
+        </div>
+    </div>
+-->

@@ -1,0 +1,27 @@
+<div id="orderHistory">
+    <h2 style="margin-top:0px;"><?php echo $this->translate('CLIENT ORDER HISTORY'); ?></h2>
+    <div><?php echo $this->translate('Here are displayed all your orders sorted by date');?></div>
+    <table>
+        <tr>
+            <th><?php echo $this->translate('Order'); ?></th>
+            <th><?php echo $this->translate('Date'); ?></th>
+            <th><?php echo $this->translate('Sum'); ?></th>
+            <th><?php echo $this->translate('Payment'); ?></th>
+            <th><?php echo $this->translate('Delivery'); ?></th>
+            <th><?php echo $this->translate('Status'); ?></th>
+        </tr>
+        <?php foreach($this->orders as $order):
+            ?>
+        <tr>
+            <td><?php echo $order['id']; ?></td>
+            <td><?php echo $order['created_at']; ?></td>
+            <td><?php echo $order['total_cost']; ?></td>
+            <td><?php echo $order['Payment']['PaymentType']['name']; ?></td>
+            <td><?php echo $order['Delivery']['DeliveryType']['name']; ?></td>
+            <td><?php echo $order['OrderStatus']['name']; ?></td>
+        </tr>
+        <?php
+        endforeach;
+        ?>
+    </table>
+</div>

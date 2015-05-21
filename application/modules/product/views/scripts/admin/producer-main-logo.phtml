@@ -1,0 +1,18 @@
+<?php foreach($this->photos as $photo): ?>
+<li class="pull-left">
+    <?php if($photo->getOffset()): ?>
+    <a id="main_photo" href="/media/photos/<?php echo $photo->getOffset() ?>/<?php echo $photo->getFilename() ?>" rel="prettyPhoto" title="<?php echo $this->producer->get('PhotoRoot')->getTitle() ?>">
+        <img src="/media/photos/<?php echo $photo->getOffset() ?>/126x126/<?php echo $photo->getFilename() ?>" data-original="/media/photos/<?php echo $this->producer->get('PhotoRoot')->getOffset() ?>/<?php echo $photo->getFilename() ?>" alt="<?php echo $photo->getTitle() ?>">
+    </a>
+    <?php else: ?>
+    <a id="main_photo" href="/images/gallery/preload.png" rel="prettyPhoto" title="<?php echo $this->translate('No photo') ?>">
+        <img src="/images/gallery/preload.png" data-original="/images/gallery/preload.png" alt="<?php echo $this->translate('No photo') ?>">
+    </a>
+    <?php endif; ?>
+    <div class="actionBtn">
+        <a href="<?php echo $this->adminUrl('edit-producer-photo', 'product', array('producer-id' => $this->producer->getId(), 'id' => $this->producer->get('PhotoRoot')->getId())) ?>" class="edit"><span class="icon16 icomoon-icon-pencil-2 white"></span></a>
+        <a href="#" class="add"><span class="icon16 iconic-icon-cursor white"></span></a>
+        <a href="#" class="delete"><span class="icon16 icomoon-icon-cancel-4 white"></span></a>
+    </div>
+</li>
+<?php endforeach; ?>

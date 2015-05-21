@@ -1,0 +1,297 @@
+
+<div id="topDiv" class="container"> 
+    <div id="sliderWrapper">
+        <a href="/">
+            <img src='/img/uks_jedynka_logo_2_male.png' id="mainLogo" title="logo UKS Jedynka Krzeszowice" alt="logo UKS Jedynka"  />
+        </a>
+    </div>
+    <div class="clear"></div>
+    
+<div id="topMenubar" class="container">
+    
+    <div id="topMenu" class="">
+        <div id="myslidemenu" class="jqueryslidemenu">
+        <ul>
+            <li>
+                <a href="/">Strona główna</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">Galeria <i class="fa fa-angle-down"></i></a>
+                 <ul>
+                    <?php foreach($this->galleryList as $key=>$gallery): ?>
+                        <li <?php if($key>6) echo "class='hid'"; ?>>
+                            <a href="<?php echo $this->url(array('slug'=>$gallery['Translation']['pl']['slug']),'domain-gallery'); ?>">
+                                <?php echo $gallery['Translation']['pl']['name']; ?>
+                            </a>
+                        </li>
+                        <?php 
+                        endforeach;
+                        ?>
+                        <li>
+                            <a href="javascript:void(0)" onclick="$('.hid').css('height','auto');$('.hid').css('visibility','visible');">
+                                Więcej
+                            </a>
+                        </li>
+                    </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)">Turnieje <i class="fa fa-angle-down"></i></a>
+                <ul >
+                    <?php foreach($this->cupsList as $key2=>$cup): ?>
+                        <li <?php if($key2>6) echo "class='hid2'"; ?>>
+                             <a href="<?php echo $this->url(array('slug'=>$cup['slug']),'domain-cup'); ?>">
+                                <?php echo $cup['name']; ?>
+                            </a>
+                        </li>
+                        <?php  endforeach;
+                        ?>
+                        <li>
+                            <a href="javascript:void(0)" onclick="$('.hid2').css('height','auto');$('.hid2').css('visibility','visible');">
+                                Więcej
+                            </a>
+                        </li>
+                    </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)">Archiwalne rozgrywki <i class="fa fa-angle-down"></i></a>
+                 <ul>
+                    
+                        <li>
+                            <a href="/tabela/orlik-14">
+                                Tabela ligi orlikowej 2014
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/tabela/orlik-u98-14">
+                                Tabela ligi orlikowej U98 2014
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/tabela/kaprin-futsal-league">
+                                Tabela ligi halowej 2013/14
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/tabela/futsal-u96-1213">
+                                Tabela ligi futsalu U96 2013/14
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/tabela/futsal-u98-1213">
+                                Tabela ligi futsalu U98 2013/14
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/tabela/orlik-13">
+                                Tabela ligi orlikowej 2013
+                            </a>
+                        </li>
+                        <li class="hid">
+                            <a href="/tabela/orlik-u96-13">
+                                Tabela ligi orlikowej U96 2013
+                            </a>
+                        </li>
+                        <li class="hid">
+                            <a href="/tabela/orlik-u98-13">
+                                Tabela ligi orlikowej U98 2013
+                            </a>
+                        </li>
+                         <li class="hid">
+                            <a href="/tabela/futsal-1liga-1213">
+                                Tabela 1 ligi halowej 2012/13
+                            </a>
+                        </li>
+                        
+         <!--                <li class="hid">
+                            <a href="/tabela/orlik-12">
+                                Tabela ligi orlikowej 2012
+                            </a>
+                        </li>
+                       <li class="hid">
+                            <a href="/tabela/futsal-1liga-1112">
+                                Tabela 1 ligi halowej 2011/12
+                            </a>
+                        </li>
+                        
+                        <li class="hid">
+                            <a href="/tabela/futsal-2liga-1112">
+                                Tabela 2 ligi halowej 2011/12
+                            </a>
+                        </li>
+                        <li class="hid">
+                            <a href="/tabela/futsal-u96-112">
+                                Tabela ligi futsalu U96 2011/12
+                            </a>
+                        </li>
+                        <li class="hid">
+                            <a href="/tabela/futsal-u98-112">
+                                Tabela ligi futsalu U98 2011/12
+                            </a>
+                        </li>-->
+                        <li class="hid">
+                            <a href="/cup/liga-oldbojow-2011">
+                                Liga oldbojów 2011
+                            </a>
+                        </li>
+                        <li class="hid">
+                            <a href="/cup/tabela-koncowa-1-ligi-halowej-2010-2011">
+                                Tabela 1 ligi halowej 2010/11
+                            </a>
+                        </li>
+                        <li class="hid">
+                            <a href="/cup/tabela-koncowa-2-ligi-halowej-2010-2011">
+                                Tabela 2 ligi halowej 2010/11
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="$('.hid').css('height','auto');$('.hid').css('visibility','visible');">
+                                Więcej
+                            </a>
+                        </li>
+                    </ul>
+            </li>
+            <li>
+                <a href="<?php echo $this->url(array('slug' => 'zarzad'),'domain-i18n:page'); ?>">Zarząd</a>
+            </li>
+	    <li>
+        <a href="javascript:void(0)">Międzynarodowy turniej futsalu dziewcząt U99 <i class="fa fa-angle-down"></i></a>
+
+                <ul>
+                <li><a href="/pl/page/miedzynarodowy-turniej-futsalu-dziewczat-u99">Informacje</a></li>
+                <li><a href="/turniej/terminarz/miedzynarodowy-turniej-futsalu-dziewczat-u99">Terminarz</a></li>
+                <li><a href="/turniej/wyniki/miedzynarodowy-turniej-futsalu-dziewczat-u99">Wyniki</a></li>
+                <li><a href="/turniej/tabela/miedzynarodowy-turniej-futsalu-dziewczat-u99">Tabela</a></li>
+                <li><a href="/turniej/strzelcy/miedzynarodowy-turniej-futsalu-dziewczat-u99">Strzelcy</a></li>
+                
+                </ul>
+    </li>
+<li>
+        <a href="javascript:void(0)">Liga halowa 2014/15 <i class="fa fa-angle-down"></i></a>
+
+                <ul>
+                <li><a href="/terminarz/kaprin-futsal-league-1415">Terminarz</a></li>
+                <li><a href="/wyniki/kaprin-futsal-league-1415">Wyniki</a></li>
+                <li><a href="/tabela/kaprin-futsal-league-1415">Tabela</a></li>
+                <li><a href="/strzelcy/kaprin-futsal-league-1415">Strzelcy</a></li>
+                <li><a href="/kartki/kaprin-futsal-league-1415">Kartki</a></li>
+                <li>
+                    <a href="javascript:void(0)">Składy</a>
+                    <ul>
+                        <?php
+                        $teams = $this->teamService->getLeagueTeams('kaprin-futsal-league-1415');
+                        foreach($teams as $team):
+                            ?>
+                        <li><a href="/sklady/kaprin-futsal-league-1415/<?php echo $team['slug']; ?>"><?php echo $team['name']; ?></a></li>
+                        <?php
+                        endforeach;
+                        ?>
+                    </ul>
+                </li>
+                </ul>
+    </li>
+
+	<li>
+        <a href="javascript:void(0)">Liga futsalu U98 <i class="fa fa-angle-down"></i></a>
+
+                <ul>
+                <li><a href="/terminarz/liga-futsalu-u98">Terminarz</a></li>
+                <li><a href="/wyniki/liga-futsalu-u98">Wyniki</a></li>
+                <li><a href="/tabela/liga-futsalu-u98">Tabela</a></li>
+                <li><a href="/strzelcy/liga-futsalu-u98">Strzelcy</a></li>
+                <li><a href="/kartki/liga-futsalu-u98">Kartki</a></li>
+                <li>
+                    <a href="javascript:void(0)">Składy</a>
+                    <ul>
+                        <?php
+                        $teams = $this->teamService->getLeagueTeams('liga-futsalu-u98');
+                        foreach($teams as $team):
+                            ?>
+                        <li><a href="/sklady/liga-futsalu-u98/<?php echo $team['slug']; ?>"><?php echo $team['name']; ?></a></li>
+                        <?php
+                        endforeach;
+                        ?>
+                    </ul>
+                </li>
+                </ul>
+    </li>
+<li>
+        <a href="javascript:void(0)">Liga futsalu U2000<i class="fa fa-angle-down"></i></a>
+
+                <ul>
+                <li><a href="/terminarz/liga-futsalu-u2000">Terminarz</a></li>
+                <li><a href="/wyniki/liga-futsalu-u2000">Wyniki</a></li>
+                <li><a href="/tabela/liga-futsalu-u2000">Tabela</a></li>
+                <li><a href="/strzelcy/liga-futsalu-u2000">Strzelcy</a></li>
+                <li><a href="/kartki/liga-futsalu-u2000">Kartki</a></li>
+                <li>
+                    <a href="javascript:void(0)">Składy</a>
+                    <ul>
+                        <?php
+                        $teams = $this->teamService->getLeagueTeams('liga-futsalu-u2000');
+                        foreach($teams as $team):
+                            ?>
+                        <li><a href="/sklady/liga-futsalu-u2000/<?php echo $team['slug']; ?>"><?php echo $team['name']; ?></a></li>
+                        <?php
+                        endforeach;
+                        ?>
+                    </ul>
+                </li>
+                </ul>
+    </li>
+        </ul>
+        
+        </div>
+    </div>
+</div>
+   
+        
+        
+    <div id="images">
+
+        <div class="col-md-3" id="sponsorLeft" >
+            <?php foreach($this->bannerLeft as $bannerLeftItem): ?>
+                <img src='/images/sponsorzy/<?php echo MF_Text::createSlug($bannerLeftItem['Translation'][$this->language]['slug']); ?>.png' rel="<?php echo $bannerLeftItem['website']; ?>" alt="<?php echo $bannerLeftItem['Translation']['pl']['name']; ?>" title="logo <?php echo $bannerLeftItem['Translation']['pl']['name']; ?>"/>
+            <?php endforeach; ?>
+        </div>
+        <div class="col-md-6" id="sponsorCenter">
+            <div class="col-md-6" style="padding:0px 5px !important">
+				<a href="/images/layout/uks_jedynka_complex.jpg" class="lightview" data-lightview-group="gallery1"
+
+
+									 data-lightview-options="
+									   width: 800,
+									   viewport: 'false',
+									   height: 600,
+									 ">
+					<img src='/images/layout/uks_jedynka_complex.jpg' alt="Complex UKS Jedynka Krzeszowice"  />
+				</a>
+            </div>
+            <div class="col-md-6">
+				<a href="/images/layout/uks_jedynka_kaprin.jpg" class="lightview" data-lightview-group="gallery1"
+
+
+										 data-lightview-options="
+										   width: 800,
+										   viewport: 'false',
+										   height: 600,
+										 ">
+					<img src='/images/layout/uks_jedynka_kaprin.jpg' alt="Kaprin UKS Jedynka Krzeszowice" class="lightview" data-lightview-group='gallery1'
+
+
+									 data-lightview-options="
+									   width: 800,
+									   viewport: 'false',
+									   height: 600,
+									 " />
+				</a>
+            </div>
+        </div>
+        <div class="col-md-3" id="sponsorRight" >
+            <?php foreach($this->bannerRight as $bannerRightItem): ?>
+                <img src='/images/sponsorzy/<?php echo MF_Text::createSlug($bannerRightItem['Translation'][$this->language]['slug']); ?>.png' rel="<?php echo $bannerRightItem['website']; ?>" alt="<?php echo $bannerRightItem['Translation']['pl']['name']; ?>" title="logo <?php echo $bannerRightItem['Translation']['pl']['name']; ?>"/>
+            <?php endforeach; ?>
+        </div>
+        <!--<img src='img/zdjecia/strona/futsal_league.jpg' height='100' width='75' />-->
+    </div>
+</div>
+<div class="clear"></div>

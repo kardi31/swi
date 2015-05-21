@@ -1,0 +1,319 @@
+<style>
+    input{
+        margin-top:10px;
+    }
+    table td:nth-of-type(2) input[type="text"]{
+        width:30px;
+        margin-left:20px;
+    }
+</style>
+<div class="row-fluid">
+    <div class="span12" style="text-align:center;">
+        <div style="text-align: center">
+            <h3><?php echo $this->match['Team1']['name']." - ".$this->match['Team2']['name']; ?><br />
+            <?php echo $this->match['goal1']." - ".$this->match['goal2']; ?></h3>
+        </div>
+        <div class="box">
+            <form method="POST"><br />
+                <table style="margin:0 auto;">
+                    
+                <tr>
+                    <td colspan="2"><input type="submit" name="submit" value="Zapisz" /></td>
+                </tr>
+                    <tr>
+                        <td colspan="2"><h2><?php echo $this->match['Team1']['name']; ?></h2></td>
+                    </tr>
+                <tr>
+                    <td>
+                        <select name="player1[]">
+                            <option></option>
+                            <?php foreach($this->players1 as $player1): ?>
+                                <option <?php if($this->shooters[1][0]['player_id']==$player1['id']) echo "selected"; ?> value="<?php echo $player1['id'];?>"><?php echo $player1['last_name']." ".$player1['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[1][0]['goal']; ?>" type="text"  name="goal1[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player1[]">
+                            <option></option>
+                            <?php foreach($this->players1 as $player1): ?>
+                                <option <?php if($this->shooters[1][1]['player_id']==$player1['id']) echo "selected"; ?>  value="<?php echo $player1['id'];?>"><?php echo $player1['last_name']." ".$player1['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[1][1]['goal']; ?>" type="text"  name="goal1[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player1[]">
+                            <option></option>
+                            <?php foreach($this->players1 as $player1): ?>
+                                <option <?php if($this->shooters[1][2]['player_id']==$player1['id']) echo "selected"; ?>  value="<?php echo $player1['id'];?>"><?php echo $player1['last_name']." ".$player1['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[1][2]['goal']; ?>" type="text"  name="goal1[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player1[]">
+                            <option></option>
+                            <?php foreach($this->players1 as $player1): ?>
+                                <option <?php if($this->shooters[1][3]['player_id']==$player1['id']) echo "selected"; ?>  value="<?php echo $player1['id'];?>"><?php echo $player1['last_name']." ".$player1['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[1][3]['goal']; ?>" type="text"  name="goal1[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player1[]">
+                            <option></option>
+                            <?php foreach($this->players1 as $player1): ?>
+                                <option <?php if($this->shooters[1][4]['player_id']==$player1['id']) echo "selected"; ?>  value="<?php echo $player1['id'];?>"><?php echo $player1['last_name']." ".$player1['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[1][4]['goal']; ?>" type="text"  name="goal1[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player1[]">
+                            <option></option>
+                            <?php foreach($this->players1 as $player1): ?>
+                                <option <?php if($this->shooters[1][5]['player_id']==$player1['id']) echo "selected"; ?>  value="<?php echo $player1['id'];?>"><?php echo $player1['last_name']." ".$player1['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[1][5]['goal']; ?>" type="text"  name="goal1[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player1[]">
+                            <option></option>
+                            <?php foreach($this->players1 as $player1): ?>
+                                <option <?php if($this->shooters[1][6]['player_id']==$player1['id']) echo "selected"; ?>  value="<?php echo $player1['id'];?>"><?php echo $player1['last_name']." ".$player1['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[1][6]['goal']; ?>" type="text"  name="goal1[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player1[]">
+                            <option></option>
+                            <?php foreach($this->players1 as $player1): ?>
+                                <option <?php if($this->shooters[1][7]['player_id']==$player1['id']) echo "selected"; ?>  value="<?php echo $player1['id'];?>"><?php echo $player1['last_name']." ".$player1['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[1][7]['goal']; ?>" type="text"  name="goal1[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player1[]">
+                            <option></option>
+                            <?php foreach($this->players1 as $player1): ?>
+                                <option <?php if($this->shooters[1][8]['player_id']==$player1['id']) echo "selected"; ?>  value="<?php echo $player1['id'];?>"><?php echo $player1['last_name']." ".$player1['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[1][8]['goal']; ?>" type="text"  name="goal1[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="new_player1[]" type="text" />
+                    </td>
+                    <td>
+                        <input name="new_goal1[]" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="new_player1[]" type="text" />
+                    </td>
+                    <td>
+                        <input name="new_goal1[]" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="new_player1[]" type="text" />
+                    </td>
+                    <td>
+                        <input name="new_goal1[]" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><h2><?php echo $this->match['Team2']['name']; ?></h2></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player2[]">
+                            <option></option>
+                            <?php foreach($this->players2 as $player2): ?>
+                                <option <?php if($this->shooters[2][0]['player_id']==$player2['id']) echo "selected"; ?>  value="<?php echo $player2['id'];?>"><?php echo $player2['last_name']." ".$player2['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[2][0]['goal']; ?>" type="text"  name="goal2[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player2[]">
+                            <option></option>
+                            <?php foreach($this->players2 as $player2): ?>
+                                <option <?php if($this->shooters[2][1]['player_id']==$player2['id']) echo "selected"; ?>  value="<?php echo $player2['id'];?>"><?php echo $player2['last_name']." ".$player2['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[2][1]['goal']; ?>" type="text"  name="goal2[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player2[]">
+                            <option></option>
+                            <?php foreach($this->players2 as $player2): ?>
+                                <option <?php if($this->shooters[2][2]['player_id']==$player2['id']) echo "selected"; ?>  value="<?php echo $player2['id'];?>"><?php echo $player2['last_name']." ".$player2['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[2][2]['goal']; ?>" type="text"  name="goal2[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player2[]">
+                            <option></option>
+                            <?php foreach($this->players2 as $player2): ?>
+                                <option <?php if($this->shooters[2][3]['player_id']==$player2['id']) echo "selected"; ?>  value="<?php echo $player2['id'];?>"><?php echo $player2['last_name']." ".$player2['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[2][3]['goal']; ?>" type="text"  name="goal2[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player2[]">
+                            <option></option>
+                            <?php foreach($this->players2 as $player2): ?>
+                                <option <?php if($this->shooters[2][4]['player_id']==$player2['id']) echo "selected"; ?>  value="<?php echo $player2['id'];?>"><?php echo $player2['last_name']." ".$player2['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[2][4]['goal']; ?>" type="text"  name="goal2[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player2[]">
+                            <option></option>
+                            <?php foreach($this->players2 as $player2): ?>
+                                <option <?php if($this->shooters[2][5]['player_id']==$player2['id']) echo "selected"; ?>  value="<?php echo $player2['id'];?>"><?php echo $player2['last_name']." ".$player2['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[2][5]['goal']; ?>" type="text"  name="goal2[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player2[]">
+                            <option></option>
+                            <?php foreach($this->players2 as $player2): ?>
+                                <option <?php if($this->shooters[2][6]['player_id']==$player2['id']) echo "selected"; ?>  value="<?php echo $player2['id'];?>"><?php echo $player2['last_name']." ".$player2['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[2][6]['goal']; ?>" type="text"  name="goal2[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player2[]">
+                            <option></option>
+                            <?php foreach($this->players2 as $player2): ?>
+                                <option <?php if($this->shooters[2][7]['player_id']==$player2['id']) echo "selected"; ?>  value="<?php echo $player2['id'];?>"><?php echo $player2['last_name']." ".$player2['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[2][7]['goal']; ?>" type="text"  name="goal2[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="player2[]">
+                            <option></option>
+                            <?php foreach($this->players2 as $player2): ?>
+                                <option <?php if($this->shooters[2][8]['player_id']==$player2['id']) echo "selected"; ?>  value="<?php echo $player2['id'];?>"><?php echo $player2['last_name']." ".$player2['first_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input value="<?php echo $this->shooters[2][8]['goal']; ?>" type="text"  name="goal2[]" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="new_player2[]" type="text" />
+                    </td>
+                    <td>
+                        <input name="new_goal2[]" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="new_player2[]" type="text" />
+                    </td>
+                    <td>
+                        <input name="new_goal2[]" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="new_player2[]" type="text" />
+                    </td>
+                    <td>
+                        <input name="new_goal2[]" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" name="submit" value="Zapisz" /></td>
+                </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    
+</div>

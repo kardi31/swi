@@ -1,0 +1,29 @@
+<?php if(count($this->breakingNews)>0): ?>
+<div class="breaking-news">
+        <div class="breaking-title">
+                <h3>UWAGA WAŻNE!</h3>
+        </div>
+        <div class="breaking-block">
+                <ul>
+                    <?php foreach($this->breakingNews as $news): ?>
+                     <li>
+                         <a href="<?php echo $this->url(array('slug' => $news['Category']['slug']),'domain-news-category'); ?>" class="break-category cat-<?php echo $news['Category']['slug']; ?>">
+                             &nbsp;
+                         </a>
+                         <h4>
+                             <a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>">
+                                 <?php echo $news['Translation'][$this->language]['title']; ?>
+                             </a>
+                         </h4>
+                         <a href="<?php echo $this->url(array('slug' => $news['Translation'][$this->language]['slug']),'domain-news-article'); ?>" class="comment-link">
+                             <i class="fa fa-comment-o"></i><?php echo $news['comment_count']; ?>
+                         </a>
+                     </li>
+                      
+    
+                    <?php endforeach; ?>
+                       
+                </ul>
+        </div>
+</div>
+<?php endif; ?>

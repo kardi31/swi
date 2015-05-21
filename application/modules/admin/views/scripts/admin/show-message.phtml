@@ -1,0 +1,16 @@
+
+<h1 class="page-title"><?php echo $this->translate('Message') ?>: <?php echo $this->message->subject ?></h1>
+<div class="container_12 clearfix leading">
+    <div class="grid_12">
+
+        <a href="<?php echo $this->adminUrl('list-message', 'admin') ?>"><?php echo $this->formButton('', $this->translate('Back'), array('id' => 'back')) ?></a>
+        
+        <div class="clear"></div><br/>
+        
+        <h2><?php echo $this->message->subject ?></h2>
+        <div><?php echo $this->message->content ?></div>
+
+    </div>
+    
+    <section id="box"></section>
+</div>

@@ -1,0 +1,98 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#order_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": true,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "iDisplayLength": 70,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-match-data', 'league') ?>/league_id/<?php echo $this->league_id; ?>",
+        "aaSorting": [[ 0, "desc" ]],
+        "aoColumns": [
+            { sWidth: '50px' },
+            { "bSortable": true, sWidth: '300px' },
+            { "bSortable": true, sWidth: '300px' },
+            { "bSortable": false, sWidth: '200px' },
+            { "bSortable": true, sWidth: '100px' },
+            { "bSortable": false, sWidth: '100px' }
+        ],
+                "fnDrawCallback": function( oSettings ) {
+          $('input[type="checkbox"]').click(function(){
+               var input_id = $(this).attr('rel');
+               $('input[parent='+input_id+']').removeAttr('disabled');
+               
+               $('input[type="submit"]').click(function(){
+                    var goal1 = $('input[inp_id="'+input_id+'_1"]').val();
+                    var goal2 = $('input[inp_id="'+input_id+'_2"]').val();
+                    $.ajax({
+                        type: "post",
+                        dataType: "json",
+                        url: "<?php echo $this->adminUrl('save-match', 'league') ?>",
+
+                        data: {format:"JSON",id:input_id, goal1: goal1, goal2: goal2},
+                        success: function(resp) {
+                           $("#order_table").trigger('update');
+                        }
+                    });
+               });
+               
+               
+            });
+        }
+    });
+    
+    $("#order_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    $('.reloadTable').click(function(){
+        $("#order_table").trigger('update');
+    });
+    
+    
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16  icomoon-icon-cart"></span>
+                    <span><?php echo $this->translate('Matches') ?></span>
+                    <a class="reloadTable" href="javascript:void(0)"><button type="btn btn-info">Reload table</button></a>
+               </h4>
+            
+                
+            </div>
+          <?php 
+         
+          ?>
+            <div class="content clearfix">
+                <table id="order_table" cellpadding="0" cellspacing="0" border="0" class=" display table table-bordered" width="100%">
+                    <thead>
+                        <th><?php echo $this->translate('Id') ?></th>
+                        <th><?php echo $this->translate('Druzyna1') ?></th>
+                        <th><?php echo $this->translate('Druzyna2'); ?></th>
+                        <th><?php echo $this->translate('Wynik') ?></th>
+                        <th><?php echo $this->translate('Date') ?></th>
+                        <th><?php echo $this->translate('Options') ?></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                
+            </div>
+
+        </div>
+
+    </div>
+</div>

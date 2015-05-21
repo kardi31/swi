@@ -1,0 +1,18 @@
+
+<div id="accountDataForm">
+    <?php echo $this->translate('Buyer data'); ?> <span id="requiredFields"><?php echo $this->translate('* Required fields'); ?></span>    
+    <hr />
+    <?php echo $this->form; ?>
+</div>
+<div id="accountDataData">
+    <?php echo $this->translate('Shipping data'); ?> <a href="#"><?php echo $this->translate('change');?></a>
+    <hr /> 
+    <div id="accountUserData">    
+<?php echo $this->translate('First name');?> <strong><?php echo $this->userData['User']['first_name']; ?></strong><br/>
+<?php echo $this->translate('Last name');?>  <strong><?php echo $this->userData['User']['last_name']; ?></strong><br/>
+<?php echo $this->translate('City');?>  <strong><?php echo $this->userData['city']; ?></strong><br/>
+<?php echo $this->translate('Postal code');?>  <strong><?php echo $this->userData['postal_code']; ?></strong><br/>
+<?php echo $this->translate('Address');?>  <strong><?php echo $this->userData['address']; ?></strong><br/>
+<?php echo $this->translate('Company name');?>  <strong><?php echo $this->userData['company_name']; ?></strong><br/>
+    </div>
+</div>

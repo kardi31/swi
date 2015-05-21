@@ -1,0 +1,49 @@
+<script type="text/javascript">
+
+$(document).ready(function() { 	
+    
+    <?php if ($this->language == 'en'): ?>
+        $('.right .button-facebook').css('background', "url('/images/layout/ajurweda/login-facebook-en.png') no-repeat -80px -75px"); 
+        $('button#submit').css('background', "url('/images/layout/ajurweda/login-en.png') no-repeat -75px -75px"); 
+    <?php endif; ?>
+
+});
+
+</script>
+
+<section id="login">
+    <header>
+        <h3><?php echo $this->translate('Log in') ?></h3>
+    </header>
+    <div class="login_content">
+        <div class="left">
+            <?php if($this->messages()->count()): ?>
+            <div class="alert alert-error">
+                <?php echo $this->messages()->render() ?>
+            </div>
+            <?php endif; ?>
+            <form class="form-horizontal" action="<?php echo $this->loginForm->getAction() ?>" method="<?php echo $this->loginForm->getMethod() ?>" enctype="<?php echo $this->loginForm->getEnctype() ?>"> 
+                    <?php echo $this->loginForm->username ?>
+                    <?php echo $this->loginForm->password ?>
+                    <?php echo $this->loginForm->remember ?>
+                    <a class="forgot_password" href="<?php// echo $this->url(array('subject' => 'password'), 'domain-i18n:user-update') ?>"><?php echo $this->translate('Forgot password?') ?></a>
+                <?php echo $this->loginForm->submit ?>
+            </form>
+        </div>
+        <div class="right">
+            <a href="<?php //echo $this->facebook()->loginUrl() ?>">
+                <span class="button-facebook"></span>
+            </a>
+        </div>
+        <div class="bottom">
+            <div class="line"></div>
+            <span>
+                <?php echo $this->translate('Do not have an account yet? Create it for free by going to the') ?>
+                <a href="<?php echo $this->url(array(), 'domain-i18n:register') ?>">
+                    <?php echo $this->translate('registration page'); ?>
+                </a>
+                <?php echo "."; ?>
+            </span>
+        </div>
+    </div>
+</section>

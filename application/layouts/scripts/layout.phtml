@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <?php echo $this->partial('_head.phtml') ?>
+<body>
+    <?php echo $this->layout()->slider; ?>
+    <?php echo $this->render('_header.phtml') ?>
+    
+	
+    <!-- Content Section. If need sidebars use the tag: <aside>. If articles use tag: <article> -->
+    <?php echo $this->layout()->content; ?>
+	<!-- twiter, blog, table -->
+<!--	<section id="ttb">
+		<div class="container">
+			<div class="col-4">
+				<div class="twiter">
+					<div class="tw-title"><h3>Latest twits</h3></div>
+					<ul class="clearfix t-post">
+						<li>The generated Lorem Ipsum is therefore always free from repetition, injected humour
+							<a href="#">@Equipo<span> 1 day ago</span></a></li>
+						<li>The generated Lorem Ipsum is therefore always free from repetition, injected humour
+							<a href="#">@Equipo<span> 1 day ago</span></a></li>
+						<li>The generated Lorem Ipsum is therefore always free from repetition, injected humour
+							<a href="#">@Equipo<span> 1 day ago</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="blog-s">
+					<div class="bl-title"><h3>Blog &nbsp; <a href="blog.html">\ &nbsp; Open blog ›</a></h3></div>
+					<div class="s-post">
+						<div class="post-img"><img src="http://placehold.it/312x125" alt=""/></div>
+						<h3><a href="blog-single.html"><span>Rangers review presents stark picture</span></a></h3>
+					</div>
+					<div class="s-post">
+						<div class="post-img"><img src="http://placehold.it/312x125/333" alt=""/></div>
+						<h3><a href="blog-single.html"><span>Police probe Rangers cash statements</span></a></h3>
+					</div>
+					<div class="s-post">
+						<div class="post-img"><img src="http://placehold.it/312x125" alt=""/></div>
+						<h3><a href="blog-single.html"><span>Check out the latest bundes liga news </span></a></h3>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</section>-->
+	
+    <!-- Footer Section -->
+
+        <?php echo $this->render('_footer.phtml') ?>
+        <?php echo $this->render('_footer_scripts.phtml') ?>
+</body>
+</html>
+<?php
+/*
+<!DOCTYPE html>
+<html lang="pl">
+    
+    
+    
+    
+    <body id="page1">
+    <!-- header -->
+		    <header>
+                        <div class="body1">
+                            <div class="main">
+				    <?php echo $this->render('_header.phtml') ?>
+                            </div>
+                            <div class="body2">                       
+                                    <div class="slider">
+                                      <?php echo $this->layout()->slider; ?>
+                                    </div>
+                            </div>
+                        </div>
+		</header>
+    
+	<div class="body3">
+		<div class="main">
+                    <?php echo $this->layout()->content; ?>
+		</div>
+	</div>
+	
+        <?php echo $this->render('_footer.phtml') ?>
+</body>
+</html>
+
+<?php /*
+    <body>
+        <div id="" class="container">
+        <?php echo $this->render('_header.phtml') ?>
+        
+       
+ 
+            <div class="container">
+                <div class="col-md-3 sidebar">
+                    <?php echo $this->layout()->sidebar; ?>
+                </div>
+                <div class="col-md-9">
+
+                    <?php echo $this->layout()->content; ?>
+                </div>
+            </div>
+        <?php //echo $this->layout()->rightSidebar; ?>
+        
+        <?php echo $this->render('_footer.phtml') ?>
+        </div>
+    </body>
+</html>

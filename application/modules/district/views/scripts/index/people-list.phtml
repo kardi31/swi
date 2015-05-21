@@ -1,0 +1,26 @@
+<div class="block_breadcrumbs">
+    <ul>
+        <li><a href="/">Strona głowna</a></li>
+        <li>Ciekawe sylwetki</li>
+    </ul>
+</div>
+<div class="separator" style="height:10px;"></div>
+<div class="block_author_posts">
+        <h2>Ciekawe sylwetki</h2>
+
+    <div class="posts">
+        <?php foreach($this->people as $people):
+            $photo = $people['PhotoRoot'];
+            ?>
+        <article class="block_author_post">
+                <p class="title center margin-bottom-10"><a href="<?php echo $this->url(array('slug' => $people['Translation'][$this->language]['slug']),'domain-i18n:people'); ?>"><?php echo $people['Translation'][$this->language]['title']; ?></p>
+        
+                <div class="f_pic">
+                    <a href="<?php echo $this->url(array('slug' => $people['Translation'][$this->language]['slug']),'domain-i18n:people'); ?>" class="general_pic_hover scale initialized"><img src="/media/photos/<?php echo $photo['offset']; ?>/290x188/<?php echo $photo['filename']; ?>" alt="" /></a>
+                </div>
+
+            
+        </article>
+        <?php endforeach; ?>
+    </div>
+</div>

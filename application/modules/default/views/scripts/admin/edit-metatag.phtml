@@ -1,0 +1,42 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#save-button").click(function(e) {
+        e.preventDefault();
+
+        $("#form").append("<input type='hidden' name='saveOnly' value='1' />");
+        $("#form #submit").trigger("click");
+    });
+});
+</script>
+<h1 class="page-title"><?php echo $this->translate('Edit Metatags') ?></h1>
+<div class="container_12 clearfix leading">
+    <div class="grid_12">
+
+        <a href="<?php echo $this->adminUrl('list-metatag', 'default') ?>"><?php echo $this->formButton('', $this->translate('Cancel'), array('id' => 'cancel')) ?></a>
+        
+        <div class="clear"></div>
+
+        <?php if($this->form->isErrors()): ?>
+        <div class="message error closeable">
+                <span class="message-close"></span>
+                <h3><?php echo $this->translate('Error') ?>!</h3>
+        </div>
+        <?php endif; ?>
+
+        <form id="form" class="form" method="<?php echo $this->form->getMethod() ?>" action="<?php echo $this->form->getAction() ?>">
+       
+            <?php echo $this->form->title ?>
+            <?php echo $this->form->description ?>
+            <?php echo $this->form->keywords ?>
+        
+            <div class="form-action clrearfix">
+                <?php echo $this->form->submit ?>
+                <?php echo $this->formButton('', $this->translate('Save'), array('id' => 'save-button', 'type' => 'button')) ?>
+                <a href="<?php echo $this->adminUrl('list-metatag', 'default') ?>"><?php echo $this->formButton('', $this->translate('Cancel'), array('id' => 'cancel-button')) ?></a>
+            </div>
+        </form>
+
+    </div>
+    
+    <section id="box"></section>
+</div>

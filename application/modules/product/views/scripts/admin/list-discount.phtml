@@ -1,0 +1,74 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    var oTable = $("#discount_table").dataTable( {
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+            "sUrl": "/plugins/tables/dataTables/datatables.polish.txt"
+        },
+        "bFilter": true,
+        "bDestroy": true,
+        "bProcessing": true,
+        "bServerSide": true,
+        "bLengthChange": false,
+        "iDisplayLength": 50,
+        "sAjaxSource": "<?php echo $this->adminUrl('list-discount-data', 'product') ?>",
+        "aaSorting": [[ 2, "desc" ]],
+        "aoColumns": [
+            null,
+            { sWidth: '150px' },
+            { sWidth: '150px' },
+            { "bSortable": false, sWidth: '120px' },
+            { "bSortable": false, sWidth: '50px' },
+            { "bSortable": false, sWidth: '70px' }
+        ]
+    });
+    
+    $("#discount_table").bind("update", function(e) {
+        oTable.fnReloadAjax();
+    });
+    
+    //$("#category_id").select2();
+});
+</script>
+
+<div class="row-fluid">
+
+    <div class="span12">
+        
+        <div class="box">
+            
+            <div class="title">
+
+                <h4>
+                    <span class="icon16 icon16 brocco-icon-list"></span>
+                    <span><?php echo $this->translate('Discounts') ?></span>
+                    <div class="box-form right">
+                        <a href="<?php echo $this->adminUrl('add-discount', 'product') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add new') ?></a>
+                    </div>
+               </h4>
+            
+                
+            </div>
+          <?php 
+         
+          ?>
+            <div class="content clearfix">
+                <table id="discount_table" cellpadding="0" cellspacing="0" border="0" class=" display table table-bordered" width="100%">
+                    <thead>
+                        <th><?php echo $this->translate('Name') ?></th>
+                        <th><?php echo $this->translate('Start date') ?></th>
+                        <th><?php echo $this->translate('Finish date') ?></th>
+                        <th><?php echo $this->translate('Amount in "%"') ?></th>
+                        <th><?php echo $this->translate('Status') ?></th>
+                        <th><?php echo $this->translate('Options') ?></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                
+            </div>
+
+        </div><!-- End .box -->
+
+    </div>
+</div>

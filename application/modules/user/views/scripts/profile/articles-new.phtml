@@ -1,0 +1,21 @@
+<section class="profile span8">
+    <header class="row-fluid">
+        <h3 class="span8"><?php echo $this->translate('New article') ?></h3>
+    </header>
+    
+    <section>
+        <form class="form-horizontal" action="<?php echo $this->form->getAction() ?>" method="post" enctype="<?php echo $this->form->getEnctype() ?>">
+            <?php if(strlen($this->article['PhotoRoot']['filename'])): ?>
+            <img src="/media/photos/<?php echo $this->article['PhotoRoot']['offset'] ?>/255x122/<?php echo $this->article['PhotoRoot']['filename'] ?>" /><br />
+            <?php else: ?>
+            <img src="/images/layout/article-placeholder.png" /><br />
+            <?php endif; ?>
+            <?php echo $this->form->file ?>
+            <?php echo $this->form->title ?>
+            <?php echo $this->form->content ?>
+            <?php echo $this->form->submit ?>
+            <?php echo $this->form->id ?>
+        </form>
+    </section>
+    
+</section>

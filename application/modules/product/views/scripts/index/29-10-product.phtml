@@ -1,0 +1,797 @@
+<script>
+    $(document).ready(function(){
+        $('.read_more').click(function(){
+            $(this).next('.show_more').show();
+            $(this).hide();
+        });
+        
+        $(".purchase").click(function(e) {
+                e.preventDefault();
+                var counter = $("#quantity").val();
+                var url = $(this).attr("href");
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: url,
+                    data: {format: "json", status: "status", counter: counter},
+                    success: function(resp) {
+                         if(resp.status == "success") {
+                            $('.cartItems').html(resp.miniCartView);
+                            jSuccess(
+                                '<?php echo $this->translate('Product has been added to the cart') ?>',
+                                {
+                                    MinWidth : 250,
+                                    TimeShown : 1500,
+                                    ShowTimeEffect : 200,
+                                    HideTimeEffect : 200,
+                                    HorizontalPosition : 'right',
+                                    VerticalPosition : 'top',
+                                    ShowOverlay : false,
+                                }
+                            );
+                         }
+                    }
+                });               
+        });  
+    });
+</script>
+<div id="content" class="single col-lg-12 col-md-12 col-sm-12">
+<section class="singleheader-wrap">
+    <div class="singleheader">
+        <div class="container">
+            <h3 class="new-title" style="text-align: left;"><?php echo $this->translate('Shop') ?></h3>
+            <div class="col-lg-8 col-sm-8 col-md-8">
+                <div class="single-title">
+                    <h3><?php echo $this->product['Translation'][$this->language]['name']; ?></h3>
+                     <h4><a href="<?php echo $this->url(array('category' => $this->product['Categories'][0]['Translation'][$this->language]['slug']), 'domain-i18n:category') ?>"><?php echo $this->product['Categories'][0]['Translation'][$this->language]['name']; ?></a></h4>
+                </div>
+            </div>
+            
+            
+             <?php
+                $arrayDiscounts = array($this->product['Discount'], $this->product['Producer']['Discount'], $this->userDiscount);
+                foreach($this->userGroupDiscounts as $userGroupDiscount):
+                    $arrayDiscounts[] = $userGroupDiscount;
+                endforeach;
+                if(strlen($this->product['promotion_price'])):
+                                    		$flag = MF_Discount::getPriceWithDiscount($this->product['promotion_price'], $arrayDiscounts);
+					else:
+                                    		$flag = MF_Discount::getPriceWithDiscount($this->product['price'], $arrayDiscounts);
+					endif;
+                $flag = $flag['flag'];
+            ?>
+            
+            <div class="col-lg-4 col-sm-4 col-md-4 product-top-content">
+                  <div class="price">
+                       <?php
+                            $arrayDiscounts = array($this->product['Discount'], $this->product['Producer']['Discount'], $this->userDiscount);
+                            foreach($this->userGroupDiscounts as $userGroupDiscount):
+                                $arrayDiscounts[] = $userGroupDiscount;
+                            endforeach;
+                            $flag = MF_Discount::getPriceWithDiscount($this->product['promotion_price'], $arrayDiscounts);
+                            $flag = $flag['flag'];
+                        ?>
+                        <?php if($flag || $this->product['promotion']): ?>
+                            <?php if($this->product['promotion']): ?>
+                                <?php if($flag): ?>
+                                    <span class="price-old">
+                                        <?php echo $this->currency($this->product['price']); ?>
+                                    </span>
+                                    <span class="price-new">
+                                         <?php 
+                                         $price = MF_Discount::getPriceWithDiscount($this->product['promotion_price'], $arrayDiscounts); 
+                                         $price = $price['price'];
+                                         echo $this->currency($price); ?>
+                                    </span>
+                                <?php else: ?>
+                                    <span class="price-old">
+                                        <?php echo $this->currency($this->product['price']); ?>
+                                    </span>
+                                    <span class="price-new">
+                                         <?php echo $this->currency($this->product['promotion_price']); ?>
+                                    </span>   
+                                <?php endif; ?>
+                            <?php elseif($flag): ?> 
+                                <span class="price-old">
+                                    <?php echo $this->currency($this->product['price']); ?>
+                                </span>
+                                <span class="price-new">
+                                    <?php 
+                                    $price = MF_Discount::getPriceWithDiscount($this->product['price'], $arrayDiscounts); 
+                                    $price = $price['price'];
+                                    echo $this->currency($price); ?>
+                                </span>
+                            <?php endif; ?>
+                        <?php else: ?>
+                                <span class="price">
+                                    <?php echo $this->currency($this->product['price']); ?>
+                                </span>
+                        <?php endif; ?>
+<!--                            <span class="reward">
+                                <small>Price in reward points: 93</small>
+                            </span>-->
+                        </div>
+                       
+                       
+                   
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <span class="required">*</span>
+                                    <b>Ilość:</b>
+                                <input class="form-control" id="quantity" type="text" name="quantity" size="2" placeholder="1">
+                            </div><!-- col-lg-2 -->
+                             
+                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                <p>
+                                    <a class="btn btn-default purchase" rel="nofollow" href="<?php echo $this->url(array('action' => 'add-to-cart', 'product-id' => $this->product['id']), 'domain-cart-ajax') ?>">
+                                        <?php echo $this->translate('Add to cart'); ?>
+                                    </a>
+                                </p>
+                                 <div id="dropcart"  class="btn-group">
+                        
+                                    <a class="btn btn-default" href="<?php echo $this->url(array(), 'domain-i18n:cart') ?>"><?php echo $this->translate('Show cart') ?></a>       
+                                
+                                </div>
+                            </div>
+                        </div><!-- row -->
+            </div>
+        </div>  
+    </div>
+</section>
+</div>  
+<section class="homecolon">
+    <div class="container">
+        <div id="content" class="product-content single col-lg-12 col-md-12 col-sm-12">
+				
+            <div class="shop-left col-lg-5 col-md-5 col-sm-12">
+	
+                <div class="product1 image-hover he-wrap tpl6">
+                     <?php if($this->product['PhotoRoot']['offset']): ?>
+                        <img class="img-responsive" src="/media/photos/<?php echo $this->product['PhotoRoot']['offset'] ?>/426x426/<?php echo $this->product['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $this->product['PhotoRoot']['offset'] ?>/<?php echo $this->product['PhotoRoot']['filename'] ?>" alt="<?php echo $this->product['PhotoRoot']['alternate_text']; ?>" title="<?php echo $this->product['PhotoRoot']['title'] ?>" />
+                     <?php else: ?>
+                        <img class="img-responsive" src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>"  />
+                     <?php endif; ?>
+                        <div class="he-view">
+                            <div class="bg a0" data-animate="fadeIn">
+                                <a href="<?php echo $this->url(array('action' => 'add-to-cart', 'product-id' => $this->product['id']), 'domain-cart-ajax') ?>" class="purchase btn a2" data-animate="rotateInLeft">Add to cart</a>
+                                <a rel="prettyPhoto[product-gallery]" href="/media/photos/<?php echo $this->product['PhotoRoot']['offset'] ?>/<?php echo $this->product['PhotoRoot']['filename'] ?>" class="btn a2" data-animate="rotateInRight">View large</a>
+                            </div>
+                        </div>	
+                </div>                       
+							
+               <div class="thumbnails img-inner-shadow clearfix">
+                    <?php if($this->product['PhotoRoot']['offset']): ?>
+                        <a href="/media/photos/<?php echo $this->product['PhotoRoot']['offset'] ?>/<?php echo $this->product['PhotoRoot']['filename'] ?>" class="zoom first" title="" rel="prettyPhoto[product-gallery]">				
+                            <img class="img-thumbnail" width="120" height="120" src="/media/photos/<?php echo $this->product['PhotoRoot']['offset'] ?>/130x130/<?php echo $this->product['PhotoRoot']['filename'] ?>" alt="" />
+                        </a>
+                    <?php endif; ?>
+                    <?php if(isset($this->productPhotos)):  ?>
+                        <?php $counter = 1; ?>
+                        <?php foreach($this->productPhotos as $photo): ?>
+                            <?php if($counter < 3 && $photo['offset'] ): ?>  
+                                <?php if($counter != 2): ?>
+                                    <a href="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $photo['filename'] ?>" class="zoom" title="" rel="prettyPhoto[product-gallery]">				
+                                        <img class="img-thumbnail" width="120" height="120" src="/media/photos/<?php echo $photo['offset'] ?>/130x130/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['alternate_text'] ?>" />
+                                    </a>
+                                <?php else: ?>
+                                    <a href="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $photo['filename'] ?>" class="zoom last" title="" rel="prettyPhoto[product-gallery]">				
+                                        <img class="img-thumbnail" width="120" height="120" src="/media/photos/<?php echo $photo['offset'] ?>/130x130/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['alternate_text'] ?>" />
+                                    </a>
+                                <?php endif; ?>
+                            <?php $counter++; endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>           
+                            	
+                </div>  
+                                                                                  
+            </div><!-- shop-left -->
+                
+            <div class="shop-right col-lg-7 col-md-7 col-sm-12">
+                 <?php /* ?>
+                <h2 class="widget-title"><span><?php echo $this->product['Translation'][$this->language]['name']; ?></span></h2>
+                    <div class="pull-right amount">
+                        <ul class="rating">
+                            <?php for($i=0;$i<$this->product['rate']; $i++): ?>
+                                <li><i class="star-on"></i></li>
+                            <?php endfor; ?>
+                            <?php for($i;$i<5;$i++): ?>
+                                <li><i class="star-off"></i></li>
+                            <?php endfor; ?>
+                        </ul>
+                    </div>  
+                    <div class="sidebar-line"><span></span></div>
+                        
+                        <p>
+                            <?php echo $this->product['Translation'][$this->language]['description']; ?>
+                        </p>
+                               
+                       
+                       
+
+			<hr>
+                         <?php */ ?>
+                         <?php  if($this->setProducts): 
+                                     echo $this->translate('This set contains: <br />'); 
+                                         foreach($this->setProducts as $setProduct):
+                                             ?>
+                                            <a href="<?php echo $this->url(array('category' => $setProduct['Categories'][0]['Translation'][$this->language]['slug'], 'product' => $setProduct['Translation'][$this->language]['slug']), 'domain-i18n:product') ?>"><?php echo $setProduct['Translation'][$this->language]['name']; ?></a><br />
+                                  <?php  endforeach;
+                                  echo "<br />";
+                                 endif; 
+                         ?>
+                         
+                
+                        <div class="product-details-wrap">
+                            <ul id="myTab" class="nav nav-tabs">
+                                 <li class="active"><a href="#Description" data-toggle="tab"><?php echo $this->translate('Description'); ?></a></li>
+                                <li class=""><a href="#Ingredients" data-toggle="tab"><?php echo $this->translate('Ingredients'); ?></a></li>
+                                <li class=""><a href="#HowToUse" data-toggle="tab"><?php echo $this->translate('How to use'); ?></a></li>
+<!--                                <li class=""><a href="#Reviews" data-toggle="tab">Reviews (1)</a></li>-->
+                            </ul>
+                            
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane fade active in" id="Description">
+                                    
+                                    <?php
+                                    // pozycja pierwszej przerwy w tekście po 850 znaku
+                                    // aby uniknąc przerwania tekstu w połowie słowa
+                                    $pos = strpos($this->product['Translation'][$this->language]['description'], '</p>', 850);
+                                    // jeżeli tekst ma powyżej 850 znaków
+                                    if ($pos !== false) {
+                                        echo substr($this->product['Translation'][$this->language]['description'], 0, $pos+4); ?>
+                                          <a class="read_more" href="javascript:void(0)">
+                                              <?php echo $this->translate('show more') ?>
+                                          </a>
+                                          <span class="show_more" style="display:none;">
+                                              <?php echo substr($this->product['Translation'][$this->language]['description'],$pos); ?>
+                                          </span>
+                                    <?php }
+                                     else{
+                                        echo $this->product['Translation'][$this->language]['description'];
+                                    }?>
+                                  
+                                    
+                                </div><!-- col-tab pane -->
+                                
+                                <div class="tab-pane fade in" id="Ingredients">
+                                     <?php
+                                    // pozycja pierwszej przerwy w tekście po 850 znaku
+                                    // aby uniknąc przerwania tekstu w połowie słowa
+                                    $pos2 = strpos($this->product['Translation'][$this->language]['ingredients'], '</p>', 850);
+                                    // jeżeli tekst ma powyżej 850 znaków
+                                    if ($pos2 !== false) {
+                                        echo substr($this->product['Translation'][$this->language]['ingredients'], 0, $pos2+4); ?>
+                                          <a class="read_more" href="javascript:void(0)">
+                                              <?php echo $this->translate('show more') ?>
+                                          </a>
+                                          <span class="show_more" style="display:none;">
+                                              <?php echo substr($this->product['Translation'][$this->language]['ingredients'],$pos2); ?>
+                                          </span>
+                                    <?php }
+                                    else{
+                                        echo $this->product['Translation'][$this->language]['ingredients'];
+                                    }?>
+                                </div><!-- col-tab pane -->
+                                
+                                <div class="tab-pane fade in" id="HowToUse">
+                                      <?php
+                                    // pozycja pierwszej przerwy w tekście po 850 znaku
+                                    // aby uniknąc przerwania tekstu w połowie słowa
+                                    $pos3 = strpos($this->product['Translation'][$this->language]['how_to_use'], '</p>', 850);
+                                    // jeżeli tekst ma powyżej 850 znaków
+                                    if ($pos3 !== false) {
+                                        echo substr($this->product['Translation'][$this->language]['how_to_use'], 0, $pos3+4); ?>
+                                          <a class="read_more" href="javascript:void(0)">
+                                              <?php echo $this->translate('show more') ?>
+                                          </a>
+                                          <span class="show_more" style="display:none;">
+                                              <?php echo substr($this->product['Translation'][$this->language]['how_to_use'],$pos3); ?>
+                                          </span>
+                                    <?php }
+                                    else{
+                                        echo $this->product['Translation'][$this->language]['how_to_use'];
+                                    }?>
+                                </div><!-- col-tab pane -->
+                                
+<!--                                <div class="tab-pane fade" id="Reviews">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <ul class="media-list">
+                                            <li class="media general">
+                                                <a class="pull-left" href="#" style="width: 74px; height: 74px;">
+                                                    <img class="media-object img-thumbnail" data-src="holder.js/64x64" alt="64x64" src="demos/01_team.png">
+                                                </a>
+                                                <div class="media-body">
+                                                    <h5 class="media-heading"><a href="#">Emmanuella</a></h5>
+                                                    <p>Mauris iaculis quam dolor, id commodo lacus viverra eget.</p>
+                                                </div>
+                                            </li> media general 
+                                        </ul> media list 
+                                    </div>  end col-12 
+                                    
+                                    <hr>
+                                    
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <h2 class="title text-center">
+                                            <span>Submit your review</span>
+                                        </h2>
+                                        <form id="#" action="#">
+                                            <div class="col-sm-6 col-lg-6 col-md-6">
+                                                <input type="text" class="form-control" placeholder="Name">
+                                                <br>
+                                                <input type="text" class="form-control" placeholder="Email">
+                                                <br>
+                                                <input type="text" class="form-control" placeholder="Website">
+                                                <br>
+                                            </div>
+                                                        
+                                            <div class="col-sm-6 col-lg-6 col-md-6">
+                                                <textarea class="form-control" placeholder="Your Comments" rows="7"></textarea>
+                                                <br>
+                                                <button class="pull-right btn btn-default">Send review</button>
+                                            </div>
+                                        </form>  
+                                    </div>  end col-12 
+                                    <div class="clearfix"></div>
+                                </div> end tab pane review -->
+                            </div><!-- end  tab content -->
+                        </div><!-- product-details-wrap -->
+            
+					</div><!-- shop right -->
+                    
+                 	<div class="clearfix"></div>
+                    <hr>
+                    
+                    <div class="related-shop">
+                        <h2 class="widget-title">
+                            <span><?php echo $this->translate('Related Shop Items'); ?></span>
+                        </h2>
+                        <div class="sidebar-line"><span></span></div>                    
+ 			
+                        <?php if($this->relatedProducts): ?>
+                            <?php foreach($this->relatedProducts as $relatedProduct):?>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="product1 image-hover he-wrap tpl6">
+                                     <?php if($relatedProduct['PhotoRoot']['offset']): ?>
+                                        <img class="img-responsive" src="/media/photos/<?php echo $relatedProduct['PhotoRoot']['offset'] ?>/243x243/<?php echo $relatedProduct['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $relatedProduct['PhotoRoot']['offset'] ?>/<?php echo $relatedProduct['PhotoRoot']['filename'] ?>" alt="<?php echo $relatedProduct['PhotoRoot']['title'] ?>" />
+                                     <?php else: ?>
+                                        <img class="img-responsive" src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 243px; height: 243px" />
+                                     <?php endif; ?>
+                                    <div class="he-view">
+                                        <div class="bg a0" data-animate="fadeIn">
+                                            <a href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug, 'product' => $relatedProduct['Translation'][$this->language]['slug']), 'domain-i18n:product') ?>" class="btn a2" data-animate="rotateInLeft"><i class="fa fa-search"></i> <?php echo $this->translate('Details'); ?></a>
+                                            <a href="<?php echo $this->url(array('action' => 'add-to-cart', 'product-id' => $relatedProduct['id']), 'domain-cart-ajax') ?>" class="purchase btn a2" data-animate="rotateInRight"><i class="fa fa-shopping-cart"></i> <?php echo $this->translate('Cart'); ?></a>
+                                        </div>
+                                    </div>				
+                                </div>                       
+                                <div class="product-details">
+                                    <h4>
+                                        <a href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug, 'product' => $relatedProduct['Translation'][$this->language]['slug']), 'domain-i18n:product') ?>">
+                                            <?php echo MF_Text::truncate($relatedProduct['Translation'][$this->language]['name'], 35); ?>
+                                        </a>
+                                    </h4>
+                                    <div class="amount">
+                                        <ul class="rating">
+                                            <?php for($i=0;$i<$relatedProduct['rate']; $i++): ?>
+                                                <li><i class="star-on"></i></li>
+                                            <?php endfor; ?>
+                                            <?php for($i;$i<5;$i++): ?>
+                                                <li><i class="star-off"></i></li>
+                                            <?php endfor; ?>
+					</ul>
+                                    </div>  
+                                    <?php
+                                        $arrayDiscounts = array($relatedProduct['Discount'], $relatedProduct['Producer']['Discount'], $this->userDiscount);
+                                        foreach($this->userGroupDiscounts as $userGroupDiscount):
+                                            $arrayDiscounts[] = $userGroupDiscount;
+                                        endforeach;
+                                        $flag = MF_Discount::getPriceWithDiscount($relatedProduct['promotion_price'], $arrayDiscounts);
+                                        $flag = $flag['flag'];
+                                    ?>
+                                    <?php if($flag || $relatedProduct['promotion']): ?>
+                                        <?php if($relatedProduct['promotion']): ?>
+                                            <?php if($flag): ?>
+                                                <span class="price">
+                                                    <?php 
+                                                    $price = MF_Discount::getPriceWithDiscount($relatedProduct['promotion_price'], $arrayDiscounts); 
+                                                    $price = $price['price'];
+                                                    echo $this->currency($price); ?>
+                                                    <span class="price-old">
+                                                        <?php echo $this->currency($relatedProduct['price']); ?>
+                                                    </span>
+                                                </span>
+                                            <?php else: ?>
+                                                <span class="price">
+                                                    <?php echo $this->currency($relatedProduct['promotion_price']); ?>
+                                                    <span class="price-old">
+                                                        <?php echo $this->currency($relatedProduct['price']); ?>
+                                                    </span>
+                                                </span>
+                                            <?php endif; ?>
+                                        <?php elseif($flag): ?>
+                                            <span class="price">
+                                                <?php 
+                                                $price = MF_Discount::getPriceWithDiscount($relatedProduct['price'], $arrayDiscounts); 
+                                                $price = $price['price'];
+                                                echo $this->currency($price); ?>
+                                                <span class="price-old">
+                                                    <?php echo $this->currency($relatedProduct['price']); ?>
+                                                </span>
+                                            </span>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <span class="price">
+                                            <?php echo $this->currency($this->product['price']); ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </div><!-- product details -->
+                            </div><!-- col-3 -->
+                            <?php endforeach; ?>
+                        <?php endif; ?>    
+                    </div><!-- end related -->
+            </div><!-- end content -->
+    </div><!-- end container -->
+</section><!-- end -->
+
+
+<?php /*
+<script type="text/javascript">
+  
+    $(document).ready(function() { 
+        
+    $(".purchase").click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: url,
+                data: {format: "json", status: "status", counter: "counter"},
+                success: function(resp) {
+                     if(resp.status == "success") {
+                        $('.cart .counter').html(resp.counter);
+                        jSuccess(
+                            '<?php echo $this->translate('Product has been added to the cart') ?>',
+                            {
+                                MinWidth : 250,
+                                TimeShown : 2500,
+                                S		howTimeEffect : 200,
+                                HideTimeEffect : 200,
+                                HorizontalPosition : 'center',
+                                VerticalPosition : 'center',
+                                ShowOverlay : true,
+                                ColorOverlay : '#000',
+                                OpacityOverlay : 0.3
+                            }
+                        );
+                     }
+                }
+            });               
+    });
+    
+    
+    <?php if ($this->language == 'en'): ?>
+        $('button#submit').css('background', "url('/images/layout/shop/dodaj_komentarz_en.png') no-repeat center"); 
+    <?php endif; ?>
+        
+    $('form.comm').hide();
+    $('.comments .add_comment').click(function(e) {
+        e.preventDefault();
+        if ($('form.comm').is(':visible')){
+            $('form.comm').hide();
+        }
+        else{
+            $('form.comm').show();
+        }
+    });   
+
+    var rateReady = $('input#partial_rate').val();
+    if (!rateReady){
+        rateReady = 0;
+    }
+    $('.stars-comment').attr("data-average", rateReady);
+
+    
+    $(".stars").jRating({
+        rateMax: 5,
+        decimalLength: 1,
+        isDisabled : true
+    });
+    
+     $(".stars-comment").jRating({
+        rateMax: 5,
+        length : 5,
+        step: true,
+        onClick: function(element, rate){
+            $('input#partial_rate').val(rate);
+        }
+    });
+    
+    $(".stars3").jRating({
+        rateMax: 5,
+        decimalLength: 1,
+        isDisabled : true
+    });
+    
+
+        
+  });
+</script>
+
+<section id="product">
+    <div itemscope itemtype="http://data-vocabulary.org/Product">
+        <div id="product_top_bar">
+            <ul>
+                <?php echo $this->partial('category-path.phtml', 'product', array('category' => $this->category, 'language' => $this->language)) ?>
+                <?php 
+                $category = $this->partial('category-path-google.phtml', 'product', array('category' => $this->category, 'language' => $this->language));
+                ?>
+                <li>
+                    <span itemprop="category" content="<?php echo $category; ?>"><?php echo ucfirst($this->product->Translation[$this->language]->name); ?> </span>
+                </li>
+            </ul>
+        </div>
+        <div id="product_bottom_bar">
+                <div class="product_left">
+                    <div class="viewport">              
+                        <?php if(isset($this->productPhotos)): ?>
+                            <?php $counter = 0; ?>
+                            <?php foreach($this->productPhotos as $photo): ?>
+                                <?php if($counter < 4 && $photo['offset']): ?>
+                                    <a href="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $photo['filename'] ?>" data-lightbox="product[]" title="<?php echo $this->product->get('PhotoRoot')->getTitle() ?>">
+                                        <img itemprop="image" src="/media/photos/<?php echo $photo['offset'] ?>/510x510/<?php echo $photo['filename'] ?>" data-original="/media/photos/<?php echo $photo['offset'] ?>/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['alternate_text'] ?>" title="<?php echo $photo['title'] ?>" id="imageid"/>
+                                    </a>
+                                <?php $counter++; endif; ?>    
+                            <?php endforeach; ?>   
+                            <?php if($counter == 0): ?>
+                                <img src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 510px; height: 510px" />
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                    <ul class="thumbs">
+                        <?php if(isset($this->productPhotos)):  ?>
+                            <?php $counter = 0; ?>
+                            <?php foreach($this->productPhotos as $photo): ?>
+                                <?php if($counter < 4 && $photo['offset']): ?>  
+                                    <li><img src="/media/photos/<?php echo $photo['offset'] ?>/115x115/<?php echo $photo['filename'] ?>" alt="<?php echo $photo['alternate_text'] ?>" title="<?php echo $photo['title'] ?>"></li>
+                               <?php $counter++; endif; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </ul>
+                    <?php if($this->relatedProducts): ?>
+                        <div class="more_buy">
+                            <header>
+                                <?php echo $this->translate('Person who bought this product also purchased');?>
+                            </header>
+                            <ul>
+                                <?php foreach($this->relatedProducts as $relatedProduct):?>
+                                    <?php if($relatedProduct['Categories'][0]['Translation'][$this->language]['slug'] && $relatedProduct['Translation'][$this->language]['slug']): ?>
+                                        <li>
+                                            <a href="<?php echo $this->url(array('category' => $relatedProduct['Categories'][0]['Translation'][$this->language]['slug'], 'product' => $relatedProduct['Translation'][$this->language]['slug']), 'domain-i18n:product') ?>">
+                                                <span class="product_image">
+                                                    <?php if($relatedProduct['PhotoRoot']['offset']): ?>
+                                                        <img src="/media/photos/<?php echo $relatedProduct['PhotoRoot']['offset'] ?>/120x120/<?php echo $relatedProduct['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $relatedProduct['PhotoRoot']['offset'] ?>/<?php echo $relatedProduct['PhotoRoot']['filename'] ?>" alt="<?php echo $relatedProduct['PhotoRoot']['title'] ?>" />
+                                                    <?php else: ?>
+                                                        <img src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 120px; height: 120px" />
+                                                    <?php endif; ?>
+                                                </span>
+                                                <div class="clearfix"></div>
+                                                <span class="name">
+                                                    <header><?php echo MF_Text::truncate($relatedProduct['Translation'][$this->language]['name'], 44); ?></header>
+                                                </span>
+                                                <span class="price">
+                                                        <span class="buy"><?php echo $this->translate('buy now') ?></span> <span class="pr"><?php echo $relatedProduct['price']; ?> zł</span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+                    <div class="bestsellers">
+                        <header>
+                            <?php echo $this->translate('Bestsellers in category').": ".ucfirst($this->category->Translation[$this->language]->name); ?>
+                        </header>
+                        <ul>
+                            <?php foreach($this->categoryBestsellers as $categoryBestseller):?>
+                                <?php if($this->category->Translation[$this->language]->slug && $categoryBestseller['Translation'][$this->language]['slug']): ?>
+                                    <li>
+                                        <a href="<?php echo $this->url(array('category' => $this->category->Translation[$this->language]->slug, 'product' => $categoryBestseller['Translation'][$this->language]['slug']), 'domain-i18n:product') ?>">
+                                            <span class="product_image">
+                                                <?php if($categoryBestseller['PhotoRoot']['offset']): ?>
+                                                    <img src="/media/photos/<?php echo $categoryBestseller['PhotoRoot']['offset'] ?>/120x120/<?php echo $categoryBestseller['PhotoRoot']['filename'] ?>" data-original="/media/photos/<?php echo $categoryBestseller['PhotoRoot']['offset'] ?>/<?php echo $categoryBestseller['PhotoRoot']['filename'] ?>" alt="<?php echo $categoryBestseller['PhotoRoot']['title'] ?>" />
+                                                <?php else: ?>
+                                                    <img src="/images/layout/shop/no_photo.jpg" data-original="/images/layout/shop/no_photo.jpg" alt="<?php echo $this->translate('No photo') ?>" style="width: 120px; height: 120px" />
+                                                <?php endif; ?>
+                                            </span>
+                                            <div class="clearfix"></div>
+                                            <span class="name">
+                                                <header><?php echo MF_Text::truncate($categoryBestseller['Translation'][$this->language]['name'], 44); ?></header>
+                                            </span>
+                                            <span class="price">
+                                                    <span class="buy"><?php echo $this->translate('buy now') ?></span> <span class="pr"><?php echo $categoryBestseller['price']; ?> zł</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product_right">
+                    <div class="price">
+                        <span itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
+                            <meta itemprop="currency" content="PLN" />
+                            <?php
+                                $arrayDiscounts = array($this->product['Discount'], $this->product['Producer']['Discount'], $this->userDiscount);
+                                foreach($this->userGroupDiscounts as $userGroupDiscount):
+                                    $arrayDiscounts[] = $userGroupDiscount;
+                                endforeach;
+                                $flag = MF_Discount::getPriceWithDiscount($this->product['promotion_price'], $arrayDiscounts);
+                                $flag = $flag['flag'];
+                            ?>
+                            <?php if($flag || $this->product['promotion']): ?>
+                                <?php if($this->product['promotion']): ?>
+                                    <?php if($flag): ?>
+                                            <span itemprop="price" class="pr">
+                                                <span class="buy"><?php echo $this->translate('buy now') ?></span> <br/>
+                                                <?php 
+                                                $price = MF_Discount::getPriceWithDiscount($this->product['promotion_price'], $arrayDiscounts); 
+                                                $price = $price['price'];
+                                                echo $price; ?> zł
+                                                <span class="line">
+                                                    <div class="promotion"><?php echo $this->product['price']; ?> zł</div>
+                                                </span>
+                                            </span>
+                                    <?php else: ?>
+                                        <span itemprop="price" class="pr">
+                                            <span class="buy"><?php echo $this->translate('buy now') ?></span> <br/>
+                                            <?php echo $this->product['promotion_price']; ?> zł
+                                            <span class="line">
+                                                <div class="promotion"><?php echo $this->product['price']; ?> zł</div>
+                                            </span>
+                                        </span>
+                                    <?php endif; ?>
+                                <?php elseif($flag): ?> 
+                                        <span itemprop="price" class="pr">
+                                            <span class="buy"><?php echo $this->translate('buy now') ?></span> <br/>
+                                            <?php 
+                                            $price = MF_Discount::getPriceWithDiscount($this->product['price'], $arrayDiscounts); 
+                                            $price = $price['price'];
+                                            echo $price; ?> zł
+                                            <span class="line">
+                                                <div class="promotion"><?php echo $this->product['price']; ?> zł</div>
+                                            </span>
+                                        </span>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <span itemprop="price" class="pr">
+                                    <span class="buy"><?php echo $this->translate('buy now') ?></span> <br/>
+                                    <?php echo $this->product['price']; ?> zł
+                                </span>
+                            <?php endif; ?>
+                            <span itemprop="condition" content="nowe"></span>
+                            <span itemprop="availability" content="<?php echo $this->product->getAvailability(); ?>"></span>
+                        </span> 
+                    </div>
+                    <div class="cart">
+                        <a href="<?php echo $this->url(array('action' => 'add-to-cart', 'product-id' => $this->product['id']), 'domain-cart-ajax') ?>" class="purchase">
+                            <img src="/images/layout/shop/KOSZYK.png" alt="<?php echo $this->translate('Cart') ?>" />
+                        </a>
+                    </div>
+                    <h1 class="name" itemprop="name">
+                        <?php echo $this->product['Translation'][$this->language]['name']; ?>
+                    </h1>
+                    <span class="brand" itemprop="brand"><?php echo $this->product['Producer']->Translation[$this->language]->name; ?></span>
+                    <span class="identifier" itemprop="identifier" content="<?php echo $this->product->getCode(); ?>"><?php echo $this->product->getCode(); ?></span>
+                    <div class="rating">
+                        <div class="stars" data-average="<?php echo $this->product->getRate(); ?>" data-id="<?php echo $this->product->getId(); ?>"></div>
+                        <span itemprop="review" itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
+                            <span class="rating_google" itemprop="rating"><?php echo $this->product->getRate(); ?></span>
+                            <span class="count" itemprop="count">89</span>
+                        </span>
+                        <span><?php echo $this->translate('rating buyers') ?></span>
+                    </div>
+
+                    <?php if($this->product->isReduced()): ?>
+                    <div class="reduced">
+                        <?php echo $this->product['Translation'][$this->language]['reduced_price_text']; ?>
+                    </div>
+                    <?php endif; ?>
+                    <div class="description" itemprop="description">
+                        <?php echo $this->product['Translation'][$this->language]['description']; ?>
+                    </div>
+                    <div class="attachments">
+                        <?php if($this->product['Attachments']->toArray()): ?>
+                            <ul>
+                                <?php foreach($this->product['Attachments'] as $attachment): ?>
+                                    <?php if ($this->product['Translation'][$this->language]['slug'] && $attachment['Translation'][$this->language]->slug && $attachment['extension'] == 'pdf'): ?>
+                                        <li>
+                                            <a href="<?php echo $this->url(array('product' => $this->product['Translation'][$this->language]->slug, 'attachment' => $attachment['Translation'][$this->language]->slug), 'domain-pdf-attachment') ?>">
+                                                <?php echo $attachment['Translation'][$this->language]->title; ?>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <?php if ($attachment['extension'] != 'pdf'): ?>
+                                        <li>
+                                            <a href="/media/attachments/<?php echo $attachment->getFileName(); ?>">
+                                                <?php echo $attachment['Translation'][$this->language]->title; ?>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    </div>
+                    <div class="comments">
+                        <header>
+                            <?php echo $this->translate('Comments'); ?>
+                        </header>
+                        <div class="add_comment">
+                            <a href="#">
+                                <?php echo $this->translate('Add evalution of product'); ?>
+                            </a>
+                        </div>
+                        <div class="comment-add-success">
+                            <?php
+                            echo $this->messages()->render("messagesForm.phtml");
+                            ?>
+                        </div>
+                        <form class="form-horizontal comm" action="<?php echo $this->form->getAction() ?>" method="post">
+                            <?php
+                            foreach($this->form->getElements() as $element) {
+                                    if($element->hasErrors()) {
+                                        $element->setAttrib('class', 'error');
+                                    }
+                            }
+                            ?>
+                            <?php echo $this->form->partial_rate ?>
+                            <?php echo $this->form->nick ?>
+                            
+                            <div class="rate">
+                                <span class="title"><?php echo $this->translate('Rate'); ?></span>
+                                <div class="stars-comment" data-average="0" data-id="<?php echo $this->product->getId(); ?>"></div>
+                            </div>
+                            <div class="desc_com">
+                                <?php echo $this->form->description ?>
+                            </div>
+                            <div class="captcha">  
+                                <?php echo $this->form->captcha ?>
+                            </div>
+                            <?php echo $this->form->submit ?>
+                        </form>
+                        <div class="clearfix"></div>
+                        <?php if($this->comments): ?>
+                            <div class="list">
+                                <?php foreach($this->comments as $comment): ?>
+                                    <div class="item">
+                                        <span class="name">
+                                             <?php echo $comment['nick']; ?>
+                                        </span>
+                                        <span class="partial-rate">
+                                             <div class="stars3" data-average="<?php echo $comment['partial_rate']; ?>" data-id="<?php echo $this->product->getId(); ?>"></div>
+                                        </span>
+                                        <div class="clearfix"></div>
+                                        <span class="desc">
+                                             <?php echo $comment['description']; ?>
+                                        </span>
+                                    </div>
+                                <?php endforeach; ?>
+                                <div class="see_all">
+                                    <a href="<?php echo $this->url(array('product' => $this->product['Translation'][$this->language]->slug), 'domain-i18n:comments') ?>">
+                                        <?php echo $this->translate('See all comments')." >>"; ?>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            <div class="no_comments">
+                                <?php echo $this->translate('No comments'); ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+        
+        

@@ -1,0 +1,70 @@
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<?php echo $this->headMeta() ?>
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Signika:400,600,300,700&amp;subset=latin,latin-ext" /> 
+<meta name="keywords" content="Uczniowski Klub Sportowy Jedynka,Gimnazjum Krzeszowice,Wojciech Kardas,Tomasz Kardas,UKS Krzeszowice,UKS Jedynka,piłka nożna dziewcząt,turnieje piłka nożna dziewcząt, piłka nożna Krzeszowice,kolonie Krzeszowice,sport Krzeszowice, klub sportowy Krzeszowice">
+<meta name="description" content="Uczniowski Klub Sportowy Jedynka przy Gimnazjum w Krzeszowicach. Liga futsalu,liga orlikowa piłki nożnej chłopców i dziewcząt, halowa piłka nożna, turnieje, obozy sportowe i wiele innych.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index, follow" />
+<meta name="Author" content="Kardi mobile">
+<meta name="DC.title" lang="pl" content="<?php echo strip_tags($this->headTitle()) ?>">
+<meta name="DC.creator" content="Kardi Mobile">
+<meta name="DC.publisher" content="Tomasz Kardas kardi3">
+<meta name="DC.contributor" content="kardimobile.pl">
+<title>
+   <?php if(strlen(strip_tags($this->headTitle()))):
+        echo strip_tags($this->headTitle())." - UKS Jedynka Krzeszowice";
+       else: 
+           echo "UKS Jedynka Krzeszowice";
+           endif; ?>
+    
+    
+</title>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-43905029-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+        <link rel="stylesheet" href="/css/mobile.css" media="screen"/>
+        
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" media="screen"/>
+        
+        <link rel="icon" type="image/jpg"  href="/img/favicon.ico">
+        <meta property="og:image" content="http://ukskrzeszowice.pl/img/uks_jedynka_logo_2.png">
+        <!--<script src="/js/cssverticalmenu.js"></script>-->
+        <script src="/js/jquery-2.1.0.js"></script>
+        
+        <script type='text/javascript' src='/plugins/lightview/js/lightview/lightview.js'></script>
+        <link rel="stylesheet" type="text/css" href="/plugins/lightview/css/lightview/lightview.css" />
+<!-- bxSlider CSS file -->
+
+<?php
+        echo $this->headLink();
+            echo $this->headScript();?>
+<script>
+    $(document).ready(function(){
+	var displayed = 0;
+	$('#myslidemenu > ul > li').click(function(){
+	       $('#myslidemenu li li').hide(); 
+	       $(this).find('> ul > li').css('display','inline-block'); 
+	    
+	});
+    $('#myslidemenu > ul > li > a').click(function(){
+         $(this).next('li').css('display','inline-block'); 
+      
+  });
+    });
+</script>
+</head>
