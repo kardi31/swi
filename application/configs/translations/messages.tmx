@@ -20,6 +20,15 @@
        <tu tuid='3 months'>
            <tuv xml:lang="pl"><seg>3 miesiące</seg></tuv>
        </tu>
+       <tu tuid='Updated'>
+           <tuv xml:lang="pl"><seg>Aktualizacja</seg></tuv>
+       </tu>
+       <tu tuid='Edit gallery'>
+           <tuv xml:lang="pl"><seg>Edytuj galerie</seg></tuv>
+       </tu>
+       <tu tuid='Created'>
+           <tuv xml:lang="pl"><seg>Stworzone</seg></tuv>
+       </tu>
        <tu tuid='Register'>
            <tuv xml:lang="pl"><seg>Rejestracja</seg></tuv>
        </tu>

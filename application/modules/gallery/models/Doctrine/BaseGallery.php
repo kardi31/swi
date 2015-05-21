@@ -12,6 +12,8 @@
  * @property clob $description
  * @property integer $photo_root_id
  * @property integer $group_id
+ * @property integer $user_id
+ * @property integer $last_user_id
  * @property Doctrine_Collection $Translation
  * 
  * @package    Admi
@@ -53,6 +55,14 @@ abstract class Gallery_Model_Doctrine_BaseGallery extends Doctrine_Record
              'type' => 'integer',
              'length' => '4',
              ));
+        $this->hasColumn('user_id', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => '4',
+             ));
+        $this->hasColumn('last_user_id', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => '4',
+             ));
 
         $this->option('type', 'MyISAM');
         $this->option('collate', 'utf8_general_ci');
@@ -76,6 +86,10 @@ abstract class Gallery_Model_Doctrine_BaseGallery extends Doctrine_Record
              'tableName' => 'gallery_gallery_translation',
              'className' => 'GalleryTranslation',
              ));
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $softdelete0 = new Doctrine_Template_SoftDelete();
         $this->actAs($i18n0);
+        $this->actAs($timestampable0);
+        $this->actAs($softdelete0);
     }
 }

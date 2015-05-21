@@ -43,6 +43,17 @@ class Gallery_Form_Gallery extends Admin_Form {
             $translations->addSubForm($translationForm, $language);
         }
 
+        $group = $this->createElement('select', 'group_id');
+        $group->setLabel('Grupa');
+        $group->setDecorators(self::$selectDecorators);
+        $group->setAttrib('class', 'span8');
+        $group->addMultiOption(1,'Seniorzy');
+        $group->addMultiOption(2,'Juniorzy Starsi');
+        $group->addMultiOption(3,'Juniorzy Młodsi');
+        $group->addMultiOption(4,'Trampkarze');
+        $group->addMultiOption(5,'Młodzicy');
+        $group->addMultiOption(6,'Orliki');
+        
         $this->addSubForm($translations, 'translations');
         
         $submit = $this->createElement('button', 'submit');
@@ -52,6 +63,7 @@ class Gallery_Form_Gallery extends Admin_Form {
         
         $this->setElements(array(
             $id,
+            $group,
             $submit
         ));
 		

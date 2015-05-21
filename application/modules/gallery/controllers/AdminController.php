@@ -35,6 +35,9 @@ class Gallery_AdminController extends MF_Controller_Action {
             $row = array();
             $row['DT_RowId'] = $result->id;
             $row[] = $result->Translation[$language->getId()]->name;
+            $row[] = MF_Text::timeFormat($result['created_at'], 'd/m/Y H:i'). "<br />".$result['UserCreated']['last_name']. " ".$result['UserCreated']['first_name'];
+            $row[] = MF_Text::timeFormat($result['updated_at'], 'd/m/Y H:i'). "<br /> ".$result['UserUpdated']['last_name']. " ".$result['UserUpdated']['first_name'];
+          
             
             $options = '<a href="' . $this->view->adminUrl('edit-gallery', 'gallery', array('id' => $result->id)) . '" class="edit-item"><span class="icon24 entypo-icon-settings"></span></a>';
             $options .= '<a href="' . $this->view->adminUrl('delete-gallery', 'gallery', array('id' => $result->id)) . '" class="delete-item"><span class="icon24 icon-remove"></span></a>';

@@ -96,5 +96,13 @@ class Gallery_Model_Doctrine_Gallery extends Gallery_Model_Doctrine_BaseGallery
             'local' => 'photo_root_id',
             'foreign' => 'root_id'
         ));
+          
+           $this->hasOne('User_Model_Doctrine_User as UserCreated', array(
+             'local' => 'user_id',
+             'foreign' => 'id'));
+        
+        $this->hasOne('User_Model_Doctrine_User as UserUpdated', array(
+             'local' => 'last_user_id',
+             'foreign' => 'id'));
     }
 }

@@ -14,6 +14,8 @@ $(document).ready(function() {
         "aaSorting": [[ 0, "desc" ]],
         "aoColumns": [
             null,
+            {  sWidth: '150px' },
+            {  sWidth: '150px' },
             { "bSortable": false, sWidth: '150px' }
         ]
     });
@@ -35,7 +37,7 @@ $(document).ready(function() {
 
                 <h4>
                     <span class="icon16 icomoon-icon-pencil-2"></span>
-                    <span><?php echo $this->translate('Pages') ?></span>
+                    <span><?php echo $this->translate('Galeria') ?></span>
                     <div class="box-form right">
                         <a href="<?php echo $this->adminUrl('add-gallery', 'gallery') ?>" class="btn btn-success btn-mini"><?php echo $this->translate('Add new') ?></a>
                     </div>
@@ -47,6 +49,8 @@ $(document).ready(function() {
                 <table id="gallery_table" cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" width="100%">
                     <thead>
                         <th><?php echo $this->translate('Name') ?></th>
+                        <th><?php echo $this->translate('Created') ?></th>
+                        <th><?php echo $this->translate('Updated') ?></th>
                         <th><?php echo $this->translate('Options') ?></th>
                     </thead>
                     <tbody>

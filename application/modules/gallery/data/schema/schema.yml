@@ -9,6 +9,8 @@ Gallery:
       fields: [name, slug, description]
       tableName: gallery_gallery_translation
       className: GalleryTranslation
+    Timestampable: ~
+    SoftDelete: ~
   columns:
     id:
       primary: true
@@ -25,6 +27,10 @@ Gallery:
     photo_root_id:
       type: integer(4)
     group_id:
+      type: integer(4)
+    user_id:
+      type: integer(4)
+    last_user_id:
       type: integer(4)
 GalleryTranslation:
   tableName: gallery_gallery_translation
