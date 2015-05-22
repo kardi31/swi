@@ -759,6 +759,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver {
 	 **/
 	protected function _save($fp, $dir, $name, $mime, $w, $h) {
 		$this->clearcache();
+		
 		$id = $this->_joinPath($dir, $name);
 		rewind($fp);
 		$stat = fstat($fp);

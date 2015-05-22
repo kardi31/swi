@@ -258,7 +258,7 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 	 **/
 	protected function _stat($path) {
 		$stat = array();
-                $path = APPLICATION_PATH.'/../'.$path;
+
 		if (!file_exists($path)) {
 			return $stat;
 		}
@@ -523,7 +523,8 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 	 **/
 	protected function _save($fp, $dir, $name, $mime, $w, $h) {
 		$path = $dir.DIRECTORY_SEPARATOR.$name;
-                if (!($target = @fopen($path, 'wb'))) {
+
+		if (!($target = @fopen($path, 'wb'))) {
 			return false;
 		}
 
